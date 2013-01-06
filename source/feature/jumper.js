@@ -1,0 +1,172 @@
+function createMapJumpLink(name, x, y)
+{
+	var loc = location.href;
+	if (loc.indexOf("&") > -1) loc = loc.substr(0, loc.indexOf("&") + 1);
+	else if (loc.indexOf("?") == -1) loc += "?";
+	return "<a href='" + loc + "screen=map&x=" + x + "&y=" + y + "' class=sangujumperlink coordx=" + x + " coordy=" + y + ">" + name + " (" + x + "|" + y + ")</a>";
+}
+
+function mapJump()
+{
+	if (user_data.jumper.enabled)
+	{
+		var cell = "<span style='display: none;' id=sanguJumperFrame>";
+		if (location.href.indexOf("screen=map") > -1)
+		{
+			cell += trans.sp.jumper.name + " <input type= type=text size=6 id=sangujumperName style='height: 16px; border: 0; top: -2px; position: relative'> ";
+			cell += trans.sp.jumper.xy + " ";
+		}
+		cell += "<input type=text type=text size=6 id=sangujumper style='height: 16px; border: 0; top: -2px; position: relative'>";
+		cell += "</span>";
+		cell += "&nbsp;<span class='icon ally internal_forum' title='" + trans.sp.jumper.goToMap + "' id=sangujumperOpen></span>";
+		$("#menu_row2").append("<td>" + cell + "</td>");
+
+		var favorieten = "";
+		if (user_data.favs)
+			$.each(user_data.favs, function (i, v)
+			{
+				if (v.active)
+					favorieten += "<tr><td align=left colspan=2>" + createMapJumpLink(v.name, v.x, v.y) + "</td></tr>";
+			});
+
+		var cookie = getCookie("jumpers" + game_data.world).split(",");
+		if (cookie.length > 1)
+			for (i = 0; i < cookie.length; i += 2)
+			{
+				x = cookie[i + 1].substr(0, cookie[i + 1].indexOf("|"));
+				y = cookie[i + 1].substr(cookie[i + 1].indexOf("|") + 1);
+				favorieten += "<tr><td align=left colspan=2>" + createMapJumpLink(cookie[i], x, y) + "&nbsp;<a href=# class=jumperdelete jumpname=" + cookie[i] + ">X</a></td></tr>";
+			}
+
+		if (user_data.jumper.addTargetVillage)
+		{
+			var doel = getVillageFromCoords(getCookie('doelwit'));
+			if (doel.isValid)
+			{
+				favorieten += "<tr><td align=left colspan=2>" + createMapJumpLink(trans.sp.all.target, doel.x, doel.y) + "</td></tr>";
+			}
+		}
+
+		if (user_data.jumper.addLastVillage)
+		{
+			var doel = getVillageFromCoords(getCookie('lastVil'));
+			if (doel.isValid)
+			{
+				favorieten += "<tr><td align=left colspan=2>" + createMapJumpLink(trans.sp.all.last, doel.x, doel.y) + "</td></tr>";
+			}
+		}
+
+
+		if (location.href.indexOf("screen=map") == -1)
+		{
+			var newfavorieten = ""; //"<div id=sangujumperpos style='display: none; background-image: url(\"http://nl10.tribalwars.nl/graphic/background/content.jpg\"); width: "+(user_data.jumper.width)+"px; border: 1px solid black'>";
+			newfavorieten += "<table id=sangujumperpos style='display: none; background-image: url(\"http://nl10.tribalwars.nl/graphic/background/content.jpg\"); border: 1px solid black' width=" + user_data.jumper.width + " cellspacing=0 cellpadding=0>";
+			newfavorieten += "<tr style='background-color: #dfcca6'><td><b>" + trans.sp.jumper.title + "</b></td><td align=right><a href=# id=sangujumperclose>" + trans.sp.jumper.close + "</a></td></tr>";
+			newfavorieten += favorieten;
+			newfavorieten += "</table>";
+
+			$("#header_info").prepend(newfavorieten);
+
+			$("#sangujumperclose").click(function ()
+			{
+				$("#sangujumperpos").hide();
+			});
+		}
+		else
+		{
+			$("#inputx").parent().parent().parent().append("<tr><th colspan=2>" + trans.sp.jumper.title + "</th></tr>" + favorieten);
+		}
+
+		$(".sangujumperlink").click(function ()
+		{
+			var link = $(this);
+			$("#sangujumper").val(link.attr("coordx") + "|" + link.attr("coordy"));
+			$("#sangujumperOpen").click();
+			return false;
+		});
+
+		$(".jumperdelete").click(function ()
+		{
+			var toDelete = $(this).attr("jumpname");
+
+			var cookie = getCookie("jumpers" + game_data.world).split(",");
+			var nieuweCookie = "";
+			for (i = 0; i < cookie.length; i += 2)
+			{
+				if (cookie[i] != toDelete)
+					nieuweCookie += "," + cookie[i] + "," + cookie[i + 1];
+			}
+			$(this).parent().parent().remove();
+			setCookie("jumpers" + game_data.world, nieuweCookie.length > 0 ? nieuweCookie.substr(1) : "", 60 * 24 * user_data.jumper.daysActive);
+		});
+
+		$("#sangujumperOpen").click(function ()
+		{
+			var input = $("#sangujumper");
+			if ($("#sanguJumperFrame").is(":visible"))
+			{
+				var village = getVillageFromCoords(input.val(), true);
+				if (village.isValid)
+				{
+					if (location.href.indexOf("screen=map") > -1 && $("#sangujumperName").val() != "")
+					{
+						// Nieuwe favoriet toevoegen
+						var name = $("#sangujumperName").val();
+
+						var cookiefav = name + ',' + village.coord;
+						var bestaand = getCookie("jumpers" + game_data.world);
+						if (bestaand.length > 0) cookiefav += "," + bestaand;
+						setCookie("jumpers" + game_data.world, cookiefav, 60 * 24 * user_data.jumper.daysActive);
+					}
+
+					if (location.href.indexOf("screen=map") == -1)
+					{
+						var position = $("#sangujumperpos").offset();
+						setCookie("jumperLeft", position.left, 60 * 24 * user_data.jumper.daysActive);
+						setCookie("jumperTop", position.top, 60 * 24 * user_data.jumper.daysActive);
+					}
+
+					// Naar de map springen
+					location.href = location.href.substr(0, location.href.indexOf("&screen")) + "&screen=map&x=" + village.x + "&y=" + village.y;
+				}
+				else
+				{
+					// Foutieve coordinaten ingevuld
+					if (!$("#sangujumperpos").is(":visible"))
+					{
+						$("#sangujumperpos").show();
+						input.css("border", "1px solid red");
+					}
+					else $("#sangujumperpos").hide();
+				}
+			}
+			else
+			{
+				// mapJumper activeren
+				var favs = $("#sangujumperpos");
+				var left = getCookie("jumperLeft");
+				var top = getCookie("jumperTop");
+				if (!left)
+				{
+					left = user_data.jumper.left;
+					top = user_data.jumper.top;
+				}
+
+				favs.css({ "left": left + "px", "top": top + "px", "position": "absolute", "z-index": 99999999 });
+				UI.Draggable(favs);
+
+				var input = $("#sangujumper");
+				if (input.val() == "")
+				{
+					$("#sanguJumperFrame").add(favs).fadeIn();
+					//input.focus();
+				}
+				else
+				{
+					$("#sanguJumperFrame").show();
+					$("#sangujumperOpen").click();
+				}
+			}
+		});
+	}
+}
