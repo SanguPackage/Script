@@ -25,6 +25,10 @@ The script is least extensively tested in FireFox.
 
 Currently only NL worlds 1 to 26 are supported. Automatic loading of new worlds is high on the ToDo List :)
 
+**Code**
+
+The code is pure JavaScript with extensive use of jQuery.
+
 Building the script from source
 -------------------------------
 
@@ -32,7 +36,7 @@ An [Autohotkey](http://www.autohotkey.com) script (mergeIt.ahk) can be used to a
 into "sangupackage.user.js".
 To do this: Download and install Autohotkey, then double click mergeIt.ahk when in the same directory as the source files
 and it will create the complete Greasemonkey script. Change the following line (2nd line) in the script to change the path
-to 
+to the location you want it to end up at:
 
     savePath := "yourFullPathHere" ;this is a comment
 
@@ -40,3 +44,14 @@ This (Autohotkey) means the script can currently only be assembled on a Windows 
 tought through:). If a non Windows person wants to join the project, I'm sure we can come up with a solution that works
 for both environments :)
 
+Contributing
+------------
+
+Everyone is more than welcome to join in. Lots of features that can still be added or improved. 
+I think translating to DE should be priority no 1 so that German JavaScript/jQuery programmers or hackers can join
+in to make the Sangu Package even better.
+
+Contact
+-------
+
+You can contact me at woutervs@hotmail.com.
