@@ -9,21 +9,21 @@ adding extra features on pretty much every page, most notably the village overvi
 Support
 -------
 
-**Worlds**
+**Servers**
 
 Currently only the .nl Tribal Wars server is supported. There is a `trans` JS object that should
 make it (relatively) easy to make the script work on DE or US servers aswell. The use of Greasemonkey is (last
 time I checked) not allowed on any other server, so NL, DE and US are the only ones translations
 can be added for.
 
+**Worlds**
+
+Currently only NL worlds 1 to 26 are supported. Automatic loading of new worlds is high on the ToDo List :)
+
 **Browsers**
 
 All features should work in the latest versions of Opera, FireFox and Chrome (easiest to install and manage with the Tampermonkey extension). 
 The script is least extensively tested in FireFox.
-
-**Worlds**
-
-Currently only NL worlds 1 to 26 are supported. Automatic loading of new worlds is high on the ToDo List :)
 
 **Code**
 
