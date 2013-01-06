@@ -36,7 +36,7 @@ An [Autohotkey](http://www.autohotkey.com) script (mergeIt.ahk) can be used to a
 into "sangupackage.user.js".
 To do this: Download and install Autohotkey, then double click mergeIt.ahk when in the same directory as the source files
 and it will create the complete Greasemonkey script. Change the following line (2nd line) in the script to change the path
-to the location you want it to end up at:
+to the location you want it to end up at: (otherwise it will be placed in the same directory as mergeIt.ahk)
 
     savePath := "yourFullPathHere" ;this is a comment
 
