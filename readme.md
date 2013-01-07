@@ -32,14 +32,14 @@ The code is pure JavaScript with extensive use of jQuery.
 
 Code structure:
 
- - start.user.js : The file that is merged by `mergeIt.ahk` to `sangupackage.user.js`
- - page\ : The features per Tribal Wars page. **Most code is in here**
- - feature\ : Map jumper and the SP activator. Features active on all pages.
- - config\ : Different world and user settings. Translations.
- - func\ : Functions of all kinds. (UI, DateTime, Debug, Persistence, Number and TW Building helpers)
- - greasemonkey\ : Code specific for Greasemonkey/UserScript
- - version.txt : Current version of Sangu Package
- - mergeIt.ahk : The Autohotkey script that creates `sangupackage.user.js` from `start.user.js`
+ - **start.user.js** : The file that is merged by `mergeIt.ahk` to `sangupackage.user.js`
+ - **page\** : The features per Tribal Wars page. **Most code is in here**.
+ - **feature\** : Map jumper and the SP activator. Features active on all pages.
+ - **config\** : Different world and user settings. Translations.
+ - **func\** : Functions of all kinds. (UI, DateTime, Debug, Persistence, Number and TW Building helpers)
+ - **greasemonkey\** : Code specific for Greasemonkey/UserScript
+ - **version.txt** : Current version of Sangu Package
+ - **mergeIt.ahk** : The Autohotkey script that creates `sangupackage.user.js` from `start.user.js`
 
 
 Building the script from source
