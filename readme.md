@@ -12,8 +12,8 @@ Support
 **Servers**
 
 Currently only the .nl Tribal Wars server is supported. There is a `trans` JS object that should
-make it (relatively) easy to make the script work on DE or US servers aswell. The use of Greasemonkey is (last
-time I checked) not allowed on any other server, so NL, DE and US are the only ones translations
+make it (relatively) easy to make the script work on DE worlds aswell. The use of Greasemonkey is (last
+time I checked) not allowed on any other server, so NL and DE are the only ones translations
 can be added for.
 
 **Worlds**
