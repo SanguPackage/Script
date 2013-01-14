@@ -1,15 +1,15 @@
-// TODO: groepen bewerken: maak die div floatable en onthoud positie
+// TODO: edit groups: make div floatable and remember position
 var menu = "";
 menu += "<table class=vis width='100%'><tr><th>";
 
-menu += trans.sp.defOverview.village + " <input type=text size=5 id=defFilterDistDorp value=''>";
+menu += trans.sp.defOverview.village + " <input type=text size=5 id=defFilterDistVillage value=''>";
 menu += "<select id=defFilterDistType>";
 menu += "<option value=1 selected>" + trans.sp.all.closer + "</option><option value=-1>" + trans.sp.all.further + "</option></select>";
-menu += "&nbsp;F <input type=text size=3 id=defFilterDistAfstand value=" + user_data.restack.fieldsDistanceFilterDefault + ">";
+menu += "&nbsp;F <input type=text size=3 id=defFilterDistFields value=" + user_data.restack.fieldsDistanceFilterDefault + ">";
 menu += "<input type=button id=defFilterDist value='" + trans.sp.defOverview.distFilter + "' title='" + trans.sp.defOverview.distFilterTooltip + "'>";
 
 menu += "&nbsp; | &nbsp;";
-menu += "<input type=button id=aanvalFilter value='" + trans.sp.defOverview.filterUnderAttack + "'>";
+menu += "<input type=button id=attackFilter value='" + trans.sp.defOverview.filterUnderAttack + "'>";
 
 menu += "<br>";
 
@@ -32,215 +32,166 @@ var selectAllRow = $("#group_assign_table tr:last");
 $("#group_assign_table").before(menu).after("<table class=vis width='100%'><tr><th><input type=checkbox id=selectAllVisible> " + selectAllRow.text() + "</th></tr></table>");
 selectAllRow.remove();
 
-$("#selectAllVisible").click(
-	function ()
-	{
-		var isChecked = $(this).attr("checked") == "checked";
-		$("#group_assign_table input:hidden").attr("checked", false);
-		$("#group_assign_table input:visible").attr("checked", isChecked);
-	});
+$("#selectAllVisible").click(function () {
+	var isChecked = $(this).attr("checked") == "checked";
+	$("#group_assign_table input:hidden").attr("checked", false);
+	$("#group_assign_table input:visible").attr("checked", isChecked);
+});
 
-$("#defReverseFilter").change(
-	function ()
-	{
-		var isChecked = $(this).is(":checked");
-		var defTrans = trans.sp.groups;
-		$("#defFilterText").attr("title", isChecked ? defTrans.villageFilterTitle : defTrans.villageFilterTitleRev);
-		$("#defFilterContinent").attr("title", isChecked ? trans.sp.commands.continentFilterTooltip : trans.sp.commands.continentFilterTooltipReverse);
+$("#defReverseFilter").change(function () {
+	var isChecked = $(this).is(":checked");
+	var defTrans = trans.sp.groups;
+	$("#defFilterText").attr("title", isChecked ? defTrans.villageFilterTitle : defTrans.villageFilterTitleRev);
+	$("#defFilterContinent").attr("title", isChecked ? trans.sp.commands.continentFilterTooltip : trans.sp.commands.continentFilterTooltipReverse);
 
-		$("#defFilterAmount").attr("title", isChecked ? defTrans.amountFilterTitle : defTrans.amountFilterTitleRev);
-		$("#defFilterPoints").attr("title", isChecked ? defTrans.pointsFilterTitle : defTrans.pointsFilterTitleRev);
-		$("#defFilterFarm").attr("title", isChecked ? defTrans.farmFilterTitle : defTrans.farmFilterTitleRev);
+	$("#defFilterAmount").attr("title", isChecked ? defTrans.amountFilterTitle : defTrans.amountFilterTitleRev);
+	$("#defFilterPoints").attr("title", isChecked ? defTrans.pointsFilterTitle : defTrans.pointsFilterTitleRev);
+	$("#defFilterFarm").attr("title", isChecked ? defTrans.farmFilterTitle : defTrans.farmFilterTitleRev);
 
-		$("#defFilterGroup").attr("title", isChecked ? defTrans.groupNameFilterTitle : defTrans.groupNameFilterTitleRev);
-	});
+	$("#defFilterGroup").attr("title", isChecked ? defTrans.groupNameFilterTitle : defTrans.groupNameFilterTitleRev);
+});
 $("#defReverseFilter").change();
 
-function filterGroupRows(filterStrategy, reverseFilter, keepRowStrategy, tag)
-{
-	if (reverseFilter == undefined || reverseFilter == null)
+function filterGroupRows(filterStrategy, reverseFilter, keepRowStrategy, tag) {
+	if (reverseFilter == undefined || reverseFilter == null) {
 		reverseFilter = !$("#defReverseFilter").attr("checked");
+	}
 
 	var goners = $();
 	var totalVisible = 0;
-	$("#group_assign_table tr:gt(0):visible").each(
-		function ()
-		{
-			var row = $(this);
-			if (!reverseFilter != !filterStrategy(row, tag))
-			{
-				goners = goners.add(row);
-				$("input:eq(1)", row).val("");
+	$("#group_assign_table tr:gt(0):visible").each(function () {
+		var row = $(this);
+		if (!reverseFilter != !filterStrategy(row, tag)) {
+			goners = goners.add(row);
+			$("input:eq(1)", row).val("");
+		} else {
+			totalVisible++;
+			if (keepRowStrategy != null) {
+				keepRowStrategy(row, tag);
 			}
-			else
-			{
-				totalVisible++;
-				if (keepRowStrategy != null)
-					keepRowStrategy(row, tag);
-			}
-		});
+		}
+	});
 	goners.hide();
 	var firstHeaderCell = $("#group_assign_table th:first");
 	var firstHeaderCellHtml = firstHeaderCell.html();
 	firstHeaderCell.html(firstHeaderCellHtml.substr(0, firstHeaderCellHtml.lastIndexOf(" ")) + " (" + totalVisible + ")");
 }
 
-// filteren op afstand tot ingegeven dorp
-$("#defFilterDist").click(
-	function ()
-	{
-		var doelDorp = getVillageFromCoords($("#defFilterDistDorp").val(), true);
-		if (!doelDorp.isValid)
-		{
-			alert(trans.sp.defOverview.distanceToVillageNoneEntered);
-			return;
-		}
+// Filter on distance to given village
+$("#defFilterDist").click(function () {
+	var targetVillage = getVillageFromCoords($("#defFilterDistVillage").val(), true);
+	if (!targetVillage.isValid) {
+		alert(trans.sp.defOverview.distanceToVillageNoneEntered);
+		return;
+	}
 
-		var reverseFilter = !($("#defFilterDistType").val() != "-1");
-		var maxAfstand = $("#defFilterDistAfstand").val() * 1;
+	var reverseFilter = !($("#defFilterDistType").val() != "-1");
+	var maxDistance = parseInt($("#defFilterDistFields").val(), 10);
 
-		var isAlreadyVisible = $("#filterContext").size() == 1;
-		if (isAlreadyVisible) $("#filterContext").html(trans.sp.defOverview.distanceToVillage.replace("{0}", doelDorp.coord));
-		else
-		{
-			$("#group_assign_table").find("th:first").after("<th><span id=filterContext>" + trans.sp.defOverview.distanceToVillage.replace("{0}", doelDorp.coord) + "</span> <img src='graphic/oben.png' class=sortDistance direction=up> <img src='graphic/unten.png' class=sortDistance direction=down></th>");
-			$(".sortDistance").click(
-				function ()
-				{
-					if ($(this).attr("direction") == "up")
-					{
-						$("#group_assign_table").find("tr:gt(0):visible").sortElements(
-							function (a, b)
-							{
-								return $(a).attr("fieldAmount") * 1 > $(b).attr("fieldAmount") * 1 ? 1 : -1;
-							});
-					}
-					else
-					{
-						$("#group_assign_table").find("tr:gt(0):visible").sortElements(
-							function (a, b)
-							{
-								return $(a).attr("fieldAmount") * 1 < $(b).attr("fieldAmount") * 1 ? 1 : -1;
-							});
-					}
+	var isAlreadyVisible = $("#filterContext").size() == 1;
+	if (isAlreadyVisible) {
+		$("#filterContext").html(trans.sp.defOverview.distanceToVillage.replace("{0}", targetVillage.coord));
+	} else {
+		$("#group_assign_table").find("th:first").after("<th><span id=filterContext>" + trans.sp.defOverview.distanceToVillage.replace("{0}", targetVillage.coord) + "</span> <img src='graphic/oben.png' class=sortDistance direction=up> <img src='graphic/unten.png' class=sortDistance direction=down></th>");
+		$(".sortDistance").click(function () {
+			if ($(this).attr("direction") == "up") {
+				$("#group_assign_table").find("tr:gt(0):visible").sortElements(function (a, b) {
+					return parseInt($(a).attr("fieldAmount"), 10) > parseInt($(b).attr("fieldAmount"), 10) ? 1 : -1;
 				});
-		}
+			} else {
+				$("#group_assign_table").find("tr:gt(0):visible").sortElements(function (a, b) {
+					return parseInt($(a).attr("fieldAmount"), 10) < parseInt($(b).attr("fieldAmount"), 10) ? 1 : -1;
+				});
+			}
+		});
+	}
 
-		filterGroupRows(
-			function (row, tag)
-			{
-				var compareVillage = getVillageFromCoords(row.find("td:first").text());
-				tag.distance = getDistance(doelDorp.x, compareVillage.x, doelDorp.y, compareVillage.y, 'ram').fields;
-				return tag.distance > maxAfstand;
+	filterGroupRows(
+		function (row, tag) {
+			var compareVillage = getVillageFromCoords(row.find("td:first").text());
+			tag.distance = getDistance(targetVillage.x, compareVillage.x, targetVillage.y, compareVillage.y, 'ram').fields;
+			return tag.distance > maxDistance;
 
-			}, reverseFilter,
-			function (mainRow, tag)
-			{
-				mainRow.attr("fieldAmount", tag.distance);
-				if (!isAlreadyVisible) mainRow.find("td:first").after("<td><b>" + trans.sp.defOverview.fieldsPrefix.replace("{0}", parseInt(tag.distance)) + "</b></td>");
-				else mainRow.find("td:eq(1)").html("<b>" + trans.sp.defOverview.fieldsPrefix.replace("{0}", parseInt(tag.distance)) + "</b>");
-			}, { distance: 0 });
+		}, reverseFilter,
+		function (mainRow, tag) {
+			mainRow.attr("fieldAmount", tag.distance);
+			if (!isAlreadyVisible) {
+				mainRow.find("td:first").after("<td><b>" + trans.sp.defOverview.fieldsPrefix.replace("{0}", parseInt(tag.distance, 10)) + "</b></td>");
+			} else {
+				mainRow.find("td:eq(1)").html("<b>" + trans.sp.defOverview.fieldsPrefix.replace("{0}", parseInt(tag.distance, 10)) + "</b>");
+			}
+		}, { distance: 0 });
 });
 
-// filteren op binnenkomende aanvallen
-$("#aanvalFilter").click(
-	function ()
-	{
-		filterGroupRows(
-			function (row)
-			{
-				return $('td:first:not(:has(img[title=\'' + trans.tw.command.attack + '\']))', row).size() == 0;
-			});
+// Filter on incoming attacks
+$("#attackFilter").click(function () {
+	filterGroupRows(function (row) {
+		return $('td:first:not(:has(img[title=\'' + trans.tw.command.attack + '\']))', row).size() == 0;
 	});
+});
 
-// filteren op dorpsnaam
-$("#defFilterText").click(
-	function ()
-	{
-		var compareTo = $("#defFilterTextValue").val().toLowerCase();
-		if (compareTo.length > 0)
-			filterGroupRows(
-				function (row)
-				{
-					return row.find("td:first").text().toLowerCase().indexOf(compareTo) != -1;
-				});
-	});
+// filter on village name
+$("#defFilterText").click(function () {
+	var compareTo = $("#defFilterTextValue").val().toLowerCase();
+	if (compareTo.length > 0) {
+		filterGroupRows(function (row) {
+			return row.find("td:first").text().toLowerCase().indexOf(compareTo) != -1;
+		});
+	}
+});
 
-// filter op groepsnaam
-$("#defFilterGroup").click(
-	function ()
-	{
-		var compareTo = $("#defFilterGroupValue").val().toLowerCase();
-		if (compareTo.length > 0)
-			filterGroupRows(
-				function (row)
-				{
-					return row.find("td:eq(4)").text().toLowerCase().indexOf(compareTo) != -1;
-				});
-	});
+// filter on group names
+$("#defFilterGroup").click(function () {
+	var compareTo = $("#defFilterGroupValue").val().toLowerCase();
+	if (compareTo.length > 0) {
+		filterGroupRows(function (row) {
+			return row.find("td:eq(4)").text().toLowerCase().indexOf(compareTo) != -1;
+		});
+	}
+});
 
-$("#defFilterContinent").click(
-	function ()
-	{
-		var compareTo = $("#defFilterContinentText").val() * 1;
-		if (compareTo >= 0)
-			filterGroupRows(
-				function (row)
-				{
-					var village = getVillageFromCoords(row.find("td:eq(0)").text());
-					return village.continent() == compareTo;
-				});
-	});
+$("#defFilterContinent").click(function () {
+	var compareTo = parseInt($("#defFilterContinentText").val(), 10);
+	if (compareTo >= 0) {
+		filterGroupRows(function (row) {
+			var village = getVillageFromCoords(row.find("td:eq(0)").text());
+			return village.continent() == compareTo;
+		});
+	}
+});
 
-// filter op aantal groepen
-$("#defFilterAmount").click(
-	function ()
-	{
-		var compareTo = $("#defFilterAmountText").val() * 1;
-		if (compareTo >= 0)
-		{
-			if (!$("#defReverseFilter").attr("checked"))
-			{
-				//wtf?
-				filterGroupRows(
-					function (row)
-					{
-						return row.find("td:eq(1)").text() * 1 > compareTo;
-					}, false);
-			}
-			else
-			{
-				filterGroupRows(
-					function (row)
-					{
-						return row.find("td:eq(1)").text() * 1 < compareTo;
-					}, false);
-			}
+// filter on # groups
+$("#defFilterAmount").click(function (){
+	var compareTo = parseInt($("#defFilterAmountText").val(), 10);
+	if (compareTo >= 0) {
+		if (!$("#defReverseFilter").attr("checked")) {
+			filterGroupRows(function (row) {
+				return parseInt(row.find("td:eq(1)").text(), 10) > compareTo;
+			}, false);
+		} else {
+		filterGroupRows(function (row) {
+				return parseInt(row.find("td:eq(1)").text(), 10) < compareTo;
+			}, false);
 		}
-	});
+	}
+});
 
-$("#defFilterPoints").click(
-	function ()
-	{
-		var compareTo = $("#defFilterPointsText").val() * 1;
-		if (compareTo >= 0)
-			filterGroupRows(
-				function (row)
-				{
-					return row.find("td:eq(2)").text().replace(".", "") * 1 < compareTo;
-				});
-	});
+$("#defFilterPoints").click(function () {
+	var compareTo = parseInt($("#defFilterPointsText").val(), 10);
+	if (compareTo >= 0) {
+		filterGroupRows(function (row) {
+			return parseInt(row.find("td:eq(2)").text().replace(".", ""), 10) < compareTo;
+		});
+	}
+});
 
-$("#defFilterFarm").click(
-	function ()
-	{
-		var compareTo = $("#defFilterFarmText").val() * 1;
-		if (compareTo >= 0)
-			filterGroupRows(
-				function (row)
-				{
-					var farmValue = row.find("td:eq(3)").text();
-					farmValue = farmValue.substr(0, farmValue.indexOf("/")) * 1;
-					return farmValue * 1 < compareTo;
-				});
-	});
+$("#defFilterFarm").click(function () {
+	var compareTo = parseInt($("#defFilterFarmText").val(), 10);
+	if (compareTo >= 0) {
+		filterGroupRows(function (row) {
+			var farmValue = row.find("td:eq(3)").text();
+			farmValue = parseInt(farmValue.substr(0, farmValue.indexOf("/")), 10);
+			return farmValue < compareTo;
+		});
+	}
+});

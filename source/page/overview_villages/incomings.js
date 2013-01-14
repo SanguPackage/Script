@@ -1,84 +1,72 @@
-// Aanvallen groeperen per dorp
+// Group attacks per village
 var menu = "";
 menu += "<table width='100%'>";
 menu += "<tr><th colspan=6>";
-menu += "<input type=button id=sorteren value='" + trans.sp.incomings.dynamicGrouping + "'>";
-menu += "&nbsp;&nbsp; <input type=checkbox id=sorterenSum " + (user_data.command.sumRow ? "checked" : "") + "> " + trans.sp.incomings.summation + " ";
-menu += "<input type=button id=sorterenSnel value='" + trans.sp.incomings.fastGrouping + "'>";
-menu += "<input type=button id=filterAanval value='" + trans.sp.incomings.showNewIncomings + "'>";
+menu += "<input type=button id=sortIt value='" + trans.sp.incomings.dynamicGrouping + "'>";
+menu += "&nbsp;&nbsp; <input type=checkbox id=sortShowTotalRow " + (user_data.command.sumRow ? "checked" : "") + "> " + trans.sp.incomings.summation + " ";
+menu += "<input type=button id=sortQuick value='" + trans.sp.incomings.fastGrouping + "'>";
+menu += "<input type=button id=filterAttack value='" + trans.sp.incomings.showNewIncomings + "'>";
 menu += "</th></tr>";
 menu += "</table>";
 $("#incomings_table").before(menu);
 
-// Aantal aanvallen
-function showAantalAanvallen(aantalDorpen, aantalBevelen)
-{
-	if ($("#aantalAanvallen").size() == 0)
-	{
+// Amount of attacks
+function showAmountOfAttacks(amountOfVillages, amountOfCommands) {
+	if ($("#amountOfAttacks").size() == 0) {
 		var pageSize = $("input[name='page_size']");
-		pageSize.parent().prev().text("Aangevallen dorpen:");
-		pageSize = pageSize.val(aantalDorpen).parent().parent().parent();
-		pageSize.append('<tr><th colspan=2 id="aantalAanvallen">' + trans.sp.incomings.amount + '</th><td>' + aantalBevelen + '</td></tr>');
+		pageSize.parent().prev().text(trans.sp.commands.totalVillagesAttack);
+		pageSize = pageSize.val(amountOfVillages).parent().parent().parent();
+		pageSize.append('<tr><th colspan=2 id="amountOfAttacks">' + trans.sp.incomings.amount + '</th><td>' + amountOfCommands + '</td></tr>');
 	}
 }
 
-// Binnenkomende aanvallen sorteren
-$("#sorteren").bind('click', function ()
-{
+// Sort incoming attacks
+$("#sortIt").bind('click', function () {
 	this.disabled = true;
-	$("#sorterenSnel").attr("disabled", true);
+	$("#sortQuick").attr("disabled", true);
 
-	//builder.reset("DYNAMISCH START");
 	var rows = $("#incomings_table").find("tr:gt(0):visible").not("tr:last");
-	rows.sortElements(function (a, b)
-	{
+	rows.sortElements(function (a, b) {
 		a = getVillageFromCoords($("td:eq(1)", a).text());
 		b = getVillageFromCoords($("td:eq(1)", b).text());
 
 		return (a.x * 1000 + a.y) > (b.x * 1000 + b.y) ? 1 : -1;
 	});
 
-	//builder.add("YAYE");
-	var aantalDorpen = "";
+	var amountOfVillages = "";
 	var current = "";
 	var mod = 0;
-	rows.each(function ()
-	{
-		var dorp = $("td:eq(1)", this).text();
-		if (current != dorp)
-		{
-			current = dorp;
+	rows.each(function () {
+		var village = $("td:eq(1)", this).text();
+		if (current != village) {
+			current = village;
 			mod++
-			aantalDorpen++;
+			amountOfVillages++;
 		}
 		var type = mod % 2 == 0 ? 'row_a' : 'row_b';
 		this.className = type;
 	});
-	//builder.add("done");
 
-	showAantalAanvallen(aantalDorpen, rows.size());
+	showAmountOfAttacks(amountOfVillages, rows.size());
 });
 
-$("#sorterenSnel").bind('click', function ()
-{
+// Quick sort: performs faster but also freezes the screen (ie no countdowns)
+// --> This might also be good in case the page is refreshing too often otherwise
+$("#sortQuick").bind('click', function () {
 	this.disabled = true;
-	$("#sorteren").attr("disabled", true);
+	$("#sortIt").attr("disabled", true);
 
-	builder.reset("SNEL START");
 	var newTable = "";
 	var targets = [];
-	var aantalCommandos = 0;
-	var som = $('#sorterenSum').attr('checked') == "checked";
+	var commandCounter = 0;
+	var addTotalRow = $('#sortShowTotalRow').attr('checked') == "checked";
 
-	$("#incomings_table").find("tr:gt(0)").each(function ()
-	{
+	$("#incomings_table").find("tr:gt(0)").each(function () {
 		var target = $("td:eq(1)", this).text();
 		var village = getVillageFromCoords(target);
-		if (village.isValid)
-		{
-			aantalCommandos++;
-			if (targets[village.coord] == undefined)
-			{
+		if (village.isValid) {
+			commandCounter++;
+			if (targets[village.coord] == undefined) {
 				targets.push(village.coord);
 				targets[village.coord] = new Array();
 			}
@@ -86,39 +74,30 @@ $("#sorterenSnel").bind('click', function ()
 		}
 	});
 
-	//builder.add("ORDERED");
 	var mod = 0;
-	$.each(targets, function (i, v)
-	{
+	$.each(targets, function (i, v) {
 		mod++;
-		var aantal = 0;
-		$.each(targets[v], function (index, value)
-		{
+		var amount = 0;
+		$.each(targets[v], function (index, value) {
 			newTable += "<tr class='nowrap row_" + (mod % 2 == 0 ? 'b' : 'a') + "'>" + value.html() + "</tr>";
-			aantal++;
+			amount++;
 		});
 
-		if (som)
-		{
-			newTable += "<tr><td align=right colspan=6>" + aantal + "&nbsp;</td></tr>";
+		if (addTotalRow) {
+			newTable += "<tr><td align=right colspan=6>" + amount + "&nbsp;</td></tr>";
 		}
 	});
 
-	//builder.add("BUILT");
 	var menu = $("#incomings_table tr").first().html();
 	$("#incomings_table").html("<table id='incomings_table' class='vis'>" + menu + newTable + "</table>");
-	//builder.add("REPLACED");
 
-	showAantalAanvallen(targets.length, aantalCommandos);
+	showAmountOfAttacks(targets.length, commandCounter);
 });
 
-$("#filterAanval").bind('click', function ()
-{
+$("#filterAttack").bind('click', function () {
 	var goners = $();
-	$("#incomings_table tr:gt(0)").not("tr:last").each(function()
-	{
-		if ($.trim($("td:first", this).text()) != trans.tw.command.attack)
-		{
+	$("#incomings_table tr:gt(0)").not("tr:last").each(function() {
+		if ($.trim($("td:first", this).text()) != trans.tw.command.attack) {
 			goners = goners.add($(this));
 			$(":checkbox", this).attr("checked", false);
 		}

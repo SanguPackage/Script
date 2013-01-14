@@ -1,6 +1,5 @@
 var vilHome = getVillageFromCoords(game_data.village.coord);
-if ($("#units_away").size() != 0)
-{
+if ($("#units_away").size() != 0) {
 	// Troops in other villages
 	var otherUnitsTable = $("#units_away").width("100%");
 	$("tr:first", otherUnitsTable).append("<th>" + trans.sp.place.distance + "</th><th>" + trans.sp.place.backOn + "</th>");
@@ -8,18 +7,15 @@ if ($("#units_away").size() != 0)
 		var row = $(this);
 		var villageCoord = getVillageFromCoords(row.find("td:eq(1)").text());
 
-		if (!villageCoord.isValid) row.append("<th>&nbsp;</th><th>&nbsp;</th>");
-		else
-		{
+		if (!villageCoord.isValid) {
+			row.append("<th>&nbsp;</th><th>&nbsp;</th>");
+		} else {
 			var slowestUnit = null;
 			var slowestUnitName = null;
-			$.each(world_data.units, function (i, val)
-			{
+			$.each(world_data.units, function (i, val) {
 				var amount = $("td:eq(" + (i + 2) + "), th:eq(" + (i + 1) + ")", row).text();
-				if (amount != '0')
-				{
-					if (slowestUnit == null || slowestUnit < world_data.unitsSpeed['unit_' + val])
-					{
+				if (amount != '0') {
+					if (slowestUnit == null || slowestUnit < world_data.unitsSpeed['unit_' + val]) {
 						slowestUnitName = val;
 						slowestUnit = world_data.unitsSpeed['unit_' + val];
 					}
@@ -27,7 +23,7 @@ if ($("#units_away").size() != 0)
 			});
 
 			var fields = getDistance(vilHome.x, villageCoord.x, vilHome.y, villageCoord.y, slowestUnitName);
-			var extraColumns = "<td align=right>" + parseInt(fields.fields) + "</td>";
+			var extraColumns = "<td align=right>" + parseInt(fields.fields, 10) + "</td>";
 			extraColumns += "<td>" + twDateFormat(fields.arrivalTime) + "</td>";
 
 			row.append(extraColumns);
@@ -35,7 +31,7 @@ if ($("#units_away").size() != 0)
 	});
 }
 
-// Afstand tussen dorpen en terugkeertijd berekenen
+// Calculate distance and walkingtime to the villages
 var unitsTable = $("form table:first");
 $("tr:first", unitsTable).append('<th width="50"><img src="graphic/face.png" title="' + trans.sp.all.population + '" alt="" /></th><th>' + trans.sp.place.distance + '</th><th>' + trans.sp.place.backOn + '</th>');
 unitsTable.find("tr:gt(0)").each(function () {
@@ -44,15 +40,12 @@ unitsTable.find("tr:gt(0)").each(function () {
 	var slowestUnit = null;
 	var slowestUnitName = null;
 
-	$.each(world_data.units, function (i, val)
-	{
+	$.each(world_data.units, function (i, val) {
 		var amount = $("td:eq(" + (i + 1) + "), th:eq(" + (i + 1) + ")", row).text();
-		if (amount != '0')
-		{
+		if (amount != '0') {
 			pop += amount * world_data.unitsPositionSize[i];
 
-			if (slowestUnit == null || slowestUnit < world_data.unitsSpeed['unit_' + val])
-			{
+			if (slowestUnit == null || slowestUnit < world_data.unitsSpeed['unit_' + val]) {
 				slowestUnitName = val;
 				slowestUnit = world_data.unitsSpeed['unit_' + val];
 			}
@@ -60,21 +53,18 @@ unitsTable.find("tr:gt(0)").each(function () {
 	});
 
 	var villageCoord = getVillageFromCoords(row.find("td:first").text());
-
 	var color = getStackColor(pop, 30 * world_data.farmLimit);
-	grandTotaal = "<td style='background-color: " + color + "'>" + formatNumber(pop) + "</td>";
 
-	if (color != "transparant")
+	if (color != "transparant") {
 		$(this).append("<td align=right style='background-color: " + color + "'>" + formatNumber(pop) + "</td><td colspan=2>&nbsp;</td>");
-	else
-	{
+	} else {
 		var extraColumns = '<td align=right>' + formatNumber(pop) + '</td>';
-		if (!villageCoord.isValid) extraColumns += "<td colspan=2 align=right>&nbsp;</td>";
-		else
-		{
-			//alert(vilHome.x + ':' + slowestUnitName);
+		if (!villageCoord.isValid) {
+			extraColumns += "<td colspan=2 align=right>&nbsp;</td>";
+		} else {
+			//q(vilHome.x + ':' + slowestUnitName);
 			var dist = getDistance(vilHome.x, villageCoord.x, vilHome.y, villageCoord.y, slowestUnitName);
-			var fields = parseInt(dist.fields);
+			var fields = parseInt(dist.fields, 10);
 			extraColumns += "<td align=right>" + fields + "</td><td>" + twDateFormat(dist.arrivalTime) + "</td>";
 			$("td:first", this).append("&nbsp; <b>" + trans.sp.all.fieldsSuffix.replace("{0}", fields) + "</b>");
 			$(this).addClass("toSort").attr("fields", fields);
@@ -89,9 +79,9 @@ if (checkboxAmount.size() == 1) {
 	checkboxAmount.attr("checked", true);
 }
 
-// Sorteren op afstand
+// Sort on distance
 unitsTable.find("tr.toSort").sortElements(function (a, b) {
-	return $(a).attr("fields") * 1 < $(b).attr("fields") * 1 ? 1 : -1;
+	return parseInt($(a).attr("fields"), 10) < parseInt($(b).attr("fields"), 10) ? 1 : -1;
 });
 
 // are there incomings on the supporting villages?
@@ -100,19 +90,14 @@ unitsTable.find("tr.toSort").each( function () {
 	var villageUrl = $("a:first", this).attr("href");
 	ajax(villageUrl, function (villageDetails) {
 		var villageOwner = $("table.vis:first tr:eq(3) a", villageDetails);
-		if (villageOwner.text() != game_data.player.name)
-		{
+		if (villageOwner.text() != game_data.player.name) {
 			$("td:first a", row).after(" [" + villageOwner.outerHTML() + "]");
-		}
-		else
-		{
+		} else {
 			var incomingTable = $("table th:contains('" + trans.tw.overview.incomingTroops + "')", villageDetails);
-			if (incomingTable.size() > 0)
-			{
+			if (incomingTable.size() > 0) {
 				incomingTable = incomingTable.parent().parent();
 				var incomingRows = $("tr:has(img[src*='attack.png'])", incomingTable);
-				if (incomingRows.size() > 0)
-				{
+				if (incomingRows.size() > 0) {
 					var firstAttack = incomingRows.eq(0);
 					var timeLeft = $("td:eq(2)", firstAttack).text();
 					var arrivalDate = $("td:eq(1)", firstAttack).text();
@@ -124,14 +109,11 @@ unitsTable.find("tr.toSort").each( function () {
 					var amount = incomingRows.size();
 
 					var attacksDesc;
-					if (amount == 1)
-					{
+					if (amount == 1) {
 						attacksDesc = trans.sp.place.onlyAttack
 						.replace("{timeLeftFirst}", timeLeft)
 						.replace("{arrivalDateFirst}", arrivalDate);
-					}
-					else
-					{
+					} else {
 						attacksDesc = trans.sp.place.multipleAttack
 						.replace("{timeLeftFirst}", timeLeft)
 						.replace("{arrivalDateFirst}", arrivalDate)

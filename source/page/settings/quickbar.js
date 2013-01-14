@@ -1,18 +1,15 @@
-if (user_data.scriptBarEditBoxCols != null && user_data.scriptBarEditBoxCols != false)
-{
-	function textareaIfy(element)
-	{
+if (user_data.scriptBarEditBoxCols != null && user_data.scriptBarEditBoxCols != false) {
+	// TODO: textareaIfy: This might be useful on other places aswell. Move to func/UI?
+	function textareaIfy(element) {
 		var textarea = 
 			$('<textarea>')
 				.attr('cols', Math.round(user_data.scriptBarEditBoxCols / 9))
 				.attr('rows', user_data.scriptBarEditBoxRows)
 				.val($(element).val());
 
-		textarea.change(
-			function ()
-			{
-				element.val($(this).val());
-			});
+		textarea.change(function () {
+			element.val($(this).val());
+		});
 
 		element.before(textarea);
 		$(element).hide();

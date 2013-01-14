@@ -56,8 +56,8 @@ alert(content);
 }, { contentValue: false });*/
 
 $.extend(world_data, {
-	nachtbonusFrom: 1,
-	nachtbonusTill: 7,
+	nightbonusFrom: 1,
+	nightbonusTill: 7,
 	smithyLevels: true,
 	hasChurch: false,
 	hasArchers: false,
@@ -71,13 +71,14 @@ $.extend(world_data, {
 });
 
 // Archer worlds:
-world_data.number = game_data.world.substr(2) * 1;
-switch (world_data.number)
-{
+world_data.number = parseInt(game_data.world.substr(2), 10);
+switch (world_data.number) {
 	case 2: case 3: case 4: case 6: case 7: case 8: case 9:
 	case 11: case 12: case 13: case 14: case 15: case 17:
 	case 18: case 19: case 20: case 21: case 22: case 23: case 25:case 26:
-		if (world_data.number != 26) world_data.hasArchers = true;
+		if (world_data.number != 26) {
+			world_data.hasArchers = true;
+		}
 
 		world_data.smithyLevels = false;
 		world_data.hasKnight = true;
@@ -86,8 +87,7 @@ switch (world_data.number)
 		world_data.buildingsPoints.push(["statue", [24]]);
 
 		// Kerkwerelden
-		switch (world_data.number)
-		{
+		switch (world_data.number) {
 			case 11: case 12: case 14: case 17: case 20: case 21: case 23: case 25: case 26:
 				world_data.hasChurch = true;
 				world_data.buildingsSize.push(["church", [5000, 7750, 12013]]);
@@ -105,10 +105,8 @@ switch (world_data.number)
 		break;
 }
 
-if (isNaN(world_data.number))
-{
-	switch (game_data.world)
-	{
+if (isNaN(world_data.number)) {
+	switch (game_data.world) {
 		case 'nlc1':
 			world_data.maxNobleWalkingTime = 2695;
 			world_data.minFake = 0.02;
@@ -131,7 +129,7 @@ else
 	  break;
 
 	case 1:
-		world_data.nachtbonusFrom = 0;
+		world_data.nightbonusFrom = 0;
 		world_data.maxNobleWalkingTime = 35000;
 		break;
 
@@ -275,17 +273,13 @@ else
 world_data.hasMinFakeLimit = world_data.minFake > 0;
 world_data.units_def = ["spear", "sword", "heavy"];
 world_data.units_off = ["axe", "light", "heavy"];
-if (!world_data.hasArchers && !world_data.hasKnight)
-{
+if (!world_data.hasArchers && !world_data.hasKnight) {
 	world_data.unitsPositionSize = [1, 1, 1, 2, 4, 6, 5, 8, 100];
 	world_data.units = ["spear", "sword", "axe", "spy", "light", "heavy", "ram", "catapult", "snob"];
-}
-else
-{
+} else {
 	world_data.units = ["spear", "sword", "axe"];
 	world_data.unitsPositionSize = [1, 1, 1];
-	if (world_data.hasArchers)
-	{
+	if (world_data.hasArchers) {
 		world_data.units_off.push("marcher");
 		world_data.units_def.push("archer");
 		$.extend(world_data.unitsSize, { "unit_archer": 1 }, { "unit_marcher": 5 });
@@ -297,8 +291,7 @@ else
 	world_data.unitsPositionSize.push(2);
 	world_data.units.push("light");
 	world_data.unitsPositionSize.push(4);
-	if (world_data.hasArchers)
-	{
+	if (world_data.hasArchers) {
 		world_data.units.push("marcher");
 		world_data.unitsPositionSize.push(5);
 	}
@@ -308,8 +301,7 @@ else
 	world_data.unitsPositionSize.push(5);
 	world_data.units.push("catapult");
 	world_data.unitsPositionSize.push(8);
-	if (world_data.hasKnight)
-	{
+	if (world_data.hasKnight) {
 		$.extend(world_data.unitsSize, { "unit_knight": 10 });
 		$.extend(world_data.unitsSpeed, { "unit_knight": 10 });
 		world_data.units.push("knight");
@@ -322,11 +314,9 @@ else
 	//world_data.units = ["spear", "sword", "axe", "archer", "spy", "light", "marcher", "heavy", "ram", "catapult", "knight", "snob"];
 }
 
-if (Math.round(world_data.speed * world_data.unitSpeed) != 1)
-{
+if (Math.round(world_data.speed * world_data.unitSpeed) != 1) {
 	var speedModifier = Math.round(world_data.speed * world_data.unitSpeed);
-	$.each(world_data.unitsSpeed, function (index, value)
-	{
+	$.each(world_data.unitsSpeed, function (index, value) {
 		world_data.unitsSpeed[index] = world_data.unitsSpeed[index] / speedModifier;
 	});
 }

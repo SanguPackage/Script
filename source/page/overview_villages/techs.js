@@ -1,11 +1,9 @@
-// Alles niet conform highlighten
-if (world_data.smithyLevels)
-{
+// Highlight everything not conform usersettings
+if (world_data.smithyLevels) {
 	var menu = "<table class='vis' width='100%'>";
 	menu += "<tr><th>";
 	menu += "<select id='groupType'>";
-	$.each(user_data.smithy, function (i, v)
-	{
+	$.each(user_data.smithy, function (i, v) {
 		menu += "<option value=" + i + ">" + v[0] + "</option>";
 	});
 	menu += "</select>";
@@ -15,37 +13,32 @@ if (world_data.smithyLevels)
 	menu += "</th></tr></table>";
 	$("#techs_table").before(menu);
 
-	function filterTechs(cellAction, hideRows)
-	{
+	function filterTechs(cellAction, hideRows) {
 		var goners = $();
 		var opti = $("#buildingOpti").attr("checked") == "checked";
 		var def = user_data.smithy[$("#groupType").val()][1];
-		$("#techs_table").find("tr:gt(0)").each(function ()
-		{
+		$("#techs_table").find("tr:gt(0)").each(function () {
 			var isOk = true;
-			$(this).find("td:gt(2)").each(function (i, v)
-			{
+			$(this).find("td:gt(2)").each(function (i, v) {
 				var range = def[world_data.units[i]];
-				if (i < world_data.units.length && range != undefined)
-				{
-					var text = $(this).text() * 1;
-					if (text == '') text = 0;
-					if (text < range[0])
-					{
+				if (i < world_data.units.length && range != undefined) {
+					var text = parseInt($(this).text(), 10);
+					if (text == '') {
+						text = 0;
+					}
+					if (text < range[0]) {
 						$(this).css("background-color", user_data.colors.error);
 						isOk = false;
 					}
-					else if (text > range[1] && !opti)
-					{
+					else if (text > range[1] && !opti) {
 						$(this).css("background-color", user_data.colors.good);
 						isOk = false;
-					}
-					else
+					} else {
 						$(this).css("background-color", "");
+					}
 				}
 			});
-			if (hideRows && isOk)
-			{
+			if (hideRows && isOk) {
 				goners = goners.add($(this));
 				$("input:first", $(this)).val("");
 			}
@@ -53,19 +46,15 @@ if (world_data.smithyLevels)
 		goners.hide();
 	}
 
-	$("#smithyHighlight").click(function ()
-	{
-		filterTechs(function (cell, isOk)
-		{
-			cell.css("background-color", isOk ? "" : "#DED3B9");
+	$("#smithyHighlight").click(function () {
+		filterTechs(function (cell, isOk) {
+			cell.css("background-color", isOk ? "" : user_data.colors.neutral);
 		}, false);
 	});
 
-	$("#smithyFilter").click(function ()
-	{
-		filterTechs(function (cell, isOk)
-		{
-			cell.css("background-color", isOk ? "" : "#DED3B9");
+	$("#smithyFilter").click(function () {
+		filterTechs(function (cell, isOk) {
+			cell.css("background-color", isOk ? "" : user_data.colors.neutral);
 		}, true);
 	});
 }

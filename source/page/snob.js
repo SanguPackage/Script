@@ -1,15 +1,12 @@
-if (user_data.calculateSnob && !world_data.coins)
-{
-	// Berekenen voor hoeveel edels we pakketjes hebben
+if (user_data.calculateSnob && !world_data.coins) {
+	// Calculate for how many nobles/snobs we've got packages
 	var table = $("#content_value table.vis:eq(1)");
-	//alert(table.html());
-	var cost = $("td:eq(1)", table).html(); //[0].innerText;
-	cost = cost.substr(0, cost.indexOf(" ")) * 1;
-	var stored = $("tr:eq(1) td:eq(1)", table).html(); //[0].innerText;
-	stored = stored.substr(0, stored.indexOf(" ")) * 1;
+	var cost = $("td:eq(1)", table).html();
+	cost = parseInt(cost.substr(0, cost.indexOf(" ")), 10);
+	var stored = $("tr:eq(1) td:eq(1)", table).html();
+	stored = parseInt(stored.substr(0, stored.indexOf(" ")), 10);
 	var canProduce = 0;
-	while (stored > cost)
-	{
+	while (stored > cost) {
 		stored -= cost;
 		cost++;
 		canProduce++;

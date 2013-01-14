@@ -1,7 +1,6 @@
 // Activate / deactivate the tool	
 var isSanguActive = getCookie("sanguActive") == "true";
-if (location.href.indexOf('changeStatus=') > -1)
-{
+if (location.href.indexOf('changeStatus=') > -1) {
 	isSanguActive = location.href.indexOf('changeStatus=true') > -1;
 	setCookie("sanguActive", isSanguActive);
 }

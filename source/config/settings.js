@@ -1,7 +1,6 @@
 // These settings are applied to all worlds
 $.extend(user_data, {
-	colors:
-	{
+	colors: {
 		error: "tomato",
 		good: "limegreen",
 		special: "aqua",
@@ -11,14 +10,14 @@ $.extend(user_data, {
 	gsStorageBackground: ['Greenyellow', 'Chartreuse', 'Limegreen', 'Mediumseagreen', 'Forestgreen', 'Orange', 'Coral', 'Tomato', 'Orangered', 'Red'], /* All pages: Colors used for the previous setting. First is least filled, last is most filled storage place */
 	overviewBlinkResources: true, /* All pages: Blink the resources if the storage place is full */
 	editAttackLink: true, /* All pages: Edit the incoming attacks/support links: add "show all groups" and "show all pages" to the original links */
-	colorOs: 'rgb(255, 245, 218)', /* Main village overview: give incoming support a different background color */
+	colorSupport: 'rgb(255, 245, 218)', /* Main village overview: give incoming support a different background color */
 	villageName: [], /* Add village names to the village headquarters to quickly edit the village name to a preset name. Set to [] or null to disable, for 1 village name use ['MyVillageName'] or for more names: ['name1', 'name2', 'name3'] */
 	villageNameClick: true, /* true: one of the previous button clicked automatically changes the village name. false: only fills in the name in the textbox but does not click the button */
 	ajaxLoyalty: true, /* Get the loyalty at the building construction/destruction page */
 	calculateSnob: true, /* nobles: calculates how many nobles can be produced immediately */
 	reportPublish: ["own_units", "own_losses", "opp_units", "opp_losses", "carry", "buildings", "own_coords", "opp_coords", "belief"], /* Publishing report: automatically check the 'show' checkboxes */
-	ajaxOs: true, /* Village overview: Seperate own and supported troops */
-	ajaxOsStacks: true, /* Village overiew: Calculate stacks for own and supported troops */
+	ajaxSeperateSupport: true, /* Village overview: Seperate own and supported troops */
+	ajaxSeperateSupportStacks: true, /* Village overiew: Calculate stacks for own and supported troops */
 	farmLimit: {
 		stackColors: ['tomato', 'Mediumseagreen', '#DED3B9'],
 		acceptableOverstack: [1.35, 1.2, 0.5], /* Different pages: % of acceptable overstack (only relevant for farmlimit worlds) */
@@ -43,8 +42,7 @@ $.extend(user_data, {
 	},
 
 	displayDays: false, /* true: display (walking)times in days when > 24 hours. false: always displays in hours */
-	incoming: /* Features for the built in TW tagger */
-	{
+	incoming: { /* Features for the built in TW tagger */ 
 		autoOpenTagger: true, 		/* Open the tagger automatically if the incoming attack has not yet been renamed */
 		forceOpenTagger: true, 	/* Always open the tagger automatically */
 		renameInputTexbox: "{unit} ({xy}) {player} F{fields}{night}", /* Possibilities: {id}:internal tw attack id {unit}: short unitname {xy}: coordinates {player} {village}: full village name {c}: continent. Set to "" to disable. */
@@ -52,39 +50,35 @@ $.extend(user_data, {
 		invertSort: true		/* true=noblemen at the top and scouts at the bottom of the table */
 	},
 
-	mainTagger:
-	{
+	mainTagger: {
 		active: true,
 		autoOpen: true,
 		inputBoxWidth: 300,
 		defaultDescription: "OK",
 		otherDescriptions:
 			[
-			{ name: "DODGE DIT", prefix: true },
-			{ name: "NACHTBONUS", prefix: false },
+			{ name: "DODGE THIS", prefix: true },
+			{ name: "NIGHTBONUS", prefix: false },
 			{ name: "CHECK STACK", prefix: true },
-			{ name: "TUSSENTIMEN", prefix: true },
-			{ name: "EDEL!!", prefix: true },
+			{ name: "TIME IT!", prefix: true },
+			{ name: "NOBLE!!", prefix: true }
 			],
 		prefix: "-----------------------------------------",
 		autoOpenCommands: false,
 		minutesDisplayDodgeTimeOnMap: 3
 	},
 
-	tribalWars:
-	{
+	tribalWars: {
 		active: true
 	},
 
-  villageInfo:
-	{
+	villageInfo: {
 		active: true,
-		off_link: "&group=3093&unit=2&amount=5000&sort=true&changeSpeed=ram",
+		off_link: "&group=3093&unit=2&amount=5000&sort=true&changeSpeed=ram", /* On info_village page add extra link to attack. 3093=group id of off villages. Filter: amount=5000 unit=2=axe */
 		def_link: "&group=3092&unit=0&amount=3000&sort=true&changeSpeed=spear"
 	},
 
-	resources:
-	{
+	resources: {
 		requiredResDefault: 250000,
 		requiredMerchants: 50,
 		filterMerchants: true,
@@ -93,16 +87,15 @@ $.extend(user_data, {
 	},
 
 	favs: [],
-	jumper:
-		{
-			enabled: true,
-			left: 880,
-			top: 196,
-			daysActive: 100,
-			width: 200,
-			addTargetVillage: true,
-			addLastVillage: true
-		},
+	jumper: {
+		enabled: true,
+		left: 880,
+		top: 196,
+		daysActive: 100,
+		width: 200,
+		addTargetVillage: true,
+		addLastVillage: true
+	},
 
 	proStyle: true,
 	marketResizeImage: true,
@@ -125,24 +118,24 @@ $.extend(user_data, {
 	noblePlaceLinksForceShow: true,
 	noblePlaceLinkDivideAddRam: false,
 	nobleSupport: [{ Population: 200, Unit: 'light', VillageType: 'off' }, { Population: 600, Unit: 'heavy', VillageType: 'def'}],
-	attackLinkNames: { fake: 'Fake', scout: 'Ver', nobleMax: 'EdelEerst', nobleMin: 'EdelTrein', nobleDivide: 'EdelDivide' },
+	attackLinkNames: { fake: 'Fake', scout: 'Scout', nobleMax: 'NobleFirst', nobleMin: 'NobleMin', nobleDivide: 'NobleDivide' },
 
 	customPlaceLinks:
-			[
-				{ active: false, type: 'def', name: 'AlleDef', spear: 25000, heavy: 5000, archer: 25000, sendAlong: 0 },
-				{ active: false, type: 'def', name: 'HelftZc', spear: 4000, heavy: 1000, sendAlong: 500 },
-				{ active: true, type: 'off', name: 'Smart', spear: 25000, sword: -10, axe: 25000, spy: 1, light: 5000, heavy: 5000, marcher: 5000, ram: 5000, catapult: 5000, sendAlong: 0},
-				{ active: true, type: 'off', name: 'Bijl', spear: 25000, axe: 25000, spy: 1, light: 5000, heavy: 5000, marcher: 5000, sendAlong: 0 },
-				{ active: true, type: 'off', name: 'Zwaard', spear: 25000, sword: -10, axe: 25000, spy: 1, light: 5000, heavy: 5000, marcher: 5000, sendAlong: 0, required: ['sword', 1] },
+		[
+			// use minus zero numbers to leave so many units at home
+			{ active: true, type: 'def', name: 'AllDef', spear: 25000, heavy: 5000, archer: 25000, sword: 25000, sendAlong: 0 },
+			{ active: true, type: 'def', name: '1/2-Zc', spear: 4000, heavy: 1000, sendAlong: 500 },
+			{ active: true, type: 'off', name: 'Smart'/*, spear: 25000*/, sword: -10, axe: 25000, spy: 1, light: 5000/*, heavy: 5000*/, marcher: 5000, ram: 5000, catapult: 5000, sendAlong: 0 },
+			{ active: true, type: 'off', name: 'Bijl', spear: 25000, axe: 25000, spy: 1, light: 5000, heavy: 5000, marcher: 5000, sendAlong: 0 },
+			{ active: true, type: 'off', name: 'Zwaard', spear: 25000, sword: -10, axe: 25000, spy: 1, light: 5000, heavy: 5000, marcher: 5000, sendAlong: 0, required: ['sword', 1] },
 
-				{ active: true, type: 'def', name: 'AlleDef', spear: 25000, sword: 25000, heavy: 5000, archer: 25000, sendAlong: 0 },
-				{ active: false, type: 'def', name: '3deZc', spear: 2500, heavy: 650, sendAlong: 0 },
-				{ active: false, type: 'def', name: '4deZc', spear: 2000, heavy: 500, sendAlong: 0 },
-				{ active: true, type: 'def', name: 'HelftZw', spear: 5000, sword: 5000, archer: 5000, sendAlong: 500 },
-				{ active: false, type: 'def', name: '3deZw', spear: 3300, sword: 3300, sendAlong: 0 },
-				{ active: false, type: 'def', name: '4deZw', spear: 2500, sword: 2500, sendAlong: 0 }
-	// negatief voor x aantal units thuis te laten
-			],
+			{ active: false, type: 'def', name: 'AlleDef', spear: 25000, sword: 25000, heavy: 5000, archer: 25000, sendAlong: 0 },
+			{ active: false, type: 'def', name: '3deZc', spear: 2500, heavy: 650, sendAlong: 0 },
+			{ active: false, type: 'def', name: '4deZc', spear: 2000, heavy: 500, sendAlong: 0 },
+			{ active: false, type: 'def', name: 'HelftZw', spear: 5000, sword: 5000, sendAlong: 500 },
+			{ active: false, type: 'def', name: '3deZw', spear: 3300, sword: 3300, sendAlong: 0 },
+			{ active: false, type: 'def', name: '4deZw', spear: 2500, sword: 2500, sendAlong: 0 }
+		],
 	alternativeTargetPosition: false,
 
 	restack: {
@@ -171,25 +164,24 @@ $.extend(user_data, {
 		['defense', { spear: [3, 3], sword: [1, 1], axe: [0, 3], spy: [0, 3], light: [0, 3], heavy: [3, 3], ram: [0, 1], catapult: [1, 3]}],
 		['catapult', { spear: [2, 3], sword: [1, 1], axe: [3, 3], spy: [0, 3], light: [2, 3], heavy: [3, 3], ram: [0, 0], catapult: [2, 3]}]
 		],
-	buildings:
-		{
-			main: [20, 20],
-			barracks: [25, 25],
-			stable: [20, 20],
-			garage: [1, 5],
-			church: [0, 1],
-			church_f: [0, 1],
-			snob: [1, 3],
-			smith: [20, 20],
-			place: [1, 1],
-			statue: [0, 1],
-			market: [10, 20],
-			wood: [30, 30],
-			stone: [30, 30],
-			iron: [30, 30],
-			farm: [30, 30],
-			storage: [30, 30],
-			hide: [0, 10],
-			wall: [20, 20]
-		}
+	buildings: {
+		main: [20, 20],
+		barracks: [25, 25],
+		stable: [20, 20],
+		garage: [1, 5],
+		church: [0, 1],
+		church_f: [0, 1],
+		snob: [1, 3],
+		smith: [20, 20],
+		place: [1, 1],
+		statue: [0, 1],
+		market: [10, 20],
+		wood: [30, 30],
+		stone: [30, 30],
+		iron: [30, 30],
+		farm: [30, 30],
+		storage: [30, 30],
+		hide: [0, 10],
+		wall: [20, 20]
+	}
 });

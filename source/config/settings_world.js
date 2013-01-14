@@ -1,7 +1,6 @@
 // Settings on a specific world
-switch (game_data.world)
-{
-	case 'nl16':
+switch (game_data.world) {
+	case 'nl16-':
 		// Settings specific for w10 on nl server
 		user_data.worldSpecific = {
 			villageName: ['Jaar van de val van Temp', 'Oh the horror', 'Wounded Knee', 'Gesmurft', 'Credo Reloaded'], // dorpsnamen instellen
@@ -11,21 +10,18 @@ switch (game_data.world)
 					],
 			customPlaceLinks: // Extra links in the place:
 				[
-					{ active: false, type: 'def', name: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', heavy: 1, sendAlong: 0 },
-					{ active: true, type: 'def', name: 'AlleDef', spear: 25000, heavy: 5000, archer: 25000, sendAlong: 0 },
-					{ active: false, type: 'def', name: 'HelftZc', totalPop: 10000, divideOver: ['spear', 'heavy'] },
-					{ active: true, type: 'def', name: 'HelftZc', spear: 4000, heavy: 1000, sendAlong: 500 },
+					{ active: true, type: 'def', name: 'AllDef', spear: 25000, heavy: 5000, archer: 25000, sendAlong: 0 },
+					{ active: true, type: 'def', name: '1/2-Zc', spear: 4000, heavy: 1000, sendAlong: 500 },
 					{ active: true, type: 'off', name: 'Smart'/*, spear: 25000*/, sword: -10, axe: 25000, spy: 1, light: 5000/*, heavy: 5000*/, marcher: 5000, ram: 5000, catapult: 5000, sendAlong: 0 },
-					{ active: true, type: 'off', name: 'Bijl', spear: 25000, axe: 25000, spy: 1, light: 5000, heavy: 5000, marcher: 5000, sendAlong: 0 },
-					{ active: true, type: 'off', name: 'Zwaard', spear: 25000, sword: -10, axe: 25000, spy: 1, light: 5000, heavy: 5000, marcher: 5000, sendAlong: 0, required: ['sword', 1] },
+					{ active: true, type: 'off', name: 'Axe', spear: 25000, axe: 25000, spy: 1, light: 5000, heavy: 5000, marcher: 5000, sendAlong: 0 },
+					{ active: true, type: 'off', name: 'Sword', spear: 25000, sword: -10, axe: 25000, spy: 1, light: 5000, heavy: 5000, marcher: 5000, sendAlong: 0, required: ['sword', 1] },
 
-					{ active: false, type: 'def', name: 'AlleDef', spear: 25000, sword: 25000, heavy: 5000, archer: 25000, sendAlong: 0 },
-					{ active: false, type: 'def', name: '3deZc', spear: 2500, heavy: 650, sendAlong: 0 },
-					{ active: false, type: 'def', name: '4deZc', spear: 2000, heavy: 500, sendAlong: 0 },
-					{ active: false, type: 'def', name: 'HelftZw', spear: 5000, sword: 5000, sendAlong: 500 },
-					{ active: false, type: 'def', name: '3deZw', spear: 3300, sword: 3300, sendAlong: 0 },
-					{ active: false, type: 'def', name: '4deZw', spear: 2500, sword: 2500, sendAlong: 0 },
-					{ active: true, type: 'off', name: 'farming', axe: 6900, light: 2900, sendAlong: 0 }
+					{ active: false, type: 'def', name: 'AllDef', spear: 25000, sword: 25000, heavy: 5000, archer: 25000, sendAlong: 0 },
+					{ active: false, type: 'def', name: '3th-HC', spear: 2500, heavy: 650, sendAlong: 0 },
+					{ active: false, type: 'def', name: '4th-HC', spear: 2000, heavy: 500, sendAlong: 0 },
+					{ active: false, type: 'def', name: '1/2-Sw', spear: 5000, sword: 5000, sendAlong: 500 },
+					{ active: false, type: 'def', name: '3th-Sw', spear: 3300, sword: 3300, sendAlong: 0 },
+					{ active: false, type: 'def', name: '4th-Sw', spear: 2500, sword: 2500, sendAlong: 0 }
 			// use negative numbers to leave x units home
 				]
 		};

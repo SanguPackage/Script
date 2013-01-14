@@ -1,5 +1,5 @@
 ﻿inputFile := "start.user.js"
-savePath := "" ;C:\Users\PC\Documents\Dropbox\Personal\!Programming\OperaUserScripts\
+savePath := "C:\Users\PC\Documents\Dropbox\Personal\!Programming\OperaUserScripts\"
 saveAs := "sangupackage.user.js"
 
 ParseFile(fileName, indentCount)
