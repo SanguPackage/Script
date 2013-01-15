@@ -1,0 +1,248 @@
+[b]Bug Fixes[/b]
+
+[b]Nieuwe features[/b]
+
+
+
+var coord = $(this).find("span[id^=label_text_]")[0].innerHTML.match(/^. ((\d+)\|(\d+)\) K\d{1,2}$/);
+--> Kontinent -> Continent...
+--> dit moet in de translate zitten!!!
+
+
+Eerste maal als sangu opstart: een tooltip waarop je moet klikken om te activeren
+
+/* Troepenlijst type=own_home */
+tekst filter, continent
+sorteren op afstand, omgekeerd
+huidig dorp niet als 00:00:00 maar als null
+opdracht: centreren op map
+
+/*troepenlijst:
+per dag kunnen dichtklappen! -> per dag sowieso een lijn toevoeegn (met + icon om te openen)
+en hoeveel per dag X / Y (Z): x = aantal vegen, y is vegen in de nachtbonus, z totaal aantal dorpen
+dag = met nachtbonus!
++ de filters op tekst, continent, min/max afstand/tijdsduur... ik kan het gebruiken :)*/
+
+
+
+kaartspringer beter integreren
+- optie om altijd zichtbaar
+- toevoegen box in de popup zelf
+
+
+Sangu Package: Krijg meer gedaan in minder tijd!
+
+--> Nieuwe site moet er zo uit zien:
+http://free.zoner.com/
+http://codeigniter.com/
+
+function get_world_config(param,wereld){ 
+        var xmlhttp=new XMLHttpRequest(); 
+        if(wereld.match(/nl/)) 
+        var url = 'http://'+wereld+'.tribalwars.nl/interface.php?func='+param; 
+        xmlhttp.open("GET",url,false);xmlhttp.send(); 
+        var xmlDoc=xmlhttp.responseXML;     
+         
+        if(param == 'get_building_info'){ 
+            var data_stand ={main:0,barracks:0,stable:0,garage:0,smith:0,place:0,statue:0,market:0,wood:0,stone:0,iron:0,farm:0,storage:0,hide:0,wall:0,snob:0,church:0,church_f:0}; 
+            var inData_stand = {'max_level':0,'min_level':0,'wood':0,'stone':0,'iron':0,'pop':0,'wood_factor':0,'stone_factor':0,'iron_factor':0,'pop_factor':0,'build_time':0,'build_time_factor':0}; 
+        } 
+        if(param == 'get_unit_info'){ 
+            var data_stand ={spear:0,sword:0,axe:0,archer:0,spy:0,light:0,marcher:0,heavy:0,ram:0,catapult:0,knight:0,snob:0,miliz:0}; 
+            var inData_stand = {'wood':0,'stone':0,'iron':0,'pop':0,'attack':0,'defense':0,'defense_kav':0,'defense_arch':0,'speed':0,'carry':0,'build_time':0}; 
+        }         
+        var buildings, building, info, name, name_2; var count = 0;  
+        var data = data_stand; 
+        buildings = xmlDoc.firstChild.childNodes;         
+        for (var i = 0; i < buildings.length; i++){ 
+            building = buildings[i].childNodes; 
+            name = buildings[i].tagName; 
+            if(name != undefined){     
+                if(param == 'get_building_info'){ 
+                    var inData = {'max_level':0,'min_level':0,'wood':0,'stone':0,'iron':0,'pop':0,'wood_factor':0,'stone_factor':0,'iron_factor':0,'pop_factor':0,'build_time':0,'build_time_factor':0}; 
+                } 
+                if(param == 'get_unit_info'){ 
+                    var inData = {'wood':0,'stone':0,'iron':0,'pop':0,'attack':0,'defense':0,'defense_kav':0,'defense_arch':0,'speed':0,'carry':0,'build_time':0}; 
+                } 
+                for (var ii = 0; ii < building.length; ii++){ 
+                    name_2 = building[ii].tagName; 
+                    if(name_2 != undefined){ 
+                        inData[name_2] = building[ii].firstChild.nodeValue; 
+                    } 
+                } 
+                data[name] = inData; 
+                count++; 
+            } 
+        } 
+        return data; 
+    } 
+
+
+Stop een 'updater' in het script: there is a new update! click to download it now!
+
+
+
+
+
+return "<a href='#' onclick='document.forms[0].inputx.value=\"" + village.x + "\";document.forms[0].inputy.value=\"" + village.y + "\";'>" + desc + "</a>";
+
+/*
+- Map favorieten zit er al in?
+
+	
+	troepen - verdediging: check combobox size?
+				tekst filter zou niet goed werken?
+
+
+    http://wiki.greasespot.net/Metadata_block
+
+filteren met wildcards Voorbeeld: 890|230  *|230  89?|230  8??|* 
+-> filteren met regex voor de echte pro's?
+
+		bevelen groepener: off by one error??? (mss ook niet?)
+		
+		lijsten: mousehover: highlight de lijn waarover de muis hovert
+		
+		verzamelplaats: laatste: komt nog eens een textbox bij met undefined|undefined
+		(als er wel doeldorp is maar geen sangu laatste)
+
+		OK confirmatie knop altijd op dezelfde plek:
+			- nachtbonus, katapult, claim, ...
+			
+		gebouw aanvallen:
+    	-> bij een dodge op muur zetten
+    	-> anders default houden
+    	-> gebouw icoontjes toevoegen die de waarde in de combobox aanpassen door er op te klikken
+    -> edgile: de ok knop blijft op dezelfde plaats staan bij gebouw aanvallen
+    -> de nachtbonus check werkt ook niet meer 100%
+			
+		meer dan 1k aanvallen: links naar de verschillende pagina's
+
+    op de stamleden pagina een overzicht van de activiteit van alle spelers (twstats, twmap, stammenoorlogen, ....?)
+
+    hernoemen aanval in maintagger=> als er maar 1 meer is
+    
+  
+    Groepen overzicht: doe ik 'Alles selecteren', dus hij neemt dan alle dorpen in de groep vermoed ik, maar dat deed ie voorheen niet. Is er nog iemand met dit probleem en/of weet iemand hier een oplossing voor?
+    --> werkt blijkbaar niet meer?
+
+    dorp info
+    claim + commentaar + incomings + berichten = crash?
+    was coordinaten: 444|656
+
+    dorpsoverzicht:
+    totaal ondersteuning uitrekenen
+
+    MAINTAGGER
+    maintagger configuratie van een custom rename knop: "changesDodgeTime: true/false",
+    maintagger: eerste nachtbonus geen streepken als er enkel os voor komt :)
+    mss zelf instellen tot waar je wil dodgen?
+    maintagger: icoontjes (icon voor welk type aanval het is...)
+    maintagger: een stippellijn na elke 5 uur dat er geen aanval is?
+    --> achter een aanval een suffix kunnen toevoegen ***
+    maintagger: kerkradius tonen
+    per dag kunnen dichtklappen (checkboxen rekening met houden!!!) volledige dag aanvinken
+    maintagger: op een dodgecell klikken om de dodgetijd aan te passen
+
+    STAMMENOORLOGEN
+    - topedelaar :(
+    - duur afronden op dagen
+    - verschil / duur = overnames per dag
+
+    INCOMINGS
+    -> onthouden wanneer laatste keer aanvallen bekeken: icon naast aantal incomings?
+    -> in tagger een extra lijn toevoegen met de tijd dat je laatst gecheckt hebt
+    -> ga in "dodge modus" -> bij hernoemen aanval, de terugkeertijd aan de aanvalsnaam bijzetten + main tagger automatisch openen
+    - snellijst link: direct alle pagina's na elkaar openen
+    - op elk dorp een extra link: dorp markeren -> alle aanvallen op het dorp dan markeren!
+    - extra zoekmogelijkheden (op tekst, zonder tekst, ...)
+    - overzichten: aanvallen per speler, aanvallen per dag, aanvallen gegroepeerd per tag (check dat je geen 100 verschillende namen hebt)
+    -> sorteren moet beter!!! eerstaankomende bovenaan!
+
+
+    ontwikkel een algemeen jquery extension: beheerTable
+        - tabel selecteren met selector
+        - aangeven per column van welk type het is
+        - automatisch sorteren per kolom 
+        - kunnen groeperen per kolom
+        - kunnen filteren per kolom (niet per 1 kolom specifiek)
+        - extra strategy na filtering?
+        - ergens een count kunnen tonen?
+        - mogelijkheid om een actie uit te voeren per kolom
+        - persisteren van sortering, groepering, ...
+
+    TROEPENOVERZICHT
+    troepenoverzicht: onthouden in variabele wat de huidige geselecteerde snelheid is
+    zodat er op verschillende pagina's met verschillende snelheden kan gewerkt worden
+    mark current village in troops overviews...
+    "pin" overview: titelbalk andere kleur, andere title, ander icon?
+    make dorpen "unclickable"
+
+    SMEDERIJ:
+        - sorteren zonder te herladen
+        - op alles filteren (aantal, ...)
+        - werken met +X en -X als er in de wachtrij staat
+        - duidelijker verschil tussen rood en kunnen bouwen
+        - instellen per groep
+        - ergens op klikken: de rode cell aanpassen? (afhankelijk van de +/-X)
+        - instellen welke ZEKER moet ok zijn: vb speer/zc/kata moet, zwaard, bijl etc is optioneel
+    filteren van gebouwen en smithy: bij optimistisch FILTEREN groen aanduiden bij de rijen die ook al rood hebben!
+    - smederij: de levels tonen - integreren met ontwikkelingsoverzichtslijst config
+    - zelf kunnen instellen welke groep bij welke levels hoort
+    - bij trainen aanduiden welke troepen getraind moeten worden adhv groep...
+    - icoontjes bij groepen? locatie, pakketjes, klein, edels, aanval/def
+
+    DORPOVERZICHT:
+    -> 1 scherm alles zien: rood/groen van de gebouwen ("hamertje" verbergen indien hoog genoeg)
+
+    SHORTCUTS
+    shortcuts: {
+        "screen=main&...": [
+            {selector: "#someId", shortcuts: ["a", "A"]},
+            {}
+        ];
+    };
+
+    DORPDETAILS
+    - icons voor aanvallen, verdedigen, ...
+    --> heb ik dat niet ergens al neergeschreven
+    -> dorpen verzamelen -> custom groep en daarin navigeren
+    extra icons -> map, verzamelplaats, ...
+    hidden icons -> icon waarop moet geklikt hebben om meer icon-links zichtbaar te maken
+    -> extra icons: doeldorp aanvallen, doeldorp verdedigen
+    -> tooltip met looptijden van huidig dorp?
+
+    CUSTOM GROUPS
+    Groepselectie voor " omringende dorpen" pagina
+    --> ook daar is het interessant om dorpen te verzamelen?
+
+    JUMPER:
+    -> always open mode
+    -> opdelen in groepen
+    -> toevoegen, deleten, van plaats/groep wisselen
+    -> extra icons: centreren, overzicht, 
+    -> checken of het dorp van jezelf is?
+    -> onder aanval icon met eerste aanval toevoegen: 15 aanvallen, 13 os
+    -> anders eigen aanvallen/os op het dorp tonen
+    -> link naar de verzamelplaats?
+
+		vriendenlijst die voortdurend openstaat:
+    	-> erop klikken om andere dingen te doen
+    	-> mededeling sturen: ";" + naam toevoegen
+    	-> bericht doorsturen
+    	etc
+    
+
+    
+    REST
+    forum: templates posten
+    fake aanval testen op FF
+    firefox: nachtbonus bij confirmatie aanval blijft gewoon staan?
+
+    voor release checken dat:
+    op overzichten na elke filter:
+    - totalen altijd goed staan (bovenaan en beneden)
+    - inputvelden voor hernoemen dorp op "" staan zodat de juiste dorpen hernoemd worden
+
+    printCoord en fillRallyPoint: // laatste en doel werken niet bij captcha 
+    */

@@ -19,7 +19,7 @@ menu += "<input type=text size=5 id=filterPopValue value='" + user_data.command.
 menu += "<input type=button id=calculateStack value='" + trans.sp.troopOverview.calcStack + "'> &nbsp; ";
 menu += "<input type=button id=snobFilter value='" + trans.sp.troopOverview.filterNoble + "'> &nbsp; ";
 menu += "<input type=button id=attackFilter value='" + trans.sp.troopOverview.filterUnderAttack + "'> &nbsp; ";
-menu += "<input type=checkbox id=sorteer " + (user_data.command.filterAutoSort ? " checked" : "") + "> " + trans.sp.troopOverview.sort + " &nbsp; ";
+menu += "<input type=checkbox id=sortIt " + (user_data.command.filterAutoSort ? " checked" : "") + "> " + trans.sp.troopOverview.sort + " &nbsp; ";
 
 if (location.href.indexOf('type=there') > -1) {
 	menu += "<input type=button id=defRestack value='" + trans.sp.troopOverview.restack + "'>";
@@ -157,7 +157,8 @@ $("#targetVillageButton").bind("click", function () {
 	} else {
 		spTargetVillageCookie(targetMatch.coord);
 		$("#units_table").find("tr:visible:gt(1)").each(function () {
-			var coord = $(this).find("span[id^=label_text_]")[0].innerHTML.match(/^.*\((\d+)\|(\d+)\) C\d{1,2}$/);
+			var coord = $(this).find("span[id^=label_text_]")[0].innerHTML.match("^.*\\((\\d+)\\|(\\d+)\\) "+trans.tw.all.continentPrefix+"\\d{1,2}$");
+			q(coord);
 			var dist = getDistance(targetMatch.x, coord[1], targetMatch.y, coord[2], spSpeedCookie());
 
 			$("td:last", this).html(dist.html);
@@ -169,7 +170,7 @@ $("#targetVillageButton").bind("click", function () {
 			}
 		});
 
-		if ($("#sorteer").is(":checked")) {
+		if ($("#sortIt").is(":checked")) {
 			$("#units_table").find("tr:visible:gt(1)").sortElements(function (a, b) {
 				return parseInt($(a).attr("arrival"), 10) > parseInt($(b).attr("arrival"), 10) ? 1 : -1;
 			});

@@ -14,8 +14,8 @@
 			wood: "Hout",
 			iron: "IJzer",
 			stone: "Leem",
-			groups: "Groepen"
-
+			groups: "Groepen",
+			continentPrefix: "C"
 		},
 		main: {
 			toGraphicOverview: "naar het grafische dorpsoverzicht",
