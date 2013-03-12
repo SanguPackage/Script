@@ -96,11 +96,11 @@ world_data.unitsSpeed = { "unit_spear": 18, "unit_sword": 22, "unit_axe": 18, "u
 
 
 
-ajax("interface.php?func=get_config", function (content)
+/*ajax("interface.php?func=get_config", function (content)
 {
 	
 	//alert(content);
-}, { contentValue: false });
+}, { contentValue: false });*/
 
 $.extend(world_data, {
 	nightbonusFrom: 1,
