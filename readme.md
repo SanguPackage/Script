@@ -18,12 +18,11 @@ can be added for.
 
 **Worlds**
 
-Currently only NL worlds 1 to 26 are supported. Automatic loading of new worlds is high on the ToDo List :)
+Currently all NL worlds are supported.
 
 **Browsers**
 
 All features should work in the latest versions of Opera, FireFox and Chrome (easiest to install and manage with the Tampermonkey extension). 
-The script is least extensively tested in FireFox.
 
 Code
 ----
@@ -54,7 +53,7 @@ to the location you want it to end up at: (otherwise it will be placed in the sa
     savePath := "yourFullPathHere" ;this is a comment
 
 This (Autohotkey) means the script can currently only be assembled on a Windows machine. (This was perhaps not really
-tought through:). If a non Windows person wants to join the project, I'm sure we can come up with a solution that works
+thought through:). If a non Windows person wants to join the project, I'm sure we can come up with a solution that works
 for both environments :)
 
 Contributing
