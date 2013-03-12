@@ -79,6 +79,7 @@ function filterGroupRows(filterStrategy, reverseFilter, keepRowStrategy, tag) {
 
 // Filter on distance to given village
 $("#defFilterDist").click(function () {
+	trackClickEvent("FilterDistance");
 	var targetVillage = getVillageFromCoords($("#defFilterDistVillage").val(), true);
 	if (!targetVillage.isValid) {
 		alert(trans.sp.defOverview.distanceToVillageNoneEntered);
@@ -125,6 +126,7 @@ $("#defFilterDist").click(function () {
 
 // Filter on incoming attacks
 $("#attackFilter").click(function () {
+	trackClickEvent("FilterUnderAttack");
 	filterGroupRows(function (row) {
 		return $('td:first:not(:has(img[title=\'' + trans.tw.command.attack + '\']))', row).size() == 0;
 	});
@@ -132,6 +134,7 @@ $("#attackFilter").click(function () {
 
 // filter on village name
 $("#defFilterText").click(function () {
+	trackClickEvent("FilterText");
 	var compareTo = $("#defFilterTextValue").val().toLowerCase();
 	if (compareTo.length > 0) {
 		filterGroupRows(function (row) {
@@ -142,6 +145,7 @@ $("#defFilterText").click(function () {
 
 // filter on group names
 $("#defFilterGroup").click(function () {
+	trackClickEvent("FilterGroupName");
 	var compareTo = $("#defFilterGroupValue").val().toLowerCase();
 	if (compareTo.length > 0) {
 		filterGroupRows(function (row) {
@@ -151,6 +155,7 @@ $("#defFilterGroup").click(function () {
 });
 
 $("#defFilterContinent").click(function () {
+	trackClickEvent("FilterContinent");
 	var compareTo = parseInt($("#defFilterContinentText").val(), 10);
 	if (compareTo >= 0) {
 		filterGroupRows(function (row) {
@@ -162,6 +167,7 @@ $("#defFilterContinent").click(function () {
 
 // filter on # groups
 $("#defFilterAmount").click(function (){
+	trackClickEvent("FilterGroupCount");
 	var compareTo = parseInt($("#defFilterAmountText").val(), 10);
 	if (compareTo >= 0) {
 		if (!$("#defReverseFilter").attr("checked")) {
@@ -177,6 +183,7 @@ $("#defFilterAmount").click(function (){
 });
 
 $("#defFilterPoints").click(function () {
+	trackClickEvent("FilterPoints");
 	var compareTo = parseInt($("#defFilterPointsText").val(), 10);
 	if (compareTo >= 0) {
 		filterGroupRows(function (row) {
@@ -186,6 +193,7 @@ $("#defFilterPoints").click(function () {
 });
 
 $("#defFilterFarm").click(function () {
+	trackClickEvent("FilterFarm");
 	var compareTo = parseInt($("#defFilterFarmText").val(), 10);
 	if (compareTo >= 0) {
 		filterGroupRows(function (row) {

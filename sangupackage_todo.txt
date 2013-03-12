@@ -1,8 +1,8 @@
+// TODO: this doesn't work anymore. need os from someone to test
+--> search for. os from other people no more working
+
 [b]Bug Fixes[/b]
 
-"Aankomend" overzicht, alles bij elkaar optelt en laat zien als de hoeveelheid inkomende aanvallen, ook al bestaat dat getal uit de aankomende OS en Aanvallen bij elkaar.
-
-dorpsoverzicht met incommings. Om die aanvallen te herbenoemen, dat venster komt er niet.
 
 [b]Nieuwe features[/b]
 

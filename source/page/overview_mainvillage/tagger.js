@@ -13,7 +13,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 			$("#openTaggerButton").click(function () {
 				$(this).hide();
 
-				incomingTable.bind('click', function (e) {
+				incomingTable.click(function (e) {
 					if (e.target.nodeName === 'IMG') {
 						var direction = $(e.target).attr("direction");
 						if (direction.length > 0) {
@@ -108,6 +108,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 				// std tag button
 				var button = $("<input type=button title='" + trans.sp.tagger.renameTooltip + "' value='" + trans.sp.tagger.rename + "' onclick='select();'>");
 				button.click(function () {
+					trackEvent("MainTagger", "CustomRename");
 					var tagName = $("#commandInput").val();
 					var prefix = $("#commandInput").attr("doPrefix");
 					renameCommand(tagName, prefix);
@@ -120,6 +121,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 						var button = $("<input type=button doPrefix='" + val.prefix + "' value='" + val.name + "'>").click(
 							function () {
 								// Cannot use input:checked : this works for Firefox but there is a bug in Opera
+								trackEvent("MainTagger", "ConfigRename");
 								var tagName = $(this).attr("value");
 								var prefix = $(this).attr("doPrefix");
 								renameCommand(tagName, prefix);
@@ -178,6 +180,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 
 								row.before("<tr><td>&nbsp;</td><td colspan=5><a href='' id=switchModus>" + trans.sp.tagger.switchModus + "</a></td></tr>");
 								$("#switchModus").click(function () {
+									trackEvent("MainTagger", "OpenClose");
 									var attackRows = $("input.incAt", incomingTable).parent().parent();
 									if (attackRows.first().find("span:first").is(":visible")) {
 										attackRows.find("span:first").hide().next().show();
@@ -265,16 +268,16 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 				});
 			});
 		}
-
-		// Show attack rename inputboxes 
-		if (user_data.mainTagger.autoOpenCommands) {
-			$("#switchModus").click();
-		}
 	}
 
 	// show tagger?
 	if (user_data.mainTagger.autoOpen) {
 		$("#openTaggerButton").click();
+	}
+	
+	// Show attack rename inputboxes 
+	if (user_data.mainTagger.autoOpenCommands) {
+		$("#switchModus").click();
 	}
 
 	var newLayout = "<tbody><tr><td colspan=2><div class='outerBorder' id=myprettynewcell>";

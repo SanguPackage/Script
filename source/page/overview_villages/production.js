@@ -30,10 +30,12 @@ $("#resFilter").change(function () {
 $("#resFilter").change();
 
 $("#resStorageFull").click(function () {
+	trackClickEvent("FilterFullRes");
 	filterRes('full', $("#resFilter").attr("checked") == "checked");
 });
 
 $("#resBBCode").click(function () {
+	trackClickEvent("BBCodeOutput");
 	var bbs = filterRes("bbcode", false);
 	if ($("#bbcodeArea").size() == 0) {
 		$(this).after("<textarea id=bbcodeArea cols=50 rows=10 wrap=off>");
@@ -155,5 +157,6 @@ function filterRes(resourceIndex, hideRows) {
 }
 
 $(".resFilter").click(function () {
+	trackClickEvent("FilterResource");
 	filterRes($(this).attr("resIndex"), $("#resFilter").attr("checked") == "checked");
 });

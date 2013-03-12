@@ -7,7 +7,8 @@ if (user_data.villageName != null && user_data.villageName.length > 0) {
 		$.each(user_data.villageName, function (i, v) {
 			// rename village to one of the provided user_data.villageName options
 			var button = $("<input type=button value='" + v + "'>")
-				.bind("click", function () {
+				.click(function () {
+					trackClickEvent("RenameVillage");
 					$("input[name='name']").val(v);
 					if (user_data.villageNameClick) {
 						$("input[type='submit']").click();

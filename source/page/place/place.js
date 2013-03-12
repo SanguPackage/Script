@@ -56,7 +56,7 @@ $("#units_form .unitsInput").each(function () {
 // Show current selected speed + ability to change active speed
 var vilHome = getVillageFromCoords(game_data.village.coord);
 var speedCookie = spSpeedCookie();
-$("#units_form a img").bind("click", function () {
+$("#units_form a img").click(function () {
 	var unit = this.src;
 	unit = unit.substr(unit.lastIndexOf('/') + 1);
 	unit = unit.substr(0, unit.lastIndexOf('.'))

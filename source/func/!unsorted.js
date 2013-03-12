@@ -96,6 +96,25 @@ function getDistance(x1, x2, y1, y2, speed) {
 	return dist;
 }
 
+_gaq.push(['b._setAccount', 'UA-30075487-3']);
+function trackClickEvent(action) {
+	trackEvent("ButtonClick", action);
+}
+
+function trackEvent(category, action) {
+	// category: clicks (downloads, ...)
+	// action: which button clicked
+	var label = getQueryStringParam("screen"),
+		mode = getQueryStringParam("mode");
+	
+	if (mode) label += "-" + mode;
+	
+	//_gaq.push(['b._setAccount', 'UA-30075487-3']);
+	//_gaq.push(['b._trackPageview']);
+	// _gat._getTrackerByName('b')._trackEvent("SanguPackage", "Loaded", "withGetB");
+	_gat._getTrackerByName('b')._trackEvent(category, action, label);
+}
+
 function resourceColoring() {
 	var storage = parseInt($("#storage").text(), 10);
 	var wood = $("#wood");

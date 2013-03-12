@@ -67,7 +67,11 @@ if ($("#running_times").size() > 0) {
 						toFocusButton = $("input:last", this);
 
 						$("#content_value table:first").prepend("<input type=submit id=focusPlaceHolder value='" + trans.sp.tagger.tagIt + " (" + trans.tw.units.names[unit] + ")'>");
-						$("#focusPlaceHolder").click(function () { toFocusButton.click(); $(this).val(trans.sp.tagger.tagged).attr("disabled", "disabled"); });
+						$("#focusPlaceHolder").click(function () {
+							trackClickEvent("TagDefault");
+							toFocusButton.click();
+							$(this).val(trans.sp.tagger.tagged).attr("disabled", "disabled");
+						});
 
 						if (unit == "snob") {
 							$("tr:last td", table).css("background-color", user_data.colors.error)
@@ -89,7 +93,7 @@ if ($("#running_times").size() > 0) {
 					str = str.replace("{player}", attacker).replace("{xy}", attackerVillage.coord).replace("{unit}", unit);
 					str = str.replace("{fields}", fields);
 					if (str.indexOf("{night}") != -1) {
-						if (isNightBonus) {
+						if (isNightbonus) {
 							str = str.replace("{night}", trans.sp.tagger.arrivesInNightBonus);
 						} else {
 							str = str.replace("{night}", "");

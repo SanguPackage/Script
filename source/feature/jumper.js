@@ -92,6 +92,7 @@ function mapJump() {
 		});
 
 		$("#sangujumperOpen").click(function () {
+			trackClickEvent("JumperOpen");
 			var input = $("#sangujumper");
 			if ($("#sanguJumperFrame").is(":visible")) {
 				var village = getVillageFromCoords(input.val(), true);

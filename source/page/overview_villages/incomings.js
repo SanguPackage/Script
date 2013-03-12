@@ -21,9 +21,10 @@ function showAmountOfAttacks(amountOfVillages, amountOfCommands) {
 }
 
 // Sort incoming attacks
-$("#sortIt").bind('click', function () {
+$("#sortIt").click(function () {
 	this.disabled = true;
 	$("#sortQuick").attr("disabled", true);
+	trackClickEvent("Sort");
 
 	var rows = $("#incomings_table").find("tr:gt(0):visible").not("tr:last");
 	rows.sortElements(function (a, b) {
@@ -52,7 +53,8 @@ $("#sortIt").bind('click', function () {
 
 // Quick sort: performs faster but also freezes the screen (ie no countdowns)
 // --> This might also be good in case the page is refreshing too often otherwise
-$("#sortQuick").bind('click', function () {
+$("#sortQuick").click(function () {
+	trackClickEvent("SortQuick");
 	this.disabled = true;
 	$("#sortIt").attr("disabled", true);
 
@@ -94,7 +96,8 @@ $("#sortQuick").bind('click', function () {
 	showAmountOfAttacks(targets.length, commandCounter);
 });
 
-$("#filterAttack").bind('click', function () {
+$("#filterAttack").click(function () {
+	trackClickEvent("FilterNewAttacks");
 	var goners = $();
 	$("#incomings_table tr:gt(0)").not("tr:last").each(function() {
 		if ($.trim($("td:first", this).text()) != trans.tw.command.attack) {

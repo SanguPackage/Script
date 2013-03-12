@@ -47,12 +47,14 @@ if (world_config.smithyLevels) {
 	}
 
 	$("#smithyHighlight").click(function () {
+		trackClickEvent("TableHighlight");
 		filterTechs(function (cell, isOk) {
 			cell.css("background-color", isOk ? "" : user_data.colors.neutral);
 		}, false);
 	});
 
 	$("#smithyFilter").click(function () {
+		trackClickEvent("TableRemove");
 		filterTechs(function (cell, isOk) {
 			cell.css("background-color", isOk ? "" : user_data.colors.neutral);
 		}, true);

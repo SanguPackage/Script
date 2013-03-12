@@ -43,12 +43,14 @@ function filterBuildings(cellAction, hideRows) {
 }
 
 $("#buildingHighlight").click(function () {
+	trackClickEvent("TableHighlight");
 	filterBuildings(function (cell, isOk) {
 		cell.css("background-color", isOk ? "" : user_data.colors.neutral);
 	}, false);
 });
 
 $("#buildingFilter").click(function () {
+	trackClickEvent("TableRemove");
 	filterBuildings(function (cell, isOk) {
 		cell.css("background-color", isOk ? "" : user_data.colors.neutral);
 	}, true);

@@ -1,6 +1,6 @@
 // Settings on a specific world
 switch (game_data.world) {
-	case 'nl16-':
+	case 'nl16':
 		// Settings specific for w10 on nl server
 		user_data.worldSpecific = {
 			villageName: ['Jaar van de val van Temp', 'Oh the horror', 'Wounded Knee', 'Gesmurft', 'Credo Reloaded'], // dorpsnamen instellen

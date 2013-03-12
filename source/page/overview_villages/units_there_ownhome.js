@@ -148,7 +148,8 @@ $('#targetVillage').click(function () {
 });
 
 // Recalculate arrival times as the target village changes
-$("#targetVillageButton").bind("click", function () {
+$("#targetVillageButton").click(function () {
+	trackClickEvent("TargetVillageSet");
 	var targetMatch = getVillageFromCoords($('#targetVillage').val(), true);
 	$("#units_table").attr("target", targetMatch.isValid);
 	if (!targetMatch.isValid) {
@@ -158,7 +159,6 @@ $("#targetVillageButton").bind("click", function () {
 		spTargetVillageCookie(targetMatch.coord);
 		$("#units_table").find("tr:visible:gt(1)").each(function () {
 			var coord = $(this).find("span[id^=label_text_]")[0].innerHTML.match("^.*\\((\\d+)\\|(\\d+)\\) "+trans.tw.all.continentPrefix+"\\d{1,2}$");
-			q(coord);
 			var dist = getDistance(targetMatch.x, coord[1], targetMatch.y, coord[2], spSpeedCookie());
 
 			$("td:last", this).html(dist.html);
@@ -187,7 +187,7 @@ pageSize.val(villageCounter);
 // Change active speed by clicking on a unit icon
 var speedCookie = spSpeedCookie();
 $('#' + speedCookie).css("border", "3px red solid");
-$("#units_table_header").bind('click', function (e) {
+$("#units_table_header").click(function (e) {
 	if (e.target.nodeName === 'IMG') {
 		spSpeedCookie(e.target.id);
 		$("img", this).css("border", "0px");
@@ -228,7 +228,8 @@ $("#filterAxeType").change(function () {
 });
 
 // Filter rows with less than x axemen (or another unit)
-$("#filterAxe").bind("click", function () {
+$("#filterAxe").click(function () {
+	trackClickEvent("FilterUnitAmount");
 	var villageCounter = 0;
 	var goners = $();
 	var minAxeValue = parseInt($("#filterAxeValue").val(), 10);
@@ -247,7 +248,8 @@ $("#filterAxe").bind("click", function () {
 });
 
 // Calculate stack
-$("#calculateStack").bind("click", function () {
+$("#calculateStack").click(function () {
+	trackClickEvent("CalculateStack");
 	if (!this.disabled) {
 		this.disabled = true;
 		$("#units_table").find("tr:visible:gt(1)").each(function () {
@@ -266,6 +268,7 @@ $("#calculateStack").bind("click", function () {
 // Calculate Restack BB codes
 if (location.href.indexOf('type=there') > -1) {
 	$("#defRestack").click(function () {
+		trackClickEvent("BBCodeOutput");
 		$("#calculateStack").click();
 
 		var request = "";
@@ -286,7 +289,8 @@ if (location.href.indexOf('type=there') > -1) {
 }
 
 // filter rows with less then x population
-$("#filterPop").bind("click", function () {
+$("#filterPop").click(function () {
+	trackClickEvent("FilterFarm");
 	$("#calculateStack").click();
 	var villageCounter = 0;
 	var goners = $();
@@ -308,11 +312,12 @@ $("#filterPop").bind("click", function () {
 });
 
 // Filter rows without snobs/nobles
-$("#snobFilter").bind("click", function () {
+$("#snobFilter").click(function () {
+	trackClickEvent("FilterSnob");
 	var villageCounter = 0;
 	var goners = $();
 	$("#units_table").find("tr:visible:gt(1)").each(function () {
-		if (parseInt($("td:eq(" + (world_data.unitsPositionSize.length + 1) + ")", this).text(), 10) == 0) {
+		if ($.trim($("td:eq(" + (world_data.unitsPositionSize.length + 1) + ")", this).text()) === '') {
 			goners = goners.add($(this));
 			$("input:first", $(this)).val("");
 		} else
@@ -323,7 +328,8 @@ $("#snobFilter").bind("click", function () {
 });
 
 // hide rows not under attack
-$("#attackFilter").bind("click", function () {
+$("#attackFilter").click(function () {
+	trackClickEvent("FilterUnderAttack");
 	var villageCounter = 0;
 	var goners = $();
 	$("#units_table").find("tr:visible:gt(1)").each(function () {

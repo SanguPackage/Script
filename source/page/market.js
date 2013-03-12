@@ -13,7 +13,7 @@ else if (location.href.indexOf('&mode=') == -1 || location.href.indexOf('&mode=s
 		}
 
 		// New last village:
-		$("input[type='submit']").bind("click", function () {
+		$("input[type='submit']").click(function () {
 			var village = getVillageFromCoords($("#inputx").val() + "|" + $("#inputy").val());
 			if (village.isValid) {
 				setCookie("lastVil", village.coord);

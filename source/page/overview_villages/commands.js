@@ -47,7 +47,8 @@ $("#defReverseFilter").change();
 var hasGrouped = false;
 
 // generate bb code export
-$("#defRestack").click( function () {
+$("#defRestack").click(function () {
+	trackClickEvent("BBCodeOutput");
 	var villages = [];
 	var request = {};
 	var filter = hasGrouped ? "tr.command:visible" : "tr:gt(0):visible";
@@ -209,15 +210,17 @@ function filterCommandRows(filterStrategy) {
 }
 
 // Filter returning troops
-$("#filterReturning").bind('click', function () {
+$("#filterReturning").click(function () {
 	$(this).attr("disabled", "disabled");
+	trackClickEvent("FilterReturning");
 	filterCommandRows( function (row) {
 		var firstCell = $("td:first", row).html();
 		return firstCell.indexOf(">" + trans.tw.command.returnFull) != -1 || firstCell.indexOf(">" + trans.tw.command.sentBackBy) != -1 || firstCell.indexOf(">" + trans.tw.command.returnFrom) != -1;
 	});
 });
 
-$("#defFilterText").click( function () {
+$("#defFilterText").click(function () {
+	trackClickEvent("FilterText");
 	var compareTo = $("#defFilterTextValue").val().toLowerCase();
 	if (compareTo.length > 0) {
 		filterCommandRows(function (row) {
@@ -226,7 +229,8 @@ $("#defFilterText").click( function () {
 	}
 });
 
-$("#filterspy").click( function () {
+$("#filterspy").click(function () {
+	trackClickEvent("FilterSpy");
 	var position = $.inArray($(this).attr("id").substr(6), world_data.units);
 	filterCommandRows(function (row) {
 		if (row.find("td").eq(position + offsetToUnits).text() == "0") {
@@ -245,14 +249,16 @@ $("#filterspy").click( function () {
 	});
 });
 
-$("#filtersnob").click( function () {
+$("#filtersnob").click(function () {
+	trackClickEvent("FilterSnob");
 	var position = $.inArray($(this).attr("id").substr(6), world_data.units) + offsetToUnits;
 	filterCommandRows(function (row) {
 		return row.find("td").eq(position).text() == "0";
 	});
 });
 
-$("#filterFake").click( function () {
+$("#filterFake").click(function () {
+	trackClickEvent("FilterFake");
 	var maxPop = user_data.command.filterFakeMaxPop;
 	filterCommandRows(function (row) {
 		var total = 0;
@@ -274,14 +280,16 @@ $("#filterFake").click( function () {
 	});
 });
 
-$("#defFilterBarbarian").click( function () {
+$("#defFilterBarbarian").click(function () {
+	trackClickEvent("FilterBarbarian");
 	filterCommandRows(function (row) {
 		var text = $.trim(row.find("td:first").text());
 		return !text.match(/^\d{1,3}\|\d{1,3} \(/) && text.match(/^\d{1,3}\|\d{1,3}/);
 	});
 });
 
-$("#defFilterContinent").click( function () {
+$("#defFilterContinent").click(function () {
+	trackClickEvent("FilterContinent");
 	var continent = parseInt($("#defFilterContinentText").val(), 10);
 	if (!isNaN(continent)) {
 		filterCommandRows(function (row) {
@@ -295,7 +303,8 @@ $("#defFilterContinent").click( function () {
 });
 
 // Sort incoming attacks
-$("#sortIt").bind('click', function () {
+$("#sortIt").click(function () {
+	trackClickEvent("Sort");
 	hasGrouped = true;
 	var newTable = "";
 	var targets = [];

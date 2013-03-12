@@ -35,9 +35,8 @@ $.fn.sortElements = (function () {
 $.fn.outerHTML = 
 	function () { 
 		return $('<div>').append(this.clone()).remove().html();
-	}
+	};
 
-// TODO: JSLint says: Unexpected 'function'.
 function createSpoiler(button, content, opened) {
 	return "<div id='spoiler'><input type='button' value='" + button + "' onclick='toggle_spoiler(this)' /><div><span style='display:" + (opened ? 'block' : 'none') + "'>" + content + "</span></div></div>";
 }

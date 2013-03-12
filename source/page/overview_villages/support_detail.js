@@ -88,7 +88,8 @@ function filterMainRows(filterStrategy, reverseFilter, unitsAwayStrategy, tag) {
 }
 
 // Hide rows not under attack
-$("#attackFilter").bind("click", function () {
+$("#attackFilter").click(function () {
+	trackClickEvent("FilterAttack");
 	var reverseFilter = true; // never reverse this filter!
 
 	if (!$("#defTotals").is(":disabled")) {
@@ -120,6 +121,7 @@ $("#attackFilter").bind("click", function () {
 });
 
 $("#defFilterTotalPop").click(function () {
+	trackClickEvent("FilterFarm");
 	var reverseFilter = $("#defFilterTotalPopComparer").val() != "-1";
 	var compareTo = parseInt($("#defFilterTotalPopValue").val(), 10);
 
@@ -127,6 +129,7 @@ $("#defFilterTotalPop").click(function () {
 });
 
 $("#defFilterDist").click(function () {
+	trackClickEvent("FilterDistanceToX");
 	var targetVillage = getVillageFromCoords($("#defFilterDistVillage").val(), true);
 	if (!targetVillage.isValid) {
 		alert(trans.sp.defOverview.distanceToVillageNoneEntered);
@@ -168,6 +171,7 @@ function filterTable(rows, filterStrategy) {
 }
 
 $("#defRestack").click(function () {
+	trackClickEvent("BBCodeOutput");
 	if (!$("#defTotals").attr("disabled")) {
 		$("#defTotals").click();
 	}
@@ -195,6 +199,7 @@ $("#defRestack").click(function () {
 });
 
 $("#defHideEmpty").click( function () {
+	trackClickEvent("FilterEmpty");
 	if (!$("#defTotals").is(":disabled")) {
 		$("#defTotals").click();
 	}
@@ -222,6 +227,7 @@ $("#defHideEmpty").click( function () {
 });
 
 $("#filtersnob, #filterspy").click( function () {
+	trackClickEvent("FilterSnobOrSpy");
 	var position = $.inArray($(this).attr("id").substr(6), world_data.units) + 1;
 	filterTable($("#units_table tr"), function (row) {
 		return row.find("td").eq(position).text() != "0";
@@ -230,13 +236,14 @@ $("#filtersnob, #filterspy").click( function () {
 
 // filter support from other players
 $("#filterSupport").click( function () {
+	trackClickEvent("FilterSupport");
 	filterTable($("#units_table tr"), function (row) {
-		var villageText = row.find("td:first").html();
-		return villageText.indexOf("<a") != villageText.lastIndexOf("<a");
+		return row.find("td:first a").length != 2;
 	});
 });
 
 $("#filterAttack, #filterDefense").click( function () {
+	trackClickEvent("FilterOffOrDef");
 	var unitArray = $(this).attr('id') == "filterDefense" ? world_data.units_def : world_data.units_off;
 	filterTable($("#units_table tr"), function (row) {
 		var hideRow = false;
@@ -252,6 +259,7 @@ $("#filterAttack, #filterDefense").click( function () {
 });
 
 $("#defFilterBarbarian").click( function () {
+	trackClickEvent("FilterBarbarian");
 	filterTable($("#units_table tr"), function (row) {
 		var text = row.find("td:first").text();
 		return text.match(/\(---\)\s+\(F\d+\)$/);
@@ -260,6 +268,7 @@ $("#defFilterBarbarian").click( function () {
 });
 
 $("#defFilterText").click( function () {
+	trackClickEvent("FilterText");
 	var compareTo = $("#defFilterTextValue").val().toLowerCase();
 	if (compareTo.length > 0)
 		filterTable($("#units_table tr"), function (row) {
@@ -268,6 +277,7 @@ $("#defFilterText").click( function () {
 });
 
 $("#defFilterDistance").click(function () {
+	trackClickEvent("FilterDistance");
 	var maxDistance = $("#defFilterDistanceValue").val();
 	filterTable($("#units_table tr"), function (row) {
 		var distance = $(row).attr("distance");
@@ -276,6 +286,7 @@ $("#defFilterDistance").click(function () {
 });
 
 $("#defTotals").click(function () {
+	trackClickEvent("FilterTotalDef");
 	$(this).attr("disabled", true);
 	var rowColor = 0;
 	var goners = $();
