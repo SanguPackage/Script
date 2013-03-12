@@ -1,4 +1,50 @@
 // Config
+/*function getWorldConfig(worldPrefix, serverName = "tribalwars.nl") {
+	var worldData = {};
+	//worldData.buildings = getWor
+}
+
+function getWorldSpecificConfig(param, worldPrefix, serverName) { 
+	var xmlhttp = new XMLHttpRequest(); 
+	var url = 'http://' + worldPrefix + '.' + serverName + '/interface.php?func=' + param; 
+	xmlhttp.open("GET", url, false);
+	xmlhttp.send(); 
+	var xmlDoc = xmlhttp.responseXML;
+	 
+	if (param == 'get_building_info') { 
+		var data_stand ={main:0,barracks:0,stable:0,garage:0,smith:0,place:0,statue:0,market:0,wood:0,stone:0,iron:0,farm:0,storage:0,hide:0,wall:0,snob:0,church:0,church_f:0}; 
+		var inData_stand = {'max_level':0,'min_level':0,'wood':0,'stone':0,'iron':0,'pop':0,'wood_factor':0,'stone_factor':0,'iron_factor':0,'pop_factor':0,'build_time':0,'build_time_factor':0}; 
+	} 
+	if (param == 'get_unit_info'){ 
+		var data_stand ={spear:0,sword:0,axe:0,archer:0,spy:0,light:0,marcher:0,heavy:0,ram:0,catapult:0,knight:0,snob:0,miliz:0}; 
+		var inData_stand = {'wood':0,'stone':0,'iron':0,'pop':0,'attack':0,'defense':0,'defense_kav':0,'defense_arch':0,'speed':0,'carry':0,'build_time':0}; 
+	}         
+	var buildings, building, info, name, name_2; var count = 0;  
+	var data = data_stand; 
+	buildings = xmlDoc.firstChild.childNodes;         
+	for (var i = 0; i < buildings.length; i++) { 
+		building = buildings[i].childNodes; 
+		name = buildings[i].tagName; 
+		if (name != undefined) {     
+			if (param == 'get_building_info'){ 
+				var inData = {'max_level':0,'min_level':0,'wood':0,'stone':0,'iron':0,'pop':0,'wood_factor':0,'stone_factor':0,'iron_factor':0,'pop_factor':0,'build_time':0,'build_time_factor':0}; 
+			} 
+			if(param == 'get_unit_info'){ 
+				var inData = {'wood':0,'stone':0,'iron':0,'pop':0,'attack':0,'defense':0,'defense_kav':0,'defense_arch':0,'speed':0,'carry':0,'build_time':0}; 
+			} 
+			for (var ii = 0; ii < building.length; ii++){ 
+				name_2 = building[ii].tagName; 
+				if(name_2 != undefined){ 
+					inData[name_2] = building[ii].firstChild.nodeValue; 
+				} 
+			} 
+			data[name] = inData; 
+			count++; 
+		} 
+	} 
+	return data; 
+} */
+
 world_data.resources = ['holz', 'lehm', 'eisen'];
 world_data.resources_en = ['wood', 'stone', 'iron'];
 world_data.buildingsSize =
@@ -43,17 +89,18 @@ world_data.unitsSize = { "unit_spear": 1, "unit_sword": 1, "unit_axe": 1, "unit_
 world_data.unitsSpeed = { "unit_spear": 18, "unit_sword": 22, "unit_axe": 18, "unit_spy": 9, "unit_light": 10, "unit_heavy": 11, "unit_ram": 30, "unit_catapult": 30, "unit_snob": 35, "unit_merchant": 6 };
 
 
-// verklaring XML: http: //forum.die-staemme.de/showthread.php?t=69629
+// verklaring XML: http://forum.die-staemme.de/showthread.php?t=69629
 
 // xml gebouwen etc ophalen: http://help.die-staemme.de/wiki/XML
 
 
-//alert(localStorage);
 
-/*ajax("interface.php?func=get_config", function (content)
+
+ajax("interface.php?func=get_config", function (content)
 {
-alert(content);
-}, { contentValue: false });*/
+	
+	//alert(content);
+}, { contentValue: false });
 
 $.extend(world_data, {
 	nightbonusFrom: 1,

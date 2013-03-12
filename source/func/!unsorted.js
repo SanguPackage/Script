@@ -30,6 +30,9 @@ function getUrlString(url, villageId) {
 }
 
 function ajax(screen, strategy, opts) {
+	if (!server_settings.ajaxAllowed)
+		alert("Ajax is not allowed on German worlds. Adjust configuration.");
+
 	opts = $.extend({}, { villageId: false, contentValue: true }, opts);
 
 	var xmlhttp = new XMLHttpRequest();

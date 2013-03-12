@@ -3,7 +3,7 @@ var totalUnits = [];
 var totalFarm = 0;
 var unitTable = $("#show_units");
 $("#show_units > h4").prepend(trans.sp.main.unitsReplacement);
-$("table:first td", unitTable).not(":has(a)").each(function () {
+$("table:first td", unitTable).not(":last").each(function () {
 	var unit = $('img', this)[0].src;
 	unit = unit.substr(unit.lastIndexOf('/') + 1);
 	unit = unit.substr(0, unit.lastIndexOf('.'))

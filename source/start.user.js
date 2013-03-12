@@ -1,8 +1,13 @@
 //<!--@@INCLUDE "\greasemonkey\imports.txt" //-->
 function sangu_ready() {
-    var sangu_versie = "//<!--@@INCLUDE "\version.txt" //-->";
-    var DEBUG = false;
+    var sangu_version = "//<!--@@INCLUDE "\version.txt" //-->";
 
+	/*_gaq.push(['b._setAccount', 'UA-30075487-3']);
+	_gaq.push(['b._trackPageview']);
+	_gaq.push(['b._trackEvent', 'SanguPackage', 'Loaded', 'Startup']);
+	
+	_gat._getTrackerByName('b')._trackEvent("SanguPackage", "Loaded", "withGetB");*/
+	
     // User config
     var user_data = {};
     //<!--@@INCLUDE "\config\settings_world.js" INDENT+ //-->
@@ -16,6 +21,7 @@ function sangu_ready() {
     //<!--@@INCLUDE "\feature\activator.js" //-->
     if (isSanguActive) {
 		var world_data = {};
+		//<!--@@INCLUDE "\config\serversettings.js" INDENT+ //-->
         //<!--@@INCLUDE "\config\worlds.js" INDENT+ //-->
 
 		//<!--@@INCLUDE "\func\!unsorted.js" //-->
@@ -48,6 +54,7 @@ function sangu_ready() {
         }
 		// MAIN
         else if (location.href.indexOf('screen=main') > -1) {
+			//<!--@@INCLUDE "\page\main_construction\main.js" //-->
             //<!--@@INCLUDE "\page\main_construction\renamevillage.js" //-->
             //<!--@@INCLUDE "\page\main_construction\loyalty.js" //-->
         }

@@ -2,10 +2,13 @@
 savePath := "C:\Users\PC\Documents\Dropbox\Personal\!Programming\OperaUserScripts\"
 saveAs := "sangupackage.user.js"
 
+workingDirectory = %A_WorkingDir%
+SetWorkingDir, %A_ScriptDir%
+
 ParseFile(fileName, indentCount)
 {
 	if not FileExist(fileName)
-		MsgBox %fileName%
+		MsgBox Couldn't find: %fileName%
 
 	replacedFile =
 	Loop, Read, %fileName%
@@ -73,5 +76,7 @@ IfExist, %savePath%%saveAs%
 
 formattedOutput := ParseFile(inputFile, 0)
 FileAppend, %formattedOutput%, %savePath%%SaveAs%
+
+SetWorkingDir, workingDirectory
 
 return

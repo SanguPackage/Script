@@ -1,6 +1,6 @@
 // show loyalty when building
 // destroy button is disabled now (but for how long?)
-if (user_data.ajaxLoyalty) {
+if (server_settings.ajaxAllowed && user_data.ajaxLoyalty) {
 	ajax("overview", function (overview) {
 		var loyalty = $("#show_mood div.vis_item", overview);
 		if (loyalty.size() == 1) {
