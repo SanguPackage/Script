@@ -1,52 +1,9 @@
-// Config
-/*function getWorldConfig(worldPrefix, serverName = "tribalwars.nl") {
-	var worldData = {};
-	//worldData.buildings = getWor
-}
-
-function getWorldSpecificConfig(param, worldPrefix, serverName) { 
-	var xmlhttp = new XMLHttpRequest(); 
-	var url = 'http://' + worldPrefix + '.' + serverName + '/interface.php?func=' + param; 
-	xmlhttp.open("GET", url, false);
-	xmlhttp.send(); 
-	var xmlDoc = xmlhttp.responseXML;
-	 
-	if (param == 'get_building_info') { 
-		var data_stand ={main:0,barracks:0,stable:0,garage:0,smith:0,place:0,statue:0,market:0,wood:0,stone:0,iron:0,farm:0,storage:0,hide:0,wall:0,snob:0,church:0,church_f:0}; 
-		var inData_stand = {'max_level':0,'min_level':0,'wood':0,'stone':0,'iron':0,'pop':0,'wood_factor':0,'stone_factor':0,'iron_factor':0,'pop_factor':0,'build_time':0,'build_time_factor':0}; 
-	} 
-	if (param == 'get_unit_info'){ 
-		var data_stand ={spear:0,sword:0,axe:0,archer:0,spy:0,light:0,marcher:0,heavy:0,ram:0,catapult:0,knight:0,snob:0,miliz:0}; 
-		var inData_stand = {'wood':0,'stone':0,'iron':0,'pop':0,'attack':0,'defense':0,'defense_kav':0,'defense_arch':0,'speed':0,'carry':0,'build_time':0}; 
-	}         
-	var buildings, building, info, name, name_2; var count = 0;  
-	var data = data_stand; 
-	buildings = xmlDoc.firstChild.childNodes;         
-	for (var i = 0; i < buildings.length; i++) { 
-		building = buildings[i].childNodes; 
-		name = buildings[i].tagName; 
-		if (name != undefined) {     
-			if (param == 'get_building_info'){ 
-				var inData = {'max_level':0,'min_level':0,'wood':0,'stone':0,'iron':0,'pop':0,'wood_factor':0,'stone_factor':0,'iron_factor':0,'pop_factor':0,'build_time':0,'build_time_factor':0}; 
-			} 
-			if(param == 'get_unit_info'){ 
-				var inData = {'wood':0,'stone':0,'iron':0,'pop':0,'attack':0,'defense':0,'defense_kav':0,'defense_arch':0,'speed':0,'carry':0,'build_time':0}; 
-			} 
-			for (var ii = 0; ii < building.length; ii++){ 
-				name_2 = building[ii].tagName; 
-				if(name_2 != undefined){ 
-					inData[name_2] = building[ii].firstChild.nodeValue; 
-				} 
-			} 
-			data[name] = inData; 
-			count++; 
-		} 
-	} 
-	return data; 
-} */
-
+// world config
+// RESOURCES
 world_data.resources = ['holz', 'lehm', 'eisen'];
 world_data.resources_en = ['wood', 'stone', 'iron'];
+
+// BUILDINGS
 world_data.buildingsSize =
 	[
 	["main", [5, 6, 7, 8, 9, 11, 13, 15, 18, 21, 24, 28, 33, 38, 45, 53, 62, 72, 84, 99, 116, 135, 158, 185, 216, 253, 296, 347, 406, 475]],
@@ -85,248 +42,34 @@ world_data.buildingsPoints =
 	["wall", [8, 10, 12, 14, 17, 20, 24, 29, 34, 41, 50, 59, 71, 86, 103, 123, 148, 177, 213, 256]]
 	];
 
+world_data.buildings = ["main", "barracks", "stable", "garage"];
+if (world_config.hasChurch) {
+	world_data.buildingsSize.push(["church", [5000, 7750, 12013]]);
+	world_data.buildingsSize.push(["church_f", [5]]);
+	world_data.buildings.push("church");
+}
+world_data.buildings = world_data.buildings.concat(["snob", "smith", "place"]);
+if (world_config.hasKnight) {
+	world_data.buildingsSize.push(["statue", [10]]);
+	world_data.buildingsPoints.push(["statue", [24]]);
+	world_data.buildings.push("statue");
+}
+world_data.buildings = world_data.buildings.concat(["market", "wood", "stone", "iron", "farm", "storage", "hide", "wall"]);
+	
+	
+// UNITS
 world_data.unitsSize = { "unit_spear": 1, "unit_sword": 1, "unit_axe": 1, "unit_spy": 2, "unit_light": 4, "unit_heavy": 6, "unit_ram": 5, "unit_catapult": 8, "unit_snob": 100 };
 world_data.unitsSpeed = { "unit_spear": 18, "unit_sword": 22, "unit_axe": 18, "unit_spy": 9, "unit_light": 10, "unit_heavy": 11, "unit_ram": 30, "unit_catapult": 30, "unit_snob": 35, "unit_merchant": 6 };
 
-
-// verklaring XML: http://forum.die-staemme.de/showthread.php?t=69629
-
-// xml gebouwen etc ophalen: http://help.die-staemme.de/wiki/XML
-
-
-
-
-/*ajax("interface.php?func=get_config", function (content)
-{
-	
-	//alert(content);
-}, { contentValue: false });*/
-
-$.extend(world_data, {
-	nightbonusFrom: 1,
-	nightbonusTill: 7,
-	smithyLevels: true,
-	hasChurch: false,
-	hasArchers: false,
-	hasKnight: false,
-	hasMilitia: false,
-	speed: 1,
-	unitSpeed: 1,
-	farmLimit: 0,
-	minFake: 0,
-	coins: false
-});
-
-// Archer worlds:
-world_data.number = parseInt(game_data.world.substr(2), 10);
-switch (world_data.number) {
-	case 2: case 3: case 4: case 6: case 7: case 8: case 9:
-	case 11: case 12: case 13: case 14: case 15: case 17:
-	case 18: case 19: case 20: case 21: case 22: case 23: case 25:case 26:
-		if (world_data.number != 26) {
-			world_data.hasArchers = true;
-		}
-
-		world_data.smithyLevels = false;
-		world_data.hasKnight = true;
-		world_data.coins = true;
-		world_data.buildingsSize.push(["statue", [10]]);
-		world_data.buildingsPoints.push(["statue", [24]]);
-
-		// Kerkwerelden
-		switch (world_data.number) {
-			case 11: case 12: case 14: case 17: case 20: case 21: case 23: case 25: case 26:
-				world_data.hasChurch = true;
-				world_data.buildingsSize.push(["church", [5000, 7750, 12013]]);
-				world_data.buildingsSize.push(["church_f", [5]]);
-				world_data.buildings = ["main", "barracks", "stable", "garage", "church", "snob", "smith", "place", "statue", "market", "wood", "stone", "iron", "farm", "storage", "hide", "wall"];
-				break;
-
-			default:
-				world_data.buildings = ["main", "barracks", "stable", "garage", "snob", "smith", "place", "statue", "market", "wood", "stone", "iron", "farm", "storage", "hide", "wall"];
-				break;
-		}
-		break;
-	default:
-		world_data.buildings = ["main", "barracks", "stable", "garage", "snob", "smith", "place", "market", "wood", "stone", "iron", "farm", "storage", "hide", "wall"];
-		break;
-}
-
-if (isNaN(world_data.number)) {
-	switch (game_data.world) {
-		case 'nlc1':
-			world_data.maxNobleWalkingTime = 2695;
-			world_data.minFake = 0.02;
-			world_data.smithyLevels = false;
-				world_data.hasKnight = true;
-				world_data.coins = true;
-				world_data.buildingsSize.push(["statue", [10]]);
-				world_data.buildingsPoints.push(["statue", [24]]);
-			world_data.buildings = ["main", "barracks", "stable", "garage", "snob", "smith", "place", "statue", "market", "wood", "stone", "iron", "farm", "storage", "hide", "wall"];
-			break;
-	}
-}
-else
-	switch (world_data.number)
-{
-	case 10:
-	  world_data.farmLimit = 1800;
-	  world_data.minFake = 0.02;
-	  world_data.maxNobleWalkingTime = 1470; // 24u30 in minuten = 42 velden
-	  break;
-
-	case 1:
-		world_data.nightbonusFrom = 0;
-		world_data.maxNobleWalkingTime = 35000;
-		break;
-
-	case 2:
-		world_data.speed = 2;
-		world_data.minFake = 0.05;
-		world_data.maxNobleWalkingTime = 1225;
-		break;
-
-	case 3:
-		world_data.smithyLevels = true;
-		world_data.minFake = 0.05;
-		world_data.maxNobleWalkingTime = 3500;
-		break;
-
-	case 4:
-		world_data.speed = 1.5;
-		world_data.unitSpeed = 0.66666666;
-		world_data.minFake = 0.05;
-		world_data.maxNobleWalkingTime = 2695;
-		break;
-
-	case 5:
-		world_data.speed = 1.5;
-		world_data.unitSpeed = 0.66666666;
-		world_data.farmLimit = 1200;
-		world_data.minFake = 0.02;
-		world_data.maxNobleWalkingTime = 1470;
-		break;
-
-	case 6:
-		world_data.speed = 1.5;
-		world_data.unitSpeed = 0.66666666;
-		world_data.minFake = 0.02;
-		world_data.smithyLevels = true;
-		world_data.maxNobleWalkingTime = 2695;
-		break;
-
-	case 7:
-		world_data.speed = 2;
-		world_data.unitSpeed = 0.5;
-		world_data.minFake = 0.01;
-		world_data.maxNobleWalkingTime = 2695;
-		break;
-
-	case 8:
-		world_data.speed = 1.5;
-		world_data.unitSpeed = 0.66666666;
-		world_data.minFake = 0.01;
-		world_data.maxNobleWalkingTime = 2695;
-		break;
-
-	case 9: case 11:
-		world_data.minFake = 0.02;
-		world_data.maxNobleWalkingTime = 2695;
-		break;
-
-	case 12: case 14: case 18:
-		world_data.speed = 1.5;
-		world_data.unitSpeed = 0.66666666;
-		world_data.minFake = 0.02;
-		world_data.maxNobleWalkingTime = 2695;
-		break;
-
-	case 13: case 15:
-		world_data.speed = 2;
-		world_data.unitSpeed = 0.5;
-		world_data.minFake = 0.02;
-		world_data.maxNobleWalkingTime = 2695;
-		break;
-
-	case 16:
-		world_data.farmLimit = 2500;
-		world_data.minFake = 0.02;
-		world_data.maxNobleWalkingTime = 2695;
-		break;
-
-	case 17:
-		world_data.minFake = 0.02;
-		world_data.maxNobleWalkingTime = 2695;
-		break;
-
-	case 19:
-		world_data.speed = 2;
-		world_data.minFake = 0.02;
-		world_data.maxNobleWalkingTime = 2695;
-		break;
-
-	case 20:
-		world_data.minFake = 0.01;
-		world_data.maxNobleWalkingTime = 7000;
-		break;
-
-	case 21:
-		world_data.minFake = 0.02;
-		world_data.maxNobleWalkingTime = 7000;
-		world_data.hasMilitia = true;
-		break;
-
-	case 22:
-		world_data.minFake = 0.02;
-		world_data.maxNobleWalkingTime = 2695;
-		world_data.hasMilitia = true;
-		break;
-
-	case 23:
-		world_data.speed = 1.5;
-		world_data.unitSpeed = 0.66666666;
-		world_data.minFake = 0.02;
-		world_data.maxNobleWalkingTime = 2695;
-		world_data.hasMilitia = true;
-		break;
-
-	case 24:
-		world_data.speed = 1;
-		world_data.unitSpeed = 1;
-		world_data.minFake = 0.05;
-		world_data.maxNobleWalkingTime = 2695;
-		world_data.hasMilitia = true;
-		world_data.coins = false;
-		break;
-
-	case 25:
-		world_data.speed = 1.25;
-		world_data.unitSpeed = 0.8;
-		world_data.minFake = 0.02;
-		world_data.maxNobleWalkingTime = 2695;
-		world_data.hasMilitia = true;
-		break;
-		
-	case 26:
-			world_data.speed = 1;
-		world_data.unitSpeed = 1;
-		world_data.minFake = 0.02;
-		world_data.maxNobleWalkingTime = 7000;
-		world_data.hasMilitia = true;
-		world_data.hasKnight = true;
-		world_data.smithyLevels = false;
-			break;
-}
-world_data.hasMinFakeLimit = world_data.minFake > 0;
 world_data.units_def = ["spear", "sword", "heavy"];
 world_data.units_off = ["axe", "light", "heavy"];
-if (!world_data.hasArchers && !world_data.hasKnight) {
+if (!world_config.hasArchers && !world_config.hasKnight) {
 	world_data.unitsPositionSize = [1, 1, 1, 2, 4, 6, 5, 8, 100];
 	world_data.units = ["spear", "sword", "axe", "spy", "light", "heavy", "ram", "catapult", "snob"];
 } else {
 	world_data.units = ["spear", "sword", "axe"];
 	world_data.unitsPositionSize = [1, 1, 1];
-	if (world_data.hasArchers) {
+	if (world_config.hasArchers) {
 		world_data.units_off.push("marcher");
 		world_data.units_def.push("archer");
 		$.extend(world_data.unitsSize, { "unit_archer": 1 }, { "unit_marcher": 5 });
@@ -338,7 +81,7 @@ if (!world_data.hasArchers && !world_data.hasKnight) {
 	world_data.unitsPositionSize.push(2);
 	world_data.units.push("light");
 	world_data.unitsPositionSize.push(4);
-	if (world_data.hasArchers) {
+	if (world_config.hasArchers) {
 		world_data.units.push("marcher");
 		world_data.unitsPositionSize.push(5);
 	}
@@ -348,7 +91,7 @@ if (!world_data.hasArchers && !world_data.hasKnight) {
 	world_data.unitsPositionSize.push(5);
 	world_data.units.push("catapult");
 	world_data.unitsPositionSize.push(8);
-	if (world_data.hasKnight) {
+	if (world_config.hasKnight) {
 		$.extend(world_data.unitsSize, { "unit_knight": 10 });
 		$.extend(world_data.unitsSpeed, { "unit_knight": 10 });
 		world_data.units.push("knight");
@@ -356,13 +99,12 @@ if (!world_data.hasArchers && !world_data.hasKnight) {
 	}
 	world_data.units.push("snob");
 	world_data.unitsPositionSize.push(100);
-
-	//world_data.unitsPositionSize = [1, 1, 1, 1, 2, 4, 5, 6, 5, 8, 10, 100];
-	//world_data.units = ["spear", "sword", "axe", "archer", "spy", "light", "marcher", "heavy", "ram", "catapult", "knight", "snob"];
 }
 
-if (Math.round(world_data.speed * world_data.unitSpeed) != 1) {
-	var speedModifier = Math.round(world_data.speed * world_data.unitSpeed);
+// Unit speed adjustments
+world_config.maxNobleWalkingTime *= world_data.unitsSpeed.unit_snob;
+if (Math.round(world_config.speed * world_config.unitSpeed) != 1) {
+	var speedModifier = Math.round(world_config.speed * world_config.unitSpeed);
 	$.each(world_data.unitsSpeed, function (index, value) {
 		world_data.unitsSpeed[index] = world_data.unitsSpeed[index] / speedModifier;
 	});

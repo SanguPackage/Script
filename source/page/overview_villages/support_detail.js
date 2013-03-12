@@ -340,7 +340,7 @@ $("#defTotals").click(function () {
 			}
 		}
 
-		var color = getStackColor(grandTotal, 30 * world_data.farmLimit);
+		var color = getStackColor(grandTotal, 30 * world_config.farmLimit);
 		color = "<td style='background-color: " + color + "; border:1px solid black'>" + formatNumber(grandTotal) + "</td>";
 
 		nextRow.before("<tr class='grandTotal " + (rowColor % 2 == 1 ? "row_b" : "row_a") + "' village='" + villageCoord.coord + "' population='" + grandTotal + "'><td>&nbsp;</td><td>" + (isSupport ? trans.sp.defOverview.totalFromOtherVillages : trans.sp.defOverview.totalInOtherVillages) + "</td>" + troopCells + color + "</tr><tr height=10></tr>");

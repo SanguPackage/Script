@@ -30,7 +30,7 @@ var targetVillage = infoTable.first().text();
 // invalid coordinates
 var village = getVillageFromCoords(targetVillage);
 if (village.isValid) {
-	setCookie("lastVil", village.coord, 30);
+	setCookie("lastVil", village.coord);
 }
 
 if (user_data.attackAutoRename) {
@@ -46,7 +46,7 @@ if (user_data.attackAutoRename) {
 	var unitsCalc = calcTroops(unitsSent);
 
 	// compare runtime with dodgetime
-	var dodgeCookie = getCookie("sanguDodge" + getQueryStringParam("village"));
+	var dodgeCookie = getCookie("sanguDodge" + getQueryStringParam("village"), true);
 	if (dodgeCookie) {
 		dodgeCookie = dodgeCookie.split("~");
 		var durationCell = $("#content_value table.vis:first td:contains('" + trans.tw.command.walkingTimeTitle + "')").next();

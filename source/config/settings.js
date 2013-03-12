@@ -91,7 +91,6 @@ $.extend(user_data, {
 		enabled: true,
 		left: 880,
 		top: 196,
-		daysActive: 100,
 		width: 200,
 		addTargetVillage: true,
 		addLastVillage: true

@@ -9,6 +9,9 @@ if (user_data.rallyPointAttackBoxWidth != null && user_data.rallyPointAttackBoxW
 
 // Auto rename attacks
 if (user_data.attackAutoRename) {
+	// Less then ideal solution:
+	// Does work properly when sending many attacks (ie snobtrain)
+	// In confirm.js they are saved as a cookie (with expiration)
 	var cooks = document.cookie.split("; ");
 	var x;
 	for (x = 0; x < cooks.length; x++) {
@@ -124,9 +127,9 @@ var linksContainer = $('#selectAllUnits').parent().attr("colspan", 4);
 
 // add fake attack
 var minFake = 0;
-if (world_data.hasMinFakeLimit) {
+if (world_config.hasMinFakeLimit) {
 	minFake = getBuildingPoints();
-	minFake *= world_data.minFake;
+	minFake *= world_config.minFake;
 	if (units.ram > 0) {
 		minFake -= world_data.unitsSize['unit_ram'];
 	}

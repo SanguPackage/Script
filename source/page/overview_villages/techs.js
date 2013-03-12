@@ -1,5 +1,5 @@
 // Highlight everything not conform usersettings
-if (world_data.smithyLevels) {
+if (world_config.smithyLevels) {
 	var menu = "<table class='vis' width='100%'>";
 	menu += "<tr><th>";
 	menu += "<select id='groupType'>";

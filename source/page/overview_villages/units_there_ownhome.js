@@ -9,7 +9,7 @@ function makeUnitBox(id, select) {
 
 var menu = "";
 menu += "<tr>";
-menu += "<th colspan=" + (4 + world_data.units.length + (world_data.hasMilitia ? 1 : 0)) + ">";
+menu += "<th colspan=" + (4 + world_data.units.length + (world_config.hasMilitia ? 1 : 0)) + ">";
 menu += "<input type=text size=5 id=filterAxeValue value='" + user_data.command.filterMinDefault + "'>";
 menu += makeUnitBox("filterAxeType", user_data.command.filterMinDefaultType);
 menu += "<input type=button id=filterAxe value='" + trans.sp.troopOverview.filterTroops + "'> &nbsp;";
@@ -30,7 +30,7 @@ menu += "<th>" + trans.sp.troopOverview.nightBonus + "</th>";
 $.each(world_data.units, function (i, v) {
 	menu += "<th><img src='/graphic/unit/unit_" + v + ".png' title='" + trans.sp.troopOverview.selectUnitSpeed.replace("{0}", trans.tw.units.names[v]) + "' alt='' id=" + v + " /></th>";
 });
-if (world_data.hasMilitia) {
+if (world_config.hasMilitia) {
 	menu += "<th><img src='/graphic/unit/unit_militia.png' title='" + trans.tw.units.militia + "' alt='' id=militia /></th>";
 }
 menu += "<th>" + trans.sp.troopOverview.commandTitle + "</th>";
@@ -77,7 +77,7 @@ var newTable = "";
 
 var theUnits;
 var rowSize = world_data.units.length + 1;
-if (world_data.hasMilitia) {
+if (world_config.hasMilitia) {
 	rowSize++;
 }
 
@@ -257,7 +257,7 @@ $("#calculateStack").bind("click", function () {
 					total += this.innerHTML * world_data.unitsPositionSize[i];
 				}
 			});
-			var color = getStackColor(total, 30 * world_data.farmLimit);
+			var color = getStackColor(total, 30 * world_config.farmLimit);
 			$("td:eq(1)", this).text(formatNumber(total)).css("background-color", color);
 		});
 	}

@@ -199,7 +199,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 							}
 
 							var currentArrivalTime = getDateFromTodayTomorrowTW($("td:eq(1)", this).text());
-							if (incomingType == 'incAt' && currentArrivalTime.getHours() >= world_data.nightbonusFrom && currentArrivalTime.getHours() < world_data.nightbonusTill) {
+							if (incomingType == 'incAt' && isDateInNightBonus(currentArrivalTime)) {
 								// nightbonus
 								row.find("td:eq(1)").css("background-color", user_data.colors.error);
 							}
@@ -221,17 +221,18 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 								}
 
 								lastSend = currentArrivalTime;
-								if (lastSend.getHours() >= world_data.nightbonusTill) {
+								// TODO: how to handle worlds without nightbonus?
+								if (lastSend.getHours() >= world_config.nightbonus.till) {
 									lastSend.setDate(lastSend.getDate() + 1);
-									lastSend.setHours(world_data.nightbonusFrom);
+									lastSend.setHours(world_config.nightbonus.from);
 									lastSend.setMinutes(0);
 									lastSend.setSeconds(0);
-								} else if (lastSend.getHours() < world_data.nightbonusFrom) {
-									lastSend.setHours(world_data.nightbonusFrom);
+								} else if (lastSend.getHours() < world_config.nightbonus.from) {
+									lastSend.setHours(world_config.nightbonus.from);
 									lastSend.setMinutes(0);
 									lastSend.setSeconds(0);
 								} else {
-									lastSend.setHours(world_data.nightbonusTill);
+									lastSend.setHours(world_config.nightbonus.till);
 									lastSend.setMinutes(0);
 									lastSend.setSeconds(0);
 								}

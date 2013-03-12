@@ -21,8 +21,9 @@ function sangu_ready() {
     //<!--@@INCLUDE "\feature\activator.js" //-->
     if (isSanguActive) {
 		var world_data = {};
-		//<!--@@INCLUDE "\config\serversettings.js" INDENT+ //-->
-        //<!--@@INCLUDE "\config\worlds.js" INDENT+ //-->
+		//<!--@@INCLUDE "\config\server.js" INDENT+ //-->
+		//<!--@@INCLUDE "\config\world_config.js" //-->
+        //<!--@@INCLUDE "\config\worlds.js" //-->
 
 		//<!--@@INCLUDE "\func\!unsorted.js" //-->
         //<!--@@INCLUDE "\func\ui.js" //-->

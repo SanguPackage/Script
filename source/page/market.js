@@ -16,7 +16,7 @@ else if (location.href.indexOf('&mode=') == -1 || location.href.indexOf('&mode=s
 		$("input[type='submit']").bind("click", function () {
 			var village = getVillageFromCoords($("#inputx").val() + "|" + $("#inputy").val());
 			if (village.isValid) {
-				setCookie("lastVil", village.coord, 30);
+				setCookie("lastVil", village.coord);
 			}
 		});
 

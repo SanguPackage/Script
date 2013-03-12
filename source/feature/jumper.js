@@ -30,7 +30,7 @@ function mapJump() {
 			});
 		}
 
-		var cookie = getCookie("jumpers" + game_data.world).split(",");
+		var cookie = getCookie("jumpers").split(",");
 		if (cookie.length > 1) {
 			for (i = 0; i < cookie.length; i += 2) {
 				x = cookie[i + 1].substr(0, cookie[i + 1].indexOf("|"));
@@ -80,7 +80,7 @@ function mapJump() {
 		$(".jumperdelete").click(function () {
 			var toDelete = $(this).attr("jumpname");
 
-			var cookie = getCookie("jumpers" + game_data.world).split(",");
+			var cookie = getCookie("jumpers").split(",");
 			var newCookie = "";
 			for (i = 0; i < cookie.length; i += 2) {
 				if (cookie[i] != toDelete) {
@@ -88,7 +88,7 @@ function mapJump() {
 				}
 			}
 			$(this).parent().parent().remove();
-			setCookie("jumpers" + game_data.world, newCookie.length > 0 ? newCookie.substr(1) : "", 60 * 24 * user_data.jumper.daysActive);
+			setCookie("jumpers", newCookie.length > 0 ? newCookie.substr(1) : "");
 		});
 
 		$("#sangujumperOpen").click(function () {
@@ -101,17 +101,17 @@ function mapJump() {
 						var name = $("#sangujumperName").val();
 
 						var cookiefav = name + ',' + village.coord;
-						var existing = getCookie("jumpers" + game_data.world);
+						var existing = getCookie("jumpers");
 						if (existing.length > 0) {
 							cookiefav += "," + existing;
 						}
-						setCookie("jumpers" + game_data.world, cookiefav, 60 * 24 * user_data.jumper.daysActive);
+						setCookie("jumpers", cookiefav);
 					}
 
 					if (location.href.indexOf("screen=map") == -1) {
 						var position = $("#sangujumperpos").offset();
-						setCookie("jumperLeft", position.left, 60 * 24 * user_data.jumper.daysActive);
-						setCookie("jumperTop", position.top, 60 * 24 * user_data.jumper.daysActive);
+						setCookie("jumperLeft", position.left);
+						setCookie("jumperTop", position.top);
 					}
 
 					// Jump to coordinates on the map

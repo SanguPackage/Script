@@ -53,7 +53,7 @@ unitsTable.find("tr:gt(0)").each(function () {
 	});
 
 	var villageCoord = getVillageFromCoords(row.find("td:first").text());
-	var color = getStackColor(pop, 30 * world_data.farmLimit);
+	var color = getStackColor(pop, 30 * world_config.farmLimit);
 
 	if (color != "transparant") {
 		$(this).append("<td align=right style='background-color: " + color + "'>" + formatNumber(pop) + "</td><td colspan=2>&nbsp;</td>");

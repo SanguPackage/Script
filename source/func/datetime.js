@@ -149,5 +149,6 @@ function getDateFromTodayTomorrowTW(str) {
 }
 
 function isDateInNightBonus(date) {
-	return date.getHours() >= world_data.nightbonusFrom && date.getHours() < world_data.nightbonusTill;
+	if (!world_config.nightbonus.active) return false;
+	return date.getHours() >= world_config.nightbonus.from && date.getHours() < world_config.nightbonus.till;
 }

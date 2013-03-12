@@ -82,7 +82,7 @@ function getDistance(x1, x2, y1, y2, speed) {
 	dist.arrivalTime.setTime(dist.arrivalTime.getTime() + (dist.travelTime * 60 * 1000));
 	dist.isNightBonus = isDateInNightBonus(dist.arrivalTime);
 
-	if (speed == 'snob' && dist.travelTime > world_data.maxNobleWalkingTime) {
+	if (speed == 'snob' && dist.travelTime > world_config.maxNobleWalkingTime) {
 		dist.html = "<font color=red><b>" + twDurationFormat(dist.travelTime) + "</b></font>";
 		dist.isNightBonus = true;
 	} else {
@@ -262,10 +262,10 @@ function stackDisplay(totalFarm, stackOptions) {
 	if (stackOptions == undefined) {
 		stackOptions = {};
 	}
-	var farmSize = game_data.village.buildings.farm * world_data.farmLimit;
+	var farmSize = game_data.village.buildings.farm * world_config.farmLimit;
 
 	var stackDesc = '<b>' + formatNumber(totalFarm);
-	if (stackOptions.showFarmLimit && world_data.farmLimit > 0) {
+	if (stackOptions.showFarmLimit && world_config.farmLimit > 0) {
 		stackDesc += ' / ' + formatNumber(farmSize);
 	}
 
@@ -290,7 +290,7 @@ function stackDisplay(totalFarm, stackOptions) {
 
 function getStackColor(totalFarm, farmSize) {
 	var color = null;
-	if (world_data.farmLimit > 0) {
+	if (world_config.farmLimit > 0) {
 		$.each(user_data.farmLimit.acceptableOverstack, function (index, val) {
 			if (color == null && totalFarm > farmSize * val) {
 				color = user_data.farmLimit.stackColors[index];

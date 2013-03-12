@@ -102,7 +102,7 @@ if ($("#running_times").size() > 0) {
 
 		// nobles can only walk so far
 		var nobles = $("tr:last", table);
-		if (convertTime(nobles).totalSeconds / 60 > world_data.maxNobleWalkingTime) {
+		if (convertTime(nobles).totalSeconds / 60 > world_config.maxNobleWalkingTime) {
 			nobles.find("td").css("text-decoration", "line-through");
 		}
 

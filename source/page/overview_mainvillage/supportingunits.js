@@ -75,7 +75,7 @@ if (user_data.ajaxSeperateSupport && totalFarm > 0) {
 		var isClassicOverview = $("a:contains('" + trans.tw.main.toGraphicOverview + "')", content_value).size() > 0;
 		if (isClassicOverview) {
 			var cell = $("#order_level_farm").parent().next();
-			var percentage = world_data.farmLimit == 0 ? "" : cell.children().html();
+			var percentage = world_config.farmLimit == 0 ? "" : cell.children().html();
 			stackDisplay(
 				totalFarm, {
 					showFarmLimit: true,
