@@ -26,7 +26,7 @@ if (user_data.attackAutoRename) {
 			if (id.length > 0 && thisVil == game_data.village.id) {
 				var rename = $("input[value='" + id + "']");
 				if (rename.size() > 0) {
-					setCookie(cookie.substr(0, cookie.indexOf("=")), "", 0);
+					pers.setCookie(cookie.substr(0, cookie.indexOf("=")), "", 0);
 					rename.val(msg).next().click();
 				}
 			}
@@ -64,7 +64,7 @@ $("#units_form a img").click(function () {
 	$("#units_form a img").css("border", "0px").filter("img[src*='" + unit + "']").css("border", "3px red solid");
 
 	// lastvil
-	var coord = getVillageFromCoords(getCookie("lastVil"));
+	var coord = getVillageFromCoords(pers.get("lastVil"));
 	if (coord.isValid) {
 		var dist = getDistance(coord.x, vilHome.x, coord.y, vilHome.y, speedCookie);
 		$("#lastVilTime")[0].innerHTML = dist.html;
@@ -79,7 +79,7 @@ $("#units_form a img").click(function () {
 
 }).filter("img[src*='" + speedCookie + "']").css("border", "3px red solid");
 
-var cookie = getCookie("lastVil");
+var cookie = pers.get("lastVil");
 var coord = getVillageFromCoords(cookie);
 if (coord.isValid) {
 	var dist = getDistance(coord.x, vilHome.x, coord.y, vilHome.y, speedCookie);

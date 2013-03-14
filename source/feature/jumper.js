@@ -30,7 +30,7 @@ function mapJump() {
 			});
 		}
 
-		var cookie = getCookie("jumpers").split(",");
+		var cookie = pers.get("jumpers").split(",");
 		if (cookie.length > 1) {
 			for (i = 0; i < cookie.length; i += 2) {
 				x = cookie[i + 1].substr(0, cookie[i + 1].indexOf("|"));
@@ -47,7 +47,7 @@ function mapJump() {
 		}
 
 		if (user_data.jumper.addLastVillage) {
-			var target = getVillageFromCoords(getCookie('lastVil'));
+			var target = getVillageFromCoords(pers.get('lastVil'));
 			if (target.isValid) {
 				favorites += "<tr><td align=left colspan=2>" + createMapJumpLink(trans.sp.all.last, target.x, target.y) + "</td></tr>";
 			}
@@ -80,7 +80,7 @@ function mapJump() {
 		$(".jumperdelete").click(function () {
 			var toDelete = $(this).attr("jumpname");
 
-			var cookie = getCookie("jumpers").split(",");
+			var cookie = pers.get("jumpers").split(",");
 			var newCookie = "";
 			for (i = 0; i < cookie.length; i += 2) {
 				if (cookie[i] != toDelete) {
@@ -88,7 +88,7 @@ function mapJump() {
 				}
 			}
 			$(this).parent().parent().remove();
-			setCookie("jumpers", newCookie.length > 0 ? newCookie.substr(1) : "");
+			pers.set("jumpers", newCookie.length > 0 ? newCookie.substr(1) : "");
 		});
 
 		$("#sangujumperOpen").click(function () {
@@ -102,17 +102,17 @@ function mapJump() {
 						var name = $("#sangujumperName").val();
 
 						var cookiefav = name + ',' + village.coord;
-						var existing = getCookie("jumpers");
+						var existing = pers.get("jumpers");
 						if (existing.length > 0) {
 							cookiefav += "," + existing;
 						}
-						setCookie("jumpers", cookiefav);
+						pers.set("jumpers", cookiefav);
 					}
 
 					if (location.href.indexOf("screen=map") == -1) {
 						var position = $("#sangujumperpos").offset();
-						setCookie("jumperLeft", position.left);
-						setCookie("jumperTop", position.top);
+						pers.set("jumperLeft", position.left);
+						pers.set("jumperTop", position.top);
 					}
 
 					// Jump to coordinates on the map
@@ -128,8 +128,8 @@ function mapJump() {
 			} else {
 				// activate mapJumper
 				var favs = $("#sangujumperpos");
-				var left = getCookie("jumperLeft");
-				var top = getCookie("jumperTop");
+				var left = pers.get("jumperLeft");
+				var top = pers.get("jumperTop");
 				if (!left) {
 					left = user_data.jumper.left;
 					top = user_data.jumper.top;

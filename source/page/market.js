@@ -16,7 +16,7 @@ else if (location.href.indexOf('&mode=') == -1 || location.href.indexOf('&mode=s
 		$("input[type='submit']").click(function () {
 			var village = getVillageFromCoords($("#inputx").val() + "|" + $("#inputy").val());
 			if (village.isValid) {
-				setCookie("lastVil", village.coord);
+				pers.set("lastVil", village.coord);
 			}
 		});
 
@@ -24,7 +24,7 @@ else if (location.href.indexOf('&mode=') == -1 || location.href.indexOf('&mode=s
 		var vilHome = getVillageFromCoords(game_data.village.coord);
 
 		var targetLocation = $("#inputx").parent().parent().parent();
-		var cookie = getCookie("lastVil");
+		var cookie = pers.get("lastVil");
 		var coord = getVillageFromCoords(cookie);
 		var htmlStr = '';
 		if (coord.isValid) {

@@ -51,7 +51,7 @@ function ajax(screen, strategy, opts) {
 
 function spSpeedCookie(setter) {
 	if (setter == undefined) {
-		var speedCookie = getCookie("targetVillageSpeed");
+		var speedCookie = pers.get("targetVillageSpeed");
 		if (speedCookie == '') {
 			speedCookie = 'ram';
 		}
@@ -60,16 +60,16 @@ function spSpeedCookie(setter) {
 		if (setter.indexOf('_') == 4) {
 			setter = setter.substr(setter.indexOf('_') + 1);
 		}
-		setCookie("targetVillageSpeed", setter);
+		pers.set("targetVillageSpeed", setter);
 		return setter;
 	}
 }
 
 function spTargetVillageCookie(setter) {
 	if (setter == undefined) {
-		return getCookie("targetVillageCoord");
+		return pers.get("targetVillageCoord");
 	} else {
-		setCookie("targetVillageCoord", setter);
+		pers.set("targetVillageCoord", setter);
 		return setter;
 	}
 }

@@ -1,7 +1,7 @@
 // world config: global game settings
 var world_config = {};
-if (getCookie('worldconfig') !== '') {
-	world_config = JSON.parse(getCookie("worldconfig"));
+if (pers.get('worldconfig') !== '') {
+	world_config = JSON.parse(pers.get("worldconfig"));
 	
 } else {
 	// load new world through tw API
@@ -36,5 +36,5 @@ if (getCookie('worldconfig') !== '') {
 		}
 	});
 	
-	setCookie("worldconfig", JSON.stringify(world_config));
+	pers.set("worldconfig", JSON.stringify(world_config));
 }

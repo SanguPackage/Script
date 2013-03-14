@@ -30,7 +30,7 @@ var targetVillage = infoTable.first().text();
 // invalid coordinates
 var village = getVillageFromCoords(targetVillage);
 if (village.isValid) {
-	setCookie("lastVil", village.coord);
+	pers.set("lastVil", village.coord);
 }
 
 if (user_data.attackAutoRename) {
@@ -46,7 +46,7 @@ if (user_data.attackAutoRename) {
 	var unitsCalc = calcTroops(unitsSent);
 
 	// compare runtime with dodgetime
-	var dodgeCookie = getCookie("sanguDodge" + getQueryStringParam("village"), true);
+	var dodgeCookie = pers.getCookie("sanguDodge" + getQueryStringParam("village"));
 	if (dodgeCookie) {
 		dodgeCookie = dodgeCookie.split("~");
 		var durationCell = $("#content_value table.vis:first td:contains('" + trans.tw.command.walkingTimeTitle + "')").next();
@@ -91,5 +91,5 @@ if (user_data.attackAutoRename) {
 	sent = (isAttack ? trans.tw.command.attackOn : trans.tw.command.supportFor) + targetVillage + "\\" + sent;
 
 	var rand = Math.floor(Math.random() * 1000);
-	setCookie("attRen" + rand, game_data.village.id + '_' + sent, 10);
+	pers.setCookie("attRen" + rand, game_data.village.id + '_' + sent, 10);
 }

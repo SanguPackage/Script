@@ -97,7 +97,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 						var unitSpeed = $("#slowestUnitCell").attr("slowestUnit");
 						if (unitSpeed != undefined) {
 							dodgeCell = dodgeCell.parent().find("td").last().prev();
-							setCookie("sanguDodge" + getQueryStringParam("village"), unitSpeed + "~" + dodgeCell.text(), user_data.mainTagger.minutesDisplayDodgeTimeOnMap);
+							pers.setCookie("sanguDodge" + getQueryStringParam("village"), unitSpeed + "~" + dodgeCell.text(), user_data.mainTagger.minutesDisplayDodgeTimeOnMap);
 
 							$(".dodgers", incomingTable).css("background-color", "").attr("title", "");
 							dodgeCell.css("background-color", user_data.colors.good).attr("title", trans.sp.tagger.activeDodgeTime);

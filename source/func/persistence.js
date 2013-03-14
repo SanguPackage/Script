@@ -1,4 +1,4 @@
-var modernizr = (function() {
+var modernizr = (function () {
 	// Difference in capital letter with the Modernizr library
 	// So nothing will break should TW start making use of it
 	return {
@@ -12,51 +12,79 @@ var modernizr = (function() {
 	};
 })();
 
-function getCookie(name, forceCookieUse) {
-	name = game_data.world + '_' + name;
-	if (modernizr.localstorage && (forceCookieUse === undefined || !forceCookieUse)) {
-		var value = localStorage[name];
-		return value === undefined ? '' : value;
-	} else {
-		// Use cookies
+var pers;
+(function (pers) {
+	function getWorldKey(key) {
+		return game_data.world + '_' + key;
+	}
+
+	function getCookie(key) {
+		key = getWorldKey(key);
 		return (function() {
 			var x, cooks, cookie;
 			if (document.cookie.match(/;/)) {
 				cooks = document.cookie.split("; ");
 				for (x = 0; x < cooks.length; x++) {
 					cookie = cooks[x];
-					if (cookie.match(name + "=")) {
-						return cookie.replace(name + "=", "");
+					if (cookie.match(key + "=")) {
+						return cookie.replace(key + "=", "");
 					}
 				}
 			} else {
-				if (document.cookie.match(name + "=")) {
-					return document.cookie.replace(name + "=", "");
+				if (document.cookie.match(key + "=")) {
+					return document.cookie.replace(key + "=", "");
 				}
 			}
 
 			return '';
 		})();
 	}
-}
-
-function setCookie(name, value, expireMinutes) {
-	name = game_data.world + '_' + name;
-	if (modernizr.localstorage && expireMinutes === undefined) {
-		localStorage[name] = value;
-	} else {
-		// Use cookies
+	
+	function getGlobal(key) {
+		if (modernizr.localstorage) {
+			var value = localStorage[key];
+			return value === undefined ? '' : value;
+		} else {
+			return getCookie(key);
+		}
+	}
+	
+	function get(key) {
+		return getGlobal(getWorldKey(key));
+	}
+	
+	function setCookie(key, value, expireMinutes) {
+		key = getWorldKey(key);
 		(function() {
 			var date_obj = new Date(),
 				time = date_obj.getTime();
-			if (expireMinutes === 'undefined') {
+			if (expireMinutes === undefined) {
 				time += 60 * 1000 * 24 * 356;
 			} else {
 				time += expireMinutes * 1000 * 60;
 			}
 			date_obj.setTime(time);
 
-			document.cookie = name + "=" + value + ";expires=" + date_obj.toGMTString() + ";";
+			document.cookie = key + "=" + value + ";expires=" + date_obj.toGMTString() + ";";
 		})();
 	}
-}
+	
+	function setGlobal(key, value) {
+		if (modernizr.localstorage) {
+			localStorage[key] = value;
+		} else {
+			setCookie(key, value);
+		}
+	}
+	
+	function set(key, value) {
+		setGlobal(getWorldKey(key), value);
+	}
+	
+	pers.set = set;
+	pers.setCookie = setCookie;
+	pers.setGlobal = setGlobal;
+	pers.get = get;
+	pers.getCookie = getCookie;
+	pers.getGlobal = getGlobal;
+})(pers || (pers = {}));

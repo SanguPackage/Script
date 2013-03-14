@@ -1,4 +1,4 @@
-var isDodge = getCookie("sanguDodge" + getQueryStringParam("village"), true);
+var isDodge = pers.getCookie("sanguDodge" + getQueryStringParam("village"));
 if (isDodge) {
 	// Display dodge time and slowest unit in the village (cookied from the mainTagger)
 	isDodge = isDodge.split("~");

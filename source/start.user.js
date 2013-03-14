@@ -12,6 +12,7 @@ function sangu_ready() {
 	//<!--@@INCLUDE "\config\trans.js" //-->
 	
 	//<!--@@INCLUDE "\func\persistence.js" //-->
+	//<!--@@INCLUDE "\func\ui.js" //-->
     //<!--@@INCLUDE "\feature\activator.js" //-->
     if (isSanguActive) {
 		var world_data = {};
@@ -20,7 +21,6 @@ function sangu_ready() {
         //<!--@@INCLUDE "\config\worlds.js" //-->
 
 		//<!--@@INCLUDE "\func\!unsorted.js" //-->
-        //<!--@@INCLUDE "\func\ui.js" //-->
         //<!--@@INCLUDE "\func\number.js" //-->
         //<!--@@INCLUDE "\func\datetime.js" //-->
 		//<!--@@INCLUDE "\func\tw_buildings.js" //-->

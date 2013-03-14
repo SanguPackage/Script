@@ -1,6 +1,3 @@
-// TODO: this doesn't work anymore. need os from someone to test
---> search for. os from other people no more working
-
 [b]Bug Fixes[/b]
 
 
