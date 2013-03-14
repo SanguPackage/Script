@@ -85,6 +85,7 @@ unitsTable.find("tr.toSort").sortElements(function (a, b) {
 });
 
 // are there incomings on the supporting villages?
+if (server_settings.ajaxAllowed)
 unitsTable.find("tr.toSort").each( function () {
 	var row = $(this);
 	var villageUrl = $("a:first", this).attr("href");

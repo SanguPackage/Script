@@ -30,23 +30,21 @@ function getUrlString(url, villageId) {
 }
 
 function ajax(screen, strategy, opts) {
-	if (!server_settings.ajaxAllowed)
-		alert("Ajax is not allowed on German worlds. Adjust configuration.");
+	if (!server_settings.ajaxAllowed) {
+		alert("Ajax is not allowed on this server.");
+		return;
+	}
+	
+	opts = $.extend({}, { villageId: false, contentValue: true, async: true }, opts);
 
-	opts = $.extend({}, { villageId: false, contentValue: true }, opts);
-
-	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange =
-		function () {
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-				var text = xmlhttp.responseText;
-				text = opts.contentValue ? $("#content_value", text) : text;
-				strategy(text);
-			}
-		};
-
-	xmlhttp.open("GET", getUrlString(screen, opts.villageId), true);
-	xmlhttp.send();
+	$.ajax({
+		url: getUrlString(screen, opts.villageId),
+		async: opts.async,
+		success: function(text) {
+			text = opts.contentValue ? $("#content_value", text) : text;
+			strategy(text);
+		}
+	});
 }
 
 function spSpeedCookie(setter) {

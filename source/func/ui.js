@@ -49,5 +49,9 @@ function createMoveableWidget(id, title, content) {
 
 function printCoord(village, desc) {
 	//TODO: add javascript to put x|y in clipboard
-	return "<b>" + desc + "</b> <input type=text onclick='this.select(); this.focus()' size=7 value='" + village.x + '|' + village.y + "'>";
+	if (server_settings.coordinateLinkAllowed) {
+		return "<a href=# onclick=\"$('#inputx').val("+village.x+"); $('#inputy').val("+village.y+"); return false;\">" + desc + "</a>";
+	} else {
+		return "<b>" + desc + "</b> <input type=text onclick='this.select(); this.focus()' size=7 value='" + village.x + '|' + village.y + "'>";
+	}
 }

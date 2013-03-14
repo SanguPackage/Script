@@ -3,22 +3,6 @@
 // @author			Laoujin / De Goede Fee
 // @namespace		
 // @description	    We are Sangu. You will be assimilated. Resistance is Futile.
-// @include		 	http://nl*.tribalwars.nl/game.php?*
-// @include			http://nl*.tribalwars.nl/game.php?*screen=overview*
-// @include			http://nl*.tribalwars.nl/game.php?*screen=overview_villages*
-// @include			http://nl*.tribalwars.nl/game.php?*screen=report&mode=publish*
-// @include 		http://nl*.tribalwars.nl/game.php*screen=place*
-// @include			http://nl*.tribalwars.nl/game.php?*screen=snob*
-// @include			http://nl*.tribalwars.nl/game.php?*screen=main*
-// @include			http://nl*.tribalwars.nl/game.php?*screen=commands*
-// @include			http://nl*.tribalwars.nl/game.php?*screen=incomings*
-// @include			http://nl*.tribalwars.nl/game.php?*screen=place&mode=sim*
-// @include			http://nl*.tribalwars.nl/game.php?*screen=info_player*
-// @include			http://nl*.tribalwars.nl/game.php?*screen=info_ally*
-// @include			http://nl*.tribalwars.nl/game.php?*screen=info_village*
-// @include			http://nl*.tribalwars.nl/game.php?*screen=info_command*
-// @include			http://nl*.tribalwars.nl/game.php?*screen=settings*
-// @include			http://nl*.tribalwars.nl/game.php?*screen=smith*
-// @include			http://nl*.tribalwars.nl/game.php?*screen=market*
-// @include			http://nl*.tribalwars.nl/game.php?*screen=map*
+// @include		 	http://*.tribalwars.nl/game.php?*
+// @include		 	http://*.die-staemme.de/game.php?*
 // ==/UserScript==
