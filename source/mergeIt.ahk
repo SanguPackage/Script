@@ -1,4 +1,4 @@
-﻿inputFile := "start.user.js"
+inputFile := "start.user.js"
 savePath := "C:\Users\PC\Documents\Dropbox\Personal\!Programming\OperaUserScripts\"
 saveAs := "sangupackage.user.js"
 
@@ -19,28 +19,23 @@ ParseFile(fileName, indentCount)
 	return %replacedFile%
 }
 
-ParseLine(line, ByRef indentCount)
+ParseLine(line, indentCount)
 {
 	found =
-	FoundInclude := RegExMatch(line, "(^\s*)?//\<!--@@INCLUDE "".*"" (INDENT(\+|-) )?//--\>", found)
+	FoundInclude := RegExMatch(line, "(^\s*)?//\<!--@@INCLUDE "".*"" INDENT=\d //--\>", found)
 	if FoundInclude
 	{
-		; //<!--@@INCLUDE "\importit.txt" INDENT+ //-->
+		; //<!--@@INCLUDE "\importit.txt" INDENT=X //-->
 		toIncludeFileName := RegExReplace(found, "^\s*")
 		StringMid, toIncludeFileName, toIncludeFileName, 19
 		closingQuotePosition := InStr(toIncludeFileName, """")
-		StringMid, identTest, toIncludeFileName, closingQuotePosition
+		StringMid, newIndent, toIncludeFileName, closingQuotePosition + 9
+		StringMid, newIndent, newIndent, 1, 1
 		StringMid, toIncludeFileName, toIncludeFileName, 1, closingQuotePosition - 1
-		
-		;newIndent := indentCount
-		IfInString, identTest, INDENT+
-			indentCount++
-		IfInString, indentTest, INDENT-
-			indentCount--
 		
 		If toIncludeFileName
 		{
-			toIncludeContent := ParseFile(toIncludeFileName, indentCount)
+			toIncludeContent := ParseFile(toIncludeFileName, newIndent)
 			StringReplace, line, line, %found%, %toIncludeContent%
 		}
 		else
