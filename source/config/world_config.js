@@ -1,49 +1,37 @@
 // world config: global game settings
-var world_config = {};
+var world_config = {
+	hasMilitia: false,
+	nightbonus: {
+		active: false,
+		from: 1, 
+		till: 7
+		},
+	smithyLevels: true,
+	hasChurch: false,
+	hasArchers: false,
+	hasKnight: false,
+	speed: 1,
+	unitSpeed: 1,
+	farmLimit: 0,
+	minFake: 0,
+	hasMinFakeLimit: false,
+	coins: false,
+	maxNobleWalkingTime: 999
+};
+
 if (pers.get('worldconfig') !== '') {
 	world_config = JSON.parse(pers.get("worldconfig"));
 	
 } else {
 	// load new world through tw API
 	if (server_settings.ajaxAllowed) {
-		$.ajax({
-			url: "interface.php?func=get_unit_info",
-			async: false,
-			success: function(xml) {
-				world_config.hasMilitia = $("config militia", xml).length !== 0;
-			}
-		});
+		//<!--@@INCLUDE "\config\world_config_getter.js" INDENT=4 //-->
+		world_config = world_config_getter();
 		
-		$.ajax({
-			url: "interface.php?func=get_config",
-			async: false,
-			success: function(xml) {
-				world_config.nightbonus = {
-					active: $("night active", xml).text() === "1",
-					from: parseInt($("night start_hour", xml).text(), 10),
-					till: parseInt($("night end_hour", xml).text(), 10)
-					};
-				world_config.smithyLevels = $("game tech", xml).text() === "1" || $("game tech", xml).text() === "0";
-				world_config.hasChurch = $("game church", xml).text() !== "0";
-				world_config.hasArchers = $("game archer", xml).text() !== "0";
-				world_config.hasKnight = $("game knight", xml).text() !== "0";
-				world_config.speed = parseFloat($("config speed", xml).text());
-				world_config.unitSpeed = parseFloat($("config unit_speed", xml).text());
-				world_config.farmLimit = parseInt($("game farm_limit", xml).text(), 10);
-				world_config.minFake = parseInt($("game fake_limit", xml).text(), 10) / 100;
-				world_config.hasMinFakeLimit = world_config.minFake > 0;
-				world_config.coins = $("snob gold", xml).text() === "1";
-				world_config.maxNobleWalkingTime = parseInt($("snob max_dist", xml).text(), 10) * world_config.speed * world_config.unitSpeed;
-			}
-		});
 	} else {
 		// Not allowed to get data with ajax: need to store the configuration here
 		world_config = (function() {
-			switch (game_data.world) {
-				case "de1":
-					break;
-				
-			}
+			//<!--@@INCLUDE "\config\world_config_de.js" INDENT=5 //-->
 		})();
 	}
 	

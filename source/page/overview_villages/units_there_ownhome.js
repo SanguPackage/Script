@@ -206,9 +206,9 @@ $("#units_table").mouseup(function (e) {
 	if (e.target.nodeName === 'IMG') {
 		if (e.target.title == trans.sp.troopOverview.removeVillage) {
 			//if ((!$.browser.msie && e.button == 0) || ($.browser.msie && e.button == 1))
-			//	alert("Left Button");
+			//	q("Left Button");
 			// else if (e.button == 2)
-			//	alert("Right Button");
+			//	q("Right Button");
 
 			pageSize.val(parseInt(pageSize.val(), 10) - 1);
 			$(e.target).parent().parent().parent().hide();
@@ -220,7 +220,7 @@ $("#units_table").mouseup(function (e) {
 // change by default selected unit the filter will be active for
 $("#filterAxeType").change(function () {
 	var unit = world_data.units[$(this).val()];
-	if (user_data.command.filterMin[unit] !== undefined) {
+	if (typeof user_data.command.filterMin[unit] !== 'undefined') {
 		$("#filterAxeValue").val(user_data.command.filterMin[unit]);
 	} else {
 		$("#filterAxeValue").val(user_data.command.filterMinOther);

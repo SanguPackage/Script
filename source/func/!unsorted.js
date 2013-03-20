@@ -99,13 +99,14 @@ function trackClickEvent(action) {
 	trackEvent("ButtonClick", action);
 }
 
-function trackEvent(category, action) {
+function trackEvent(category, action, label) {
 	// category: clicks (downloads, ...)
 	// action: which button clicked
-	var label = getQueryStringParam("screen"),
-		mode = getQueryStringParam("mode");
-	
-	if (mode) label += "-" + mode;
+	if (typeof label === 'undefined') {
+		label = getQueryStringParam("screen");
+		var mode = getQueryStringParam("mode");
+		if (mode) label += "-" + mode;
+	}
 	
 	//_gaq.push(['b._setAccount', 'UA-30075487-3']);
 	//_gaq.push(['b._trackPageview']);

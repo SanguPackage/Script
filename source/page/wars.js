@@ -48,7 +48,7 @@ if (false && user_data.tribalWars.active) {
 
 		var link = originalLink + "&ajaxaction=show_old_stats&h=" + sessionVarH;
 		//7237";
-		//alert(link);
+		//q(link);
 		///game.php?village=45173&screen=wars&ajaxaction=show_old_stats&h=7237&war=185
 		///game.php?village=45173&screen=wars&mode=stats&war=191
 
@@ -60,7 +60,7 @@ if (false && user_data.tribalWars.active) {
 				warInfo = warInfo.replace(/\\r\\n/g, '').replace(/\\\//g, '/');
 				warInfo = warInfo.replace(/\\t/g, '');
 				warInfo = warInfo.substr(0, warInfo.length - 1);
-				//alert(warInfo);
+				//q(warInfo);
 				$("#content_value").append($("<div style='display: none'>").html(warInfo));
 				//q($("<div/>").html(warInfo).text());
 				var currentStats = $(".war-stats", warInfo);

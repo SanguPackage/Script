@@ -344,7 +344,7 @@ $("#defTotals").click(function () {
 
 		var troopCells = "";
 		for (var i = 0; i < world_data.unitsPositionSize.length; i++) {
-			if (totals[i] !== undefined) {
+			if (typeof totals[i] !== 'undefined') {
 				troopCells += "<td>" + formatNumber(totals[i]) + "</td>";
 			} else {
 				troopCells += "<td><span class=hidden>0</span></td>";

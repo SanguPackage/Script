@@ -108,7 +108,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 				// std tag button
 				var button = $("<input type=button title='" + trans.sp.tagger.renameTooltip + "' value='" + trans.sp.tagger.rename + "' onclick='select();'>");
 				button.click(function () {
-					trackEvent("MainTagger", "CustomRename");
+					trackClickEvent("MainTagger-CustomRename");
 					var tagName = $("#commandInput").val();
 					var prefix = $("#commandInput").attr("doPrefix");
 					renameCommand(tagName, prefix);
@@ -121,7 +121,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 						var button = $("<input type=button doPrefix='" + val.prefix + "' value='" + val.name + "'>").click(
 							function () {
 								// Cannot use input:checked : this works for Firefox but there is a bug in Opera
-								trackEvent("MainTagger", "ConfigRename");
+								trackClickEvent("MainTagger-ConfigRename");
 								var tagName = $(this).attr("value");
 								var prefix = $(this).attr("doPrefix");
 								renameCommand(tagName, prefix);
@@ -180,7 +180,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 
 								row.before("<tr><td>&nbsp;</td><td colspan=5><a href='' id=switchModus>" + trans.sp.tagger.switchModus + "</a></td></tr>");
 								$("#switchModus").click(function () {
-									trackEvent("MainTagger", "OpenClose");
+									trackClickEvent("MainTagger-OpenClose");
 									var attackRows = $("input.incAt", incomingTable).parent().parent();
 									if (attackRows.first().find("span:first").is(":visible")) {
 										attackRows.find("span:first").hide().next().show();

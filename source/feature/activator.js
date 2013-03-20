@@ -1,15 +1,24 @@
-// Activate / deactivate / update the tool
-//localStorage.clear();
-
-//var startupCheck = pers.get("");
-
+// Activate / deactivate the tool
 var isSanguActive = pers.get("sanguActive") == "true";
 if (location.href.indexOf('changeStatus=') > -1) {
 	isSanguActive = location.href.indexOf('changeStatus=true') > -1;
 	pers.set("sanguActive", isSanguActive);
 }
 
-
+var loginMonitor = pers.get("sanguLogin");
+if (loginMonitor === '') {
+	loginMonitor = new Date("2013-03-18");
+	loginMonitor.setHours(0, 0, 0);
+} else {
+	loginMonitor = Date.parse(loginMonitor);
+}
+if (Math.abs(loginMonitor.getTime() - (new Date()).getTime()) > 1000 * 3600 * 24) {
+	loginMonitor = new Date();
+	loginMonitor.setHours(0, 0, 0);
+	loginMonitor = loginMonitor.getFullYear() + '-' + (loginMonitor.getMonth()+1) + '-' +  loginMonitor.getDate();
+	trackEvent("UserScripts", "Startup", loginMonitor);
+	pers.set("sanguLogin", loginMonitor);	
+}
 
 $("#storage").parent()
 	.after(

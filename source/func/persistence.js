@@ -43,7 +43,7 @@ var pers;
 	function getGlobal(key) {
 		if (modernizr.localstorage) {
 			var value = localStorage[key];
-			return value === undefined ? '' : value;
+			return typeof value === 'undefined' ? '' : value;
 		} else {
 			return getCookie(key);
 		}
@@ -58,7 +58,7 @@ var pers;
 		(function() {
 			var date_obj = new Date(),
 				time = date_obj.getTime();
-			if (expireMinutes === undefined) {
+			if (typeof expireMinutes === 'undefined') {
 				time += 60 * 1000 * 24 * 356;
 			} else {
 				time += expireMinutes * 1000 * 60;
