@@ -6,18 +6,20 @@ if (location.href.indexOf('changeStatus=') > -1) {
 }
 
 var loginMonitor = pers.get("sanguLogin");
-if (loginMonitor === '') {
-	loginMonitor = new Date("2013-03-18");
-	loginMonitor.setHours(0, 0, 0);
-} else {
-	loginMonitor = Date.parse(loginMonitor);
+if (loginMonitor !== '') {
+	var parts = loginMonitor.match(/(\d+)/g);
+	loginMonitor = new Date(parts[0], parts[1]-1, parts[2]);
+	
+	if (Math.abs(loginMonitor.getTime() - (new Date()).getTime()) > 1000 * 3600 * 24) {
+		loginMonitor = '';
+	}
 }
-if (Math.abs(loginMonitor.getTime() - (new Date()).getTime()) > 1000 * 3600 * 24) {
+if (loginMonitor === '') {
 	loginMonitor = new Date();
 	loginMonitor.setHours(0, 0, 0);
-	loginMonitor = loginMonitor.getFullYear() + '-' + (loginMonitor.getMonth()+1) + '-' +  loginMonitor.getDate();
+	loginMonitor = loginMonitor.getFullYear() + '-' + pad(loginMonitor.getMonth()+1, 2) + '-' +  pad(loginMonitor.getDate(), 2);
 	trackEvent("UserScripts", "Startup", loginMonitor);
-	pers.set("sanguLogin", loginMonitor);	
+	pers.set("sanguLogin", loginMonitor);
 }
 
 $("#storage").parent()
