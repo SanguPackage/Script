@@ -70,6 +70,10 @@ IfExist, %savePath%%saveAs%
 }
 
 formattedOutput := ParseFile(inputFile, 0)
+;fullFileName = %savePath%%SaveAs%
+;MsgBox, %A_FileEncoding%
+;file := FileOpen, fullFileName, "w"
+FileEncoding, UTF-8
 FileAppend, %formattedOutput%, %savePath%%SaveAs%
 
 SetWorkingDir, workingDirectory

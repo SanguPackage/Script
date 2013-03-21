@@ -1,11 +1,3 @@
-function pad(number, length) {
-	var str = '' + number;
-	while (str.length < length) {
-		str = '0' + str;
-	}
-	return str;
-}
-
 // DATETIME FUNCTIONS
 function prettyDate(diff, showSeconds) {
 	diff = diff / 1000;

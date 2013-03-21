@@ -1,5 +1,10 @@
 //<!--@@INCLUDE "\greasemonkey\imports.txt" INDENT=0 //-->
+
+// The not-one-file source code can be found at: 
+// https://github.com/Laoujin/SanguPackage
+
 function sangu_ready() {
+	var start_time = new Date();
     var sangu_version = "//<!--@@INCLUDE "\version.txt" INDENT=0 //-->";
 
     // User config
@@ -8,19 +13,19 @@ function sangu_ready() {
     //<!--@@INCLUDE "\config\settings.js" INDENT=1 //-->
     //<!--@@INCLUDE "\config\settings_world2.js" INDENT=1 //-->
 	
-	var trans =
+	var trans = 
 	//<!--@@INCLUDE "\config\trans.js" INDENT=1 //-->
 	
+	//<!--@@INCLUDE "\func\!unsorted.js" INDENT=2 //-->
 	//<!--@@INCLUDE "\func\persistence.js" INDENT=1 //-->
 	//<!--@@INCLUDE "\func\ui.js" INDENT=1 //-->
-    //<!--@@INCLUDE "\feature\activator.js" INDENT=1 //-->
+    //<!--@@INCLUDE "\feature\activator.js" INDENT=1 //-->	
     if (isSanguActive) {
 		var world_data = {};
 		//<!--@@INCLUDE "\config\server.js" INDENT=2 //-->
 		//<!--@@INCLUDE "\config\world_config.js" INDENT=2 //-->
         //<!--@@INCLUDE "\config\worlds.js" INDENT=2 //-->
 
-		//<!--@@INCLUDE "\func\!unsorted.js" INDENT=2 //-->
         //<!--@@INCLUDE "\func\number.js" INDENT=2 //-->
         //<!--@@INCLUDE "\func\datetime.js" INDENT=2 //-->
 		//<!--@@INCLUDE "\func\tw_buildings.js" INDENT=2 //-->
@@ -70,7 +75,7 @@ function sangu_ready() {
 			// Wars don't really work anymore after changes by Innogames
 			// To get the same result, many ajax calls would now be needed
 			// Remove space between // and <!-- to include the code again
-            // <!--@@INCLUDE "\page\wars.js" INDENT=3 //-->
+            // <!-- @@INCLUDE "\page\wars.js" INDENT=3 //-->
         }
 		// MARKET
         else if (location.href.indexOf('screen=market') > -1) {
@@ -163,6 +168,9 @@ function sangu_ready() {
         }
 
         //<!--@@INCLUDE "\page\global.js" INDENT=2 //-->
+		
+		var end_time = new Date();
+		alert("timespent:" + (start_time.getTime() - end_time.getTim()));
     }
 };
 

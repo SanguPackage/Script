@@ -5,21 +5,29 @@ if (location.href.indexOf('changeStatus=') > -1) {
 	pers.set("sanguActive", isSanguActive);
 }
 
-var loginMonitor = pers.get("sanguLogin");
-if (loginMonitor !== '') {
-	var parts = loginMonitor.match(/(\d+)/g);
-	loginMonitor = new Date(parts[0], parts[1]-1, parts[2]);
-	
-	if (Math.abs(loginMonitor.getTime() - (new Date()).getTime()) > 1000 * 3600 * 24) {
-		loginMonitor = '';
+if (isSanguActive) {
+	// Send usage statistics to GA once/day
+	var loginMonitor = pers.get("sanguLogin");
+	if (loginMonitor !== '') {
+		var parts = loginMonitor.match(/(\d+)/g);
+		loginMonitor = new Date(parts[0], parts[1]-1, parts[2]);
+		
+		if (Math.abs(loginMonitor.getTime() - (new Date()).getTime()) > 1000 * 3600 * 24) {
+			loginMonitor = '';
+		}
 	}
-}
-if (loginMonitor === '') {
-	loginMonitor = new Date();
-	loginMonitor.setHours(0, 0, 0);
-	loginMonitor = loginMonitor.getFullYear() + '-' + pad(loginMonitor.getMonth()+1, 2) + '-' +  pad(loginMonitor.getDate(), 2);
-	trackEvent("UserScripts", "Startup", loginMonitor);
-	pers.set("sanguLogin", loginMonitor);
+	if (loginMonitor === '') {
+		loginMonitor = new Date();
+		loginMonitor.setHours(0, 0, 0);
+		loginMonitor = loginMonitor.getFullYear() + '-' + pad(loginMonitor.getMonth()+1, 2) + '-' +  pad(loginMonitor.getDate(), 2);
+		trackEvent("UserScripts", "Startup-Chrome", loginMonitor);
+		pers.set("sanguLogin", loginMonitor);
+	}
+	
+	// Check compatibility with TW version
+	//http://devblog.tribalwars.net/?page_id=511
+	//alert(ScriptAPI);
+	//ScriptAPI.register( 'Beispielscript', 7.3, 'Max Mustermann', 'max.mustermann@innogames.de' );
 }
 
 $("#storage").parent()
