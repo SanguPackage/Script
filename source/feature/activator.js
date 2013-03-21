@@ -20,7 +20,7 @@ if (isSanguActive) {
 		loginMonitor = new Date();
 		loginMonitor.setHours(0, 0, 0);
 		loginMonitor = loginMonitor.getFullYear() + '-' + pad(loginMonitor.getMonth()+1, 2) + '-' +  pad(loginMonitor.getDate(), 2);
-		trackEvent("UserScripts", "Startup-Chrome", loginMonitor);
+		trackEvent("UserScripts", "Startup", loginMonitor);
 		pers.set("sanguLogin", loginMonitor);
 	}
 	

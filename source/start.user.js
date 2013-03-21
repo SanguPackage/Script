@@ -4,7 +4,7 @@
 // https://github.com/Laoujin/SanguPackage
 
 function sangu_ready() {
-	var start_time = new Date();
+	//var start_time = new Date();
     var sangu_version = "//<!--@@INCLUDE "\version.txt" INDENT=0 //-->";
 
     // User config
@@ -169,8 +169,8 @@ function sangu_ready() {
 
         //<!--@@INCLUDE "\page\global.js" INDENT=2 //-->
 		
-		var end_time = new Date();
-		alert("timespent:" + (start_time.getTime() - end_time.getTim()));
+		//var end_time = new Date();
+		//q("" + pad(Math.abs(start_time.getTime() - end_time.getTime()), 3) + " -> " + location.search);
     }
 };
 
