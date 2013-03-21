@@ -90,6 +90,7 @@ theUnits.each(function () {
 	var addThisRow = true;
 	var cells = $("td:gt(0)", this);
 	var units = {};
+	var villageId = $("td:first span[id*='label_text']", this).attr("id").substr(11);
 
 	cells.each(function (index, element) {
 		if (doFilter && index - 1 == unitIndex && parseInt(this.innerHTML, 10) < unitAmount) {
@@ -101,7 +102,7 @@ theUnits.each(function () {
 			//q(index + "==" + rowSize);
 			newRow += "<td>";
 			newRow += "<img src='/graphic/dots/red.png' title='" + trans.sp.troopOverview.removeVillage + "' /> ";
-			newRow += "<a href='" + $("a", element).attr('href').replace("mode=units", "") + "'>";
+			newRow += "<a href='" + $("a", element).attr('href').replace("mode=units", "") + "&target=" + villageId + "'>";
 			newRow += "<img src='/graphic/command/attack.png' title='" + trans.sp.troopOverview.toThePlace + "'/>"; // Works only with leftclick onclick='this.src=\"/graphic/command/return.png\";'
 			newRow += "</a></td>";
 		} else {

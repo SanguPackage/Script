@@ -1,5 +1,6 @@
 [b]Bug Fixes[/b]
-
+Alle bugs zouden moeten gefixed zijn. Als je er een tegenkomt, melden!
+Elke oude en elke nieuwe wereld is nu direct ondersteund
 
 [b]Nieuwe features[/b]
 
