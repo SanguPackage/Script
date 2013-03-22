@@ -102,9 +102,12 @@ theUnits.each(function () {
 			//q(index + "==" + rowSize);
 			newRow += "<td>";
 			newRow += "<img src='/graphic/dots/red.png' title='" + trans.sp.troopOverview.removeVillage + "' /> ";
-			newRow += "<a href='" + $("a", element).attr('href').replace("mode=units", "") + "&target=" + villageId + "'>";
-			newRow += "<img src='/graphic/command/attack.png' title='" + trans.sp.troopOverview.toThePlace + "'/>"; // Works only with leftclick onclick='this.src=\"/graphic/command/return.png\";'
-			newRow += "</a></td>";
+			if (game_data.village.id != villageId) {
+				newRow += "<a href='" + $("a", element).attr('href').replace("mode=units", "") + "&target=" + villageId + "'>";
+				newRow += "<img src='/graphic/command/attack.png' title='" + trans.sp.troopOverview.toThePlace + "'/>"; // Works only with leftclick onclick='this.src=\"/graphic/command/return.png\";'
+				newRow += "</a>";
+			}
+			newRow += "</td>";
 		} else {
 			//q("units:" + world_data.units[index - 1]);
 			var cellDisplay = this.innerHTML;
@@ -132,8 +135,8 @@ theUnits.each(function () {
 			mod = !villageType.isDef ? "row_a" : "row_b";
 		}
 
-		newTable += "<tbody class='row_marker " + mod + "'>";
-		newTable += "<tr arrival='0'>";
+		newTable += "<tbody>";
+		newTable += "<tr arrival='0' class='row_marker " + mod + (game_data.village.id == villageId ? " selected" : "") + "'>";
 		newTable += "<td>" + $("td:first", this).html() + "</td>";
 		newTable += newRow;
 		newTable += "<td></td></tr>";

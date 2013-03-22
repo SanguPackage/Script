@@ -3,8 +3,15 @@ Alle bugs zouden moeten gefixed zijn. Als je er een tegenkomt, melden!
 Elke oude en elke nieuwe wereld is nu direct ondersteund
 
 [b]Nieuwe features[/b]
+- In overzichten blijft het huidige dorp geselecteerd blijven (andere achtergrondkleur) -> het is er Edje!
+- Link naar verzamelplaats vanuit troepen overzicht vult automatisch de coordinaten in
+- 
 
 
+    TROEPENOVERZICHT
+    troepenoverzicht: onthouden in variabele wat de huidige geselecteerde snelheid is
+    zodat er op verschillende pagina's met verschillende snelheden kan gewerkt worden
+    
 
 Eerste maal als sangu opstart: een tooltip waarop je moet klikken om te activeren
 
@@ -12,7 +19,6 @@ Eerste maal als sangu opstart: een tooltip waarop je moet klikken om te activere
 tekst filter, continent
 sorteren op afstand, omgekeerd
 huidig dorp niet als 00:00:00 maar als null
-opdracht: centreren op map
 
 /*troepenlijst:
 per dag kunnen dichtklappen! -> per dag sowieso een lijn toevoeegn (met + icon om te openen)
@@ -47,12 +53,6 @@ return "<a href='#' onclick='document.forms[0].inputx.value=\"" + village.x + "\
 /*
 - Map favorieten zit er al in?
 
-	
-	troepen - verdediging: check combobox size?
-				tekst filter zou niet goed werken?
-
-
-    http://wiki.greasespot.net/Metadata_block
 
 filteren met wildcards Voorbeeld: 890|230  *|230  89?|230  8??|* 
 -> filteren met regex voor de echte pro's?
@@ -87,9 +87,6 @@ filteren met wildcards Voorbeeld: 890|230  *|230  89?|230  8??|*
     dorp info
     claim + commentaar + incomings + berichten = crash?
     was coordinaten: 444|656
-
-    dorpsoverzicht:
-    totaal ondersteuning uitrekenen
 
     MAINTAGGER
     maintagger configuratie van een custom rename knop: "changesDodgeTime: true/false",
@@ -128,13 +125,6 @@ filteren met wildcards Voorbeeld: 890|230  *|230  89?|230  8??|*
         - ergens een count kunnen tonen?
         - mogelijkheid om een actie uit te voeren per kolom
         - persisteren van sortering, groepering, ...
-
-    TROEPENOVERZICHT
-    troepenoverzicht: onthouden in variabele wat de huidige geselecteerde snelheid is
-    zodat er op verschillende pagina's met verschillende snelheden kan gewerkt worden
-    mark current village in troops overviews...
-    "pin" overview: titelbalk andere kleur, andere title, ander icon?
-    make dorpen "unclickable"
 
     SMEDERIJ:
         - sorteren zonder te herladen

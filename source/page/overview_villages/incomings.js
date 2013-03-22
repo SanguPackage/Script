@@ -34,18 +34,18 @@ $("#sortIt").click(function () {
 		return (a.x * 1000 + a.y) > (b.x * 1000 + b.y) ? 1 : -1;
 	});
 
-	var amountOfVillages = "";
+	var amountOfVillages = 0;
 	var current = "";
-	var mod = 0;
 	rows.each(function () {
-		var village = $("td:eq(1)", this).text();
-		if (current != village) {
-			current = village;
-			mod++
+		var village = $("td:eq(1)", this);
+		if (current != village.text()) {
+			current = village.text();
 			amountOfVillages++;
 		}
-		var type = mod % 2 == 0 ? 'row_a' : 'row_b';
-		this.className = type;
+		var type = amountOfVillages % 2 == 0 ? 'row_a' : 'row_b';
+		
+		var villageId = village.find("a:first").attr("href").match(/village=(\d+)/)[1];
+		this.className = type + (villageId == game_data.village.id ? " selected" : "");
 	});
 
 	showAmountOfAttacks(amountOfVillages, rows.size());
@@ -80,8 +80,11 @@ $("#sortQuick").click(function () {
 	$.each(targets, function (i, v) {
 		mod++;
 		var amount = 0;
-		$.each(targets[v], function (index, value) {
-			newTable += "<tr class='nowrap row_" + (mod % 2 == 0 ? 'b' : 'a') + "'>" + value.html() + "</tr>";
+		$.each(targets[v], function (index, row) {
+			var villageId = row.find("td:eq(1) a:first").attr("href").match(/village=(\d+)/)[1];		
+			newTable += "<tr class='nowrap row_" + (mod % 2 == 0 ? 'b' : 'a') 
+				+ (villageId == game_data.village.id ? " selected" : "") + "'>" 
+				+ row.html() + "</tr>";
 			amount++;
 		});
 

@@ -21,9 +21,6 @@ menu += "<input type=button id=defFilterText value='" + trans.sp.commands.freeTe
 menu += "&nbsp; <input type=textbox size=3 id=defFilterContinentText maxlength=2><input type=button id=defFilterContinent value='" + trans.sp.commands.continentFilter + "'>";
 
 var commandListType = getQueryStringParam("type");
-if (commandListType == "attack") {
-	menu += "&nbsp; <input type=button id=defFilterBarbarian value='" + trans.sp.commands.barbarianFilter + "'>";
-}
 
 menu += "</th></tr>";
 menu += "</table>";
@@ -37,7 +34,6 @@ $("#defReverseFilter").change( function () {
 	$("#unitFilterBox").find("img:eq(1)").attr("title", isChecked ? defTrans.spyFilter : defTrans.spyFilterRev);
 	$("#unitFilterBox").find("img:eq(2)").attr("title", !isChecked ? defTrans.fakeFilter : defTrans.fakeFilterRev);
 
-	$("#defFilterBarbarian").attr("title", !isChecked ? defTrans.barbarianFilterTooltip : defTrans.barbarianFilterTooltipReverse);
 	$("#defFilterContinent").attr("title", isChecked ? defTrans.continentFilterTooltip : defTrans.continentFilterTooltipReverse);
 
 	$("#defFilterText").attr("title", defTrans.freeTextFilterTooltip.replace("{filterType}", isChecked ? defTrans.freeTextFilterTooltipFilterTypeWith : defTrans.freeTextFilterTooltipFilterTypeWithout));
@@ -55,9 +51,14 @@ $("#defRestack").click(function () {
 	$("#commands_table " + filter).each( function () {
 		var row = $(this);
 		var cells = $("td", row);
-		var firstCellText = $.trim(cells.first().text());
-		if (firstCellText.indexOf(trans.tw.command.returnFull) != 0 && firstCellText.indexOf(trans.tw.command.sentBackBy) != 0 && firstCellText.indexOf(trans.tw.command.returnFrom) != 0) {
-			var village = getVillageFromCoords(firstCellText);
+		var firstCell = cells.first();
+		var commandType = firstCell.find("img:first").attr("src");
+		if (typeof commandType !== 'undefined'
+			&& commandType.indexOf("command/cancel.png") == -1 
+			&& commandType.indexOf("command/other_back.png") == -1 
+			&& commandType.indexOf("command/back.png") == -1) {
+			
+			var village = getVillageFromCoords($.trim(firstCell.text()));
 			if (village.isValid) {
 				if (request[village.coord] == undefined) {
 					request[village.coord] = { village: village.coord, attacks: [], hasSupport: false, hasAttack: false };
@@ -209,13 +210,15 @@ function filterCommandRows(filterStrategy) {
 	}
 }
 
-// Filter returning troops
+// Filter sent back, returning and cancelled commands
 $("#filterReturning").click(function () {
 	$(this).attr("disabled", "disabled");
 	trackClickEvent("FilterReturning");
 	filterCommandRows( function (row) {
-		var firstCell = $("td:first", row).html();
-		return firstCell.indexOf(">" + trans.tw.command.returnFull) != -1 || firstCell.indexOf(">" + trans.tw.command.sentBackBy) != -1 || firstCell.indexOf(">" + trans.tw.command.returnFrom) != -1;
+		var firstCellImage = $("td:first img:first", row).attr("src");
+		return firstCellImage.indexOf("command/other_back.png") != -1 
+		|| firstCellImage.indexOf("command/back.png") != -1
+		|| firstCellImage.indexOf("command/cancel.png") != -1;
 	});
 });
 
@@ -280,29 +283,22 @@ $("#filterFake").click(function () {
 	});
 });
 
-$("#defFilterBarbarian").click(function () {
-	trackClickEvent("FilterBarbarian");
-	filterCommandRows(function (row) {
-		var text = $.trim(row.find("td:first").text());
-		return !text.match(/^\d{1,3}\|\d{1,3} \(/) && text.match(/^\d{1,3}\|\d{1,3}/);
-	});
-});
-
 $("#defFilterContinent").click(function () {
 	trackClickEvent("FilterContinent");
 	var continent = parseInt($("#defFilterContinentText").val(), 10);
 	if (!isNaN(continent)) {
 		filterCommandRows(function (row) {
 			var village = getVillageFromCoords(row.find("td:first").text());
-			if (!village.isValid) {
+			var village2 = getVillageFromCoords(row.find("td:eq(1)").text());
+			if (!village.isValid || !village2.isValid) {
 				return true;
 			}
-			return village.continent() != continent;
+			return village.continent() != continent && village2.continent() != continent;
 		});
 	}
 });
 
-// Sort incoming attacks
+// Sort/group incoming attacks
 $("#sortIt").click(function () {
 	trackClickEvent("Sort");
 	hasGrouped = true;
@@ -335,7 +331,8 @@ $("#sortIt").click(function () {
 			$.each(world_data.units, function (index, value) { totalDef[value] = 0; });
 
 			$.each(targets[v], function (index, value) {
-				newTable += "<tr class='command nowrap row_" + (mod % 2 == 0 ? 'b' : 'a') + "'>" + value.html() + "</tr>";
+				var villageId = $("td:eq(1) a:first", value).attr("href").match(/id=(\d+)/)[1];
+				newTable += "<tr class='command nowrap row_" + (mod % 2 == 0 ? 'b' : 'a') + (villageId == game_data.village.id ? " selected" : "") + "'>" + value.html() + "</tr>";
 				amount++;
 
 				var unitAmounts = $("td:gt(2)", value);
@@ -365,10 +362,14 @@ $("#sortIt").click(function () {
 			var amount = 0;
 			var lastArrival = '';
 			$.each(targets[v], function (index, value) {
+				var villageId = $("td:eq(1) a:first", value).attr("href").match(/id=(\d+)/)[1];
+				q(villageId);
+			
 				var currentArrival = $(value).find("td:eq(2)").text();
 				if (lastArrival == currentArrival) {
 					// Don't show when it's on the same second
-					newTable += "<tr class='command nowrap row_" + (mod % 2 == 0 ? 'b' : 'a') + "'>";
+					// Only practical on full second worlds really
+					newTable += "<tr class='command nowrap row_" + (mod % 2 == 0 ? 'b' : 'a') + (villageId == game_data.village.id ? " selected" : "") + "'>";
 					$(this).find("td").each(function (i) {
 						if (i == 2) {
 							newTable += "<td>&nbsp;</td>";
@@ -382,7 +383,7 @@ $("#sortIt").click(function () {
 					newTable += "</tr>";
 				}
 				else {
-					newTable += "<tr class='command nowrap row_" + (mod % 2 == 0 ? 'b' : 'a') + "'>" + value.html() + "</tr>";
+					newTable += "<tr class='command nowrap row_" + (mod % 2 == 0 ? 'b' : 'a') + (villageId == game_data.village.id ? " selected" : "") + "'>" + value.html() + "</tr>";
 				}
 				lastArrival = currentArrival;
 				amount++;

@@ -133,7 +133,7 @@ function sangu_ready() {
             }
 			 // SUPPORT OVERVIEW
             else if (location.href.indexOf('type=support_detail') > -1 || location.href.indexOf('type=away_detail') > -1) {
-                //<!--@@INCLUDE "\page\overview_villages\support_detail.js" INDENT=3 //-->
+                //<!--@@INCLUDE "\page\overview_villages\units_support_detail.js" INDENT=3 //-->
             }
 			// COMMANDS OVERVIEW
             else if (location.href.indexOf('mode=commands') > -1) {

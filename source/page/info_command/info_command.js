@@ -146,7 +146,9 @@ if ($("#running_times").size() > 0) {
 	}
 	var arrivalCell = infoTable.find("tr:eq(" + (offset + 1) + ") td:last");
 
-	if (type.indexOf(trans.tw.command.returnText) == -1 && type.indexOf(trans.tw.command.abortedOperation) == -1) {
+	if (type.indexOf(trans.tw.command.returnText) == -1 
+		&& type.indexOf(trans.tw.command.abortedOperation) == -1) {
+		
 		var duration = getTimeFromTW(infoTable.find("tr:eq(" + offset + ") td:last").text());
 		var arrivalTime = getDateFromTW(arrivalCell.text());
 		var imgType = !isSupport ? "attack" : "support";
