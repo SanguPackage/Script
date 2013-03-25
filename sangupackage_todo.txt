@@ -3,7 +3,7 @@ Alle bugs zouden moeten gefixed zijn. Als je er een tegenkomt, melden!
 Elke oude en elke nieuwe wereld is nu direct ondersteund
 
 [b]Nieuwe features[/b]
-- In overzichten blijft het huidige dorp geselecteerd blijven (andere achtergrondkleur) -> het is er Edje!
+- In overzichten blijft het huidige dorp geselecteerd (andere achtergrondkleur) -> het is er Edje!
 - Link naar verzamelplaats vanuit troepen overzicht vult automatisch de coordinaten in
 - 
 
@@ -12,19 +12,15 @@ Elke oude en elke nieuwe wereld is nu direct ondersteund
     troepenoverzicht: onthouden in variabele wat de huidige geselecteerde snelheid is
     zodat er op verschillende pagina's met verschillende snelheden kan gewerkt worden
     
-
+    
+	
+Stop een 'updater' in het script: there is a new update! click to download it now!
 Eerste maal als sangu opstart: een tooltip waarop je moet klikken om te activeren
 
-/* Troepenlijst type=own_home */
-tekst filter, continent
-sorteren op afstand, omgekeerd
-huidig dorp niet als 00:00:00 maar als null
+    Groepen overzicht: doe ik 'Alles selecteren', dus hij neemt dan alle dorpen in de groep vermoed ik, maar dat deed ie voorheen niet. Is er nog iemand met dit probleem en/of weet iemand hier een oplossing voor?
+    --> werkt blijkbaar niet meer?
 
-/*troepenlijst:
-per dag kunnen dichtklappen! -> per dag sowieso een lijn toevoeegn (met + icon om te openen)
-en hoeveel per dag X / Y (Z): x = aantal vegen, y is vegen in de nachtbonus, z totaal aantal dorpen
-dag = met nachtbonus!
-+ de filters op tekst, continent, min/max afstand/tijdsduur... ik kan het gebruiken :)*/
+
 
 
 
@@ -39,19 +35,8 @@ Sangu Package: Krijg meer gedaan in minder tijd!
 http://free.zoner.com/
 http://codeigniter.com/
 
-
-
-
-Stop een 'updater' in het script: there is a new update! click to download it now!
-
-
-
-
-
 return "<a href='#' onclick='document.forms[0].inputx.value=\"" + village.x + "\";document.forms[0].inputy.value=\"" + village.y + "\";'>" + desc + "</a>";
 
-/*
-- Map favorieten zit er al in?
 
 
 filteren met wildcards Voorbeeld: 890|230  *|230  89?|230  8??|* 
@@ -60,9 +45,6 @@ filteren met wildcards Voorbeeld: 890|230  *|230  89?|230  8??|*
 		bevelen groepener: off by one error??? (mss ook niet?)
 		
 		lijsten: mousehover: highlight de lijn waarover de muis hovert
-		
-		verzamelplaats: laatste: komt nog eens een textbox bij met undefined|undefined
-		(als er wel doeldorp is maar geen sangu laatste)
 
 		OK confirmatie knop altijd op dezelfde plek:
 			- nachtbonus, katapult, claim, ...
@@ -78,15 +60,7 @@ filteren met wildcards Voorbeeld: 890|230  *|230  89?|230  8??|*
 
     op de stamleden pagina een overzicht van de activiteit van alle spelers (twstats, twmap, stammenoorlogen, ....?)
 
-    hernoemen aanval in maintagger=> als er maar 1 meer is
-    
   
-    Groepen overzicht: doe ik 'Alles selecteren', dus hij neemt dan alle dorpen in de groep vermoed ik, maar dat deed ie voorheen niet. Is er nog iemand met dit probleem en/of weet iemand hier een oplossing voor?
-    --> werkt blijkbaar niet meer?
-
-    dorp info
-    claim + commentaar + incomings + berichten = crash?
-    was coordinaten: 444|656
 
     MAINTAGGER
     maintagger configuratie van een custom rename knop: "changesDodgeTime: true/false",
@@ -99,11 +73,8 @@ filteren met wildcards Voorbeeld: 890|230  *|230  89?|230  8??|*
     per dag kunnen dichtklappen (checkboxen rekening met houden!!!) volledige dag aanvinken
     maintagger: op een dodgecell klikken om de dodgetijd aan te passen
 
-    STAMMENOORLOGEN
-    - topedelaar :(
-    - duur afronden op dagen
-    - verschil / duur = overnames per dag
-
+	
+	
     INCOMINGS
     -> onthouden wanneer laatste keer aanvallen bekeken: icon naast aantal incomings?
     -> in tagger een extra lijn toevoegen met de tijd dat je laatst gecheckt hebt
@@ -114,18 +85,17 @@ filteren met wildcards Voorbeeld: 890|230  *|230  89?|230  8??|*
     - overzichten: aanvallen per speler, aanvallen per dag, aanvallen gegroepeerd per tag (check dat je geen 100 verschillende namen hebt)
     -> sorteren moet beter!!! eerstaankomende bovenaan!
 
+	/* Troepenlijst type=own_home */
+	tekst filter, continent
+	sorteren op afstand, omgekeerd
+	huidig dorp niet als 00:00:00 maar als null
 
-    ontwikkel een algemeen jquery extension: beheerTable
-        - tabel selecteren met selector
-        - aangeven per column van welk type het is
-        - automatisch sorteren per kolom 
-        - kunnen groeperen per kolom
-        - kunnen filteren per kolom (niet per 1 kolom specifiek)
-        - extra strategy na filtering?
-        - ergens een count kunnen tonen?
-        - mogelijkheid om een actie uit te voeren per kolom
-        - persisteren van sortering, groepering, ...
-
+	/*troepenlijst:
+	per dag kunnen dichtklappen! -> per dag sowieso een lijn toevoeegn (met + icon om te openen)
+	en hoeveel per dag X / Y (Z): x = aantal vegen, y is vegen in de nachtbonus, z totaal aantal dorpen
+	dag = met nachtbonus!
+	+ de filters op tekst, continent, min/max afstand/tijdsduur... ik kan het gebruiken :)*/
+	
     SMEDERIJ:
         - sorteren zonder te herladen
         - op alles filteren (aantal, ...)
@@ -183,14 +153,19 @@ filteren met wildcards Voorbeeld: 890|230  *|230  89?|230  8??|*
 
     
     REST
-    forum: templates posten
-    fake aanval testen op FF
-    firefox: nachtbonus bij confirmatie aanval blijft gewoon staan?
+	ontwikkel een algemeen jquery extension: beheerTable
+        - tabel selecteren met selector
+        - aangeven per column van welk type het is
+        - automatisch sorteren per kolom 
+        - kunnen groeperen per kolom
+        - kunnen filteren per kolom (niet per 1 kolom specifiek)
+        - extra strategy na filtering?
+        - ergens een count kunnen tonen?
+        - mogelijkheid om een actie uit te voeren per kolom
+        - persisteren van sortering, groepering, ...
+	
 
     voor release checken dat:
     op overzichten na elke filter:
     - totalen altijd goed staan (bovenaan en beneden)
     - inputvelden voor hernoemen dorp op "" staan zodat de juiste dorpen hernoemd worden
-
-    printCoord en fillRallyPoint: // laatste en doel werken niet bij captcha 
-    */

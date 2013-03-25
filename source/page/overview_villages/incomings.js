@@ -10,6 +10,12 @@ menu += "</th></tr>";
 menu += "</table>";
 $("#incomings_table").before(menu);
 
+$("#select_all").replaceWith("<input type='checkbox' id='selectAll'>");
+$("#selectAll").click(function() {
+	var isChecked = $("#selectAll").attr("checked") == "checked";
+	$("#incomings_table tr:visible").find(":checkbox").attr("checked", isChecked);
+});
+
 // Amount of attacks
 function showAmountOfAttacks(amountOfVillages, amountOfCommands) {
 	if ($("#amountOfAttacks").size() == 0) {
@@ -18,6 +24,8 @@ function showAmountOfAttacks(amountOfVillages, amountOfCommands) {
 		pageSize = pageSize.val(amountOfVillages).parent().parent().parent();
 		pageSize.append('<tr><th colspan=2 id="amountOfAttacks">' + trans.sp.incomings.amount + '</th><td>' + amountOfCommands + '</td></tr>');
 	}
+	
+	$("#incomings_table tr").not(":visible").find(":checkbox").attr("checked", false);
 }
 
 // Sort incoming attacks

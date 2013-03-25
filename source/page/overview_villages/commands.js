@@ -25,6 +25,13 @@ var commandListType = getQueryStringParam("type");
 menu += "</th></tr>";
 menu += "</table>";
 $("#commands_table").before(menu);
+
+$("#select_all").replaceWith("<input type='checkbox' id='selectAll'>");
+$("#selectAll").click(function() {
+	var isChecked = $("#selectAll").attr("checked") == "checked";
+	$("#commands_table tr:visible").find(":checkbox").attr("checked", isChecked);
+});
+
 var offsetToUnits = 3;
 
 $("#defReverseFilter").change( function () {
@@ -208,6 +215,8 @@ function filterCommandRows(filterStrategy) {
 	if ($("#amountOfAttacks").size() == 1) {
 		$("#amountOfTargets").val("???");
 	}
+	
+	$("#commands_table tr").not(":visible").find(":checkbox").attr("checked", false);
 }
 
 // Filter sent back, returning and cancelled commands
