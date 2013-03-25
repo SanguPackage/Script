@@ -34,18 +34,11 @@ http://codeigniter.com/
 filteren met wildcards Voorbeeld: 890|230  *|230  89?|230  8??|* 
 -> filteren met regex voor de echte pro's?
 
-
-		
-
-		OK confirmatie knop altijd op dezelfde plek:
-			- nachtbonus, katapult, claim, ...
 			
 		gebouw aanvallen:
     	-> bij een dodge op muur zetten
     	-> anders default houden
-    	-> gebouw icoontjes toevoegen die de waarde in de combobox aanpassen door er op te klikken
-    -> edgile: de ok knop blijft op dezelfde plaats staan bij gebouw aanvallen
-    -> de nachtbonus check werkt ook niet meer 100%
+    	
 			
 		meer dan 1k aanvallen: links naar de verschillende pagina's
 

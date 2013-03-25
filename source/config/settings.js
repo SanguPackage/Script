@@ -105,9 +105,14 @@ $.extend(user_data, {
 
 	attackAutoRename: true,
 	rallyPointAttackBoxWidth: 600,
-	autoAttackFocus: true,
-	replaceNightBonus: true,
-	replaceTribeClaim: true,
+	
+	confirm: {
+		addExtraOkButton: true,
+		autoAttackFocus: true,
+		replaceNightBonus: true,
+		replaceTribeClaim: true,
+		addCatapultImages: true
+	},
 
 	scoutVillage: 100,
 	scoutPlaceLinks: [5, 100, 500],

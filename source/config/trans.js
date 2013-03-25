@@ -137,7 +137,8 @@
 			returnOn: "Terug op:",
 			arrival: "Aankomst",
 			dodgeNotFarEnough: "De dodge is niet ver genoeg!",
-			dodgeMinuteReturn: "(Terugkeer na {minutes})"
+			dodgeMinuteReturn: "(Terugkeer na {minutes})",
+			catapultImageTitle: "Klik om gebouw te vernietigen"
 		},
 		tribalWars: {
 			tribe: "Stam",

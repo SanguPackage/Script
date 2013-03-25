@@ -1,5 +1,5 @@
 // automatically focus OK button when attacking
-if (user_data.proStyle && user_data.autoAttackFocus) {
+if (user_data.proStyle && user_data.confirm.autoAttackFocus) {
 	$("input[name='submit']").focus();
 }
 
@@ -8,7 +8,7 @@ if (user_data.proStyle) {
 	$("#content_value table:first").css("width", 500);
 
 	// Merge nightbonus & tribe claim statements (for OK button placement)
-	if (user_data.proStyle && (user_data.replaceTribeClaim || user_data.replaceNightBonus)) {
+	if (user_data.proStyle && (user_data.confirm.replaceTribeClaim || user_data.confirm.replaceNightBonus)) {
 		var header = $("#content_value h2:first");
 		var claim = $("h3.error");
 		if (claim.size() != 0) {
@@ -19,6 +19,30 @@ if (user_data.proStyle) {
 			});
 		}
 	}
+}
+
+// extra attack button (always on the same place)
+if (user_data.confirm.addExtraOkButton) {
+	$("#content_value h2:first").prepend("<input type=submit style='font-size: 10pt' id=focusPlaceHolder value='" + $("#troop_confirm_go").val() + "'><br>");
+	$("#focusPlaceHolder").click(function () {
+		$(this).attr("disabled", "disabled");
+		$("#troop_confirm_go").click();
+	});
+}
+
+// Catapult building images
+if (user_data.confirm.addCatapultImages && $("#save_default_attack_building").length == 1) {
+	var dropdown = $("select[name='building']");
+	var buildingImages = "";
+	
+	dropdown.find("option").each(function(index, value) {
+		buildingImages += "<img class='catapultSwitcher' title='"+trans.sp.command.catapultImageTitle+"' building='"+$(value).val()+"' src='http://cdn2.tribalwars.net/graphic/buildings/" + $(value).val() + ".png'> ";
+	});
+	
+	dropdown.parent().parent().before("<tr><td colspan=4>"+buildingImages+"</td></tr>");
+	$("img.catapultSwitcher").click(function() {
+		dropdown.val($(this).attr("building"));
+	});
 }
 
 var attackFrame = $("#content_value");
@@ -44,7 +68,7 @@ if (user_data.attackAutoRename) {
 		unitsSent[val] = parseInt($("input[name='" + val + "']", attackFrame).val(), 10);
 	});
 	var unitsCalc = calcTroops(unitsSent);
-
+	
 	// compare runtime with dodgetime
 	var dodgeCookie = pers.getCookie("sanguDodge" + getQueryStringParam("village"));
 	if (dodgeCookie) {
@@ -79,7 +103,7 @@ if (user_data.attackAutoRename) {
 		// If a dodgecookie is in use, nightbonus etc isn't relevant
 		unitsCalc.colorIfNotRightAttackType($("h2:first", attackFrame), isAttack);
 		var arrivalTime = getDateFromTodayTomorrowTW($.trim($("#date_arrival").text()));
-		if (user_data.proStyle && user_data.replaceNightBonus && isDateInNightBonus(arrivalTime)) {
+		if (user_data.proStyle && user_data.confirm.replaceNightBonus && isDateInNightBonus(arrivalTime)) {
 			$("#date_arrival").css("background-color", user_data.colors.error).css("font-weight", "bold");
 		}
 	}
