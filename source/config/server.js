@@ -2,6 +2,7 @@ var server_settings = {};
 switch (game_data.market) {
 	case 'de':
 		server_settings = {
+			tw_version: 8.10,
 			maxSitDays: 60,
 			ajaxAllowed: false,
 			coordinateLinkAllowed: true
@@ -9,6 +10,7 @@ switch (game_data.market) {
 		break;
 	default:
 		server_settings = {
+			tw_version: 8.10,
 			maxSitDays: 60,
 			ajaxAllowed: true,
 			coordinateLinkAllowed: false

@@ -5,6 +5,9 @@ if (location.href.indexOf('changeStatus=') > -1) {
 	pers.set("sanguActive", isSanguActive);
 }
 
+var activatorImage = isSanguActive ? "green" : 'red';
+var activatorTitle = (!isSanguActive ? trans.sp.sp.activatePackage : trans.sp.sp.deactivatePackage) + " (v" + sangu_version + ")";
+
 if (isSanguActive) {
 	// Send usage statistics to GA once/day
 	var loginMonitor = pers.get("sanguLogin");
@@ -25,17 +28,30 @@ if (isSanguActive) {
 	}
 	
 	// Check compatibility with TW version
-	//http://devblog.tribalwars.net/?page_id=511
-	//alert(ScriptAPI);
-	//ScriptAPI.register( 'Beispielscript', 7.3, 'Max Mustermann', 'max.mustermann@innogames.de' );
+	if (pers.getGlobal("scriptWarningVersion") != server_settings.tw_version) {
+		var sanguEmail = "sangu.be";
+		try {
+			ScriptAPI.register('Sangu Package', server_settings.tw_version, 'Laoujin', sanguEmail);
+		} catch (e) {
+			$("#script_list a[href='mailto:"+sanguEmail+"']").after(" &nbsp;<a href='' id='removeScriptWarning'>"+trans.sp.activator.removeScriptWarning+"</a>");
+			$("#removeScriptWarning").click(function() {
+				pers.setGlobal("scriptWarningVersion", server_settings.tw_version);
+			});
+		}
+	}
+}
+
+if (pers.getGlobal("scriptWarningVersion") == server_settings.tw_version) {
+	activatorImage = "grey";
+	activatorTitle = trans.sp.sp.activatePackageWithCompatibility.replace("{version}", sangu_version);
 }
 
 $("#storage").parent()
 	.after(
 		"<td class='icon-box' nowrap><a href=" + location.href.replace("&changeStatus=" + isSanguActive, "") 
-		+ "&changeStatus=" + (!isSanguActive) + "><img src='graphic/dots/" + (isSanguActive ? 'green' : 'red') 
-		+ ".png' title='" + (!isSanguActive ? trans.sp.sp.activatePackage : trans.sp.sp.deactivatePackage) 
-		+ " (v" + sangu_version + ")' /></a>&nbsp;</td>");
+		+ "&changeStatus=" + (!isSanguActive) + "><img src='graphic/dots/" + activatorImage 
+		+ ".png' title='" + activatorTitle 
+		+ "' /></a>&nbsp;</td>");
 		
 
 /*function createFixedTooltip(id, position, title, content) {

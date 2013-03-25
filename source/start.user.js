@@ -16,13 +16,13 @@ function sangu_ready() {
 	var trans = 
 	//<!--@@INCLUDE "\config\trans.js" INDENT=1 //-->
 	
-	//<!--@@INCLUDE "\func\!unsorted.js" INDENT=2 //-->
+	//<!--@@INCLUDE "\func\!unsorted.js" INDENT=1 //-->
 	//<!--@@INCLUDE "\func\persistence.js" INDENT=1 //-->
 	//<!--@@INCLUDE "\func\ui.js" INDENT=1 //-->
+	//<!--@@INCLUDE "\config\server.js" INDENT=1 //-->
     //<!--@@INCLUDE "\feature\activator.js" INDENT=1 //-->	
     if (isSanguActive) {
 		var world_data = {};
-		//<!--@@INCLUDE "\config\server.js" INDENT=2 //-->
 		//<!--@@INCLUDE "\config\world_config.js" INDENT=2 //-->
         //<!--@@INCLUDE "\config\worlds.js" INDENT=2 //-->
 

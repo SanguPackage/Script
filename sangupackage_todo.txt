@@ -14,13 +14,7 @@ Elke oude en elke nieuwe wereld is nu direct ondersteund
     
     
 	
-Stop een 'updater' in het script: there is a new update! click to download it now!
 Eerste maal als sangu opstart: een tooltip waarop je moet klikken om te activeren
-
-    Groepen overzicht: doe ik 'Alles selecteren', dus hij neemt dan alle dorpen in de groep vermoed ik, maar dat deed ie voorheen niet. Is er nog iemand met dit probleem en/of weet iemand hier een oplossing voor?
-    --> werkt blijkbaar niet meer?
-
-
 
 
 
@@ -35,16 +29,13 @@ Sangu Package: Krijg meer gedaan in minder tijd!
 http://free.zoner.com/
 http://codeigniter.com/
 
-return "<a href='#' onclick='document.forms[0].inputx.value=\"" + village.x + "\";document.forms[0].inputy.value=\"" + village.y + "\";'>" + desc + "</a>";
-
 
 
 filteren met wildcards Voorbeeld: 890|230  *|230  89?|230  8??|* 
 -> filteren met regex voor de echte pro's?
 
-		bevelen groepener: off by one error??? (mss ook niet?)
+
 		
-		lijsten: mousehover: highlight de lijn waarover de muis hovert
 
 		OK confirmatie knop altijd op dezelfde plek:
 			- nachtbonus, katapult, claim, ...

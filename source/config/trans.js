@@ -55,8 +55,9 @@
 	sp: {
 		sp: {
 			configuration: "Sangu Package Configuration",
-			activatePackage: "Sangu package activeren",
-			deactivatePackage: "Sangu package  deactiveren"
+			activatePackage: "Sangu Package activeren",
+			deactivatePackage: "Sangu Package deactiveren",
+			activatePackageWithCompatibility: "Sangu Package (v{version}) mogelijk incompatibel met huidige TW versie"
 		},
 		all: {
 			populationShort: "Pop",
@@ -326,6 +327,9 @@
 			fastGrouping: "Snel Groeperen",
 			showNewIncomings: "Toon Nieuwe Aanvallen",
 			amount: "Aanvallen:"
+		},
+		activator: {
+			removeScriptWarning: "Niet meer tonen"
 		},
 		rest: {
 			sittingAttackTill: "Aanvallen en verdedigen van dorpen niet in eigen beheer tot:"
