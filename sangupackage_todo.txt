@@ -5,13 +5,12 @@ Elke oude en elke nieuwe wereld is nu direct ondersteund
 [b]Nieuwe features[/b]
 - In overzichten blijft het huidige dorp geselecteerd (andere achtergrondkleur) -> het is er Edje!
 - Link naar verzamelplaats vanuit troepen overzicht vult automatisch de coordinaten in
-- 
 
+TROEPENOVERZICHT
+Onthouden in variabele wat de huidige geselecteerde snelheid is
+zodat er op verschillende pagina's met verschillende snelheden kan gewerkt worden
 
-    TROEPENOVERZICHT
-    troepenoverzicht: onthouden in variabele wat de huidige geselecteerde snelheid is
-    zodat er op verschillende pagina's met verschillende snelheden kan gewerkt worden
-    
+   
     
 	
 Eerste maal als sangu opstart: een tooltip waarop je moet klikken om te activeren
@@ -34,12 +33,6 @@ http://codeigniter.com/
 filteren met wildcards Voorbeeld: 890|230  *|230  89?|230  8??|* 
 -> filteren met regex voor de echte pro's?
 
-			
-		gebouw aanvallen:
-    	-> bij een dodge op muur zetten
-    	-> anders default houden
-    	
-			
 		meer dan 1k aanvallen: links naar de verschillende pagina's
 
     op de stamleden pagina een overzicht van de activiteit van alle spelers (twstats, twmap, stammenoorlogen, ....?)

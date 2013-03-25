@@ -163,7 +163,7 @@
 			toThePlace: "Verzamelplaats",
 			setTargetVillageButton: "OK",
 			commandTitle: "Opdracht",
-			selectUnitSpeed: "Selecteer {0} als traagste snelheid.",
+			selectUnitSpeed: "Selecteer {0} als traagste eenheid. (Klik op deze pagina, Dubbel klik op alle pagina's.)",
 			nightBonus: "Nacht?",
 			village: "Dorp",
 			filterTroops: "Filter",

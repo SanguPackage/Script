@@ -28,12 +28,14 @@ menu += "</th></tr><tr id=units_table_header>";
 menu += "<th>" + trans.sp.troopOverview.village + "</th>";
 menu += "<th>" + trans.sp.troopOverview.nightBonus + "</th>";
 $.each(world_data.units, function (i, v) {
-	menu += "<th><img src='/graphic/unit/unit_" + v + ".png' title='" + trans.sp.troopOverview.selectUnitSpeed.replace("{0}", trans.tw.units.names[v]) + "' alt='' id=" + v + " /></th>";
+	menu += "<th><img src='/graphic/unit/unit_" + v + ".png' title=\"" + trans.sp.troopOverview.selectUnitSpeed.replace("{0}", trans.tw.units.names[v]) + "\" alt='' id=" + v + " /></th>";
 });
 if (world_config.hasMilitia) {
 	menu += "<th><img src='/graphic/unit/unit_militia.png' title='" + trans.tw.units.militia + "' alt='' id=militia /></th>";
 }
 menu += "<th>" + trans.sp.troopOverview.commandTitle + "</th>";
+
+var currentPageSpeed = spSpeedCookie();
 
 // Do initial filter? (based on querystring)
 var search = window.location.search.substring(1).split("&");
@@ -53,7 +55,8 @@ for (i = 0; i < search.length; i++) {
 		case 'changeSpeed':
 			changeSpeed = item[1];
 			if (changeSpeed != false) {
-				spSpeedCookie(changeSpeed);
+				//spSpeedCookie(changeSpeed);
+				currentPageSpeed = changeSpeed;
 			}
 			break;
 
@@ -163,7 +166,7 @@ $("#targetVillageButton").click(function () {
 		spTargetVillageCookie(targetMatch.coord);
 		$("#units_table").find("tr:visible:gt(1)").each(function () {
 			var coord = $(this).find("span[id^=label_text_]")[0].innerHTML.match("^.*\\((\\d+)\\|(\\d+)\\) "+trans.tw.all.continentPrefix+"\\d{1,2}$");
-			var dist = getDistance(targetMatch.x, coord[1], targetMatch.y, coord[2], spSpeedCookie());
+			var dist = getDistance(targetMatch.x, coord[1], targetMatch.y, coord[2], currentPageSpeed);
 
 			$("td:last", this).html(dist.html);
 			$(this).attr("arrival", dist.travelTime);
@@ -189,13 +192,25 @@ pageSize.val(villageCounter);
 
 // Distance village to target village
 // Change active speed by clicking on a unit icon
-var speedCookie = spSpeedCookie();
-$('#' + speedCookie).css("border", "3px red solid");
+$('#' + currentPageSpeed).css("border", "2px green dotted");
+$('#' + spSpeedCookie()).css("border", "3px red solid");
 $("#units_table_header").click(function (e) {
 	if (e.target.nodeName === 'IMG') {
+		currentPageSpeed = e.target.id;
+		$("img", this).css("border", "0px");
+		$('#' + currentPageSpeed).css("border", "2px green dotted");
+		$('#' + spSpeedCookie()).css("border", "3px red solid");
+		$("#targetVillageButton").click();
+	}
+});
+
+$("#units_table_header").dblclick(function (e) {
+	if (e.target.nodeName === 'IMG') {
+		currentPageSpeed = e.target.id;
 		spSpeedCookie(e.target.id);
 		$("img", this).css("border", "0px");
-		$(e.target).css("border", "3px red solid");
+		$('#' + currentPageSpeed).css("border", "2px green dotted");
+		$('#' + spSpeedCookie()).css("border", "3px red solid");
 		$("#targetVillageButton").click();
 	}
 });

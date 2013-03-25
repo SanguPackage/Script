@@ -98,6 +98,9 @@ function getDistance(x1, x2, y1, y2, speed) {
 		}
 		dist.html = twDurationFormat(dist.travelTime) + ' || ' + displayTime;
 	}
+	if (dist.fields == 0) {
+		dist.html = "";
+	}
 
 	return dist;
 }
