@@ -43,11 +43,13 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 				dodgeMenu += "</td>";
 				dodgeMenu += "<td colspan=1 id=slowestUnitCell>";
 				if (slowest_unit != null) {
-					dodgeMenu += "<img title='"+trans.sp.tagger.slowestTip+"' src='graphic/unit/" + slowest_unit + ".png' slowestUnit='" + slowest_unit + "'>";
+					dodgeMenu += "<img title='"+trans.sp.tagger.slowestTip+"' src='graphic/unit/" + slowest_unit + ".png' slowestunit='" + slowest_unit + "'>";
 				}
 				dodgeMenu += "</td></tr>";
 				incomingTable.find("tbody:first").prepend(dodgeMenu);
-				$("#prefixInput").change(function () { $("#commandInput").attr("doPrefix", $(this).attr("checked")); });
+				$("#prefixInput").change(function () { 
+					$("#commandInput").attr("doPrefix", $(this).attr("checked") == "checked");
+				});
 
 				// checkbox manipulation
 				$("#uncheckSupport").click(function () {
@@ -75,11 +77,11 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 				}
 
 				var buttonParent = $("#commandInput").parent();
-				function renameCommand(commandName, prefix) {
-					if (prefix == "true") {
+				function renameCommand(commandName, addPrefix) {
+					if (addPrefix == "true") {
 						commandName = user_data.mainTagger.prefix + commandName;
 					} 
-					else if (prefix != "false") {
+					else if (addPrefix != "false") {
 						commandName = prefix + commandName;
 					}
 
@@ -94,7 +96,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 					});
 
 					if (dodgeCell != null) {
-						var unitSpeed = $("#slowestUnitCell").attr("slowestUnit");
+						var unitSpeed = $("#slowestUnitCell img").attr("slowestunit");
 						if (unitSpeed != undefined) {
 							dodgeCell = dodgeCell.parent().find("td").last().prev();
 							pers.setCookie("sanguDodge" + getQueryStringParam("village"), unitSpeed + "~" + dodgeCell.text(), user_data.mainTagger.minutesDisplayDodgeTimeOnMap);
@@ -110,8 +112,8 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 				button.click(function () {
 					trackClickEvent("MainTagger-CustomRename");
 					var tagName = $("#commandInput").val();
-					var prefix = $("#commandInput").attr("doPrefix");
-					renameCommand(tagName, prefix);
+					var pref = $("#commandInput").attr("doPrefix");
+					renameCommand(tagName, pref);
 				});
 				buttonParent.append(button);
 

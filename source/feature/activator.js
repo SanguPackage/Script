@@ -53,7 +53,6 @@ $("#storage").parent()
 		+ "&changeStatus=" + (!isSanguActive) + "><img src='graphic/dots/" + activatorImage 
 		+ ".png' title='" + activatorTitle 
 		+ "' /></a>&nbsp;</td>");
-		
 
 function createFixedTooltip(id, position, title, content) {
 	$("#content_value").after('<div id="' + id + '" class="vis" style="z-index: 100001; margin: 2px; width: 350px; display: block; position:absolute; top: '+position.top+'px; left: '+position.left+'px; border: 1px solid black; background-color: #F4E4BC">'

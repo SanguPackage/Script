@@ -10,11 +10,9 @@ TROEPENOVERZICHT
 Onthouden in variabele wat de huidige geselecteerde snelheid is
 zodat er op verschillende pagina's met verschillende snelheden kan gewerkt worden
 
-   
-    
-	
-Eerste maal als sangu opstart: een tooltip waarop je moet klikken om te activeren
 
+    MAINTAGGER
+    maintagger: een stippellijn na elke 5 uur dat er geen aanval is?
 
 
 kaartspringer beter integreren
@@ -29,27 +27,7 @@ http://free.zoner.com/
 http://codeigniter.com/
 
 
-
-filteren met wildcards Voorbeeld: 890|230  *|230  89?|230  8??|* 
--> filteren met regex voor de echte pro's?
-
-		meer dan 1k aanvallen: links naar de verschillende pagina's
-
-    op de stamleden pagina een overzicht van de activiteit van alle spelers (twstats, twmap, stammenoorlogen, ....?)
-
-  
-
-    MAINTAGGER
-    maintagger configuratie van een custom rename knop: "changesDodgeTime: true/false",
-    maintagger: eerste nachtbonus geen streepken als er enkel os voor komt :)
-    mss zelf instellen tot waar je wil dodgen?
-    maintagger: icoontjes (icon voor welk type aanval het is...)
-    maintagger: een stippellijn na elke 5 uur dat er geen aanval is?
-    --> achter een aanval een suffix kunnen toevoegen ***
-    maintagger: kerkradius tonen
-    per dag kunnen dichtklappen (checkboxen rekening met houden!!!) volledige dag aanvinken
-    maintagger: op een dodgecell klikken om de dodgetijd aan te passen
-
+	meer dan 1k aanvallen: links naar de verschillende pagina's
 	
 	
     INCOMINGS
@@ -64,8 +42,6 @@ filteren met wildcards Voorbeeld: 890|230  *|230  89?|230  8??|*
 
 	/* Troepenlijst type=own_home */
 	tekst filter, continent
-	sorteren op afstand, omgekeerd
-	huidig dorp niet als 00:00:00 maar als null
 
 	/*troepenlijst:
 	per dag kunnen dichtklappen! -> per dag sowieso een lijn toevoeegn (met + icon om te openen)
