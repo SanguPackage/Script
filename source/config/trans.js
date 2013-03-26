@@ -57,7 +57,8 @@
 			configuration: "Sangu Package Configuration",
 			activatePackage: "Sangu Package activeren",
 			deactivatePackage: "Sangu Package deactiveren",
-			activatePackageWithCompatibility: "Sangu Package (v{version}) mogelijk incompatibel met huidige TW versie"
+			activatePackageWithCompatibility: "Sangu Package (v{version}) mogelijk incompatibel met huidige TW versie",
+			firstTimeRun: "<b>Welkom!</b> Het Sangu Package is momenteel inactief. Klik op de rode indicator naast de opslagplaats hierboven om het package aan en uit te schakelen."
 		},
 		all: {
 			populationShort: "Pop",
