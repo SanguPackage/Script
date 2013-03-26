@@ -3,8 +3,8 @@ var world_config = {
 	hasMilitia: false,
 	nightbonus: {
 		active: false,
-		from: 1, 
-		till: 7
+		from: 0, 
+		till: 0
 		},
 	smithyLevels: true,
 	hasChurch: false,

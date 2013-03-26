@@ -60,7 +60,7 @@ function createFixedTooltip(id, position, title, content) {
 			+ '<div style="display: block; text-align: left; margin: 2px;">' + content + '</div>'
 			+ '</div>');
 	
-	$(".closeTooltip").click(function() { 
+	$(".closeTooltip").click(function() {
 		$("#" + id).hide(); 
 		pers.setGlobal("sanguFirstRun", "1");
 	});

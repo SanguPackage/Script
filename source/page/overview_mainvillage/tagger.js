@@ -135,6 +135,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 				// add checkboxes
 				var lastRowIndex = rows.size();
 				var lastSend = 0;
+				var prevSendTime = 0;
 				var firstNight = true;
 				var amountOfAttacks = 0;
 				rows.each(function (rowIndex, rowValue) {
@@ -218,6 +219,15 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 								row.append("<td>&nbsp;</td>");
 							}
 
+							// dotted line after x hours no incomings
+							if (prevSendTime == 0 || (currentArrivalTime - prevSendTime) / 1000 / 60 > user_data.mainTagger.minutesWithoutAttacksDottedLine) {
+								if (prevSendTime != 0) {
+									row.find("td").css("border-top", "1px dotted black");
+								}
+								
+								prevSendTime = currentArrivalTime;
+							}
+							
 							// black line after each nightbonus
 							if (lastSend == 0 || currentArrivalTime > lastSend) {
 								if (lastSend != 0) {
@@ -225,8 +235,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 									firstNight = false;
 								}
 
-								lastSend = currentArrivalTime;
-								// TODO: how to handle worlds without nightbonus?
+								lastSend = new Date(currentArrivalTime);
 								if (lastSend.getHours() >= world_config.nightbonus.till) {
 									lastSend.setDate(lastSend.getDate() + 1);
 									lastSend.setHours(world_config.nightbonus.from);

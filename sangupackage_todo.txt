@@ -5,14 +5,14 @@ Elke oude en elke nieuwe wereld is nu direct ondersteund
 [b]Nieuwe features[/b]
 - In overzichten blijft het huidige dorp geselecteerd (andere achtergrondkleur) -> het is er Edje!
 - Link naar verzamelplaats vanuit troepen overzicht vult automatisch de coordinaten in
+- maintagger: een stippellijn na elke 3 uur dat er geen aanval is
 
 TROEPENOVERZICHT
 Onthouden in variabele wat de huidige geselecteerde snelheid is
 zodat er op verschillende pagina's met verschillende snelheden kan gewerkt worden
 
 
-    MAINTAGGER
-    maintagger: een stippellijn na elke 5 uur dat er geen aanval is?
+ meer dan 1k aanvallen: links naar de verschillende pagina's
 
 
 kaartspringer beter integreren
@@ -26,10 +26,6 @@ Sangu Package: Krijg meer gedaan in minder tijd!
 http://free.zoner.com/
 http://codeigniter.com/
 
-
-	meer dan 1k aanvallen: links naar de verschillende pagina's
-	
-	
     INCOMINGS
     -> onthouden wanneer laatste keer aanvallen bekeken: icon naast aantal incomings?
     -> in tagger een extra lijn toevoegen met de tijd dat je laatst gecheckt hebt

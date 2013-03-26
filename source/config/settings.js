@@ -65,7 +65,8 @@ $.extend(user_data, {
 			],
 		prefix: "-----------------------------------------",
 		autoOpenCommands: false,
-		minutesDisplayDodgeTimeOnMap: 3
+		minutesDisplayDodgeTimeOnMap: 3,
+		minutesWithoutAttacksDottedLine: 3 * 60
 	},
 
 	tribalWars: {
