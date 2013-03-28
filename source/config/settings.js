@@ -69,10 +69,6 @@ $.extend(user_data, {
 		minutesWithoutAttacksDottedLine: 3 * 60
 	},
 
-	tribalWars: {
-		active: true
-	},
-
 	villageInfo: {
 		active: true,
 		off_link: "&group=3093&unit=2&amount=5000&sort=true&changeSpeed=ram", /* On info_village page add extra link to attack. 3093=group id of off villages. Filter: amount=5000 unit=2=axe */

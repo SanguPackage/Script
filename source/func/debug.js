@@ -1,4 +1,6 @@
-function q(what) { console.log(what == undefined ? "yaye" : what); }
+function q(what) { console.log(typeof what === "undefined" ? "yaye" : what); }
+
+function qa(what) { alert(typeof what === "undefined" ? "yaye" : what); }
 
 /*function getStopWatch(toTime, alertIt) {
 	var watch = { start: new Date(), text: toTime };

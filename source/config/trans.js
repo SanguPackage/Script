@@ -141,23 +141,9 @@
 			dodgeMinuteReturn: "(Terugkeer na {minutes})",
 			catapultImageTitle: "Klik om gebouw te vernietigen"
 		},
-		tribalWars: {
-			tribe: "Stam",
-			durationTitle: "Duur",
-			showStatisticsTooltip: "Statistieken tonen",
-			villagesTakenTitle: "Overnames",
-			totalODA: "Totaal ODA",
-			totalODD: "Totaal ODD",
-			biggestContributorTitle: "Top edelaar",
-			biggestContributor: "{player} <b>(<font color=green>+{villagesUp}</font> <font color=red>-{villagesDown}</font>)</b>",
-			villagesTaken: "<b><font color=green>+{conquersOwn}</font> <font color=red>-{conquersEnemy}</font></b>",
-			villagesTakenDiff: "Verschil",
-			totalRowTitle: "<b>{0}</b> lopende stammenoorlogen",
-			losePercentage: "<b>Verlies: {0}%</b>",
-			warsH2Header: "Stammenoorlogen overzicht"
-		},
 		overviews: {
-			totalVillages: "Aantal dorpen:"
+			totalVillages: "Aantal dorpen:",
+			loadNextPage: "[volgende pagina laden]"
 		},
 		troopOverview: {
 			removeVillage: "Dorp verwijderen",

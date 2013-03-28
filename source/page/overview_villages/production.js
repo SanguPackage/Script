@@ -1,3 +1,6 @@
+overviewTable = $("#production_table");
+tableHandler.init("production_table");
+
 // Filter full storage rooms
 var resTable = $("#production_table");
 var menu = "<table class='vis' width='100%'>";

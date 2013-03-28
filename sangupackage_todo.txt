@@ -12,12 +12,10 @@ Onthouden in variabele wat de huidige geselecteerde snelheid is
 zodat er op verschillende pagina's met verschillende snelheden kan gewerkt worden
 
 
+
  meer dan 1k aanvallen: links naar de verschillende pagina's
 
 
-kaartspringer beter integreren
-- optie om altijd zichtbaar
-- toevoegen box in de popup zelf
 
 
 Sangu Package: Krijg meer gedaan in minder tijd!
@@ -46,15 +44,6 @@ http://codeigniter.com/
 	+ de filters op tekst, continent, min/max afstand/tijdsduur... ik kan het gebruiken :)*/
 	
     SMEDERIJ:
-        - sorteren zonder te herladen
-        - op alles filteren (aantal, ...)
-        - werken met +X en -X als er in de wachtrij staat
-        - duidelijker verschil tussen rood en kunnen bouwen
-        - instellen per groep
-        - ergens op klikken: de rode cell aanpassen? (afhankelijk van de +/-X)
-        - instellen welke ZEKER moet ok zijn: vb speer/zc/kata moet, zwaard, bijl etc is optioneel
-    filteren van gebouwen en smithy: bij optimistisch FILTEREN groen aanduiden bij de rijen die ook al rood hebben!
-    - smederij: de levels tonen - integreren met ontwikkelingsoverzichtslijst config
     - zelf kunnen instellen welke groep bij welke levels hoort
     - bij trainen aanduiden welke troepen getraind moeten worden adhv groep...
     - icoontjes bij groepen? locatie, pakketjes, klein, edels, aanval/def
@@ -93,11 +82,12 @@ http://codeigniter.com/
     -> anders eigen aanvallen/os op het dorp tonen
     -> link naar de verzamelplaats?
 
-		vriendenlijst die voortdurend openstaat:
-    	-> erop klikken om andere dingen te doen
-    	-> mededeling sturen: ";" + naam toevoegen
-    	-> bericht doorsturen
-    	etc
+	
+	vriendenlijst die voortdurend openstaat:
+	-> erop klikken om andere dingen te doen
+	-> mededeling sturen: ";" + naam toevoegen
+	-> bericht doorsturen
+	etc
     
 
     

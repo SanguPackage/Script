@@ -1,3 +1,8 @@
+overviewTable = $("#commands_table");
+tableHandler.init("commands_table", {
+	hasBottomTotalRow: true
+});
+
 // Group attacks per village
 var menu = "";
 menu += "<table class=vis width='100%'>";

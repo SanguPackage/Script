@@ -1,3 +1,8 @@
+overviewTable = $("#units_table");
+tableHandler.init("units_table", {
+	hasBottomTotalRow: true
+});
+
 var isSupport = location.href.indexOf('type=support_detail') > -1;
 
 var menu = "<table class='vis' width='100%'>";
@@ -33,6 +38,7 @@ menu += "&nbsp; <input type=button id=attackFilter value='" + trans.sp.defOvervi
 if (!isSupport) {
 	menu += "&nbsp; <input type=button id=defFilterBarbarian value='" + trans.sp.defOverview.barbarianFilter + "' title='" + trans.sp.defOverview.barbarianFilterTooltip + "'>";
 }
+
 menu += "</th></tr></table>";
 $("#units_table").before(menu);
 

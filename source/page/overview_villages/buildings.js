@@ -1,5 +1,6 @@
 // Highlight everything not conform
-var buildingTable = $("#buildings_table");
+overviewTable = $("#buildings_table");
+tableHandler.init("buildings_table");
 
 var menu = "<table class='vis' width='100%'>";
 menu += "<tr><th>";
@@ -7,18 +8,18 @@ menu += "<input type=checkbox id=buildingOpti> " + trans.sp.buildOverview.optimi
 menu += "<input type=button id=buildingHighlight value='" + trans.sp.buildOverview.mark + "'>";
 menu += "<input type=button id=buildingFilter value='" + trans.sp.buildOverview.filter + "'>";
 menu += "</th></tr></table>";
-buildingTable.before(menu);
+overviewTable.before(menu);
 
 function filterBuildings(cellAction, hideRows) {
 	var buildings = [];
-	buildingTable.find("tr:first img").each(function (i, v) {
+	overviewTable.find("tr:first img").each(function (i, v) {
 		buildings[i] = this.src.substr(this.src.lastIndexOf('/') + 1);
 		buildings[i] = buildings[i].substr(0, buildings[i].indexOf('.'));
 	});
 
 	var goners = $();
 	var opti = $("#buildingOpti").attr("checked") == "checked";
-	buildingTable.find("tr:gt(0)").each(function () {
+	overviewTable.find("tr:gt(0)").each(function () {
 		var isOk = true;
 		$(this).find("td:gt(3)").each(function (i, v) {
 			var range = user_data.buildings[buildings[i]];

@@ -1,3 +1,28 @@
+// THIS HAS BEEN DISABLED
+// see comments below
+
+/*trans.sp.
+tribalWars: {
+			tribe: "Stam",
+			durationTitle: "Duur",
+			showStatisticsTooltip: "Statistieken tonen",
+			villagesTakenTitle: "Overnames",
+			totalODA: "Totaal ODA",
+			totalODD: "Totaal ODD",
+			biggestContributorTitle: "Top edelaar",
+			biggestContributor: "{player} <b>(<font color=green>+{villagesUp}</font> <font color=red>-{villagesDown}</font>)</b>",
+			villagesTaken: "<b><font color=green>+{conquersOwn}</font> <font color=red>-{conquersEnemy}</font></b>",
+			villagesTakenDiff: "Verschil",
+			totalRowTitle: "<b>{0}</b> lopende stammenoorlogen",
+			losePercentage: "<b>Verlies: {0}%</b>",
+			warsH2Header: "Stammenoorlogen overzicht"
+		},
+
+game_settings.
+	tribalWars: {
+		active: true
+	},*/
+		
 if (false && user_data.tribalWars.active) {
 	// Adds a nice table with overview of all Tribal Wars 
 	// Features: Shows villages lost/gained per war + best contributor for each war

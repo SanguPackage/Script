@@ -1,3 +1,8 @@
+overviewTable = $("#group_assign_table");
+tableHandler.init("group_assign_table", {
+	hasBottomTotalRow: true
+});
+
 // TODO: edit groups: make div floatable and remember position
 var menu = "";
 menu += "<table class=vis width='100%'><tr><th>";

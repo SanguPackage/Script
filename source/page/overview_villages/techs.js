@@ -1,3 +1,6 @@
+overviewTable = $("#techs_table");
+tableHandler.init("techs_table");
+
 // Highlight everything not conform usersettings
 if (world_config.smithyLevels) {
 	var menu = "<table class='vis' width='100%'>";

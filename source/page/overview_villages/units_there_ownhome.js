@@ -1,3 +1,82 @@
+overviewTable = $("#units_table");
+
+var villageCounter = 0;
+var rowSize = world_data.units.length + 1;
+if (world_config.hasMilitia) {
+	rowSize++;
+}
+
+function ReplaceUnitRow(row) {
+	//q($(row).html());
+	var mod = "row_a";
+	var newRow = "";
+	var finalRow = "";
+	var addThisRow = true;
+	var cells = $("td:gt(0)", row);
+	var units = {};
+	var villageId = $("td:first span[id*='label_text']", row).attr("id").substr(11);
+
+	cells.each(function (index, element) {
+		if (doFilter && index - 1 == unitIndex && parseInt(this.innerHTML, 10) < unitAmount) {
+			//q("index:" + index + ' == '+ unitIndex + " : " + row.html() + ' * 1 < ' + unitAmount);
+			addThisRow = false;
+			return false;
+		}
+		else if (index == rowSize) {
+			//q(index + "==" + rowSize);
+			newRow += "<td>";
+			newRow += "<img src='/graphic/dots/red.png' title='" + trans.sp.troopOverview.removeVillage + "' /> ";
+			if (game_data.village.id != villageId) {
+				newRow += "<a href='" + $("a", element).attr('href').replace("mode=units", "") + "&target=" + villageId + "'>";
+				newRow += "<img src='/graphic/command/attack.png' title='" + trans.sp.troopOverview.toThePlace + "'/>"; // Works only with leftclick onclick='this.src=\"/graphic/command/return.png\";'
+				newRow += "</a>";
+			}
+			newRow += "</td>";
+		} else {
+			//q("units:" + world_data.units[index - 1]);
+			var cellDisplay = this.innerHTML;
+			if (cellDisplay === "0") {
+				cellDisplay = "&nbsp;";
+			}
+			else if (cellDisplay.indexOf('="has_tooltip"') > -1)  {
+				cellDisplay = cellDisplay.replace('="has_tooltip"', '="has_tooltip" title="'+trans.sp.troopOverview.cheapNobles+'"');
+			}
+			
+			newRow += "<td>" + cellDisplay + "</td>";
+			if (index > 0) {
+				units[world_data.units[index - 1]] = parseInt(row.html(), 10); 
+			}
+			// innerHTML can contain a + sign for the nobles: "+" indicates nobles can be rebuild cheaply
+			// The snobs are not important here
+		}
+	});
+
+	if (addThisRow) {
+		var villageType = calcTroops(units);
+		if (doFilter) {
+			mod = villageCounter % 2 == 0 ? "row_a" : "row_b";
+		} else {
+			mod = !villageType.isDef ? "row_a" : "row_b";
+		}
+
+		finalRow += "<tbody>";
+		finalRow += "<tr arrival='0' class='row_marker " + mod + (game_data.village.id == villageId ? " selected" : "") + "'>";
+		finalRow += "<td>" + $("td:first", row).html() + "</td>";
+		finalRow += newRow;
+		finalRow += "<td></td></tr>";
+		finalRow += "</tbody>";
+
+		villageCounter++;
+		
+		return finalRow;
+	}
+	return "";
+}
+
+tableHandler.init("units_table", {
+	rowReplacer: ReplaceUnitRow
+});
+
 function makeUnitBox(id, select) {
 	var box = "<select id=" + id + ">";
 	$.each(world_data.units, function (i, v) {
@@ -24,6 +103,7 @@ menu += "<input type=checkbox id=sortIt " + (user_data.command.filterAutoSort ? 
 if (location.href.indexOf('type=there') > -1) {
 	menu += "<input type=button id=defRestack value='" + trans.sp.troopOverview.restack + "'>";
 }
+
 menu += "</th></tr><tr id=units_table_header>";
 menu += "<th>" + trans.sp.troopOverview.village + "</th>";
 menu += "<th>" + trans.sp.troopOverview.nightBonus + "</th>";
@@ -75,80 +155,7 @@ var target = getVillageFromCoords(spTargetVillageCookie());
 menu += "<th nowrap>" + trans.sp.all.targetEx + " <input type=text id=targetVillage name=targetVillage size=8 value='" + (target.isValid ? target.coord : "") + "'><input type=button id=targetVillageButton value='" + trans.sp.troopOverview.setTargetVillageButton + "'></th>";
 menu += "</tr>";
 
-var villageCounter = 0;
-var newTable = "";
-
-var theUnits;
-var rowSize = world_data.units.length + 1;
-if (world_config.hasMilitia) {
-	rowSize++;
-}
-
-var mod = "row_a";
-theUnits = $("#units_table tbody");
-
-theUnits.each(function () {
-	//q($(this).html());
-	var newRow = "";
-	var addThisRow = true;
-	var cells = $("td:gt(0)", this);
-	var units = {};
-	var villageId = $("td:first span[id*='label_text']", this).attr("id").substr(11);
-
-	cells.each(function (index, element) {
-		if (doFilter && index - 1 == unitIndex && parseInt(this.innerHTML, 10) < unitAmount) {
-			//q("index:" + index + ' == '+ unitIndex + " : " + this.innerHTML + ' * 1 < ' + unitAmount);
-			addThisRow = false;
-			return false;
-		}
-		else if (index == rowSize) {
-			//q(index + "==" + rowSize);
-			newRow += "<td>";
-			newRow += "<img src='/graphic/dots/red.png' title='" + trans.sp.troopOverview.removeVillage + "' /> ";
-			if (game_data.village.id != villageId) {
-				newRow += "<a href='" + $("a", element).attr('href').replace("mode=units", "") + "&target=" + villageId + "'>";
-				newRow += "<img src='/graphic/command/attack.png' title='" + trans.sp.troopOverview.toThePlace + "'/>"; // Works only with leftclick onclick='this.src=\"/graphic/command/return.png\";'
-				newRow += "</a>";
-			}
-			newRow += "</td>";
-		} else {
-			//q("units:" + world_data.units[index - 1]);
-			var cellDisplay = this.innerHTML;
-			if (cellDisplay == 0) {
-				cellDisplay = "&nbsp;";
-			}
-			else if (cellDisplay.indexOf('="has_tooltip"') > -1)  {
-				cellDisplay = cellDisplay.replace('="has_tooltip"', '="has_tooltip" title="'+trans.sp.troopOverview.cheapNobles+'"');
-			}
-			
-			newRow += "<td>" + cellDisplay + "</td>";
-			if (index > 0) {
-				units[world_data.units[index - 1]] = parseInt(this.innerHTML, 10); 
-			}
-			// innerHTML can contain a + sign for the nobles: "+" indicates nobles can be rebuild cheaply
-			// The snobs are not important here
-		}
-	});
-
-	if (addThisRow) {
-		var villageType = calcTroops(units);
-		if (doFilter) {
-			mod = villageCounter % 2 == 0 ? "row_a" : "row_b";
-		} else {
-			mod = !villageType.isDef ? "row_a" : "row_b";
-		}
-
-		newTable += "<tbody>";
-		newTable += "<tr arrival='0' class='row_marker " + mod + (game_data.village.id == villageId ? " selected" : "") + "'>";
-		newTable += "<td>" + $("td:first", this).html() + "</td>";
-		newTable += newRow;
-		newTable += "<td></td></tr>";
-		newTable += "</tbody>";
-
-		villageCounter++;
-	}
-});
-
+var newTable = tableHandler.getReplacedVillageRows();
 $("#units_table").html("<table width='100%' class='vis' id='units_table' target='false'>" + menu + newTable + "</table>");
 $('#targetVillage').click(function () {
 	$(this).focus().select();
