@@ -127,11 +127,7 @@
 			multipleAttack: "{amount} aanvallen tussen {arrivalDateFirst} ({timeLeftFirst}) en {arrivalDateLast} ({timeLeftLast})"
 		},
 		jumper: {
-			close: "sluiten",
-			title: "Favorieten",
-			goToMap: "Ga naar de kaart",
-			xy: "XY:",
-			name: "Naam:"
+			goToMap: "Ga naar de kaart"
 		},
 		command: {
 			homeTime: "Thuiskomst",

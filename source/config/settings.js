@@ -86,11 +86,7 @@ $.extend(user_data, {
 	favs: [],
 	jumper: {
 		enabled: true,
-		left: 880,
-		top: 196,
-		width: 200,
-		addTargetVillage: true,
-		addLastVillage: true
+		autoShowInputbox: true
 	},
 
 	proStyle: true,
