@@ -1,28 +1,5 @@
-[b]Bug Fixes[/b]
-Alle bugs zouden moeten gefixed zijn. Als je er een tegenkomt, melden!
-Elke oude en elke nieuwe wereld is nu direct ondersteund
-
-[b]Nieuwe features[/b]
-- In overzichten blijft het huidige dorp geselecteerd (andere achtergrondkleur) -> het is er Edje!
-- Link naar verzamelplaats vanuit troepen overzicht vult automatisch de coordinaten in
-- maintagger: een stippellijn na elke 3 uur dat er geen aanval is
-
-TROEPENOVERZICHT
-Onthouden in variabele wat de huidige geselecteerde snelheid is
-zodat er op verschillende pagina's met verschillende snelheden kan gewerkt worden
 
 
-
- meer dan 1k aanvallen: links naar de verschillende pagina's
-
-
-
-
-Sangu Package: Krijg meer gedaan in minder tijd!
-
---> Nieuwe site moet er zo uit zien:
-http://free.zoner.com/
-http://codeigniter.com/
 
     INCOMINGS
     -> onthouden wanneer laatste keer aanvallen bekeken: icon naast aantal incomings?
@@ -68,10 +45,6 @@ http://codeigniter.com/
     -> extra icons: doeldorp aanvallen, doeldorp verdedigen
     -> tooltip met looptijden van huidig dorp?
 
-    CUSTOM GROUPS
-    Groepselectie voor " omringende dorpen" pagina
-    --> ook daar is het interessant om dorpen te verzamelen?
-
     JUMPER:
     -> always open mode
     -> opdelen in groepen
@@ -90,7 +63,13 @@ http://codeigniter.com/
 	etc
     
 
-    
+Sangu Package: Krijg meer gedaan in minder tijd!
+
+--> Nieuwe site moet er zo uit zien:
+http://free.zoner.com/
+http://codeigniter.com/
+	
+	
     REST
 	ontwikkel een algemeen jquery extension: beheerTable
         - tabel selecteren met selector

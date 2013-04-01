@@ -86,7 +86,7 @@ $.extend(user_data, {
 	favs: [],
 	jumper: {
 		enabled: true,
-		autoShowInputbox: true
+		autoShowInputbox: false
 	},
 
 	proStyle: true,

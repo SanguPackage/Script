@@ -13,7 +13,6 @@ var tableHandler;
 		
 		// do stuff on page load
 		ajaxLoadNextPageSetup();
-		buildMenu();
 	}
 	tableHandler.init = init;
 	
@@ -32,10 +31,6 @@ var tableHandler;
 		}
 	}
 	tableHandler.getReplacedVillageRows = getReplacedVillageRows;
-	
-	function buildMenu() {
-		
-	}
 	
 	function selectVillageRows(page) {
 		//q(tableHandler.overviewTableName);
