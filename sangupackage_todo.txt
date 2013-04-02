@@ -1,5 +1,6 @@
 
-
+search: \$\(("|')[^#]
+and replace with content_value at least
 
     INCOMINGS
     -> onthouden wanneer laatste keer aanvallen bekeken: icon naast aantal incomings?

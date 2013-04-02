@@ -26,7 +26,7 @@ function ReplaceUnitRow(row) {
 			//q(index + "==" + rowSize);
 			newRow += "<td>";
 			newRow += "<img src='/graphic/dots/red.png' title='" + trans.sp.troopOverview.removeVillage + "' /> ";
-			newRow += "<a href='" + $("a", element).attr('href').replace("mode=units", "") + "' class='attackLinks'>";
+			newRow += "<a href='" + $("a", element).attr('href').replace("mode=units", "") + "&sanguX=0&sanguY=0' class='attackLinks'>";
 			newRow += "<img src='/graphic/command/attack.png' title='" + trans.sp.troopOverview.toThePlace + "'/>"; 
 			// Works only with leftclick onclick='this.src=\"/graphic/command/return.png\";'
 			newRow += "</a>";
@@ -169,6 +169,13 @@ $("#targetVillageButton").click(function () {
 		spTargetVillageCookie("");
 		
 	} else {
+		$(".attackLinks", tableHandler.overviewTable).each(function() {
+			// add target coordinates to attack image href which are read in place
+			var hrefWithVillageCoords = $(this).attr("href");
+			hrefWithVillageCoords = hrefWithVillageCoords.replace(/sanguX=(\d+)&sanguY=(\d+)/, "sanguX="+targetMatch.x+"&sanguY="+targetMatch.y);
+			$(this).attr("href", hrefWithVillageCoords);
+		});
+		
 		spTargetVillageCookie(targetMatch.coord);
 		$("#units_table").find("tr:visible:gt(1)").each(function () {
 			var coord = $(this).find("span[id^=label_text_]")[0].innerHTML.match("^.*\\((\\d+)\\|(\\d+)\\) "+trans.tw.all.continentPrefix+"\\d{1,2}$");

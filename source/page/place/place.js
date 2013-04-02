@@ -53,7 +53,22 @@ $("#units_form .unitsInput").each(function () {
 	menuTable.after(newMenu);
 }*/
 
+// fill in coordinates?
+$("#inputx,#inputy").focus(function() {
+	$(this).select();
+});
+
+if (server_settings.autoFillCoordinatesAllowed && window.location.search.indexOf("&sanguX=") != -1) {
+	var match = window.location.search.match(/sanguX=(\d+)&sanguY=(\d+)/);
+	$("#inputx").val(match[1]);
+	$("#inputy").val(match[2]);
+}
+
 // Show current selected speed + ability to change active speed
+$(".unit_link img", content_value).each(function() {
+	$(this).attr("title", trans.sp.place.changeSpeedImageTooltips.replace("{originalTitle}", $(this).attr("title")));
+});
+
 var vilHome = getVillageFromCoords(game_data.village.coord);
 var speedCookie = spSpeedCookie();
 $("#units_form a img").click(function () {

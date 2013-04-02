@@ -5,7 +5,8 @@ switch (game_data.market) {
 			tw_version: 8.11,
 			maxSitDays: 60,
 			ajaxAllowed: false,
-			coordinateLinkAllowed: true
+			coordinateLinkAllowed: true,
+			autoFillCoordinatesAllowed: false
 		};
 		break;
 	default:
@@ -13,7 +14,8 @@ switch (game_data.market) {
 			tw_version: 8.11,
 			maxSitDays: 60,
 			ajaxAllowed: true,
-			coordinateLinkAllowed: false
+			coordinateLinkAllowed: false,
+			autoFillCoordinatesAllowed: true
 		};
 		break;
 }

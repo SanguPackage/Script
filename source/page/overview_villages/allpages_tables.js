@@ -1,4 +1,4 @@
-//overviewTable
+//tableHandler.overviewTable
 
 var tableHandler;
 (function (tableHandler) {

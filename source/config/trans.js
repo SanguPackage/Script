@@ -124,7 +124,8 @@
 			distance: "Afstand",
 			backOn: "Terug op",
 			onlyAttack: "1 aanval op {arrivalDateFirst} ({timeLeftFirst})",
-			multipleAttack: "{amount} aanvallen tussen {arrivalDateFirst} ({timeLeftFirst}) en {arrivalDateLast} ({timeLeftLast})"
+			multipleAttack: "{amount} aanvallen tussen {arrivalDateFirst} ({timeLeftFirst}) en {arrivalDateLast} ({timeLeftLast})",
+			changeSpeedImageTooltips: "{originalTitle} - Klik om de traagste eenheid te wijzigen"
 		},
 		jumper: {
 			goToMap: "Ga naar de kaart"
