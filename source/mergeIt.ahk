@@ -2,8 +2,15 @@ inputFile := "start.user.js"
 savePath := "C:\Users\PC\Documents\Dropbox\Personal\!Programming\OperaUserScripts\"
 saveAs := "sangupackage.user.js"
 
+FileEncoding, UTF-8-RAW
 workingDirectory = %A_WorkingDir%
 SetWorkingDir, %A_ScriptDir%
+
+ParseSaveAndBackupFile(inputFile, savePath, saveAs, 1)
+ParseSaveAndBackupFile("release.user.js", "..\site\", saveAs, 0)
+ParseSaveAndBackupFile("..\site\index_toMerge.php", "..\site\", "index.php", 0)
+
+SetWorkingDir, workingDirectory
 
 ParseFile(fileName, indentCount)
 {
@@ -27,11 +34,11 @@ ParseLine(line, indentCount)
 	{
 		; //<!--@@INCLUDE "\importit.txt" INDENT=X //-->
 		toIncludeFileName := RegExReplace(found, "^\s*")
-		StringMid, toIncludeFileName, toIncludeFileName, 19
+		StringMid, toIncludeFileName, toIncludeFileName, 18 ; jump till filename
 		closingQuotePosition := InStr(toIncludeFileName, """")
-		StringMid, newIndent, toIncludeFileName, closingQuotePosition + 9
-		StringMid, newIndent, newIndent, 1, 1
-		StringMid, toIncludeFileName, toIncludeFileName, 1, closingQuotePosition - 1
+		StringMid, newIndent, toIncludeFileName, closingQuotePosition + 9 ; Jump to indent
+		StringMid, newIndent, newIndent, 1, 1 ; Get indent
+		StringMid, toIncludeFileName, toIncludeFileName, 1, closingQuotePosition - 1 ; Get filename
 		
 		If toIncludeFileName
 		{
@@ -43,39 +50,57 @@ ParseLine(line, indentCount)
 			StringReplace, line, line, %found%
 		}
 	}
-	else if indentCount
+	else 
 	{
-		Loop %indentCount%
+		currentDateReplacer := "//<!--@@INCLUDE CURRENTDATE //-->"
+		IfInString, line, %currentDateReplacer%
 		{
-			;line := "    " . line
-			line := A_TAB . line
+			currentDate = 
+			FormatTime, currentDate, , d MMMM yyyy
+			StringReplace, line, line, %currentDateReplacer%, %currentDate%
+		}
+		else if indentCount
+		{
+			Loop %indentCount%
+			{
+				;line := "    " . line
+				line := A_TAB . line
+			}
 		}
 	}
 	
 	return %line%
 }
 
-; Keep backups of merges?
-IfExist, %savePath%%saveAs%
+ParseSaveAndBackupFile(inputFile, savePath, saveFileName, keepBackup)
 {
-	backupCount := 0
-	backupFileName = %savePath%%saveAs%
-	while FileExist(backupFileName)
+	; Keep backups of merges?
+	if keepBackup
 	{
-		backupFileName = backup\%saveAs%%backupCount%
-		backupCount++
+		IfExist, %savePath%%saveFileName%
+		{
+			backupCount := 0
+			backupFileName = %savePath%%saveFileName%
+			while FileExist(backupFileName)
+			{
+				backupFileName = backup\%saveFileName%%backupCount%
+				backupCount++
+			}
+			FileMove, %savePath%%saveFileName%, %backupFileName%
+			
+			if ErrorLevel
+			{
+				MsgBox backup directory does not exist?
+			}
+		}
 	}
-	FileMove, %savePath%%saveAs%, %backupFileName%
-	FileCopy, %inputFile%, %backupFileName%_source
+	else
+	{
+		FileDelete, %savePath%%saveFileName%
+	}
+
+	formattedOutput := ParseFile(inputFile, 0)	
+	FileAppend, %formattedOutput%, %savePath%%saveFileName%
 }
-
-formattedOutput := ParseFile(inputFile, 0)
-;fullFileName = %savePath%%SaveAs%
-;MsgBox, %A_FileEncoding%
-;file := FileOpen, fullFileName, "w"
-FileEncoding, UTF-8
-FileAppend, %formattedOutput%, %savePath%%SaveAs%
-
-SetWorkingDir, workingDirectory
 
 return

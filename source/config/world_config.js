@@ -25,13 +25,13 @@ if (pers.get('worldconfig') !== '') {
 } else {
 	// load new world through tw API
 	if (server_settings.ajaxAllowed) {
-		//<!--@@INCLUDE "\config\world_config_getter.js" INDENT=4 //-->
+		//<!--@@INCLUDE "config\world_config_getter.js" INDENT=4 //-->
 		world_config = world_config_getter();
 		
 	} else {
 		// Not allowed to get data with ajax: need to store the configuration here
 		world_config = (function() {
-			//<!--@@INCLUDE "\config\world_config_de.js" INDENT=5 //-->
+			//<!--@@INCLUDE "config\world_config_de.js" INDENT=5 //-->
 		})();
 	}
 	

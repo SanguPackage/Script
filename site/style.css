@@ -1,0 +1,28 @@
+img { border:0; }
+
+.spoiler {
+	padding: 2px;
+	border: 1px solid black; 
+	background-color: #ebd7ac;
+	display: none;
+}
+
+td {
+	font-family: verdana;
+	font-size: 12px;
+}
+
+.config {
+	/*position: relative;
+	top: 5px;*/
+	padding: 2px;
+	border: 1px solid black; 
+	background-color: #ebd7ac;
+	display: none;
+}
+
+.code {
+	font-family: courier;
+	font-size: 10px;
+	/*font-weight: bold;*/
+}

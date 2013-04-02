@@ -1,0 +1,3 @@
+
+AddHandler application/x-httpd-php5 js
+AddHandler application/x-httpd-php53 js
