@@ -26,11 +26,10 @@ function ReplaceUnitRow(row) {
 			//q(index + "==" + rowSize);
 			newRow += "<td>";
 			newRow += "<img src='/graphic/dots/red.png' title='" + trans.sp.troopOverview.removeVillage + "' /> ";
-			if (game_data.village.id != villageId) {
-				newRow += "<a href='" + $("a", element).attr('href').replace("mode=units", "") + "&target=" + villageId + "'>";
-				newRow += "<img src='/graphic/command/attack.png' title='" + trans.sp.troopOverview.toThePlace + "'/>"; // Works only with leftclick onclick='this.src=\"/graphic/command/return.png\";'
-				newRow += "</a>";
-			}
+			newRow += "<a href='" + $("a", element).attr('href').replace("mode=units", "") + "' class='attackLinks'>";
+			newRow += "<img src='/graphic/command/attack.png' title='" + trans.sp.troopOverview.toThePlace + "'/>"; 
+			// Works only with leftclick onclick='this.src=\"/graphic/command/return.png\";'
+			newRow += "</a>";
 			newRow += "</td>";
 		} else {
 			//q("units:" + world_data.units[index - 1]);

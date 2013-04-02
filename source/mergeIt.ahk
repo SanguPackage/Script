@@ -7,8 +7,8 @@ workingDirectory = %A_WorkingDir%
 SetWorkingDir, %A_ScriptDir%
 
 ParseSaveAndBackupFile(inputFile, savePath, saveAs, 1)
-ParseSaveAndBackupFile("release.user.js", "..\site\", saveAs, 0)
-ParseSaveAndBackupFile("..\site\index_toMerge.php", "..\site\", "index.php", 0)
+;ParseSaveAndBackupFile("release.user.js", "..\site\", saveAs, 0)
+;ParseSaveAndBackupFile("..\site\index_toMerge.php", "..\site\", "index.php", 0)
 
 SetWorkingDir, workingDirectory
 
