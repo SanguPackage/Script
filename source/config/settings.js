@@ -98,7 +98,7 @@ $.extend(user_data, {
 	attackAutoRename: true,
 	
 	confirm: {
-		addExtraOkButton: true,
+		addExtraOkButton: false,
 		autoAttackFocus: true,
 		replaceNightBonus: true,
 		replaceTribeClaim: true,

@@ -1,6 +1,15 @@
+	/* Troepenlijst type=own_home */
+	tekst filter, continent
 
-search: \$\(("|')[^#]
-and replace with content_value at least
+	/*troepenlijst:
+	per dag kunnen dichtklappen! -> per dag sowieso een lijn toevoeegn (met + icon om te openen)
+	en hoeveel per dag X / Y (Z): x = aantal vegen, y is vegen in de nachtbonus, z totaal aantal dorpen
+	dag = met nachtbonus!
+	+ de filters op tekst, continent, min/max afstand/tijdsduur... ik kan het gebruiken :)*/
+
+
+
+
 
     INCOMINGS
     -> onthouden wanneer laatste keer aanvallen bekeken: icon naast aantal incomings?
@@ -11,15 +20,6 @@ and replace with content_value at least
     - extra zoekmogelijkheden (op tekst, zonder tekst, ...)
     - overzichten: aanvallen per speler, aanvallen per dag, aanvallen gegroepeerd per tag (check dat je geen 100 verschillende namen hebt)
     -> sorteren moet beter!!! eerstaankomende bovenaan!
-
-	/* Troepenlijst type=own_home */
-	tekst filter, continent
-
-	/*troepenlijst:
-	per dag kunnen dichtklappen! -> per dag sowieso een lijn toevoeegn (met + icon om te openen)
-	en hoeveel per dag X / Y (Z): x = aantal vegen, y is vegen in de nachtbonus, z totaal aantal dorpen
-	dag = met nachtbonus!
-	+ de filters op tekst, continent, min/max afstand/tijdsduur... ik kan het gebruiken :)*/
 	
     SMEDERIJ:
     - zelf kunnen instellen welke groep bij welke levels hoort

@@ -1,13 +1,14 @@
 // Auto rename attacks
 if (user_data.attackAutoRename) {
 	// Less then ideal solution:
-	// Does work properly when sending many attacks (ie snobtrain)
+	// Does not work properly when sending many attacks (ie snobtrain)
 	// In confirm.js they are saved as a cookie (with expiration)
 	var cooks = document.cookie.split("; ");
 	var x;
 	for (x = 0; x < cooks.length; x++) {
 		var cookie = cooks[x];
-		if (cookie.indexOf("attRen") == 0) {
+		//q(x + " -> " + cookie);
+		if (cookie.indexOf(pers.getWorldKey("attRen")) == 0) {
 			var val = cookie.substr(cookie.indexOf("=") + 1);
 			var thisVil = val.substr(0, val.indexOf('_'));
 			val = val.substr(val.indexOf('_') + 1);
@@ -51,8 +52,10 @@ $("#inputx,#inputy").focus(function() {
 
 if (server_settings.autoFillCoordinatesAllowed && window.location.search.indexOf("&sanguX=") != -1) {
 	var match = window.location.search.match(/sanguX=(\d+)&sanguY=(\d+)/);
-	$("#inputx").val(match[1]);
-	$("#inputy").val(match[2]);
+	if (match[1] != 0) {
+		$("#inputx").val(match[1]);
+		$("#inputy").val(match[2]);
+	}
 }
 
 // Show current selected speed + ability to change active speed

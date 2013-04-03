@@ -1,5 +1,3 @@
-overviewTable = $("#units_table");
-
 var villageCounter = 0;
 var rowSize = world_data.units.length + 1;
 if (world_config.hasMilitia) {
@@ -58,12 +56,12 @@ function ReplaceUnitRow(row) {
 			mod = !villageType.isDef ? "row_a" : "row_b";
 		}
 
-		finalRow += "<tbody>";
+		//finalRow += "<tbody>";
 		finalRow += "<tr arrival='0' class='row_marker " + mod + (game_data.village.id == villageId ? " selected" : "") + "'>";
 		finalRow += "<td>" + $("td:first", row).html() + "</td>";
 		finalRow += newRow;
 		finalRow += "<td></td></tr>";
-		finalRow += "</tbody>";
+		//finalRow += "</tbody>";
 
 		villageCounter++;
 		
@@ -275,7 +273,7 @@ $("#filterAxe").click(function () {
 		else
 			villageCounter++;
 	});
-	goners.parent().hide();
+	goners.hide();
 	pageSize.val(villageCounter);
 });
 
@@ -339,7 +337,7 @@ $("#filterPop").click(function () {
 			else villageCounter++;
 		});
 	});
-	goners.parent().hide();
+	goners.hide();
 	pageSize.val(villageCounter);
 });
 
@@ -355,7 +353,7 @@ $("#snobFilter").click(function () {
 		} else
 			villageCounter++;
 	});
-	goners.parent().hide();
+	goners.hide();
 	pageSize.val(villageCounter);
 });
 
@@ -365,6 +363,8 @@ $("#attackFilter").click(function () {
 	var villageCounter = 0;
 	var goners = $();
 	$("#units_table").find("tr:visible:gt(1)").each(function () {
+		q("'" + $(this).html() + "'");
+		q("---------------------------------------------------");
 		if ($('td:first:not(:has(img[title=\'' + trans.tw.command.attack + '\']))', this).size() != 0) {
 			goners = goners.add($(this));
 			$("input:first", $(this)).val("");
@@ -372,6 +372,6 @@ $("#attackFilter").click(function () {
 			villageCounter++;
 		}
 	});
-	goners.parent().hide();
+	goners.hide();
 	pageSize.val(villageCounter);
 });

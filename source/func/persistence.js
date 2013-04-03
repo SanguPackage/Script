@@ -81,6 +81,7 @@ var pers;
 		setGlobal(getWorldKey(key), value);
 	}
 	
+	pers.getWorldKey = getWorldKey;
 	pers.set = set;
 	pers.setCookie = setCookie;
 	pers.setGlobal = setGlobal;
