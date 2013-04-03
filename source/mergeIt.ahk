@@ -10,6 +10,10 @@ ParseSaveAndBackupFile(inputFile, savePath, saveAs, 1)
 ParseSaveAndBackupFile("release.user.js", "..\site\", saveAs, 0)
 ParseSaveAndBackupFile("..\site\index_toMerge.php", "..\site\", "index.php", 0)
 
+; Autocopy to Firefox greasemonkey directory
+; I *really* *really* should've used something else but Autohotkey for this
+FileCopy, %savePath%%saveAs%, C:\Users\PC\AppData\Roaming\Mozilla\Firefox\Profiles\gg8w0cv7.default\gm_scripts\Sangu_Package\sangupackage.user.js, 1
+
 SetWorkingDir, workingDirectory
 
 ParseFile(fileName, indentCount)

@@ -7,4 +7,5 @@
 // @include         http://*.tribalwars.nl/game.php?*
 // @include         http://*.die-staemme.de/game.php?*
 // @version         //<!--@@INCLUDE "version.txt" INDENT=0 //-->
+// @grant           none
 // ==/UserScript==
