@@ -1,4 +1,6 @@
 <?php
+header('Content-type: text/html; charset=UTF-8') ;
+
 $currentVersion = '//<!--@@INCLUDE "version.txt" INDENT=0 //-->';
 $lastReleaseDate = "//<!--@@INCLUDE CURRENTDATE //-->";
 $isLocal = $_SERVER["REMOTE_ADDR"] == "127.0.0.1";

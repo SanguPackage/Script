@@ -6,9 +6,9 @@ $.extend(user_data, {
 		special: "aqua",
 		neutral: "#DED3B9"
 	},
-	gsStorageShow: true, /* All pages: true/false: color the resources based on how much the storage place is filled */
+	gsStorageShow: true, /* All pages: true/false: color the resources based on how much the storage is filled */
 	gsStorageBackground: ['Greenyellow', 'Chartreuse', 'Limegreen', 'Mediumseagreen', 'Forestgreen', 'Orange', 'Coral', 'Tomato', 'Orangered', 'Red'], /* All pages: Colors used for the previous setting. First is least filled, last is most filled storage place */
-	overviewBlinkResources: true, /* All pages: Blink the resources if the storage place is full */
+	overviewBlinkResources: true, /* All pages: Blink the resources if the storage is full */
 	editAttackLink: true, /* All pages: Edit the incoming attacks/support links: add "show all groups" and "show all pages" to the original links */
 	colorSupport: 'rgb(255, 245, 218)', /* Main village overview: give incoming support a different background color */
 	villageName: [], /* Add village names to the village headquarters to quickly edit the village name to a preset name. Set to [] or null to disable, for 1 village name use ['MyVillageName'] or for more names: ['name1', 'name2', 'name3'] */
@@ -107,6 +107,9 @@ $.extend(user_data, {
 		addCatapultImages: true
 	},
 
+	place: {
+		
+	},
 	scoutVillage: 100,
 	scoutPlaceLinks: [5, 100, 500],
 	fakePlaceLink: true,
