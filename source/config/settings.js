@@ -83,7 +83,6 @@ $.extend(user_data, {
 		bbcodeMinimumDiff: 50000
 	},
 
-	favs: [],
 	jumper: {
 		enabled: true,
 		autoShowInputbox: false
@@ -97,7 +96,6 @@ $.extend(user_data, {
 	scriptBarEditBoxRows: 12,
 
 	attackAutoRename: true,
-	rallyPointAttackBoxWidth: 600,
 	
 	confirm: {
 		addExtraOkButton: true,

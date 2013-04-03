@@ -4,6 +4,7 @@
 
 // removed settings & trans
 /*
+user_data.favs: [],
 user_data.jumper {
 		left: 880,
 		top: 196,

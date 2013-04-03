@@ -1,12 +1,3 @@
-//Wider table
-if (user_data.rallyPointAttackBoxWidth != null && user_data.rallyPointAttackBoxWidth > 0) {
-	var commandsTable = $("h3:contains('" + trans.tw.place.troopMovements + "')");
-	if (commandsTable.size() > 0) {
-		commandsTable = commandsTable.next();
-		$("th[width='250']", commandsTable).attr("width", user_data.rallyPointAttackBoxWidth);
-	}
-}
-
 // Auto rename attacks
 if (user_data.attackAutoRename) {
 	// Less then ideal solution:
