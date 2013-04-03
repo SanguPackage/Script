@@ -108,19 +108,18 @@ $.extend(user_data, {
 	},
 
 	place: {
-		
-	},
-	scoutVillage: 100,
-	scoutPlaceLinks: [5, 100, 500],
-	fakePlaceLink: true,
-	fakePlaceExcludeTroops: [],
-	noblePlaceLink: true,
-	noblePlaceLinksForceShow: true,
-	noblePlaceLinkDivideAddRam: false,
-	nobleSupport: [{ Population: 200, Unit: 'light', VillageType: 'off' }, { Population: 600, Unit: 'heavy', VillageType: 'def'}],
-	attackLinkNames: { fake: 'Fake', scout: 'Scout', nobleMax: 'NobleFirst', nobleMin: 'NobleMin', nobleDivide: 'NobleDivide' },
-
-	customPlaceLinks:
+		attackLinks: {
+			scoutVillage: 100,
+			scoutPlaceLinks: [5, 100, 500],
+			fakePlaceLink: true,
+			fakePlaceExcludeTroops: [],
+			noblePlaceLink: true,
+			noblePlaceLinksForceShow: true,
+			noblePlaceLinkDivideAddRam: false,
+			nobleSupport: [{ Population: 200, Unit: 'light', VillageType: 'off' }, { Population: 600, Unit: 'heavy', VillageType: 'def'}]
+		},
+		alternativeTargetPosition: false,
+		customPlaceLinks:
 		[
 			// use minus zero numbers to leave so many units at home
 			{ active: true, type: 'def', name: 'AllDef', spear: 25000, heavy: 5000, archer: 25000, sword: 25000, sendAlong: 0 },
@@ -135,9 +134,9 @@ $.extend(user_data, {
 			{ active: false, type: 'def', name: 'HelftZw', spear: 5000, sword: 5000, sendAlong: 500 },
 			{ active: false, type: 'def', name: '3deZw', spear: 3300, sword: 3300, sendAlong: 0 },
 			{ active: false, type: 'def', name: '4deZw', spear: 2500, sword: 2500, sendAlong: 0 }
-		],
-	alternativeTargetPosition: false,
-
+		]
+	},
+	
 	restack: {
 		to: 72000,
 		requiredDifference: 1000,

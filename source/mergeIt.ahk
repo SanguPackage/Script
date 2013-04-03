@@ -83,14 +83,14 @@ ParseSaveAndBackupFile(inputFile, savePath, saveFileName, keepBackup)
 			backupFileName = %savePath%%saveFileName%
 			while FileExist(backupFileName)
 			{
-				backupFileName = backup\%saveFileName%%backupCount%
+				backupFileName = ..\backup\%saveFileName%%backupCount%
 				backupCount++
 			}
 			FileMove, %savePath%%saveFileName%, %backupFileName%
 			
 			if ErrorLevel
 			{
-				MsgBox backup directory does not exist?
+				MsgBox ..\backup directory does not exist?
 			}
 		}
 	}
