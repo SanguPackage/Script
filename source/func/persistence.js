@@ -49,6 +49,16 @@ var pers;
 		}
 	}
 	
+	function getSession(key) {
+		key = getWorldKey(key);
+		if (modernizr.localstorage) {
+			var value = sessionStorage[key];
+			return typeof value === 'undefined' ? '' : value;
+		} else {
+			return getCookie(key);
+		}
+	}
+	
 	function get(key) {
 		return getGlobal(getWorldKey(key));
 	}
@@ -77,15 +87,34 @@ var pers;
 		}
 	}
 	
+	function setSession(key, value) {
+		key = getWorldKey(key);
+		if (modernizr.localstorage) {
+			sessionStorage[key] = value;
+		} else {
+			setCookie(key, value);
+		}
+	}
+	
+	function removeSessionItem(key) {
+		if (modernizr.localstorage) {
+			sessionStorage.removeItem(key);
+		}
+		// fuck cookies
+	}
+	
 	function set(key, value) {
 		setGlobal(getWorldKey(key), value);
 	}
 	
+	pers.removeSessionItem = removeSessionItem;
 	pers.getWorldKey = getWorldKey;
 	pers.set = set;
 	pers.setCookie = setCookie;
 	pers.setGlobal = setGlobal;
+	pers.setSession = setSession;
 	pers.get = get;
 	pers.getCookie = getCookie;
 	pers.getGlobal = getGlobal;
+	pers.getSession = getSession;
 })(pers || (pers = {}));

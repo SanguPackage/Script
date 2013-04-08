@@ -2,24 +2,24 @@
 if (user_data.attackAutoRename) {
 	// Less then ideal solution:
 	// Does not work properly when sending many attacks (ie snobtrain)
-	// In confirm.js they are saved as a cookie (with expiration)
-	var cooks = document.cookie.split("; ");
-	var x;
-	for (x = 0; x < cooks.length; x++) {
-		var cookie = cooks[x];
-		//q(x + " -> " + cookie);
-		if (cookie.indexOf(pers.getWorldKey("attRen")) == 0) {
-			var val = cookie.substr(cookie.indexOf("=") + 1);
-			var thisVil = val.substr(0, val.indexOf('_'));
-			val = val.substr(val.indexOf('_') + 1);
-			var id = val.substr(0, val.indexOf("\\"));
-			var msg = val.substr(val.indexOf("\\") + 1);
-
-			if (id.length > 0 && thisVil == game_data.village.id) {
-				var rename = $("input[value='" + id + "']");
-				if (rename.size() > 0) {
-					pers.setCookie(cookie.substr(0, cookie.indexOf("=")), "", 0);
-					rename.val(msg).next().click();
+	// In confirm.js the cookies are saved
+	
+	var hasAttackRenamingCookieNeedle = pers.getWorldKey('attRen_' + game_data.village.id + '_');
+	for (var i = 0; i  <  sessionStorage.length; i++) {
+		var key = sessionStorage.key(i);
+		if (key.indexOf(hasAttackRenamingCookieNeedle) == 0) {
+			var twInitialCommandName = key.substr(hasAttackRenamingCookieNeedle.length);
+			//q("found:" + hasAttackRenamingCookieNeedle + " -> " + twInitialCommandName);
+			
+			// ' is an invalid village name character so we don't need to escape
+			var commandRenameInputBox = $("input[value='" + twInitialCommandName + "']", content_value); 
+			if (commandRenameInputBox.length > 0) {
+				var sanguCommandName = sessionStorage.getItem(key);
+				commandRenameInputBox.val(sanguCommandName).next().click();
+				pers.removeSessionItem(key);
+				
+				if (commandRenameInputBox.closest("table").find("tr").length > 2) {
+					commandRenameInputBox.closest("td").addClass("selected");
 				}
 			}
 		}

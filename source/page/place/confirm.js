@@ -108,11 +108,31 @@ if (dodgeCookie) {
 
 if (user_data.attackAutoRename) {
 	// rename attack command
+	// cookie reading code in place.js
 	var villageCoord = $("input[name='x']", attackFrame).val() + '|' + $("input[name='y']", attackFrame).val();
 	var sent = buildAttackString(villageCoord, unitsSent, player, !isAttack);
 	document.title = game_data.village.coord + " -> " + sent;
-	sent = (isAttack ? trans.tw.command.attackOn : trans.tw.command.supportFor) + targetVillage + "\\" + sent;
-
-	var rand = Math.floor(Math.random() * 1000);
-	pers.setCookie("attRen" + rand, game_data.village.id + '_' + sent, 10);
+	
+	var twInitialCommandName = (isAttack ? trans.tw.command.attackOn : trans.tw.command.supportFor) + targetVillage;
+	pers.setSession("attRen_" + game_data.village.id + '_' + twInitialCommandName, sent);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

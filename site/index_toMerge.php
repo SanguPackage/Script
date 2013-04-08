@@ -55,7 +55,7 @@ if (!$isLocal) {
 
 <h1>Installatie</h1>
 Het script downloaden: 
-<a href="<?php echo $fileName; ?>" onclick="var that=this;_gaq.push(['_trackEvent','UserScripts','LinkClicked','<?php echo $currentVersion; ?>']);setTimeout(function(){location.href=that.href;},200);return false;"><?php echo $fileName; ?></a>
+<a href="<?php echo $fileName; ?>" onclick="var that=this;_gaq.push(['_trackEvent','Downloads','LinkClicked','<?php echo $currentVersion; ?>']);setTimeout(function(){location.href=that.href;},200);return false;"><?php echo $fileName; ?></a>
 <br>Laatste update: <?php echo $lastReleaseDate; ?> (<?php echo $currentVersion; ?>)
 
 <br><br>

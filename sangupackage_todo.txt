@@ -1,3 +1,14 @@
+
+Versie 3.5.9
+
+Bugfixes:
+- Rood bolletje om rij troepen te verwijderen werkt weer
+- Bugfix session timeout bij het versturen van veel aanvallen
+
+
+
+
+
 	/* Troepenlijst type=own_home */
 	tekst filter, continent
 
@@ -46,21 +57,12 @@
     -> extra icons: doeldorp aanvallen, doeldorp verdedigen
     -> tooltip met looptijden van huidig dorp?
 
-    JUMPER:
-    -> always open mode
-    -> opdelen in groepen
-    -> toevoegen, deleten, van plaats/groep wisselen
-    -> extra icons: centreren, overzicht, 
-    -> checken of het dorp van jezelf is?
-    -> onder aanval icon met eerste aanval toevoegen: 15 aanvallen, 13 os
-    -> anders eigen aanvallen/os op het dorp tonen
-    -> link naar de verzamelplaats?
-
 	
 	vriendenlijst die voortdurend openstaat:
 	-> erop klikken om andere dingen te doen
 	-> mededeling sturen: ";" + naam toevoegen
 	-> bericht doorsturen
+	-> om de 5 minuten checken
 	etc
     
 
