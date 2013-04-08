@@ -241,7 +241,7 @@ $("#units_table").mouseup(function (e) {
 			//	q("Right Button");
 
 			pageSize.val(parseInt(pageSize.val(), 10) - 1);
-			$(e.target).parent().parent().parent().hide();
+			$(e.target).parent().parent().hide();
 			//img.css("border", (img.css("border-width").substr(0, 1) * 1 + 1) + "px red solid");
 		}
 	}
