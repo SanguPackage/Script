@@ -1,5 +1,7 @@
 Bugfixes
 - Commando: verwijderen van 'verwachte terugkeer' - wordt nu door TW gedaan
+- Alles werkt weer zonder PA
+
 
 	vriendenlijst die voortdurend openstaat:
 	-> erop klikken om andere dingen te doen

@@ -3,7 +3,7 @@ var infoTable = tables.first();
 var profile = user_data.profile;
 
 // extra links on the village overview page
-if (location.href.indexOf('screen=info_village') > -1 && user_data.villageInfo.active) {
+if (game_data.player.premium && location.href.indexOf('screen=info_village') > -1 && user_data.villageInfo.active) {
 	var id = infoTable.find("td:eq(1)").text();
 	id = id.substr(id.lastIndexOf("=") + 1);
 	var link = getUrlString("&screen=overview_villages&type=own_home&mode=units&page=-1&targetvillage=" + id);
@@ -93,12 +93,7 @@ if (user_data.profile.show && (location.href.indexOf('screen=info_village') == -
 			infoTable = tables.eq(1);
 		}
 		id = infoTable.find("a");
-		if (id.size() == 4) {
-			id = id.eq(2).attr("href");
-		} else {
-			id = id.eq(1).attr("href");
-		}
-		id = id.substr(id.lastIndexOf("/") + 1);
+		id = id.last().attr("href").match(/id=(\d+)&/)[1];
 
 		var link = "http://" + game_data.market + ".twstats.com/" + game_data.world + "/index.php?page=map";
 		link += "&tribe_0_id=" + id + "&tribe_0_colour=" + mapProfile.tribeColor;

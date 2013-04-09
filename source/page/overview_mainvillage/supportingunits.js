@@ -87,13 +87,15 @@ if (user_data.ajaxSeperateSupport && totalFarm > 0) {
 	// total stack
 	var isClassicOverview = $("a:contains('" + trans.tw.main.toGraphicOverview + "')", content_value).size() > 0;
 	if (isClassicOverview) {
-		var cell = $("#order_level_farm").parent().next();
+		var cell = $("#order_level_farm").parent();
+		if (game_data.player.premium) cell = cell.next();
 		var percentage = world_config.farmLimit == 0 ? "" : cell.children().html();
 		stackDisplay(
 			totalFarm, {
 				showFarmLimit: true,
-				percentage: percentage.substr(0, percentage.indexOf('%') + 1),
-				cell: cell
+				percentage: percentage ? percentage.substr(0, percentage.indexOf('%') + 1) : "",
+				cell: cell,
+				appendToCell: !game_data.player.premium
 			});
 
 	} else {

@@ -310,7 +310,11 @@ function stackDisplay(totalFarm, stackOptions) {
 			cssColor: "style='background-color:" + bgColor + "'"
 		};
 	} else {
-		stackOptions.cell.html(stackDesc);
+		if (stackOptions.appendToCell) {
+			stackOptions.cell.append(" &raquo; " + stackDesc);
+		} else {
+			stackOptions.cell.html(stackDesc);
+		}
 		if (!stackOptions.skipColoring) {
 			stackOptions.cell.css("background-color", bgColor);
 		}
