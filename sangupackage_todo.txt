@@ -1,11 +1,12 @@
+Bugfixes
+- Commando: verwijderen van 'verwachte terugkeer' - wordt nu door TW gedaan
 
-Versie 3.5.9
-
-Bugfixes:
-- Rood bolletje om rij troepen te verwijderen werkt weer
-- Bugfix session timeout bij het versturen van veel aanvallen
-
-
+	vriendenlijst die voortdurend openstaat:
+	-> erop klikken om andere dingen te doen
+	-> mededeling sturen: ";" + naam toevoegen
+	-> bericht doorsturen
+	-> om de 5 minuten checken
+	etc
 
 
 
@@ -58,12 +59,7 @@ Bugfixes:
     -> tooltip met looptijden van huidig dorp?
 
 	
-	vriendenlijst die voortdurend openstaat:
-	-> erop klikken om andere dingen te doen
-	-> mededeling sturen: ";" + naam toevoegen
-	-> bericht doorsturen
-	-> om de 5 minuten checken
-	etc
+
     
 
 Sangu Package: Krijg meer gedaan in minder tijd!

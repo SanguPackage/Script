@@ -132,7 +132,6 @@
 			goToMap: "Ga naar de kaart"
 		},
 		command: {
-			homeTime: "Thuiskomst",
 			returnOn: "Terug op:",
 			arrival: "Aankomst",
 			dodgeNotFarEnough: "De dodge is niet ver genoeg!",

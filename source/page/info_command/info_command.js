@@ -150,7 +150,6 @@ if ($("#running_times").size() > 0) {
 		&& type.indexOf(trans.tw.command.abortedOperation) == -1) {
 		
 		var duration = getTimeFromTW(infoTable.find("tr:eq(" + offset + ") td:last").text());
-		var arrivalTime = getDateFromTW(arrivalCell.text());
 		var imgType = !isSupport ? "attack" : "support";
 		arrivalCell.prepend("<img src='graphic/command/" + imgType + ".png' title='" + trans.sp.command.arrival + "'>&nbsp; " + trans.tw.all.dateOn + " ").css("font-weight", "bold");
 		var stillToRun = getTimeFromTW(infoTable.find("tr:eq(" + (offset + 2) + ") td:last").text());
@@ -173,8 +172,8 @@ if ($("#running_times").size() > 0) {
 		}
 
 		if (type.indexOf(trans.tw.command.attack) == 0) {
-			arrivalTime.setTime(arrivalTime.valueOf() + duration.totalSecs * 1000);
-			cancelCell.after("<tr><td colspan=2>" + trans.sp.command.homeTime + ":</td><td><img src='graphic/command/return.png' title='" + trans.sp.command.homeTime + "'>&nbsp; <b>" + twDateFormat(arrivalTime, true) + "</b></td></tr>");
+			var returnTimeCell = cancelCell.find("td:last");
+			returnTimeCell.html("<img src='graphic/command/return.png' title='" + cancelCell.find("td:first").text() + "'>&nbsp; <b>" + returnTimeCell.text() + "</b>");
 		}
 	} else {
 		var imgType = type.indexOf(trans.tw.command.abortedOperation) == 0 ? imgType = "cancel" : "return";
