@@ -51,7 +51,7 @@ function sangu_ready() {
         }
 		// REPORT PUBLISH
         else if (location.href.indexOf('screen=report') > -1 && location.href.indexOf('mode=publish') > -1) {
-            //<!--@@INCLUDE "page\report.js" //-->
+            //<!--@@INCLUDE "page\report.js" INDENT=3 //-->
         }
 		// MAIN
         else if (location.href.indexOf('screen=main') > -1) {
