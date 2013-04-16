@@ -25,6 +25,7 @@ $.extend(user_data, {
 	},
 
 	command: { /* features for the own troops overview page */
+		changeTroopsOverviewLink: true, /* Change the link to the troops overview */
 		sumRow: true, /* Add a totalrow between different villages */
 
 		filterMinPopulation: 18000, /* Default number filled in to filter on village stack */

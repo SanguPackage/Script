@@ -110,7 +110,7 @@ function sangu_ready() {
 		// ALL OVERVIEW PAGES
         else if (location.href.indexOf('screen=overview_villages') > -1) {
 			var overviewTable;
-            //<!--@@INCLUDE "page\overview_villages\allpages_groups.js" INDENT=3 //-->
+            //<!--@@INCLUDE "page\overview_villages\allpages.js" INDENT=3 //-->
 			//<!--@@INCLUDE "page\overview_villages\allpages_tables.js" INDENT=3 //-->
 
 			// PRODUCTION OVERVIEW
