@@ -249,9 +249,9 @@ $("#units_table").mouseup(function (e) {
 });
 
 $(".attackLinks", tableHandler.overviewTable).bind("mousedown", function(e) {
-	if (true || e.which == 2) {
+	/*if (true || e.which == 2) {
 		alert("yaye");
-	}
+	}*/
 });
 
 // change by default selected unit the filter will be active for
