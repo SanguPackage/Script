@@ -41,6 +41,10 @@ $.extend(user_data, {
 			requiredTroopAmount: 100
 		}
 	},
+	
+	overviews: {
+		addFancyImagesToOverviewLinks: true
+	},
 
 	displayDays: false, /* true: display (walking)times in days when > 24 hours. false: always displays in hours */
 	incoming: { /* Features for the built in TW tagger */ 
