@@ -23,9 +23,10 @@ function ReplaceUnitRow(row) {
 		else if (index == rowSize) {
 			//q(index + "==" + rowSize);
 			newRow += "<td>";
-			newRow += "<img src='/graphic/dots/red.png' title='" + trans.sp.troopOverview.removeVillage + "' /> ";
+			newRow += "<img src='/graphic/dots/red.png' title='" + trans.sp.troopOverview.removeVillage + "' style='margin-bottom: 2px' /> ";
+			//newRow += "<img src='http://cdn2.tribalwars.net/graphic/delete_small.png' style='margin-bottom: 3px; position: relative' title='" + trans.sp.troopOverview.removeVillage + "' /> ";
 			newRow += "<a href='" + $("a", element).attr('href').replace("mode=units", "") + "&sanguX=0&sanguY=0' class='attackLinks'>";
-			newRow += "<img src='/graphic/command/attack.png' title='" + trans.sp.troopOverview.toThePlace + "'/>"; 
+			newRow += "<img src='/graphic/command/attack.png' title='" + trans.sp.troopOverview.toThePlace + "' style='margin-bottom: 1px' />"; 
 			// Works only with leftclick onclick='this.src=\"/graphic/command/return.png\";'
 			newRow += "</a>";
 			newRow += "</td>";
@@ -244,6 +245,12 @@ $("#units_table").mouseup(function (e) {
 			$(e.target).parent().parent().hide();
 			//img.css("border", (img.css("border-width").substr(0, 1) * 1 + 1) + "px red solid");
 		}
+	}
+});
+
+$(".attackLinks", tableHandler.overviewTable).bind("mousedown", function(e) {
+	if (true || e.which == 2) {
+		alert("yaye");
 	}
 });
 
