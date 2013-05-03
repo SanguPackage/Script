@@ -128,7 +128,52 @@ if ($("#running_times").size() > 0) {
 	if (user_data.proStyle && user_data.incoming.villageBoxSize != null && user_data.incoming.villageBoxSize != false) {
 		$("#content_value table:first").css("width", user_data.incoming.villageBoxSize);
 	}
-		
+	
+					if(server_settings.ajaxAllowed)	{
+					
+					ajax("overview", function(overviewtext)
+					{
+						var idgetallenlijstinc = [];
+						var index = 0;
+						var links = $(overviewtext).find("#show_incoming_units").find("table").find("td:first-child").find("a:first-child").find("span");
+						//^enkel 'find codes, dus alles wegselecteren wat onnodig is. 
+						
+						links.each(function(){
+							var idgetal = $(this).attr('id').match(/\d+/);
+							idgetallenlijstinc[index]=idgetal[0];
+							index++;
+							$.trim(idgetallenlijstinc[index]);
+						});
+						
+						iddezeincoming= location.href.match(/id=(\d+)/);// deze incoming ophalen
+						var iddezeinctrim = $.trim(iddezeincoming[1]); //eerste callback: Datgeen tussen haakjes dus. En gelijk maar trimmen, voor het geval dat.
+						var zoveelste=inArrayfunc(idgetallenlijstinc,iddezeincomingtrim);
+						var lengte = idgetallenlijstinc.length;
+						var lengtemineen = lengte -1;
+						if (zoveelste != lengtemineen) {
+						var volgendbevelid = idgetallenlijstinc[(zoveelste +1)];}
+						if (zoveelste != 0) {
+						var vorigbevelid = idgetallenlijstinc[(zoveelste - 1)];
+						}
+						villageid = location.href.match(/village=(\d+)/);
+						//alert(villageid[1]);
+						if (zoveelste != 0) {
+							$("#content_value").find("h2").after('<table><tr><td id="vorigbevel" style="width:83%"><a href="/game.php?village=' + villageid + '&id=' + vorigbevelid + '&screen=info_command"> vorige incoming </a></td> </tr> </table>');
+						}
+						else {
+						$("#content_value").find("h2").after('<table><tr><td id="vorigbevel" style="width:83%"><b> XX</b></td> </tr> </table>');
+						}
+						if (zoveelste != lengtemineen){
+						$("#vorigbevel").after('<td id="volgendbevel"><a href="/game.php?village=' + villageid + '&id=' + volgendbevelid + '&screen=info_command"> volgende incoming </a></td>');
+						}
+						else {
+						$("#vorigbevel").after('<td id="volgendbevel"><b>XX</b></td>');
+						}
+						
+						//alert("Hoi");
+					}, {});
+				}
+	
 } else {
 	// Own attack/support/return ---------------------------------------------------------------------------------- Own attack/support/return
 	var table = $("#content_value");
@@ -210,6 +255,51 @@ if ($("#running_times").size() > 0) {
 		button.click();
 	}
 
+					if(server_settings.ajaxAllowed)	{
+					
+					ajax("overview", function(overviewtext)
+					{
+						var idgetallenlijst = [];
+						var index = 0;
+						var links = $(overviewtext).find("#show_outgoing_units").find("table").find("td:first-child").find("a:first-child").find("span");
+						//^enkel 'find codes, dus alles wegselecteren wat onnodig is. 
+						
+						links.each(function(){
+							var idgetal = $(this).attr('id').match(/\d+/);
+							idgetallenlijst[index]=idgetal[0];
+							index++;
+							$.trim(idgetallenlijst[index]);
+						});
+						
+						iddezeaanval= location.href.match(/id=(\d+)/);// deze aanval ophalen
+						var iddezeaanvaltrim = $.trim(iddezeaanval[1]); //eerste callback: Datgeen tussen haakjes dus. En gelijk maar trimmen, voor het geval dat.
+						var zoveelste=inArrayfunc(idgetallenlijst,iddezeaanvaltrim);
+						var lengte = idgetallenlijst.length;
+						var lengtemineen = lengte -1;
+						if (zoveelste != lengtemineen) {
+						var volgendbevelid = idgetallenlijst[(zoveelste +1)];}
+						if (zoveelste != 0) {
+						var vorigbevelid = idgetallenlijst[(zoveelste - 1)];
+						}
+						villageid = location.href.match(/village=(\d+)/);
+						//alert(villageid[1]);
+						if (zoveelste != 0) {
+							$("#content_value").find("h2").after('<table><tr><td id="vorigbevel" style="width:83%"><a href="/game.php?village=' + villageid + '&id=' + vorigbevelid + '&type=own&screen=info_command"> vorig bevel </a></td> </tr> </table>');
+						}
+						else
+						{
+						$("#content_value").find("h2").after('<table><tr><td id="vorigbevel" style="width:83%"><b> XX</b></td> </tr> </table>');
+						}
+						if (zoveelste != lengtemineen){
+						$("#vorigbevel").after('<td id="volgendbevel" ><a href="/game.php?village=' + villageid + '&id=' + volgendbevelid + '&type=own&screen=info_command"> volgend bevel </a></td>');
+						}
+						else {
+						$("#vorigbevel").after('<td id="volgendbevel"><b>XX</b></td>');
+						}
+						
+						//alert("Hoi");
+					}, {});
+				}
 	// When sending os, calculate how much population in total is sent
 	if (isSupport) {
 		var totalPop = 0;
