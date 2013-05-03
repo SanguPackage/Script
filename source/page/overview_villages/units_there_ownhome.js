@@ -243,15 +243,15 @@ $("#units_table").mouseup(function (e) {
 
 			pageSize.val(parseInt(pageSize.val(), 10) - 1);
 			$(e.target).parent().parent().hide();
-			//img.css("border", (img.css("border-width").substr(0, 1) * 1 + 1) + "px red solid");
 		}
 	}
 });
 
 $(".attackLinks", tableHandler.overviewTable).bind("mousedown", function(e) {
-	/*if (true || e.which == 2) {
-		alert("yaye");
-	}*/
+	if (e.which == 2) {
+		var img = $(e.target).parent().parent();
+		img.css("border", (img.css("border-width").substr(0, 1) * 1 + 1) + "px red solid");
+	}
 });
 
 // change by default selected unit the filter will be active for

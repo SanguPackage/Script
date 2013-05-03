@@ -76,7 +76,7 @@ function sangu_ready() {
 			// Wars don't really work anymore after changes by Innogames
 			// To get the same result, many ajax calls would now be needed
 			// Remove space between // and <!-- to include the code again
-            // <!-- @@INCLUDE "page\wars.js" INDENT=3 //-->
+            // @@INCLUDE "page\wars.js" INDENT=3 //-->
         }
 		// MARKET
         else if (location.href.indexOf('screen=market') > -1) {

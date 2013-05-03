@@ -126,7 +126,7 @@ if (user_data.overviews.addFancyImagesToOverviewLinks) {
 				break;
 		}
 		if (imageToAdd !== "") {
-			overviewLink.prepend("<img src='http://cdn2.tribalwars.net/"+imageToAdd+"' title='"+overviewLink.text()+"' /> &nbsp;");
+			overviewLink.prepend("<img src='http://cdn2.tribalwars.net/"+imageToAdd+"' title='"+overviewLink.text()+"' />&nbsp;&nbsp;");
 		}
 		
 		// Add hover highlight on all overview links
