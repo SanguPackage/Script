@@ -110,7 +110,6 @@ function sangu_ready() {
 		// ALL OVERVIEW PAGES
         else if (location.href.indexOf('screen=overview_villages') > -1) {
 			var overviewTable;
-            //<!--@@INCLUDE "page\overview_villages\allpages.js" INDENT=3 //-->
 			//<!--@@INCLUDE "page\overview_villages\allpages_tables.js" INDENT=3 //-->
 
 			// PRODUCTION OVERVIEW
@@ -146,6 +145,8 @@ function sangu_ready() {
             else if (location.href.indexOf('mode=incomings') > -1) {
                 //<!--@@INCLUDE "page\overview_villages\incomings.js" INDENT=4 //-->
             }
+			
+			//<!--@@INCLUDE "page\overview_villages\allpages.js" INDENT=3 //-->
         }
 
 

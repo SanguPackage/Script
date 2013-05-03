@@ -38,12 +38,75 @@ if (user_data.overviews.addFancyImagesToOverviewLinks) {
 				imageToAdd = "graphic/buildings/market.png";
 				break;
 			case 3:
+				if (overviewLink.parent().hasClass("selected")) {
+					$("#content_value table.modemenu:last a").each(function(index) {
+						imageToAdd = "";
+						switch (index) {
+							case 1:
+								imageToAdd = "graphic/buildings/place.png";
+								break;
+							case 2:
+								imageToAdd = "graphic/pfeil.png";
+								break;
+							case 5:
+								imageToAdd = "graphic/command/support.png";
+								break;
+							case 6:
+								imageToAdd = "graphic/rechts.png";
+								break;
+						}
+						
+						if (imageToAdd !== "") {
+							$(this).prepend("<img src='http://cdn2.tribalwars.net/"+imageToAdd+"' title='"+overviewLink.text() + " &gt; " + $(this).text()+"' /> &nbsp;");
+						}
+					});
+				}
+				
 				imageToAdd = "graphic/unit/unit_knight.png";
 				break;
 			case 4:
+				if (overviewLink.parent().hasClass("selected")) {
+					$("#content_value table.modemenu:last a").each(function(index) {
+						imageToAdd = "";
+						switch (index) {
+							case 1:
+								imageToAdd = "graphic/command/attack.png";
+								break;
+							case 2:
+								imageToAdd = "graphic/command/support.png";
+								break;
+							case 3:
+								imageToAdd = "graphic/command/return.png";
+								break;
+						}
+						
+						if (imageToAdd !== "") {
+							$(this).prepend("<img src='http://cdn2.tribalwars.net/"+imageToAdd+"' title='"+overviewLink.text() + " &gt; " + $(this).text()+"' /> &nbsp;");
+						}
+					});
+				}
+			
 				imageToAdd = "graphic/command/attack.png";
 				break;
 			case 5:
+				if (overviewLink.parent().hasClass("selected")) {
+					$("#content_value table.modemenu:last a").each(function(index) {
+						imageToAdd = "";
+						switch (index) {
+							case 1:
+								imageToAdd = "graphic/command/attack.png";
+								break;
+							case 2:
+								imageToAdd = "graphic/command/support.png";
+								break;
+						}
+						
+						if (imageToAdd !== "") {
+							$(this).prepend("<img src='http://cdn2.tribalwars.net/"+imageToAdd+"' title='"+overviewLink.text() + " &gt; " + $(this).text()+"' /> &nbsp;");
+						}
+					});
+				}
+			
 				imageToAdd = "graphic/unit/att.png";
 				break;
 			case 6:
@@ -66,13 +129,14 @@ if (user_data.overviews.addFancyImagesToOverviewLinks) {
 			overviewLink.prepend("<img src='http://cdn2.tribalwars.net/"+imageToAdd+"' title='"+overviewLink.text()+"' /> &nbsp;");
 		}
 		
-		overviewLinks.parent().hover(function() {
-				// Mouseover state
-				$(this).animate({ backgroundColor: "#FFF5DA" /*#F0E2BE*/ }, { duration: 500, queue: false });
-			},
-			function() {
-				// Mouseout state
-			   $(this).animate({ backgroundColor: "#F4E4BC" }, { duration: 500, queue: false });
+		// Add hover highlight on all overview links
+		$("table.modemenu td").hover(function() {
+			// Mouseover state
+			$(this).animate({ backgroundColor: "#FFF5DA" }, { duration: 500, queue: false });
+		},
+		function() {
+			// Mouseout state
+		   $(this).animate({ backgroundColor: "#F4E4BC" }, { duration: 500, queue: false });
 		});
 	});
 }
