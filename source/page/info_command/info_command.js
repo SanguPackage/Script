@@ -128,51 +128,50 @@ if ($("#running_times").size() > 0) {
 	if (user_data.proStyle && user_data.incoming.villageBoxSize != null && user_data.incoming.villageBoxSize != false) {
 		$("#content_value table:first").css("width", user_data.incoming.villageBoxSize);
 	}
-	
-					if(server_settings.ajaxAllowed)	{
-					
-					ajax("overview", function(overviewtext)
-					{
-						var idgetallenlijstinc = [];
-						var index = 0;
-						var links = $(overviewtext).find("#show_incoming_units").find("table").find("td:first-child").find("a:first-child").find("span");
-						//^enkel 'find codes, dus alles wegselecteren wat onnodig is. 
-						
-						links.each(function(){
-							var idgetal = $(this).attr('id').match(/\d+/);
-							idgetallenlijstinc[index]=idgetal[0];
-							index++;
-							$.trim(idgetallenlijstinc[index]);
-						});
-						
-						iddezeincoming= location.href.match(/id=(\d+)/);// deze incoming ophalen
-						var iddezeinctrim = $.trim(iddezeincoming[1]); //eerste callback: Datgeen tussen haakjes dus. En gelijk maar trimmen, voor het geval dat.
-						var zoveelste=inArrayfunc(idgetallenlijstinc,iddezeincomingtrim);
-						var lengte = idgetallenlijstinc.length;
-						var lengtemineen = lengte -1;
-						if (zoveelste != lengtemineen) {
-						var volgendbevelid = idgetallenlijstinc[(zoveelste +1)];}
-						if (zoveelste != 0) {
-						var vorigbevelid = idgetallenlijstinc[(zoveelste - 1)];
-						}
-						villageid = location.href.match(/village=(\d+)/);
-						//alert(villageid[1]);
-						if (zoveelste != 0) {
-							$("#content_value").find("h2").after('<table><tr><td id="vorigbevel" style="width:83%"><a href="/game.php?village=' + villageid + '&id=' + vorigbevelid + '&screen=info_command"> vorige incoming </a></td> </tr> </table>');
-						}
-						else {
-						$("#content_value").find("h2").after('<table><tr><td id="vorigbevel" style="width:83%"><b> XX</b></td> </tr> </table>');
-						}
-						if (zoveelste != lengtemineen){
-						$("#vorigbevel").after('<td id="volgendbevel"><a href="/game.php?village=' + villageid + '&id=' + volgendbevelid + '&screen=info_command"> volgende incoming </a></td>');
-						}
-						else {
-						$("#vorigbevel").after('<td id="volgendbevel"><b>XX</b></td>');
-						}
-						
-						//alert("Hoi");
-					}, {});
-				}
+		if(server_settings.ajaxAllowed)	{
+			
+		ajax("overview", function(overviewtext)
+		{
+			var idnumberlist = [];
+			var index = 0;
+			var links = $(overviewtext).find("#show_outgoing_units").find("table").find("td:first-child").find("a:first-child").find("span");
+			//^enkel 'find codes, dus alles wegselecteren wat onnodig is. 
+			
+			links.each(function(){
+				var idgetal = $(this).attr('id').match(/\d+/);
+				idnumberlist[index]=idgetal[0];
+				index++;
+				$.trim(idnumberlist[index]);
+			});
+			
+			idthisattack= location.href.match(/id=(\d+)/);// deze aanval ophalen
+			var idthisattacktrim = $.trim(idthisattack[1]); //eerste callback: Datgeen tussen haakjes dus. En gelijk maar trimmen, voor het geval dat.
+			var counter=inArrayfunc(idnumberlist,idthisattacktrim);
+			var arraylength = idnumberlist.length;
+			var arraylengthminusone = arraylength -1;
+			if (counter != arraylengthminusone) {
+			var nextcommandID = idnumberlist[(counter +1)];}
+			if (counter != 0) {
+			var lastcommandID = idnumberlist[(counter - 1)];
+			}
+			villageid = location.href.match(/village=(\d+)/);
+			//alert(villageid[1]);
+			if (counter != 0) {
+				$("#content_value").find("h2").after('<table><tr><td id="lastattack" style="width:83%"><a href="/game.php?village=' + villageid + '&id=' + lastcommandID + '&type=own&screen=info_command">'+ trans.sp.command.precedingIncomin + '</a></td> </tr> </table>');
+			}
+			else {
+			$("#content_value").find("h2").after('<table><tr><td id="lastattack" style="width:83%"><b> XX</b></td> </tr> </table>');
+			}
+			if (counter != arraylengthminusone){
+			$("#lastattack").after('<td id="nextcommand" ><a href="/game.php?village=' + villageid + '&id=' + nextcommandID + '&type=own&screen=info_command">'+ trans.sp.command.nextIncoming+ '</a></td>');
+			}
+			else {
+			$("#lastattack").after('<td id="nextcommand"><b>XX</b></td>');
+			}
+			
+			//alert("Hoi");
+		}, {});
+	}
 	
 } else {
 	// Own attack/support/return ---------------------------------------------------------------------------------- Own attack/support/return
@@ -230,6 +229,7 @@ if ($("#running_times").size() > 0) {
 	var second = infoTable.find("td:eq(" + (13 + (catapultTargetActive ? 2 : 0)) + ")").text();
 
 	if (type.indexOf(trans.tw.command.returnText) == 0) {
+		var isReturn = true;
 		infoTable = $("table.vis:last", table);
 		if (infoTable.find("td:first").text() == trans.tw.command.haul) {
 			infoTable = infoTable.prev();
@@ -251,55 +251,63 @@ if ($("#running_times").size() > 0) {
 		var button = $("input[value='" + trans.tw.command.buttonValue + "']");
 
 		var renamed = buildAttackString(village.coord, unitsSent, player, isSupport);
+		if (isReturn)
+		{
+			var buitbox = $("table:eq(2)" , table);
+			var buitregel = $("tr:first" , buitbox);
+			var buittd = $("td:last", buitregel);
+			var buit = buittd.text();
+			var buitsplitsen = buit.split('|');
+			renamed += buitsplitsen[0];
+		}
+		
 		inputBox.val(renamed);
 		button.click();
 	}
-
-					if(server_settings.ajaxAllowed)	{
-					
-					ajax("overview", function(overviewtext)
-					{
-						var idgetallenlijst = [];
-						var index = 0;
-						var links = $(overviewtext).find("#show_outgoing_units").find("table").find("td:first-child").find("a:first-child").find("span");
-						//^enkel 'find codes, dus alles wegselecteren wat onnodig is. 
-						
-						links.each(function(){
-							var idgetal = $(this).attr('id').match(/\d+/);
-							idgetallenlijst[index]=idgetal[0];
-							index++;
-							$.trim(idgetallenlijst[index]);
-						});
-						
-						iddezeaanval= location.href.match(/id=(\d+)/);// deze aanval ophalen
-						var iddezeaanvaltrim = $.trim(iddezeaanval[1]); //eerste callback: Datgeen tussen haakjes dus. En gelijk maar trimmen, voor het geval dat.
-						var zoveelste=inArrayfunc(idgetallenlijst,iddezeaanvaltrim);
-						var lengte = idgetallenlijst.length;
-						var lengtemineen = lengte -1;
-						if (zoveelste != lengtemineen) {
-						var volgendbevelid = idgetallenlijst[(zoveelste +1)];}
-						if (zoveelste != 0) {
-						var vorigbevelid = idgetallenlijst[(zoveelste - 1)];
-						}
-						villageid = location.href.match(/village=(\d+)/);
-						//alert(villageid[1]);
-						if (zoveelste != 0) {
-							$("#content_value").find("h2").after('<table><tr><td id="vorigbevel" style="width:83%"><a href="/game.php?village=' + villageid + '&id=' + vorigbevelid + '&type=own&screen=info_command"> vorig bevel </a></td> </tr> </table>');
-						}
-						else
-						{
-						$("#content_value").find("h2").after('<table><tr><td id="vorigbevel" style="width:83%"><b> XX</b></td> </tr> </table>');
-						}
-						if (zoveelste != lengtemineen){
-						$("#vorigbevel").after('<td id="volgendbevel" ><a href="/game.php?village=' + villageid + '&id=' + volgendbevelid + '&type=own&screen=info_command"> volgend bevel </a></td>');
-						}
-						else {
-						$("#vorigbevel").after('<td id="volgendbevel"><b>XX</b></td>');
-						}
-						
-						//alert("Hoi");
-					}, {});
-				}
+	if(server_settings.ajaxAllowed)	{
+			
+		ajax("overview", function(overviewtext)
+		{
+			var idnumberlist = [];
+			var index = 0;
+			var links = $(overviewtext).find("#show_outgoing_units").find("table").find("td:first-child").find("a:first-child").find("span");
+			//^enkel 'find codes, dus alles wegselecteren wat onnodig is. 
+			
+			links.each(function(){
+				var idgetal = $(this).attr('id').match(/\d+/);
+				idnumberlist[index]=idgetal[0];
+				index++;
+				$.trim(idnumberlist[index]);
+			});
+			
+			idthisattack= location.href.match(/id=(\d+)/);// deze aanval ophalen
+			var idthisattacktrim = $.trim(idthisattack[1]); //eerste callback: Datgeen tussen haakjes dus. En gelijk maar trimmen, voor het geval dat.
+			var counter=inArrayfunc(idnumberlist,idthisattacktrim);
+			var arraylength = idnumberlist.length;
+			var arraylengthminusone = arraylength -1;
+			if (counter != arraylengthminusone) {
+			var nextcommandID = idnumberlist[(counter +1)];}
+			if (counter != 0) {
+			var lastcommandID = idnumberlist[(counter - 1)];
+			}
+			villageid = location.href.match(/village=(\d+)/);
+			//alert(villageid[1]);
+			if (counter != 0) {
+				$("#content_value").find("h2").after('<table><tr><td id="lastattack" style="width:83%"><a href="/game.php?village=' + villageid + '&id=' + lastcommandID + '&type=own&screen=info_command">'+ trans.sp.command.precedingAttack + '</a></td> </tr> </table>');
+			}
+			else {
+			$("#content_value").find("h2").after('<table><tr><td id="lastattack" style="width:83%"><b> XX</b></td> </tr> </table>');
+			}
+			if (counter != arraylengthminusone){
+			$("#lastattack").after('<td id="nextcommand" ><a href="/game.php?village=' + villageid + '&id=' + nextcommandID + '&type=own&screen=info_command">'+ trans.sp.command.nextAttack+ '</a></td>');
+			}
+			else {
+			$("#lastattack").after('<td id="nextcommand"><b>XX</b></td>');
+			}
+			
+			//alert("Hoi");
+		}, {});
+	}
 	// When sending os, calculate how much population in total is sent
 	if (isSupport) {
 		var totalPop = 0;
