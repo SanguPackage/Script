@@ -1,3 +1,10 @@
+function inArrayfunc(arr, obj) {
+    for(var iarray=0; iarray<arr.length; iarray++) {
+        if (arr[iarray] == obj){ return iarray;}
+    }
+	return -1;
+}
+
 function pad(number, length) {
 	var str = '' + number;
 	while (str.length < length) {
