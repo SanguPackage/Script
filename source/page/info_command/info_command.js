@@ -146,7 +146,7 @@ if ($("#running_times").size() > 0) {
 			
 			idthisattack= location.href.match(/id=(\d+)/);// deze aanval ophalen
 			var idthisattacktrim = $.trim(idthisattack[1]); //eerste callback: Datgeen tussen haakjes dus. En gelijk maar trimmen, voor het geval dat.
-			var counter=inArrayfunc(idnumberlist,idthisattacktrim);
+			var counter=$.inArray(idthisattacktrim, idnumberlist);
 			var arraylength = idnumberlist.length;
 			var arraylengthminusone = arraylength -1;
 			if (counter != arraylengthminusone) {
@@ -282,7 +282,7 @@ if ($("#running_times").size() > 0) {
 			
 			idthisattack= location.href.match(/id=(\d+)/);// deze aanval ophalen
 			var idthisattacktrim = $.trim(idthisattack[1]); //eerste callback: Datgeen tussen haakjes dus. En gelijk maar trimmen, voor het geval dat.
-			var counter=inArrayfunc(idnumberlist,idthisattacktrim);
+			var counter=$.inArray(idthisattacktrim, idnumberlist);
 			var arraylength = idnumberlist.length;
 			var arraylengthminusone = arraylength -1;
 			if (counter != arraylengthminusone) {
