@@ -136,7 +136,11 @@
 			arrival: "Aankomst",
 			dodgeNotFarEnough: "De dodge is niet ver genoeg!",
 			dodgeMinuteReturn: "(Terugkeer na {minutes})",
-			catapultImageTitle: "Klik om gebouw te vernietigen"
+			catapultImageTitle: "Klik om gebouw te vernietigen",
+			nextAttack: "volgend bevel",
+			nextIncoming: "volgend incoming",
+			precedingAttack: "vorig bevel",
+			precedingIncoming: "vorige incoming"
 		},
 		overviews: {
 			totalVillages: "Aantal dorpen:",
@@ -233,7 +237,7 @@
 			fieldsPrefix: "F{0}",
 			thousandSuffix: "k",
 			totalVillages: "Dorpen ({0})",
-			distanceToVillageNoneEntered: "Geef een coördinaat! (eerste tekstveld)",
+			distanceToVillageNoneEntered: "Geef een coï¿½rdinaat! (eerste tekstveld)",
 			distanceToVillage: "Afstand tot {0}",
 			filterUnderAttack: "Filter onder aanval"
 		},
