@@ -34,6 +34,7 @@ function sangu_ready() {
 		//<!--@@INCLUDE "feature\jumper.js" INDENT=2 //-->
 		
 		//<!--@@INCLUDE "func\debug.js" INDENT=2 //-->
+		q("-------------------------------------------------------------------- Start: "+sangu_version);
 
         // BEGIN PAGE PROCESSING
 		// MAIN VILLAGE OVERVIEW 

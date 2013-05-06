@@ -6,15 +6,38 @@ FileEncoding, UTF-8-RAW
 workingDirectory = %A_WorkingDir%
 SetWorkingDir, %A_ScriptDir%
 
-ParseSaveAndBackupFile(inputFile, savePath, saveAs, 1)
-ParseSaveAndBackupFile("release.user.js", "..\site\", saveAs, 0)
-ParseSaveAndBackupFile("..\site\index_toMerge.php", "..\site\", "index.php", 0)
+UpdateVersion("version.txt")
+ParseAndSaveFile(inputFile, savePath, saveAs)
+ParseAndSaveFile("release.user.js", "..\site\", saveAs)
+ParseAndSaveFile("..\site\index_toMerge.php", "..\site\", "index.php")
 
 ; Autocopy to Firefox greasemonkey directory
 ; I *really* *really* should've used something else but Autohotkey for this
 FileCopy, %savePath%%saveAs%, C:\Users\PC\AppData\Roaming\Mozilla\Firefox\Profiles\gg8w0cv7.default\gm_scripts\Sangu_Package\sangupackage.user.js, 1
 
+; Check it in browser :)
+SetTitleMatchMode RegEx
+IfWinExist, Tribal Wars - .* - Opera$
+{
+	WinActivate
+	Send {F5}
+}
+ 
+; Restore system state
 SetWorkingDir, workingDirectory
+
+; Below are functions etc
+
+UpdateVersion(versionFileName)
+{
+	currentVersion =
+	FileRead, currentVersion, %versionFileName%
+	StringSplit, versionNumber, currentVersion, .
+	versionNumber3 := versionNumber3 + 1
+	newVersion = %versionNumber1%.%versionNumber2%.%versionNumber3%
+	FileDelete, %versionFileName%
+	FileAppend, %newVersion%, %versionFileName%
+}
 
 ParseFile(fileName, indentCount)
 {
@@ -76,35 +99,17 @@ ParseLine(line, indentCount)
 	return %line%
 }
 
-ParseSaveAndBackupFile(inputFile, savePath, saveFileName, keepBackup)
+SaveFile(fileContent, savePath, saveFileName)
 {
-	; Keep backups of merges?
-	if keepBackup
-	{
-		IfExist, %savePath%%saveFileName%
-		{
-			backupCount := 0
-			backupFileName = %savePath%%saveFileName%
-			while FileExist(backupFileName)
-			{
-				backupFileName = ..\backup\%saveFileName%%backupCount%
-				backupCount++
-			}
-			FileMove, %savePath%%saveFileName%, %backupFileName%
-			
-			if ErrorLevel
-			{
-				MsgBox ..\backup directory does not exist?
-			}
-		}
-	}
-	else
-	{
-		FileDelete, %savePath%%saveFileName%
-	}
+	FileDelete, %savePath%%saveFileName%
+	FileAppend, %fileContent%, %savePath%%saveFileName%
+}
 
-	formattedOutput := ParseFile(inputFile, 0)	
-	FileAppend, %formattedOutput%, %savePath%%saveFileName%
+ParseAndSaveFile(inputFile, savePath, saveFileName)
+{
+	formattedOutput := ParseFile(inputFile, 0)
+	SaveFile(formattedOutput, savePath, saveFileName)
+	return %formattedOutput%
 }
 
 return
