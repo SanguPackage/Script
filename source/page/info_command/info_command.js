@@ -189,7 +189,7 @@ if ($("#running_times").size() > 0) {
 		infoTable = $("table.vis:last", table);
 		if (infoTable.find("td:first").text() == trans.tw.command.haul) {
 			haulDescription = infoTable.find("td:last").text().match(/\s(\d+)\/(\d+)$/);
-			haulDescription = formatnumber(haulDescription[1]) + " / " + formatnumber(haulDescription[2]);
+			haulDescription = formatNumber(haulDescription[1]) + " / " + formatNumber(haulDescription[2]);
 			infoTable = infoTable.prev();
 		}
 		infoTable = infoTable.find("tr:last");
@@ -212,6 +212,8 @@ if ($("#running_times").size() > 0) {
 		inputBox.val(renamed);
 		button.click();
 	}
+	
+	/*if (server_settings.ajaxAllowed) {
 		ajax("overview", function(overviewtext) {
 			var idnumberlist = [];
 			var index = 0;
