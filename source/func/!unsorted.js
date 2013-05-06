@@ -1,10 +1,3 @@
-function inArrayfunc(arr, obj) {
-    for(var iarray=0; iarray<arr.length; iarray++) {
-        if (arr[iarray] == obj){ return iarray;}
-    }
-	return -1;
-}
-
 function pad(number, length) {
 	var str = '' + number;
 	while (str.length < length) {
@@ -183,13 +176,12 @@ function getVillageFromCoords(str, looseMatch) {
 	return { "isValid": false };
 }
 
-function buildAttackString(villageCoord, unitsSent, player, isSupport, seperator, minimum) {
+function buildAttackString(villageCoord, unitsSent, player, isSupport, minimum, haulDescription) {
+	var seperator = " ";
 	if (minimum == undefined) {
 		minimum = 0;
 	}
-	if (seperator == undefined) {
-		seperator = " ";
-	}
+	
 	var totalPop = 0;
 	var renamed = villageCoord == null ? "" : villageCoord + seperator;
 	var sent = "";
@@ -216,6 +208,10 @@ function buildAttackString(villageCoord, unitsSent, player, isSupport, seperator
 
 	if (isSupport) {
 		sent += seperator + "(" + trans.sp.all.populationShort + ": " + formatNumber(totalPop) + ")";
+	}
+	
+	if (user_data.attackAutoRename.addHaul && typeof haulDescription !== 'undefined') {
+		sent += " (" + trans.tw.command.haul + " " + haulDescription + ")";
 	}
 
 	return renamed + sent;

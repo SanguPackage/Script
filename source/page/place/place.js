@@ -1,5 +1,5 @@
 // Auto rename attacks
-if (user_data.attackAutoRename) {
+if (user_data.attackAutoRename.active) {
 	// Less then ideal solution:
 	// Does not work properly when sending many attacks (ie snobtrain)
 	// In confirm.js the cookies are saved

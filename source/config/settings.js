@@ -100,7 +100,10 @@ $.extend(user_data, {
 	scriptBarEditBoxCols: 700,
 	scriptBarEditBoxRows: 12,
 
-	attackAutoRename: true,
+	attackAutoRename: {
+		active: true,
+		addHaul: false
+	},
 	
 	confirm: {
 		addExtraOkButton: false,

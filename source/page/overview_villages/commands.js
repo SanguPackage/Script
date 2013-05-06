@@ -68,7 +68,8 @@ $("#defRestack").click(function () {
 		if (typeof commandType !== 'undefined'
 			&& commandType.indexOf("command/cancel.png") == -1 
 			&& commandType.indexOf("command/other_back.png") == -1 
-			&& commandType.indexOf("command/back.png") == -1) {
+			&& commandType.indexOf("command/back.png") == -1
+			&& commandType.indexOf("command/return.png") == -1) {
 			
 			var village = getVillageFromCoords($.trim(firstCell.text()));
 			if (village.isValid) {
@@ -102,7 +103,7 @@ $("#defRestack").click(function () {
 				request[village.coord].attacks.push({
 					isSupport: isSupport,
 					units: unitsSent,
-					unitsString: buildAttackString(null, unitsSent, null, isSupport, " ", user_data.command.bbCodeExport.requiredTroopAmount),
+					unitsString: buildAttackString(null, unitsSent, null, isSupport, user_data.command.bbCodeExport.requiredTroopAmount),
 					arrival: cells.eq(2).text(),
 					arrivalDate: getDateFromTodayTomorrowTW(cells.eq(2).text())
 				});

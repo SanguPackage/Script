@@ -106,7 +106,7 @@ if (dodgeCookie) {
 	}
 }
 
-if (user_data.attackAutoRename) {
+if (user_data.attackAutoRename.active) {
 	// rename attack command
 	// cookie reading code in place.js
 	var villageCoord = $("input[name='x']", attackFrame).val() + '|' + $("input[name='y']", attackFrame).val();
