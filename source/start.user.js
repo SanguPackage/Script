@@ -74,13 +74,6 @@ function sangu_ready() {
         else if ((location.href.indexOf('screen=info_') > -1 && location.href.indexOf('screen=info_member') == -1) || location.href.indexOf('screen=ally&mode=profile') > -1) {
 			//<!--@@INCLUDE "page\info_villageplayertribe.js" INDENT=3 //-->
         }
-		// TRIBAL WAR STATS
-        else if (location.href.indexOf('screen=wars') > -1 && (location.href.indexOf('mode=running') > -1 || location.href.indexOf('mode=') == -1)) {
-			// Wars don't really work anymore after changes by Innogames
-			// To get the same result, many ajax calls would now be needed
-			// Remove space between // and <!-- to include the code again
-            // @@INCLUDE "page\wars.js" INDENT=3 //-->
-        }
 		// MARKET
         else if (location.href.indexOf('screen=market') > -1) {
             //<!--@@INCLUDE "page\market.js" INDENT=3 //-->
