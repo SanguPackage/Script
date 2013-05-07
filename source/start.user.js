@@ -72,7 +72,7 @@ function sangu_ready() {
         }
 		// USERPROFIEL++ // INFO_ ALLY/PLAYER
         else if ((location.href.indexOf('screen=info_') > -1 && location.href.indexOf('screen=info_member') == -1) || location.href.indexOf('screen=ally&mode=profile') > -1) {
-			//<!--@@INCLUDE "page\info_villageplayertribe\info_all.js" INDENT=3 //-->
+			//<!--@@INCLUDE "page\info_villageplayertribe.js" INDENT=3 //-->
         }
 		// TRIBAL WAR STATS
         else if (location.href.indexOf('screen=wars') > -1 && (location.href.indexOf('mode=running') > -1 || location.href.indexOf('mode=') == -1)) {
