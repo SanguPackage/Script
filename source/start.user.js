@@ -22,7 +22,7 @@ function sangu_ready() {
 	//<!--@@INCLUDE "func\ui.js" INDENT=1 //-->
 	//<!--@@INCLUDE "config\server.js" INDENT=1 //-->
     //<!--@@INCLUDE "global\activator.js" INDENT=1 //-->
-    //<!--@@INCLUDE "global\ga.js" INDENT=1 //-->
+    
     if (isSanguActive) {
 		var world_data = {};
 		//<!--@@INCLUDE "config\world_config.js" INDENT=2 //-->
@@ -33,6 +33,7 @@ function sangu_ready() {
 		//<!--@@INCLUDE "func\tw_buildings.js" INDENT=2 //-->
 		
 		//<!--@@INCLUDE "global\jumper.js" INDENT=2 //-->
+		//<!--@@INCLUDE "global\ga.js" INDENT=2 //-->
 		
 		//<!--@@INCLUDE "func\debug.js" INDENT=2 //-->
 		q("-------------------------------------------------------------------- Start: "+sangu_version);

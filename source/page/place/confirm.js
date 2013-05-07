@@ -116,23 +116,3 @@ if (user_data.attackAutoRename.active) {
 	var twInitialCommandName = (isAttack ? trans.tw.command.attackOn : trans.tw.command.supportFor) + targetVillage;
 	pers.setSession("attRen_" + game_data.village.id + '_' + twInitialCommandName, sent);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

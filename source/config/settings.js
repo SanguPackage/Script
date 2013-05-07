@@ -27,7 +27,7 @@ $.extend(user_data, {
 	},
 	
 	main: {
-		villageNames: ['yaye'], /* Add village names to the village headquarters to quickly edit the village name to a preset name. Set to [] or null to disable, for 1 village name use ['MyVillageName'] or for more names: ['name1', 'name2', 'name3'] */
+		villageNames: [], /* Add village names to the village headquarters to quickly edit the village name to a preset name. Set to [] or null to disable, for 1 village name use ['MyVillageName'] or for more names: ['name1', 'name2', 'name3'] */
 		villageNameClick: true, /* true: one of the previous button clicked automatically changes the village name. false: only fills in the name in the textbox but does not click the button */
 		ajaxLoyalty: true /* Get the loyalty at the building construction/destruction page */
 	},
