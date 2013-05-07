@@ -1,14 +1,5 @@
-// Color resources
-resourceColoring();
-
-// Jump to custom position on the map
-mapJump();
-
-// TODO: Sangu settings - add link to them!
-//$("#menu_row td:last").before("<td class='menu-item'><a target='_top' href='"+getUrlString("screen=settings&mode=sangu")+"'>Sangu</a></td>");
-
 // adjust links to incoming attacks/support
-if (user_data.editAttackLink) {
+if (user_data.global.incomings.editLinks) {
 	var incoming = $("table.box:last");
 	var incomingAttacks = $("a[href*='subtype=attacks']", incoming);
 	if (incomingAttacks.size() > 0) {

@@ -20,7 +20,7 @@ $("table:first td", unitTable).not(":last").each(function () {
 });
 
 // fetch own troops
-if (user_data.ajaxSeperateSupport && totalFarm > 0) {
+if (user_data.overview.ajaxSeperateSupport && totalFarm > 0) {
 	var ownFarmTotal = 0;
 	var supportRows = "";
 	if (server_settings.ajaxAllowed) {
@@ -67,7 +67,7 @@ if (user_data.ajaxSeperateSupport && totalFarm > 0) {
 		$("#slowestUnitCell").html("<img title='"+trans.sp.tagger.slowestTip+"' src='graphic/unit/" + slowest_unit + ".png'>").attr("slowestUnit", slowest_unit);
 	}
 
-	if (ownFarmTotal > 0 && user_data.ajaxSeperateSupportStacks) {
+	if (ownFarmTotal > 0 && user_data.overview.ajaxSeperateSupportStacks) {
 		// stack in the village
 		var ownSupportDisplay = stackDisplay(ownFarmTotal);
 		unitTable.find("table:first").append("<tr><td><img src=graphic/face.png title='" + trans.sp.main.ownStackTitle + "'> " + ownSupportDisplay.desc + "</td></tr>");
@@ -76,7 +76,7 @@ if (user_data.ajaxSeperateSupport && totalFarm > 0) {
 		// stack from other villages
 		var newTable = "<table class=vis width='100%'>";
 		supportRows += "<tr><td><a href='" + getUrlString("screen=place&mode=units") + "'>&raquo; " + trans.sp.main.rallyPointTroops + "</a></td></tr>";
-		if (user_data.ajaxSeperateSupportStacks) {
+		if (user_data.overview.ajaxSeperateSupportStacks) {
 			var supportDisplay = stackDisplay(totalFarm - ownFarmTotal, { showFarmLimit: true });
 			supportRows += '<tr><td style="border-top: 1px solid #85550d ;background-color: ' + supportDisplay.color + '">' + '<b>' + trans.tw.all.farm + ': ' + supportDisplay.desc + '</b>' + '</td></tr>';
 		}

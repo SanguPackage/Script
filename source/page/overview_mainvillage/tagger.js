@@ -271,8 +271,8 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 
 							row.prepend(checkboxCell + "></td>");
 
-							if (user_data.colorSupport != null && incomingType != "incAt") {
-								row.find("td").css("background-color", user_data.colorSupport);
+							if (user_data.mainTagger.colorSupport != null && incomingType != "incAt") {
+								row.find("td").css("background-color", user_data.mainTagger.colorSupport);
 							}
 						}
 					}

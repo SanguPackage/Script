@@ -1,5 +1,5 @@
 if (location.href.indexOf('try=confirm_send') > -1) {
-	if (user_data.proStyle && user_data.autoMarketFocus) {
+	if (user_data.proStyle && user_data.market.autoFocus) {
 		$("input[type='submit']").focus();
 	}
 }
@@ -8,7 +8,7 @@ else if (location.href.indexOf('&mode=') == -1 || location.href.indexOf('&mode=s
 		// Spice up market:
 		// 120 x 106 pixels: There are market images that are smaller
 		// Making all images equally large results in the OK button remaining on the same place
-		if (user_data.proStyle && user_data.marketResizeImage) {
+		if (user_data.proStyle && user_data.market.resizeImage) {
 			$("img[src*='big_buildings/market']").width(120).height(106);
 		}
 

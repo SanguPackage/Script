@@ -9,31 +9,6 @@ var activatorImage = isSanguActive ? "green" : 'red';
 var activatorTitle = (!isSanguActive ? trans.sp.sp.activatePackage : trans.sp.sp.deactivatePackage) + " (v" + sangu_version + ")";
 
 if (isSanguActive) {
-	// Send usage statistics to GA once/day
-	var loginMonitor = pers.get("sanguLogin");
-	if (loginMonitor !== '') {
-		var parts = loginMonitor.match(/(\d+)/g);
-		loginMonitor = new Date(parts[0], parts[1]-1, parts[2]);
-		
-		//if (Math.abs(loginMonitor.getTime() - (new Date()).getTime()) > 1000 * 3600 * 24) {
-		if (parseInt(parts[2], 10) != (new Date()).getDate()) {
-			loginMonitor = '';
-		}
-	}
-	if (loginMonitor === '') {
-		loginMonitor = new Date();
-		loginMonitor.setHours(0, 0, 0);
-		loginMonitor = loginMonitor.getFullYear() + '-' + pad(loginMonitor.getMonth()+1, 2) + '-' +  pad(loginMonitor.getDate(), 2);
-		trackEvent("ScriptUsage", "DailyUsage", loginMonitor);
-		pers.set("sanguLogin", loginMonitor);
-		
-		// also log world/tribe usage
-		trackEvent("ScriptUsage", "WorldUsage", game_data.world);
-		trackEvent("ScriptUsage", "TribeUsage", game_data.world + " " + game_data.player.ally_id);
-		trackEvent("ScriptUsage", "HasPremium", game_data.player.premium);		// Do we need to support non PA users?
-		trackEvent("ScriptUsage", "HasAM", game_data.player.account_manager);	// Do we need to do stuff on the AM pages?
-	}
-	
 	// Check compatibility with TW version
 	if (pers.getGlobal("scriptWarningVersion") != server_settings.tw_version) {
 		var sanguEmail = "sangu.be";

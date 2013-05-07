@@ -125,27 +125,6 @@ function trackEvent(category, action, label) {
 	_gat._getTrackerByName('b')._trackEvent(category, action, label);
 }
 
-function resourceColoring() {
-	var storage = parseInt($("#storage").text(), 10);
-	var wood = $("#wood");
-	var iron = $("#iron");
-	var stone = $("#stone");
-
-	// Color resources
-	if (user_data.gsStorageShow) {
-		wood.add(iron).add(stone).each(function () {
-			var x = parseInt(this.innerHTML / storage * 10 - 1, 10);
-			$(this).css("background-color", user_data.gsStorageBackground[x]);
-		});
-	}
-	// Blink full resources
-	if (user_data.overviewBlinkResources) {
-		wood.add(iron).add(stone).filter(function () {
-			return parseInt(this.innerHTML, 10) == storage;
-		}).css({ "font-weight": "bolder", "color": "black" }).fadeOut().fadeIn();
-	}
-}
-
 function fillRallyPoint(units) {
 	var script = "";
 	$.each(world_data.units, function (i, v) {

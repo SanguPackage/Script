@@ -1,23 +1,47 @@
 // These settings are applied to all worlds
 $.extend(user_data, {
+	proStyle: true,
+	displayDays: false, /* true: display (walking)times in days when > 24 hours. false: always displays in hours */
+
 	colors: {
 		error: "tomato",
 		good: "limegreen",
 		special: "aqua",
 		neutral: "#DED3B9"
 	},
-	gsStorageShow: true, /* All pages: true/false: color the resources based on how much the storage is filled */
-	gsStorageBackground: ['Greenyellow', 'Chartreuse', 'Limegreen', 'Mediumseagreen', 'Forestgreen', 'Orange', 'Coral', 'Tomato', 'Orangered', 'Red'], /* All pages: Colors used for the previous setting. First is least filled, last is most filled storage place */
-	overviewBlinkResources: true, /* All pages: Blink the resources if the storage is full */
-	editAttackLink: true, /* All pages: Edit the incoming attacks/support links: add "show all groups" and "show all pages" to the original links */
-	colorSupport: 'rgb(255, 245, 218)', /* Main village overview: give incoming support a different background color */
-	villageName: [], /* Add village names to the village headquarters to quickly edit the village name to a preset name. Set to [] or null to disable, for 1 village name use ['MyVillageName'] or for more names: ['name1', 'name2', 'name3'] */
-	villageNameClick: true, /* true: one of the previous button clicked automatically changes the village name. false: only fills in the name in the textbox but does not click the button */
-	ajaxLoyalty: true, /* Get the loyalty at the building construction/destruction page */
-	calculateSnob: true, /* nobles: calculates how many nobles can be produced immediately */
-	reportPublish: ["own_units", "own_losses", "opp_units", "opp_losses", "carry", "buildings", "own_coords", "opp_coords", "belief"], /* Publishing report: automatically check the 'show' checkboxes */
-	ajaxSeperateSupport: true, /* Village overview: Seperate own and supported troops */
-	ajaxSeperateSupportStacks: true, /* Village overiew: Calculate stacks for own and supported troops */
+	
+	global: {
+		resources: {
+			active: true, /* All pages: true/false: color the resources based on how much the storage is filled */
+			backgroundColors: ['Greenyellow', 'Chartreuse', 'Limegreen', 'Mediumseagreen', 'Forestgreen', 'Orange', 'Coral', 'Tomato', 'Orangered', 'Red'], /* All pages: Colors used for the previous setting. First is least filled, last is most filled storage place */
+			blinkWhenStorageFull: true /* All pages: Blink the resources if the storage is full */
+		},
+		incomings: {
+			editLinks: true /* All pages: Edit the incoming attacks/support links: add "show all groups" and "show all pages" to the original links */
+		}
+	},
+	
+	scriptbar: {
+		editBoxCols: 700,
+		editBoxRows: 12
+	},
+	
+	main: {
+		villageNames: ['yaye'], /* Add village names to the village headquarters to quickly edit the village name to a preset name. Set to [] or null to disable, for 1 village name use ['MyVillageName'] or for more names: ['name1', 'name2', 'name3'] */
+		villageNameClick: true, /* true: one of the previous button clicked automatically changes the village name. false: only fills in the name in the textbox but does not click the button */
+		ajaxLoyalty: true /* Get the loyalty at the building construction/destruction page */
+	},
+	
+	other: {
+		calculateSnob: true, /* nobles: calculates how many nobles can be produced immediately */
+		reportPublish: ["own_units", "own_losses", "opp_units", "opp_losses", "carry", "buildings", "own_coords", "opp_coords", "belief"] /* Publishing report: automatically check the 'show' checkboxes */
+	},
+	
+	market: {
+		resizeImage: true,
+		autoFocus: true
+	},
+	
 	farmLimit: {
 		stackColors: ['tomato', 'Mediumseagreen', '#DED3B9'],
 		acceptableOverstack: [1.35, 1.2, 0.5], /* Different pages: % of acceptable overstack (only relevant for farmlimit worlds) */
@@ -25,7 +49,7 @@ $.extend(user_data, {
 	},
 
 	command: { /* features for the own troops overview page */
-		changeTroopsOverviewLink: true, /* Change the link to the troops overview */
+		changeTroopsOverviewLink: true, /* Change the link to the own troops overview */
 		sumRow: true, /* Add a totalrow between different villages */
 
 		filterMinPopulation: 18000, /* Default number filled in to filter on village stack */
@@ -46,7 +70,6 @@ $.extend(user_data, {
 		addFancyImagesToOverviewLinks: true
 	},
 
-	displayDays: false, /* true: display (walking)times in days when > 24 hours. false: always displays in hours */
 	incoming: { /* Features for the built in TW tagger */ 
 		autoOpenTagger: true, 		/* Open the tagger automatically if the incoming attack has not yet been renamed */
 		forceOpenTagger: true, 	/* Always open the tagger automatically */
@@ -55,6 +78,11 @@ $.extend(user_data, {
 		invertSort: true		/* true=noblemen at the top and scouts at the bottom of the table */
 	},
 
+	overview: { /* The default village overview page */
+		ajaxSeperateSupport: true, /* Village overview: Seperate own and supported troops */
+		ajaxSeperateSupportStacks: true /* Village overview: Calculate stacks for own and supported troops */
+	},
+	
 	mainTagger: {
 		active: true,
 		autoOpen: true,
@@ -71,7 +99,8 @@ $.extend(user_data, {
 		prefix: "-----------------------------------------",
 		autoOpenCommands: false,
 		minutesDisplayDodgeTimeOnMap: 3,
-		minutesWithoutAttacksDottedLine: 3 * 60
+		minutesWithoutAttacksDottedLine: 3 * 60,
+		colorSupport: 'rgb(255, 245, 218)' /* Main village overview: give incoming support a different background color */
 	},
 
 	villageInfo: {
@@ -92,13 +121,6 @@ $.extend(user_data, {
 		enabled: true,
 		autoShowInputbox: false
 	},
-
-	proStyle: true,
-	marketResizeImage: true,
-	autoMarketFocus: true,
-
-	scriptBarEditBoxCols: 700,
-	scriptBarEditBoxRows: 12,
 
 	attackAutoRename: {
 		active: true,

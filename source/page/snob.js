@@ -1,4 +1,4 @@
-if (user_data.calculateSnob && !world_config.coins) {
+if (user_data.other.calculateSnob && !world_config.coins) {
 	// Calculate for how many nobles/snobs we've got packages
 	var table = $("#content_value table.vis:eq(1)");
 	var cost = $("td:eq(1)", table).html();

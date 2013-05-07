@@ -14,14 +14,15 @@ function sangu_ready() {
     //<!--@@INCLUDE "config\settings.js" INDENT=1 //-->
     //<!--@@INCLUDE "config\settings_world2.js" INDENT=1 //-->
 	
-	var trans = 
+	var trans = {};
 	//<!--@@INCLUDE "config\trans.js" INDENT=1 //-->
 	
 	//<!--@@INCLUDE "func\!unsorted.js" INDENT=1 //-->
 	//<!--@@INCLUDE "func\persistence.js" INDENT=1 //-->
 	//<!--@@INCLUDE "func\ui.js" INDENT=1 //-->
 	//<!--@@INCLUDE "config\server.js" INDENT=1 //-->
-    //<!--@@INCLUDE "feature\activator.js" INDENT=1 //-->	
+    //<!--@@INCLUDE "global\activator.js" INDENT=1 //-->
+    //<!--@@INCLUDE "global\ga.js" INDENT=1 //-->
     if (isSanguActive) {
 		var world_data = {};
 		//<!--@@INCLUDE "config\world_config.js" INDENT=2 //-->
@@ -31,7 +32,7 @@ function sangu_ready() {
         //<!--@@INCLUDE "func\datetime.js" INDENT=2 //-->
 		//<!--@@INCLUDE "func\tw_buildings.js" INDENT=2 //-->
 		
-		//<!--@@INCLUDE "feature\jumper.js" INDENT=2 //-->
+		//<!--@@INCLUDE "global\jumper.js" INDENT=2 //-->
 		
 		//<!--@@INCLUDE "func\debug.js" INDENT=2 //-->
 		q("-------------------------------------------------------------------- Start: "+sangu_version);
@@ -172,7 +173,11 @@ function sangu_ready() {
 			}
         }
 
-        //<!--@@INCLUDE "page\global.js" INDENT=2 //-->
+		// TODO: Sangu settings - add link to them!
+		//$("#menu_row td:last").before("<td class='menu-item'><a target='_top' href='"+getUrlString("screen=settings&mode=sangu")+"'>Sangu</a></td>");
+		
+        //<!--@@INCLUDE "global\resourcecoloring.js" INDENT=2 //-->
+		//<!--@@INCLUDE "global\incomingsindicator.js" INDENT=2 //-->
 		
 		//var end_time = new Date();
 		//console.timeEnd("SanguPackage");
