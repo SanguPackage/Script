@@ -106,43 +106,43 @@ function sangu_ready() {
 		// ALL OVERVIEW PAGES
         else if (location.href.indexOf('screen=overview_villages') > -1) {
 			var overviewTable;
-			//<!--@@INCLUDE "page\overview_villages\allpages_tables.js" INDENT=3 //-->
+			//<!--@@INCLUDE "overviews\allpages_tables.js" INDENT=3 //-->
 
 			// PRODUCTION OVERVIEW
             if (location.href.indexOf('mode=prod') > -1) {
-				//<!--@@INCLUDE "page\overview_villages\production.js" INDENT=4 //-->
+				//<!--@@INCLUDE "overviews\production.js" INDENT=4 //-->
             }
 			// TROOPS OVERVIEW
             else if (location.href.indexOf('mode=units') > -1
 						&& (location.href.indexOf('type=own_home') > -1 || location.href.indexOf('type=there') > -1)) {
-                //<!--@@INCLUDE "page\overview_villages\units_there_ownhome.js" INDENT=4 //-->
+                //<!--@@INCLUDE "overviews\units_there_ownhome.js" INDENT=4 //-->
             }
 			// BUILDINGS OVERVIEW
             else if (location.href.indexOf('mode=buildings') > -1) {
-                //<!--@@INCLUDE "page\overview_villages\buildings.js" INDENT=4 //-->
+                //<!--@@INCLUDE "overviews\buildings.js" INDENT=4 //-->
             }
 			// TECHS OVERVIEW // SMEDERIJ OVERVIEW // SMITHY OVERVIEW
             else if (location.href.indexOf('mode=tech') > -1) {
-                //<!--@@INCLUDE "page\overview_villages\techs.js" INDENT=4 //-->
+                //<!--@@INCLUDE "overviews\techs.js" INDENT=4 //-->
             }
 			// GROUPS OVERVIEW
             else if (location.href.indexOf('mode=groups') > -1) {
-                //<!--@@INCLUDE "page\overview_villages\groups.js" INDENT=4 //-->
+                //<!--@@INCLUDE "overviews\groups.js" INDENT=4 //-->
             }
 			 // SUPPORT OVERVIEW
             else if (location.href.indexOf('type=support_detail') > -1 || location.href.indexOf('type=away_detail') > -1) {
-                //<!--@@INCLUDE "page\overview_villages\units_support_detail.js" INDENT=4 //-->
+                //<!--@@INCLUDE "overviews\units_support_detail.js" INDENT=4 //-->
             }
 			// COMMANDS OVERVIEW
             else if (location.href.indexOf('mode=commands') > -1) {
-                //<!--@@INCLUDE "page\overview_villages\commands.js" INDENT=4 //-->
+                //<!--@@INCLUDE "overviews\commands.js" INDENT=4 //-->
             }
 			// INCOMINGS OVERVIEW
             else if (location.href.indexOf('mode=incomings') > -1) {
-                //<!--@@INCLUDE "page\overview_villages\incomings.js" INDENT=4 //-->
+                //<!--@@INCLUDE "overviews\incomings.js" INDENT=4 //-->
             }
 			
-			//<!--@@INCLUDE "page\overview_villages\allpages.js" INDENT=3 //-->
+			//<!--@@INCLUDE "overviews\allpages.js" INDENT=3 //-->
         }
 
 
