@@ -318,7 +318,7 @@ trans = {
 			showNewIncomings: "Toon Nieuwe Aanvallen",
 			amount: "Aanvallen:",
 			indicator: {
-				setLastTimeCheckTitle: "Laatste tijdcheck was: {time} geleden.",
+				setLastTimeCheckTitle: "Laatste tijdcheck: {time} geleden",
 				lastTimeCheckHintBoxTooltip: "Klik op {img} om de laatste tijdcheck met de huidige tijd te vervangen.",
 				lastTimeCheckNotYetSet: "(nog niet)"
 			}
