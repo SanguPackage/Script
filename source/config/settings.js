@@ -17,7 +17,9 @@ $.extend(user_data, {
 			blinkWhenStorageFull: true /* All pages: Blink the resources if the storage is full */
 		},
 		incomings: {
-			editLinks: true /* All pages: Edit the incoming attacks/support links: add "show all groups" and "show all pages" to the original links */
+			active: true,
+			editLinks: true, /* All pages: Edit the incoming attacks/support links: add "show all groups" and "show all pages" to the original links */
+			track: true
 		}
 	},
 	

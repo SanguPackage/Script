@@ -58,7 +58,8 @@ trans = {
 			activatePackage: "Sangu Package activeren",
 			deactivatePackage: "Sangu Package deactiveren",
 			activatePackageWithCompatibility: "Sangu Package (v{version}) mogelijk incompatibel met huidige TW versie",
-			firstTimeRun: "<b>Welkom!</b> Het Sangu Package is momenteel inactief. Klik op de rode indicator naast de opslagplaats hierboven om het package aan en uit te schakelen."
+			firstTimeRun: "<b>Welkom!</b> Het Sangu Package is momenteel inactief. Klik op de nieuwe {img} naast de opslagplaats hierboven om het package aan en uit te schakelen.",
+			removeScriptWarning: "Niet meer tonen"
 		},
 		all: {
 			populationShort: "Pop",
@@ -315,10 +316,12 @@ trans = {
 			summation: "Somlijn",
 			fastGrouping: "Snel Groeperen",
 			showNewIncomings: "Toon Nieuwe Aanvallen",
-			amount: "Aanvallen:"
-		},
-		activator: {
-			removeScriptWarning: "Niet meer tonen"
+			amount: "Aanvallen:",
+			indicator: {
+				setLastTimeCheckTitle: "Laatste tijdcheck was: {time} geleden.",
+				lastTimeCheckHintBoxTooltip: "Klik op {img} om de laatste tijdcheck met de huidige tijd te vervangen.",
+				lastTimeCheckNotYetSet: "(nog niet)"
+			}
 		},
 		rest: {
 			sittingAttackTill: "Aanvallen en verdedigen van dorpen niet in eigen beheer tot:"

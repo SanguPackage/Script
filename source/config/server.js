@@ -1,4 +1,6 @@
-var server_settings = {};
+var server_settings = {
+	incomingsIndicator: "({current} <small>{difference}</small>)"
+};
 switch (game_data.market) {
 	case 'de':
 		server_settings = {
@@ -6,7 +8,10 @@ switch (game_data.market) {
 			maxSitDays: 60,
 			ajaxAllowed: false,
 			coordinateLinkAllowed: true,
-			autoFillCoordinatesAllowed: false
+			autoFillCoordinatesAllowed: false,
+			scriptConfig: {
+				incomingsIndicator: server_settings.incomingsIndicator
+			}
 		};
 		break;
 	default:
@@ -15,7 +20,10 @@ switch (game_data.market) {
 			maxSitDays: 60,
 			ajaxAllowed: true,
 			coordinateLinkAllowed: false,
-			autoFillCoordinatesAllowed: true
+			autoFillCoordinatesAllowed: true,
+			scriptConfig: {
+				incomingsIndicator: server_settings.incomingsIndicator
+			}
 		};
 		break;
 }

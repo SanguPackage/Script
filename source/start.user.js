@@ -25,6 +25,7 @@ function sangu_ready() {
     
     if (isSanguActive) {
 		var world_data = {};
+		var current_page = "";
 		//<!--@@INCLUDE "config\world_config.js" INDENT=2 //-->
         //<!--@@INCLUDE "config\worlds.js" INDENT=2 //-->
 
@@ -139,6 +140,7 @@ function sangu_ready() {
             }
 			// INCOMINGS OVERVIEW
             else if (location.href.indexOf('mode=incomings') > -1) {
+				current_page = "overviews\\incomings";
                 //<!--@@INCLUDE "overviews\incomings.js" INDENT=4 //-->
             }
 			

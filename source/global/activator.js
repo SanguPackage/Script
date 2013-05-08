@@ -3,6 +3,7 @@ var isSanguActive = pers.get("sanguActive") == "true";
 if (location.href.indexOf('changeStatus=') > -1) {
 	isSanguActive = location.href.indexOf('changeStatus=true') > -1;
 	pers.set("sanguActive", isSanguActive);
+	pers.setGlobal("fixedToolTip_sanguActivatorTooltip", 1);
 }
 
 var activatorImage = isSanguActive ? "green" : 'red';
@@ -15,7 +16,7 @@ if (isSanguActive) {
 		try {
 			ScriptAPI.register('Sangu Package', server_settings.tw_version, 'Laoujin', sanguEmail);
 		} catch (e) {
-			$("#script_list a[href='mailto:"+sanguEmail+"']").after(" &nbsp;<a href='' id='removeScriptWarning'>"+trans.sp.activator.removeScriptWarning+"</a>");
+			$("#script_list a[href='mailto:"+sanguEmail+"']").after(" &nbsp;<a href='' id='removeScriptWarning'>"+trans.sp.sp.removeScriptWarning+"</a>");
 			$("#removeScriptWarning").click(function() {
 				pers.setGlobal("scriptWarningVersion", server_settings.tw_version);
 			});
@@ -36,26 +37,13 @@ $("#storage").parent()
 		+ ".png' title='" + activatorTitle 
 		+ "' /></a>&nbsp;</td>");
 
-function createFixedTooltip(id, position, title, content) {
-	$("#content_value").after('<div id="' + id + '" class="vis" style="z-index: 100001; margin: 2px; width: 350px; display: block; position:absolute; top: '+position.top+'px; left: '+position.left+'px; border: 1px solid black; background-color: #F4E4BC">'
-			+ '<h4>' + '<img class="closeTooltip" style="float: right; cursor: pointer;" src="graphic/minus.png">' + title + '</h4>'
-			+ '<div style="display: block; text-align: left; margin: 2px;">' + content + '</div>'
-			+ '</div>');
-	
-	$(".closeTooltip").click(function() {
-		$("#" + id).hide(); 
-		pers.setGlobal("sanguFirstRun", "1");
-	});
-}
-
 // First time run message - Position beneath resource/storage display
-if (pers.getGlobal("sanguFirstRun") == '') {
-	if (isSanguActive) {
-		pers.setGlobal("sanguFirstRun", "1");
-		
-	} else {
-		var position = $("#storage").position();
-		position = {left: position.left - 150, top: position.top + 35};
-		createFixedTooltip("sanguActivatorTooltip", position, "Sangu Package", trans.sp.sp.firstTimeRun);
-	}
+if (!isSanguActive) {
+	var position = $("#storage").position();
+	var options = {
+		left: position.left - 150, 
+		top: position.top + 35
+	};
+	var content = {body: trans.sp.sp.firstTimeRun.replace("{img}", "<img src='graphic/dots/red.png' />")};
+	createFixedTooltip("sanguActivatorTooltip", content, options);
 }
