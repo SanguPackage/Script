@@ -13,13 +13,22 @@ if (user_data.global.incomings.active) {
 			var incomingAttacksAmountLink = incomingAttacksLinks.last();
 			var currentAmountOfIncomings = incomingAttacksAmountLink.text().match(/\d+/)[0];
 			var lastKnownAmountOfIncomings = pers.get("lastKnownAmountOfIncomings") || 0;
+			
+			var lastCheckTime = pers.get("lastKnownAmountOfIncomingsTime");
+			if (!lastCheckTime) {
+				lastCheckTime = trans.sp.incomings.indicator.lastTimeCheckNotYetSet;
+			} else {
+				lastCheckTime = prettyDate(new Date().getTime() - parseInt(lastCheckTime, 10));
+			}
+			
 			if (currentAmountOfIncomings != lastKnownAmountOfIncomings) {
 				var newAttacks = currentAmountOfIncomings - lastKnownAmountOfIncomings;
+				var lastCheckTimeTitle = trans.sp.incomings.indicator.setLastTimeCheckTitle.replace("{time}", lastCheckTime);
 				if (newAttacks >= 0) {
-					incomingAttacksLinks.attr("title", trans.sp.incomings.indicator.lastTimeCheckWarningMore.replace("{new#}", newAttacks));
+					incomingAttacksLinks.attr("title", trans.sp.incomings.indicator.lastTimeCheckWarningMore.replace("{new#}", newAttacks).replace("{lastCheckTime}", lastCheckTimeTitle));
 					newAttacks = "+" + newAttacks;
 				} else {
-					incomingAttacksLinks.attr("title", trans.sp.incomings.indicator.lastTimeCheckWarningLess.replace("{new#}", Math.abs(newAttacks)));
+					incomingAttacksLinks.attr("title", trans.sp.incomings.indicator.lastTimeCheckWarningLess.replace("{new#}", Math.abs(newAttacks)).replace("{lastCheckTime}", lastCheckTimeTitle));
 				}
 				
 				incomingAttacksAmountLink.html(server_settings.scriptConfig.incomingsIndicator.replace("{current}", currentAmountOfIncomings).replace("{difference}", newAttacks));
@@ -28,10 +37,7 @@ if (user_data.global.incomings.active) {
 			
 			// Set last incomings-check time
 			if (current_page == "overviews\\incomings") {
-				var lastCheckTime = pers.get("lastKnownAmountOfIncomingsTime");
-				if (!lastCheckTime) {
-					lastCheckTime = trans.sp.incomings.indicator.lastTimeCheckNotYetSet;
-				
+				if (lastCheckTime == trans.sp.incomings.indicator.lastTimeCheckNotYetSet) {
 					// show info tooltip
 					var position = incomingAttacksAmountLink.position();
 					var options = {
@@ -41,8 +47,6 @@ if (user_data.global.incomings.active) {
 					};
 					var content = {body: trans.sp.incomings.indicator.lastTimeCheckHintBoxTooltip.replace("{img}", "<img src='graphic/ally_forum.png'>")};
 					createFixedTooltip("incomingsIndicatorHelp", content, options);
-				} else {
-					lastCheckTime = prettyDate(new Date().getTime() - parseInt(lastCheckTime, 10));
 				}
 				
 				// change last incomings-check time
