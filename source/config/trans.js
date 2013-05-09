@@ -320,11 +320,15 @@ trans = {
 			indicator: {
 				setLastTimeCheckTitle: "Laatste tijdcheck: {time} geleden",
 				lastTimeCheckHintBoxTooltip: "Klik op {img} om de laatste tijdcheck met de huidige tijd te vervangen.",
-				lastTimeCheckNotYetSet: "(nog niet)"
+				lastTimeCheckNotYetSet: "(nog niet)",
+				lastTimeCheckWarningMore: "{new#} nieuwe aanvallen. {lastCheckTime}",
+				lastTimeCheckWarningLess: "{new#} aanvallen minder. {lastCheckTime}"
 			}
 		},
 		rest: {
-			sittingAttackTill: "Aanvallen en verdedigen van dorpen niet in eigen beheer tot:"
+			sittingAttackTill: "Aanvallen en verdedigen van dorpen niet in eigen beheer tot:",
+			friendsOnline: "{friends} ({onlineimg} {online#} | {offlineimg} {offline#})",
+			friendsOnlineTitle: "Online: {playerNames}"
 		}
 	}
 };

@@ -16,17 +16,21 @@ if (user_data.global.incomings.active) {
 			if (currentAmountOfIncomings != lastKnownAmountOfIncomings) {
 				var newAttacks = currentAmountOfIncomings - lastKnownAmountOfIncomings;
 				if (newAttacks >= 0) {
+					incomingAttacksLinks.attr("title", trans.sp.incomings.indicator.lastTimeCheckWarningMore.replace("{new#}", newAttacks));
 					newAttacks = "+" + newAttacks;
+				} else {
+					incomingAttacksLinks.attr("title", trans.sp.incomings.indicator.lastTimeCheckWarningLess.replace("{new#}", Math.abs(newAttacks)));
 				}
-			
+				
 				incomingAttacksAmountLink.html(server_settings.scriptConfig.incomingsIndicator.replace("{current}", currentAmountOfIncomings).replace("{difference}", newAttacks));
+				incomingAttacksLinks.fadeOut("slow").fadeIn("slow");
 			}
 			
 			// Set last incomings-check time
 			if (current_page == "overviews\\incomings") {
 				var lastCheckTime = pers.get("lastKnownAmountOfIncomingsTime");
-				if (!!lastCheckTime) {
-					lastCheckTime = prettyDate(new Date().getTime() - parseInt(lastCheckTime, 10));
+				if (!lastCheckTime) {
+					lastCheckTime = trans.sp.incomings.indicator.lastTimeCheckNotYetSet;
 				
 					// show info tooltip
 					var position = incomingAttacksAmountLink.position();
@@ -38,7 +42,7 @@ if (user_data.global.incomings.active) {
 					var content = {body: trans.sp.incomings.indicator.lastTimeCheckHintBoxTooltip.replace("{img}", "<img src='graphic/ally_forum.png'>")};
 					createFixedTooltip("incomingsIndicatorHelp", content, options);
 				} else {
-					lastCheckTime = trans.sp.incomings.indicator.lastTimeCheckNotYetSet;
+					lastCheckTime = prettyDate(new Date().getTime() - parseInt(lastCheckTime, 10));
 				}
 				
 				// change last incomings-check time
@@ -64,6 +68,7 @@ if (user_data.global.incomings.active) {
 		}
 	}
 
+	// change incoming support link
 	var incomingSupport = $("a[href*='subtype=supports']", incoming);
 	if (incomingSupport.size() > 0) {
 		if (user_data.global.incomings.editLinks) {

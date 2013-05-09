@@ -20,7 +20,8 @@ $.extend(user_data, {
 			active: true,
 			editLinks: true, /* All pages: Edit the incoming attacks/support links: add "show all groups" and "show all pages" to the original links */
 			track: true
-		}
+		},
+		visualizeFriends: true
 	},
 	
 	scriptbar: {

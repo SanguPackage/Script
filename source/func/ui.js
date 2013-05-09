@@ -72,7 +72,7 @@ function createFixedTooltip(id, content, options) {
 		});
 	}
 }
-	
+
 function createSpoiler(button, content, opened) {
 	return "<div id='spoiler'><input type='button' value='" + button + "' onclick='toggle_spoiler(this)' /><div><span style='display:" + (opened ? 'block' : 'none') + "'>" + content + "</span></div></div>";
 }
