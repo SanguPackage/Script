@@ -48,6 +48,10 @@ if (user_data.overviews.addFancyImagesToOverviewLinks) {
 							case 2:
 								imageToAdd = "graphic/pfeil.png";
 								break;
+							case 3:
+							case 4:
+								$(this).css("opacity", "0.5");
+								break;
 							case 5:
 								imageToAdd = "graphic/command/support.png";
 								break;

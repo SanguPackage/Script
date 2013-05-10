@@ -238,7 +238,7 @@ trans = {
 			fieldsPrefix: "F{0}",
 			thousandSuffix: "k",
 			totalVillages: "Dorpen ({0})",
-			distanceToVillageNoneEntered: "Geef een co�rdinaat! (eerste tekstveld)",
+			distanceToVillageNoneEntered: "Geef een coördinaat! (eerste tekstveld)",
 			distanceToVillage: "Afstand tot {0}",
 			filterUnderAttack: "Filter onder aanval"
 		},

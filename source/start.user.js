@@ -17,6 +17,7 @@ function sangu_ready() {
 	var trans = {};
 	//<!--@@INCLUDE "config\trans.js" INDENT=1 //-->
 	
+	//<!--@@INCLUDE "func\debug.js" INDENT=2 //-->
 	//<!--@@INCLUDE "func\!unsorted.js" INDENT=1 //-->
 	//<!--@@INCLUDE "func\persistence.js" INDENT=1 //-->
 	//<!--@@INCLUDE "func\ui.js" INDENT=1 //-->
@@ -36,7 +37,6 @@ function sangu_ready() {
 		//<!--@@INCLUDE "global\jumper.js" INDENT=2 //-->
 		//<!--@@INCLUDE "global\ga.js" INDENT=2 //-->
 		
-		//<!--@@INCLUDE "func\debug.js" INDENT=2 //-->
 		q("-------------------------------------------------------------------- Start: "+sangu_version);
 
         // BEGIN PAGE PROCESSING

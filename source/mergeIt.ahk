@@ -17,7 +17,7 @@ FileCopy, %savePath%%saveAs%, C:\Users\PC\AppData\Roaming\Mozilla\Firefox\Profil
 
 ; Check it in browser :)
 SetTitleMatchMode RegEx
-IfWinExist, Tribal Wars - .* - Opera$
+IfWinExist, ^.* \(\d+\|\d+\) - Tribal Wars - .*$
 {
 	WinActivate
 	Send {F5}

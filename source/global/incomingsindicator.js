@@ -51,7 +51,7 @@ if (user_data.global.incomings.active) {
 				
 				// change last incomings-check time
 				incomingAttacksLinks.last().parent().after(
-					"<td class='box-item' id='changeLastCheckTimeBox'><a href='#' id='changeLastCheckTime'>&nbsp;"
+					"<td class='box-item' id='changeLastCheckTimeBox' style='white-space: nowrap'><a href='#' id='changeLastCheckTime'>&nbsp;"
 					+ "<img src='graphic/ally_forum.png' style='padding-top: 5px' "
 					+ "title='"+trans.sp.incomings.indicator.setLastTimeCheckTitle.replace("{time}", lastCheckTime)+"'/>&nbsp;</a></td>");
 				
