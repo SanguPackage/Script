@@ -175,6 +175,7 @@ function sangu_ready() {
         //<!--@@INCLUDE "global\resourcecoloring.js" INDENT=2 //-->
 		//<!--@@INCLUDE "global\incomingsindicator.js" INDENT=2 //-->
 		//<!--@@INCLUDE "global\friends.js" INDENT=2 //-->
+		//<!--@@INCLUDE "global\quickbar.js" INDENT=2 //-->
 		
 		//var end_time = new Date();
 		//console.timeEnd("SanguPackage");

@@ -103,8 +103,9 @@ if (!world_config.hasArchers && !world_config.hasKnight) {
 
 // Unit speed adjustments
 world_config.maxNobleWalkingTime *= world_data.unitsSpeed.unit_snob;
-if (Math.round(world_config.speed * world_config.unitSpeed) != 1) {
-	var speedModifier = Math.round(world_config.speed * world_config.unitSpeed);
+var speedModifier = world_config.speed * world_config.unitSpeed;
+//q(world_config.speed + " * " + world_config.unitSpeed + "=" + speedModifier);
+if (speedModifier != 1) {
 	$.each(world_data.unitsSpeed, function (index, value) {
 		world_data.unitsSpeed[index] = world_data.unitsSpeed[index] / speedModifier;
 	});

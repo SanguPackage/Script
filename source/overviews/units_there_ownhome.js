@@ -179,7 +179,6 @@ $("#targetVillageButton").click(function () {
 		$("#units_table").find("tr:visible:gt(1)").each(function () {
 			var coord = $(this).find("span[id^=label_text_]")[0].innerHTML.match("^.*\\((\\d+)\\|(\\d+)\\) "+trans.tw.all.continentPrefix+"\\d{1,2}$");
 			var dist = getDistance(targetMatch.x, coord[1], targetMatch.y, coord[2], currentPageSpeed);
-
 			$("td:last", this).html(dist.html);
 			$(this).attr("arrival", dist.travelTime);
 			if (dist.isNightBonus) {

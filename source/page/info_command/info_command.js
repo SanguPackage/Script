@@ -150,7 +150,7 @@ if ($("#running_times").size() > 0) {
 		});
 
 		var unitTable = $("table.vis:last", table);
-		unitTable.find("tr:first").append('<th width="50"><img src="graphic/face.png" title="' + trans.sp.all.population + '" alt="" /></th>');
+		unitTable.find("tr:first").append('<th width="50"><span class="icon header population" title="' + trans.sp.all.population + '"></span></th>');
 		unitTable.find("tr:last").append('<td>' + formatNumber(totalPop) + '</td>');
 	}
 }

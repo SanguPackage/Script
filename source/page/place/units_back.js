@@ -33,7 +33,7 @@ if ($("#units_away").size() != 0) {
 
 // Calculate distance and walkingtime to the villages
 var unitsTable = $("form table:first");
-$("tr:first", unitsTable).append('<th width="50"><img src="graphic/face.png" title="' + trans.sp.all.population + '" alt="" /></th><th>' + trans.sp.place.distance + '</th><th>' + trans.sp.place.backOn + '</th>');
+$("tr:first", unitsTable).append('<th width="50"><span class="icon header population" title="' + trans.sp.all.population + '"></span></th><th>' + trans.sp.place.distance + '</th><th>' + trans.sp.place.backOn + '</th>');
 unitsTable.find("tr:gt(0)").each(function () {
 	var pop = 0;
 	var row = $(this);

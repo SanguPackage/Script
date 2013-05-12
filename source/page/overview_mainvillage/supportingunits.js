@@ -70,7 +70,7 @@ if (user_data.overview.ajaxSeperateSupport && totalFarm > 0) {
 	if (ownFarmTotal > 0 && user_data.overview.ajaxSeperateSupportStacks) {
 		// stack in the village
 		var ownSupportDisplay = stackDisplay(ownFarmTotal);
-		unitTable.find("table:first").append("<tr><td><img src=graphic/face.png title='" + trans.sp.main.ownStackTitle + "'> " + ownSupportDisplay.desc + "</td></tr>");
+		unitTable.find("table:first").append("<tr><td><span class='icon header population' title='" + trans.sp.main.ownStackTitle + "'></span>" + ownSupportDisplay.desc + "</td></tr>");
 	}
 	if (totalFarm - ownFarmTotal > 0) {
 		// stack from other villages
