@@ -59,8 +59,8 @@ $("#defRestack").click(function () {
 	trackClickEvent("BBCodeOutput");
 	var villages = [];
 	var request = {};
-	var filter = hasGrouped ? "tr.command:visible" : "tr:gt(0):visible";
-	$("#commands_table " + filter).each( function () {
+	var filter = hasGrouped ? "tr.command" : "tr:gt(0)";
+	$("#commands_table " + filter).filter(":visible").each( function () {
 		var row = $(this);
 		var cells = $("td", row);
 		var firstCell = cells.first();
@@ -72,6 +72,7 @@ $("#defRestack").click(function () {
 			&& commandType.indexOf("command/return.png") == -1) {
 			
 			var village = getVillageFromCoords($.trim(firstCell.text()));
+			//assert(village.isValid, $.trim(firstCell.text()) + " could not be converted to village");
 			if (village.isValid) {
 				if (request[village.coord] == undefined) {
 					request[village.coord] = { village: village.coord, attacks: [], hasSupport: false, hasAttack: false };
@@ -94,12 +95,7 @@ $("#defRestack").click(function () {
 					isSupport = cells.first().has("img[src*='command/support.png']").size() == 1;
 				}
 
-				if (isSupport) {
-					request[village.coord].hasSupport = true;
-				} else {
-					request[village.coord].hasAttack = true;
-				}
-
+				request[village.coord].hasSupport = isSupport;
 				request[village.coord].attacks.push({
 					isSupport: isSupport,
 					units: unitsSent,
@@ -196,9 +192,10 @@ function filterCommandRows(filterStrategy) {
 	// return true to hidethe row; false keep row visible (without reverse filter checkbox)
 	var reverseFilter = $("#defReverseFilter").is(":checked");
 	var goners = $();
-	var filter = hasGrouped ? "tr.command:visible" : "tr:gt(0):visible";
-	$("#commands_table " + filter).each( function () {
+	var filter = hasGrouped ? "tr.command" : "tr:gt(0)";
+	$("#commands_table " + filter).filter(":visible").each(function () {
 		if ($("th", this).size() != 0) {
+			// don't do anything anymore when on the total row
 			return;
 		}
 		if (!reverseFilter != !filterStrategy($(this))) {
@@ -233,6 +230,7 @@ $("#filterReturning").click(function () {
 		var firstCellImage = $("td:first img:first", row).attr("src");
 		return firstCellImage.indexOf("command/other_back.png") != -1 
 		|| firstCellImage.indexOf("command/back.png") != -1
+		|| firstCellImage.indexOf("command/return.png") != -1
 		|| firstCellImage.indexOf("command/cancel.png") != -1;
 	});
 });
@@ -323,7 +321,7 @@ $("#sortIt").click(function () {
 	var sum = $('#sortSum').attr('checked') == "checked";
 	$("#filterReturning").attr("disabled", true);
 
-	$("#commands_table").find("tr:gt(0):visible").each(function () {
+	$("#commands_table").find("tr:gt(0)").filter(":visible").each(function () {
 		var target = $("span[id*='labelText']", this).text();
 		var village = getVillageFromCoords(target);
 		if (village.isValid) {
@@ -378,7 +376,6 @@ $("#sortIt").click(function () {
 			var lastArrival = '';
 			$.each(targets[v], function (index, value) {
 				var villageId = $("td:eq(1) a:first", value).attr("href").match(/id=(\d+)/)[1];
-				q(villageId);
 			
 				var currentArrival = $(value).find("td:eq(2)").text();
 				if (lastArrival == currentArrival) {
