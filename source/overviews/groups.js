@@ -64,7 +64,7 @@ function filterGroupRows(filterStrategy, reverseFilter, keepRowStrategy, tag) {
 
 	var goners = $();
 	var totalVisible = 0;
-	$("#group_assign_table tr:gt(0):visible").each(function () {
+	$("#group_assign_table tr:gt(0)").filter(":visible").each(function () {
 		var row = $(this);
 		if (!reverseFilter != !filterStrategy(row, tag)) {
 			goners = goners.add(row);
@@ -101,11 +101,11 @@ $("#defFilterDist").click(function () {
 		$("#group_assign_table").find("th:first").after("<th><span id=filterContext>" + trans.sp.defOverview.distanceToVillage.replace("{0}", targetVillage.coord) + "</span> <img src='graphic/oben.png' class=sortDistance direction=up> <img src='graphic/unten.png' class=sortDistance direction=down></th>");
 		$(".sortDistance").click(function () {
 			if ($(this).attr("direction") == "up") {
-				$("#group_assign_table").find("tr:gt(0):visible").sortElements(function (a, b) {
+				$("#group_assign_table").find("tr:gt(0)").filter(":visible").sortElements(function (a, b) {
 					return parseInt($(a).attr("fieldAmount"), 10) > parseInt($(b).attr("fieldAmount"), 10) ? 1 : -1;
 				});
 			} else {
-				$("#group_assign_table").find("tr:gt(0):visible").sortElements(function (a, b) {
+				$("#group_assign_table").find("tr:gt(0)").filter(":visible").sortElements(function (a, b) {
 					return parseInt($(a).attr("fieldAmount"), 10) < parseInt($(b).attr("fieldAmount"), 10) ? 1 : -1;
 				});
 			}
