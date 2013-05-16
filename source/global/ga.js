@@ -19,6 +19,6 @@ if (loginMonitor === '') {
 	// also log world/tribe usage
 	trackEvent("ScriptUsage", "WorldUsage", game_data.world);
 	trackEvent("ScriptUsage", "TribeUsage", game_data.world + " " + game_data.player.ally_id);
-	trackEvent("ScriptUsage", "HasPremium", game_data.player.premium);		// Do we need to support non PA users?
-	trackEvent("ScriptUsage", "HasAM", game_data.player.account_manager);	// Do we need to do stuff on the AM pages?
+	trackEvent("ScriptUsage", "HasPremium", game_data.player.premium ? "Yes" : "No");		// Do we need to support non PA users?
+	trackEvent("ScriptUsage", "HasAM", game_data.player.account_manager ? "Yes" : "No");	// Do we need to do stuff on the AM pages?
 }

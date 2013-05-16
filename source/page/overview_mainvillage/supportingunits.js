@@ -78,7 +78,7 @@ if (user_data.overview.ajaxSeperateSupport && totalFarm > 0) {
 		supportRows += "<tr><td><a href='" + getUrlString("screen=place&mode=units") + "'>&raquo; " + trans.sp.main.rallyPointTroops + "</a></td></tr>";
 		if (user_data.overview.ajaxSeperateSupportStacks) {
 			var supportDisplay = stackDisplay(totalFarm - ownFarmTotal, { showFarmLimit: true });
-			supportRows += '<tr><td style="border-top: 1px solid #85550d ;background-color: ' + supportDisplay.color + '">' + '<b>' + trans.tw.all.farm + ': ' + supportDisplay.desc + '</b>' + '</td></tr>';
+			supportRows += '<tr><td style="border-top: 1px solid #85550d ;background-color: ' + supportDisplay.color + '"><span class="icon header population" title="' + trans.sp.main.supportingStackTitle + '"></span>' + '<b>' + supportDisplay.desc + '</b>' + '</td></tr>';
 		}
 
 		unitTable.after(createMoveableWidget("os_units", trans.sp.main.unitsOther, newTable + supportRows + "</table>"));

@@ -54,7 +54,7 @@ trans = {
 	},
 	sp: {
 		sp: {
-			configuration: "Sangu Package Configuration",
+			configuration: "Sangu Package configureren",
 			activatePackage: "Sangu Package activeren",
 			deactivatePackage: "Sangu Package deactiveren",
 			activatePackageWithCompatibility: "Sangu Package (v{version}) mogelijk incompatibel met huidige TW versie",
@@ -83,7 +83,8 @@ trans = {
 			unitsReplacement: "Eigen",
 			unitsOther: "Ondersteunende Eenheden",
 			rallyPointTroops: "troepen",
-			ownStackTitle: "Totale populatie van de eigen troepen"
+			ownStackTitle: "Totale populatie van de eigen troepen",
+			supportingStackTitle: "Totale populatie van de ondersteunende troepen"
 		},
 		map: {
 			dodgeLastTagged: "Dodgetijd van de laatst getagde aanval"
