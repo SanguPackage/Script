@@ -46,8 +46,8 @@ if (user_data.confirm.addCatapultImages && $("#save_default_attack_building").le
 }
 
 var attackFrame = $("#content_value");
-var infoTable = $("table.vis:first td:odd", attackFrame);
-var targetVillage = infoTable.first().text();
+var valueCells = $("table.vis:first td:odd", attackFrame);
+var targetVillage = valueCells.first().text();
 
 // remember last attack
 // saved at the confirmation page so that we can't save
@@ -58,8 +58,8 @@ if (village.isValid) {
 }
 
 var isAttack = $("input[name='attack']").val() == "true";
-var isBarbarian = infoTable.size() == (isAttack ? 4 : 3);
-var player = (isBarbarian ? '' : infoTable.eq(1).text());
+var isBarbarian = valueCells.eq(1).has("a").length === 0;
+var player = (isBarbarian ? '' : valueCells.eq(1).text());
 
 var unitsSent = {};
 $.each(world_data.units, function (i, val) {

@@ -118,17 +118,29 @@ function getDateFromTodayTomorrowTW(str) {
 	var dateParts = [];
 	var parts = $.trim(str).split(" ");
 	if (str.indexOf(trans.tw.all.tomorrow) != -1) {
+        // morgen om 06:35:29 uur
 		dateParts[0] = currentT.getDate() + 1;
 		dateParts[1] = currentT.getMonth();
 	} else if (str.indexOf(trans.tw.all.today) != -1) {
+        // vandaag om 02:41:40 uur
 		dateParts[0] = currentT.getDate();
 		dateParts[1] = currentT.getMonth();
 	} else {
+        // op 19.05. om 11:31:51 uur
 		dateParts = parts[1].split(".");
 		dateParts[1] = parseInt(dateParts[1], 10) - 1;
 	}
 
+    // last part is "hour" but there is a script from lekensteyn that
+    // corrects the projected arrival time each second
+    // the script has not been updated to add the word "hour" after the time.
 	var timeParts = parts[parts.length - 2].split(":");
+    q(timeParts);
+    if (timeParts.length === 1) {
+        timeParts = parts[parts.length - 1].split(":");
+        q(timeParts);
+    }
+
 	var seconds = timeParts[2];
 	var millis = 0;
 	if (seconds.length > 2) {
