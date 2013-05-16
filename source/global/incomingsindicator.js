@@ -12,9 +12,9 @@ if (user_data.global.incomings.active) {
 			// Split current and new attacks in incomings link
 			var incomingAttacksAmountLink = incomingAttacksLinks.last();
 			var currentAmountOfIncomings = incomingAttacksAmountLink.text().match(/\d+/)[0];
-			var lastKnownAmountOfIncomings = pers.get("lastKnownAmountOfIncomings") || 0;
+			var lastKnownAmountOfIncomings = pers.get("lastKnownAmountOfIncomings" + game_data.player.sitter_id) || 0;
 			
-			var lastCheckTime = pers.get("lastKnownAmountOfIncomingsTime");
+			var lastCheckTime = pers.get("lastKnownAmountOfIncomingsTime" + game_data.player.sitter_id);
 			if (!lastCheckTime) {
 				lastCheckTime = trans.sp.incomings.indicator.lastTimeCheckNotYetSet;
 			} else {
@@ -57,8 +57,8 @@ if (user_data.global.incomings.active) {
 				
 				$("#changeLastCheckTime").click(function() {
 					var newCheckTime = new Date();
-					pers.set("lastKnownAmountOfIncomingsTime", newCheckTime.getTime());
-					pers.set("lastKnownAmountOfIncomings", currentAmountOfIncomings);
+					pers.set("lastKnownAmountOfIncomingsTime" + game_data.player.sitter_id, newCheckTime.getTime());
+					pers.set("lastKnownAmountOfIncomings" + game_data.player.sitter_id, currentAmountOfIncomings);
 					
 					pers.setGlobal("fixedToolTip_incomingsIndicatorHelp", 1);
 					$("#changeLastCheckTimeBox").fadeOut();
@@ -68,7 +68,7 @@ if (user_data.global.incomings.active) {
 		}
 	} else {
 		if (user_data.global.incomings.track) {
-			pers.set("lastKnownAmountOfIncomings", 0);
+			pers.set("lastKnownAmountOfIncomings" + game_data.player.sitter_id, 0);
 		}
 	}
 
