@@ -54,6 +54,9 @@ trans = {
 	},
 	sp: {
 		sp: {
+            settings: {
+                activate: "Activeer"
+            },
 			configuration: "Sangu Package configureren",
 			activatePackage: "Sangu Package activeren",
 			deactivatePackage: "Sangu Package deactiveren",

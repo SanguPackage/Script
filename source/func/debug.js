@@ -11,3 +11,13 @@ function qa(what) { alert(typeof what === "undefined" ? "yaye" : what); }
 	//if (alertIt != undefined && alertIt) alert('Start:' + toTime + ':' + watch.start);
 	return watch;
 }*/
+
+function assert(shouldBeTruthy, message) {
+	if (!shouldBeTruthy) {
+		if (message) {
+			q(message);
+		} else {
+			q("broken assertion");
+		}
+	}
+}

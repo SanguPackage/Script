@@ -10,7 +10,7 @@ $("table:first td", unitTable).not(":last").each(function () {
 	var unitsSize = world_data.unitsSize[unit];
 	var unitAmount = $('strong', this);
 	unitAmount[0].id = "spAmount" + unit;
-	unitAmount = unitAmount[0].innerHTML
+	unitAmount = unitAmount[0].innerHTML;
 	totalUnits[unit] = unitAmount;
 	totalFarm += unitsSize * unitAmount;
 	

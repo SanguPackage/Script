@@ -2,6 +2,9 @@ inputFile := "start.user.js"
 savePath := "C:\Users\PC\Documents\Dropbox\Personal\!Programming\OperaUserScripts\"
 saveAs := "sangupackage.user.js"
 
+; Save current changes
+Send ^s
+
 FileEncoding, UTF-8-RAW
 workingDirectory = %A_WorkingDir%
 SetWorkingDir, %A_ScriptDir%

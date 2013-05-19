@@ -135,10 +135,8 @@ function getDateFromTodayTomorrowTW(str) {
     // corrects the projected arrival time each second
     // the script has not been updated to add the word "hour" after the time.
 	var timeParts = parts[parts.length - 2].split(":");
-    q(timeParts);
     if (timeParts.length === 1) {
         timeParts = parts[parts.length - 1].split(":");
-        q(timeParts);
     }
 
 	var seconds = timeParts[2];

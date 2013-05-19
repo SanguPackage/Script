@@ -8,21 +8,19 @@ function sangu_ready() {
 	//console.time("SanguPackage");
     var sangu_version = '//<!--@@INCLUDE "version.txt" INDENT=0 //-->';
 
-    // User config
-    var user_data = {};
-    //<!--@@INCLUDE "config\settings_world.js" INDENT=1 //-->
-    //<!--@@INCLUDE "config\settings.js" INDENT=1 //-->
-    //<!--@@INCLUDE "config\settings_world2.js" INDENT=1 //-->
-	
-	var trans = {};
-	//<!--@@INCLUDE "config\trans.js" INDENT=1 //-->
-	
+    var trans = {};
+    //<!--@@INCLUDE "config\trans.js" INDENT=1 //-->
+
 	//<!--@@INCLUDE "func\debug.js" INDENT=2 //-->
 	//<!--@@INCLUDE "func\!unsorted.js" INDENT=1 //-->
 	//<!--@@INCLUDE "func\persistence.js" INDENT=1 //-->
 	//<!--@@INCLUDE "func\ui.js" INDENT=1 //-->
 	//<!--@@INCLUDE "config\server.js" INDENT=1 //-->
     //<!--@@INCLUDE "global\activator.js" INDENT=1 //-->
+
+    // User config
+    var user_data = {};
+    //<!--@@INCLUDE "config\settings.js" INDENT=1 //-->
     
     if (isSanguActive) {
 		var world_data = {};
@@ -86,7 +84,10 @@ function sangu_ready() {
 		// SETTINGS
         else if (location.href.indexOf('screen=settings') > -1) {
             // Add sangu to the menu
-            //$("#content_value table.vis:first").append("<tr><td>&nbsp;</td></tr><tr><th><a href='" + getUrlString("screen=settings&mode=sangu") + "'>Sangu</a></th></tr>");
+            $("#content_value table.vis:first").append(
+                "<tr><td>&nbsp;</td></tr><tr><th><a href='"
+                + getUrlString("screen=settings&mode=sangu")
+                + "'>Sangu Package</a></th></tr>");
 
             if (location.href.indexOf('mode=vacation') > -1) {
                 // VACATION MODE
@@ -98,7 +99,10 @@ function sangu_ready() {
 			}
             else if (location.href.indexOf('mode=sangu') > -1) {
 				// SANGU SCREEN
-				//<!--@@INCLUDE "page\settings\sangu.js" INDENT=4 //-->
+                //<!--@@INCLUDE "page\settings\sangu\propui.js" INDENT=4 //-->
+                //<!--@@INCLUDE "page\settings\sangu\sangu_trans.js" INDENT=4 //-->
+                //<!--@@INCLUDE "page\settings\sangu\sangu_config.js" INDENT=4 //-->
+				//<!--@@INCLUDE "page\settings\sangu\inject.js" INDENT=4 //-->
             }
         }
 		
@@ -169,8 +173,7 @@ function sangu_ready() {
 			}
         }
 
-		// TODO: Sangu settings - add link to them!
-		//$("#menu_row td:last").before("<td class='menu-item'><a target='_top' href='"+getUrlString("screen=settings&mode=sangu")+"'>Sangu</a></td>");
+		$("#footer_left").append(" - <a target='_top' href='"+getUrlString("screen=settings&mode=sangu")+"'>Sangu Package</a>");
 		
         //<!--@@INCLUDE "global\resourcecoloring.js" INDENT=2 //-->
 		//<!--@@INCLUDE "global\incomingsindicator.js" INDENT=2 //-->
@@ -181,6 +184,6 @@ function sangu_ready() {
 		//console.timeEnd("SanguPackage");
 		//q("" + pad(Math.abs(start_time.getTime() - end_time.getTime()), 3) + " -> " + location.search);
     }
-};
+}
 
 //<!--@@INCLUDE "greasemonkey\inject.js" INDENT=0 //-->
