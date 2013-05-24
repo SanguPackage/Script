@@ -55,7 +55,9 @@ trans = {
 	sp: {
 		sp: {
             settings: {
-                activate: "Activeer"
+                activate: "Activeer",
+                deleteTooltip: "Verwijderen",
+                addRecord: "&raquo; Toevoegen"
             },
 			configuration: "Sangu Package configureren",
 			activatePackage: "Sangu Package activeren",
@@ -143,7 +145,7 @@ trans = {
 			dodgeMinuteReturn: "(Terugkeer na {minutes})",
 			catapultImageTitle: "Klik om gebouw te vernietigen",
 			nextAttack: "volgend bevel",
-			nextIncoming: "volgend incoming",
+			nextIncoming: "volgend incoming", /* Currently not in use */
 			precedingAttack: "vorig bevel",
 			precedingIncoming: "vorige incoming"
 		},

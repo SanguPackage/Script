@@ -122,7 +122,7 @@ function filterRes(resourceIndex, hideRows) {
 			}
 
 			if (!isOk) {
-				resCell.css("background-color", "#DED3B9");
+				resCell.css("background-color", user_data.colors.neutral);
 			} else {
 				resCell.css("background-color", "");
 			}

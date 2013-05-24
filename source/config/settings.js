@@ -10,9 +10,9 @@ if (user_data !== '') {
         displayDays: false, /* true: display (walking)times in days when > 24 hours. false: always displays in hours */
 
         colors: {
-            error: "tomato",
-            good: "limegreen",
-            special: "aqua",
+            error: "#FF6347",
+            good: "#32CD32",
+            special: "#00FFFF",
             neutral: "#DED3B9"
         },
 
@@ -23,7 +23,6 @@ if (user_data !== '') {
                 blinkWhenStorageFull: true /* All pages: Blink the resources if the storage is full */
             },
             incomings: {
-                active: true,
                 editLinks: true, /* All pages: Edit the incoming attacks/support links: add "show all groups" and "show all pages" to the original links */
                 track: true
             },
@@ -37,7 +36,7 @@ if (user_data !== '') {
         },
 
         main: {
-            villageNames: ["name1", "name2"], /* Add village names to the village headquarters to quickly edit the village name to a preset name. Set to [] or null to disable, for 1 village name use ['MyVillageName'] or for more names: ['name1', 'name2', 'name3'] */
+            villageNames: [], /* Add village names to the village headquarters to quickly edit the village name to a preset name. Set to [] or null to disable, for 1 village name use ['MyVillageName'] or for more names: ['name1', 'name2', 'name3'] */
             villageNameClick: true, /* true: one of the previous button clicked automatically changes the village name. false: only fills in the name in the textbox but does not click the button */
             ajaxLoyalty: true /* Get the loyalty at the building construction/destruction page */
         },
@@ -53,7 +52,7 @@ if (user_data !== '') {
         },
 
         farmLimit: {
-            stackColors: ['tomato', 'Mediumseagreen', '#DED3B9'],
+            stackColors: ['#FF6347', '#3CB371', '#DED3B9'],
             acceptableOverstack: [1.35, 1.2, 0.5], /* Different pages: % of acceptable overstack (only relevant for farmlimit worlds) */
             unlimitedStack: [100000, 60000, 24000] /* Different pages: Calculate stacks based on total troops (for non farmlimit worlds) */
         },

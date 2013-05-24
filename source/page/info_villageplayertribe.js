@@ -22,6 +22,7 @@ if (user_data.profile.show && (location.href.indexOf('screen=info_village') == -
 		if (user_data.proStyle) {
 			$("#content_value td:first").css("width", "40%").next().css("width", "60%");
 		}
+
 		if (location.href.indexOf('screen=info_player') > -1) {
 			// player info page
 			id = infoTable.find("tr:eq(5) a").attr("href");
@@ -39,8 +40,10 @@ if (user_data.profile.show && (location.href.indexOf('screen=info_village') == -
 			tables = $("#content_value");
 			infoTable = $("table.vis:first", tables);
 			id = infoTable.find("tr:eq(3) a");
+            assert(id.size() == 1, "player id not found on info_village page");
 			if (id.size() > 0) {
-				id = id.attr("href"); id = id.substr(id.lastIndexOf("=") + 1);
+				id = id.attr("href").match(/id=(\d+)/)[1];
+                assert(!!id, "player id href is not set");
 			} else {
 				id = 0;
 			}
@@ -50,9 +53,10 @@ if (user_data.profile.show && (location.href.indexOf('screen=info_village') == -
 		if (id > 0 && profile.mapLink.show) {
 			var link = "http://" + game_data.market + ".twstats.com/" + game_data.world + "/index.php?page=map";
 			var tribeId = infoTable.find("td:eq(7) a");
+            //assert(tribeId.size() == 1, "tribe id not found"); // Not everyone is in a tribe
 			if (tribeId.size() == 1) {
-				tribeId = tribeId.attr("href");
-				tribeId = tribeId.substr(tribeId.lastIndexOf('=') + 1);
+				tribeId = tribeId.attr("href").match(/id=(\d+)/)[1];
+				assert(!isNaN(tribeId), "tribe id is not a number");
 			} else tribeId = 0;
 
 			if (mapProfile.tribeColor != null) {

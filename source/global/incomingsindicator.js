@@ -1,5 +1,5 @@
 // adjust links to incoming attacks/support
-if (user_data.global.incomings.active) {
+if (user_data.global.incomings.editLinks || user_data.global.incomings.track) {
 	var incoming = $("table.box:last");
 	var incomingAttacksLinks = $("a[href*='subtype=attacks']", incoming);
 	if (incomingAttacksLinks.size() > 0) {
