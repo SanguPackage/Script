@@ -303,31 +303,44 @@ function stackDisplay(totalFarm, stackOptions) {
 	}
 }
 
-function getStackColor(totalFarm, farmSize) {
-	var color = null;
-	if (world_config.farmLimit > 0) {
-		$.each(user_data.farmLimit.acceptableOverstack, function (index, val) {
-			if (color == null && totalFarm > farmSize * val) {
-				color = user_data.farmLimit.stackColors[index];
-				return false;
-			}
-		});
+/**
+ * Gets the configured stack backgroundcolor for the given stackTotal
+ * @param stackTotal {number}
+ * @returns {color}
+ */
+function getStackColor(stackTotal) {
+	var color = null,
+        arrayToIterate,
+        farmLimitModifier;
 
-		if (color != null) {
-			return color;
-		}
-		
-	} else {
-		$.each(user_data.farmLimit.unlimitedStack, function (index, val) {
-			if (color == null && totalFarm > val) {
-				color = user_data.farmLimit.stackColors[index];
-			}
-		});
+    if (world_config.farmLimit > 0) {
+        arrayToIterate = user_data.farmLimit.acceptableOverstack;
+        farmLimitModifier = 30 * world_config.farmLimit;
+    } else {
+        arrayToIterate = user_data.farmLimit.unlimitedStack;
+        farmLimitModifier = 1; // = No modifier
+    }
 
-		if (color != null) {
-			return color;
-		}
-	}
+    if (arrayToIterate.length > 0) {
+        $.each(arrayToIterate, function (index, configValue) {
+            if (color == null && stackTotal < farmLimitModifier * configValue) {
+                if (index === 0) {
+                    color = "";
+                } else {
+                    color = user_data.farmLimit.stackColors[index - 1];
+                    //q(stackTotal +"<"+ farmLimitModifier +"*"+ configValue);
+                    //q("return " + (index - 1) + "->" + color);
+                }
+                return false;
+            }
+        });
 
-	return "transparant";
+        if (color != null) {
+            //q(stackTotal + " -> " + color);
+            return color;
+        }
+        return user_data.farmLimit.stackColors[user_data.farmLimit.stackColors.length - 1];
+    }
+
+	return "";
 }

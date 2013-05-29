@@ -55,11 +55,13 @@ trans = {
 	sp: {
 		sp: {
             settings: {
+                reset: "De standaard Sangu Package settings herstellen",
+                resetAll: "Sangu Package 'fabrieksinstellingen' herstellen",
                 activate: "Activeer",
                 deleteTooltip: "Verwijderen",
                 addRecord: "&raquo; Toevoegen"
             },
-			configuration: "Sangu Package configureren",
+			configuration: "Sangu Package configureren (v{version})",
 			activatePackage: "Sangu Package activeren",
 			deactivatePackage: "Sangu Package deactiveren",
 			activatePackageWithCompatibility: "Sangu Package (v{version}) mogelijk incompatibel met huidige TW versie",

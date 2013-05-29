@@ -295,7 +295,7 @@ $("#calculateStack").click(function () {
 					total += this.innerHTML * world_data.unitsPositionSize[i];
 				}
 			});
-			var color = getStackColor(total, 30 * world_config.farmLimit);
+			var color = getStackColor(total);
 			$("td:eq(1)", this).text(formatNumber(total)).css("background-color", color);
 		});
 	}

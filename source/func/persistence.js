@@ -14,8 +14,12 @@ var modernizr = (function () {
 
 var pers;
 (function (pers) {
+    function getKey(key) {
+        return 'sangu_' + key;
+    }
+
 	function getWorldKey(key) {
-		return game_data.world + '_' + key;
+		return 'sangu_' + game_data.world + '_' + key;
 	}
 
 	function getCookie(key) {
@@ -41,6 +45,7 @@ var pers;
 	}
 	
 	function getGlobal(key) {
+        key = getKey(key);
 		if (modernizr.localstorage) {
 			var value = localStorage[key];
 			return typeof value === 'undefined' ? '' : value;
@@ -60,7 +65,7 @@ var pers;
 	}
 	
 	function get(key) {
-		return getGlobal(getWorldKey(key));
+		return getGlobal(key);
 	}
 	
 	function setCookie(key, value, expireMinutes) {
@@ -80,6 +85,7 @@ var pers;
 	}
 	
 	function setGlobal(key, value) {
+        key = getKey(key);
 		if (modernizr.localstorage) {
 			localStorage[key] = value;
 		} else {
@@ -95,20 +101,29 @@ var pers;
 			setCookie(key, value);
 		}
 	}
+
+    function set(key, value) {
+        setGlobal(key, value);
+    }
 	
 	function removeSessionItem(key) {
+        key = getKey(key);
 		if (modernizr.localstorage) {
 			sessionStorage.removeItem(key);
 		}
 		// fuck cookies
 	}
-	
-	function set(key, value) {
-		setGlobal(getWorldKey(key), value);
-	}
+
+    function clear() {
+        if (modernizr.localstorage) {
+            sessionStorage.clear();
+            localStorage.clear();
+        }
+    }
 	
 	pers.removeSessionItem = removeSessionItem;
 	pers.getWorldKey = getWorldKey;
+    pers.getKey = getKey;
 	pers.set = set;
 	pers.setCookie = setCookie;
 	pers.setGlobal = setGlobal;
@@ -117,4 +132,5 @@ var pers;
 	pers.getCookie = getCookie;
 	pers.getGlobal = getGlobal;
 	pers.getSession = getSession;
+    pers.clear = clear;
 })(pers || (pers = {}));

@@ -17,6 +17,14 @@ user_data_configs.push({
                 editor: "bool"
             }
         },
+        resourceColors: {
+            label: sangu_trans.global.resources.colors,
+            propUI: {
+                getter: function() { return user_data.global.resources.backgroundColors; },
+                setter: function(value) { user_data.global.resources.backgroundColors = value; },
+                editor: "array:color"
+            }
+        },
         resourcesBlinkWhenFull: {
             label: sangu_trans.global.resources.blinkWhenStorageFull,
             propUI: {
@@ -131,7 +139,7 @@ user_data_configs.push({
              propUI: {
                  getter: function() { return user_data.main.villageNames; },
                  setter: function(value) { user_data.main.villageNames = value; },
-                 editor: "array:text|delete"
+                 editor: "array|addNew:text|delete"
              }
         },
         villageNameClick: {
@@ -162,15 +170,6 @@ user_data_configs.push({
     title: sangu_trans.incoming.title,
     save: function() { pers.set('sangusettings', JSON.stringify(user_data)); },
     properties: {
-        /*villageNames: {
-            tooltip: sangu_trans.main.villageNamesTooltip,
-            label: sangu_trans.main.villageNames,
-            propUI: {
-                getter: function() { return user_data.main.villageNames; },
-                setter: function(value) { user_data.main.villageNames = value; },
-                editor: "array:text|delete"
-            }
-        },*/
         autoOpenTagger: {
             label: sangu_trans.incoming.autoOpenTagger,
             propUI: {
@@ -289,16 +288,64 @@ user_data_configs.push({
         farmLimitTitle: {
             type: "subtitle",
             label: sangu_trans.other.farmLimitTitle
+        },
+        farmLimitColors: {
+            label: sangu_trans.other.farmLimitStackColors,
+            propUI: {
+                getter: function() { return user_data.farmLimit.stackColors; },
+                setter: function(value) { user_data.farmLimit.stackColors = value; },
+                editor: "array|addNew:color|delete"
+            }
+        },
+        farmLimitAcceptableOverstack: {
+            label: sangu_trans.other.farmLimitAcceptableOverstack,
+            tooltip: sangu_trans.other.farmLimitAcceptableOverstackTooltip.replace("{farmlimit}", 30 * world_config.farmLimit),
+            show: world_config.farmLimit,
+            propUI: {
+                getter: function() { return user_data.farmLimit.acceptableOverstack; },
+                setter: function(value) { user_data.farmLimit.acceptableOverstack = value; },
+                editor: "array|addNew:float|delete|step=0.01"
+            }
+        },
+        farmLimitUnlimitedStack: {
+            label: sangu_trans.other.farmLimitUnlimitedStack,
+            show: !world_config.farmLimit,
+            propUI: {
+                getter: function() { return user_data.farmLimit.unlimitedStack; },
+                setter: function(value) { user_data.farmLimit.unlimitedStack = value; },
+                editor: "array|addNew:number|delete|step=1000"
+            }
         }
     }
 });
 
 
 
-
 // Inject in page
 var contentPage = $("#content_value table:first td:last").attr("width", "99%");
-contentPage.html("<h3>" + trans.sp.sp.configuration + "</h3>");
+
+var resetForm = "<a href='#' id='resetSettings'>&raquo; " + trans.sp.sp.settings.reset + "</a>";
+resetForm += "<br>";
+resetForm += "<a href='#' id='resetAllSettings'>&raquo; " + trans.sp.sp.settings.resetAll + "</a>";
+contentPage.html("<h3>" + trans.sp.sp.configuration.replace("{version}", sangu_version) + "</h3>" + resetForm + "<br><br>");
+
+$("#resetSettings").click(function() {
+    if (confirm(trans.sp.sp.settings.reset)) {
+        pers.set('sangusettings', '');
+        location.reload(false);
+    }
+    return false; 
+});
+
+$("#resetAllSettings").click(function() {
+    if (confirm(trans.sp.sp.settings.resetAll)) {
+        pers.clear();
+        window.location = getUrlString("overview");
+    }
+    return false;
+});
+
+
 for (var configId = 0; configId < user_data_configs.length; configId++) {
     buildConfigForm(contentPage, user_data_configs[configId]);
     contentPage.append("<br>");

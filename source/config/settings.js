@@ -19,7 +19,7 @@ if (user_data !== '') {
         global: {
             resources: {
                 active: true, /* All pages: true/false: color the resources based on how much the storage is filled */
-                backgroundColors: ['Greenyellow', 'Chartreuse', 'Limegreen', 'Mediumseagreen', 'Forestgreen', 'Orange', 'Coral', 'Tomato', 'Orangered', 'Red'], /* All pages: Colors used for the previous setting. First is least filled, last is most filled storage place */
+                backgroundColors: ['#ADFF2F', '#7FFF00', '#32CD32', '#3CB371', '#228B22', '#FFA500', '#FF7F50', '#FF6347', '#FF4500', '#FF0000'], /* All pages: Colors used for the previous setting. First is least filled, last is most filled storage place */
                 blinkWhenStorageFull: true /* All pages: Blink the resources if the storage is full */
             },
             incomings: {
@@ -52,9 +52,9 @@ if (user_data !== '') {
         },
 
         farmLimit: {
-            stackColors: ['#FF6347', '#3CB371', '#DED3B9'],
-            acceptableOverstack: [1.35, 1.2, 0.5], /* Different pages: % of acceptable overstack (only relevant for farmlimit worlds) */
-            unlimitedStack: [100000, 60000, 24000] /* Different pages: Calculate stacks based on total troops (for non farmlimit worlds) */
+            stackColors: ['#DED3B9', '#3CB371', '#FF6347'],
+            acceptableOverstack: [0.5, 1.2, 1.35], /* Different pages: % of acceptable overstack (only relevant for farmlimit worlds) */
+            unlimitedStack: [24000, 60000, 100000] /* Different pages: Calculate stacks based on total troops (for non farmlimit worlds) */
         },
 
         command: { /* features for the own troops overview page */

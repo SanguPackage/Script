@@ -5,14 +5,16 @@ var sangu_trans_nl = {
         villageNamesTooltip: "Voeg je veelgebruikte dorpsnamen toe om een dorp met 1 klik te hernoemen.",
         villageNameClick: "Autoclick?",
         villageNameClickTooltip: "Schakel deze feature uit indien je bijvoorbeeld nog een nummer aan een standaard dorpsnaam wil toevoegen.",
-        ajaxLoyalty: "Toestemming tonen?"
+        ajaxLoyalty: "Toestemming tonen?",
     },
     global: {
         title: "Op alle pagina's",
         resources: {
             title: "Met kleuren aanduiden hoe vol de opslagplaats is",
             activate: trans.sp.sp.settings.activate,
-            blinkWhenStorageFull: "Grondstoffen knipperen wanneer de opslagplaats vol is"
+            blinkWhenStorageFull: "Grondstoffen knipperen wanneer de opslagplaats vol is",
+            colors: "Kleurenschakering"
+
         },
         incomingsTitle: "Binnenkomende aanvallen/ondersteuning links",
         incomingsEditLinks: "Linkdoelwit wijzigen",
@@ -46,6 +48,10 @@ var sangu_trans_nl = {
         overviewLinks: "Iconen toevoegen aan de overzichtenlinks",
         showPlayerProfileOnVillage: "Het uitgebreide spelersprofiel tonen op een dorpsinformatie pagina",
         farmLimitTitle: "Dorpstacks achtergrondkleuren",
+        farmLimitStackColors: "Kleurenschakering",
+        farmLimitAcceptableOverstack: "Acceptabele overstack voor elke kleurschakering",
+        farmLimitAcceptableOverstackTooltip: "Boerderijlimiet: {farmlimit}",
+        farmLimitUnlimitedStack: "Aantal populatie voor elke kleurschakering",
         ajaxSeperateSupport: "Visualiseer het verschil tussen eigen en ondersteunende troepen in het dorpsoverzicht",
         commandRenamer: "Bevelen automatisch hernoemen",
         commandRenamerActive: "De verzonden troepen in de bevelnaam weergeven",
