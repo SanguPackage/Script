@@ -86,7 +86,7 @@ function createSettingType(inputHandler, editors) {
                     //$(document).on("click", "#" + id, function() {
                     //q("bind " + id + ". Length => " + $("#" + id).length);
                     $("#" + id).click(function() {
-                        q("set bool " + id);
+                        //q("set bool " + id);
                         inputHandler.setValue($(this).is(":checked"));
                     });
                 }
@@ -102,16 +102,21 @@ function createSettingType(inputHandler, editors) {
                     inputBoxSize = 13,
                     extraInputAttributes = "",
                     extraHtml = "",
-                    inputTypes = decorators[0].split("+");
+                    inputTypes = decorators[0].split("+"),
+                    inputTypeAttribute = decorators[0] === "float" ? "number" : decorators[0];
+
+                // todo: implement inputTypes
 
                 htmlString += "<div id='{domId}_container' " + (decorators[0] == 'color' && !decorators[1] ? "style='display: inline'> &nbsp;" : ">");
 
-                if (decorators[0] === "text") {
-                    //q("value is '" + value + "' how?: " + editors);
-                    if (typeof value === 'string') {
-                        value = value.toString().replace(/'/g, "&#39;");
-                    }
-                    inputBoxSize = 50;
+                switch (decorators[0]) {
+                    case "text":
+                        //q("value is '" + value + "' how?: " + editors);
+                        if (typeof value === 'string') {
+                            value = value.toString().replace(/'/g, "&#39;");
+                        }
+                        inputBoxSize = 50;
+                        break;
                 }
                 if (decorators.length > 1) {
                     (function() {
@@ -123,7 +128,7 @@ function createSettingType(inputHandler, editors) {
                                     extraHtml += " &nbsp;<a href='#' id='{domId}_delete'><img src='graphic/delete.png' title='"+trans.sp.sp.settings.deleteTooltip+"' /></a>";
                                     break;
                                 case "step":
-                                    assert(decorators[0] === "number", "step only works with number inputs");
+                                    assert(decorators[0] === "float", "step only works with number inputs");
                                     assert(keyValuePair.length === 2, "expected input: step=value");
                                     extraInputAttributes += " step='"+keyValuePair[1]+"'";
                                     break;
@@ -133,7 +138,7 @@ function createSettingType(inputHandler, editors) {
                 }
 
                 htmlString +=
-                    "<input type='" + decorators[0] + "' id='{domId}' size='" + inputBoxSize +"' "
+                    "<input type='" + inputTypeAttribute + "' id='{domId}' size='" + inputBoxSize +"' "
                         + (value ? " value='"+value+"'" : "")
                         + extraInputAttributes +" />"
                         + extraHtml;

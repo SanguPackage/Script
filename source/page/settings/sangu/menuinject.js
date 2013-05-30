@@ -14,7 +14,7 @@
             + "</td></tr>");
 
     /**
-     * Create the textarea for displaying the user_date
+     * Creates the textarea (and other UI elements) for displaying the user_data
      * @param activate {string} either Import or Export
      * @param deactivate {string} either Export or Import
      * @param textAreaValue {string} the content to assign to the textarea
