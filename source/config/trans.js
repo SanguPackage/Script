@@ -59,7 +59,13 @@ trans = {
                 resetAll: "Sangu Package 'fabrieksinstellingen' herstellen",
                 activate: "Activeer",
                 deleteTooltip: "Verwijderen",
-                addRecord: "&raquo; Toevoegen"
+                addRecord: "&raquo; Toevoegen",
+                exportSettings: "Instellingen exporteren",
+                importSettings: "Instellingen importeren",
+                importSettingsDesc: "Door de sangu instellingen te exporteren en elders opnieuw te importeren kan je de huidige sangu configuratie hergebruiken op een andere wereld of computer.",
+                importSettingsSuccess: "Settings zijn geïmporteerd!",
+                importError: "Het ziet er naar uit dat de geplakte tekst foutief is.",
+                importErrorContinueAnyway: "Toch importeren?"
             },
 			configuration: "Sangu Package configureren (v{version})",
 			activatePackage: "Sangu Package activeren",

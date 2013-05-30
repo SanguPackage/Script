@@ -84,10 +84,7 @@ function sangu_ready() {
 		// SETTINGS
         else if (location.href.indexOf('screen=settings') > -1) {
             // Add sangu to the menu
-            $("#content_value table.vis:first").append(
-                "<tr><td>&nbsp;</td></tr><tr><th><a href='"
-                + getUrlString("screen=settings&mode=sangu")
-                + "'>Sangu Package</a></th></tr>");
+            //<!--@@INCLUDE "page\settings\sangu\menuinject.js" INDENT=3 //-->
 
             if (location.href.indexOf('mode=vacation') > -1) {
                 // VACATION MODE

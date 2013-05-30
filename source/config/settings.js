@@ -112,11 +112,21 @@ if (user_data !== '') {
             colorSupport: 'rgb(255, 245, 218)' /* Main village overview: give incoming support a different background color */
         },
 
-        villageInfo: {
-            active: true,
-            off_link: "&group=3093&unit=2&amount=5000&sort=true&changeSpeed=ram", /* On info_village page add extra link to attack. 3093=group id of off villages. Filter: amount=5000 unit=2=axe */
-            def_link: "&group=9020&unit=0&amount=3000&sort=true&changeSpeed=spear"
-        },
+        villageInfo: [
+            /* On info_village page add extra link to attack. 3093=group id of off villages. Filter: amount=5000 unit=2=axe */
+            /*active: true,
+            off_link: "&group=3093&unit=2&amount=5000&sort=true&changeSpeed=ram",
+            def_link: "&group=9020&unit=0&amount=3000&sort=true&changeSpeed=spear"*/
+            {
+                group: 0,
+                filter: {
+                    unit: 2,
+                    amount: 3000
+                },
+                changeSpeed: "ram",
+                sort: true
+            }
+        ],
 
         resources: {
             requiredResDefault: 250000,
