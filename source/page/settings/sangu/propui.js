@@ -4,6 +4,12 @@
 
 function createArraySettingType(inputHandler, index, editor) {
     var propertyValueType = editor.split("|")[0];
+
+    function deleter() {
+        //q("deleting" + index);
+        inputHandler.getValue().splice(index, 1);
+    }
+
     //q(inputHandler +","+ index +","+ editor)
     switch (propertyValueType) {
         case "number":
@@ -13,15 +19,14 @@ function createArraySettingType(inputHandler, index, editor) {
                 },
                 setter: function(value) {
                     value = parseInt(value, 10);
-                    if (typeof value === 'number') {
+                    if (!isNaN(value)) {
                         inputHandler.getValue()[index] = value;
                     } else {
-                        inputHandler.getValue().splice(index, 1);
+                        //inputHandler.getValue().splice(index, 1);
+                        inputHandler.getValue()[index] = 0;
                     }
                 },
-                // TODO: bug: de splice gaat elementen verwijderen uit de array
-                // maar de UI is niet aangepast
-                // heb hier dus een "delete" functie nodig
+                deleter: deleter,
                 editor: editor
             });
 
@@ -34,12 +39,14 @@ function createArraySettingType(inputHandler, index, editor) {
                 },
                 setter: function(value) {
                     //q("setting index:" + index + " to " + value);
-                    if (value.length > 0) {
+                    inputHandler.getValue()[index] = value;
+                    /*if (value.length > 0) {
                         inputHandler.getValue()[index] = value;
                     } else {
                         inputHandler.getValue().splice(index, 1);
-                    }
+                    }*/
                 },
+                deleter: deleter,
                 editor: editor
             });
 
@@ -49,13 +56,17 @@ function createArraySettingType(inputHandler, index, editor) {
                     return inputHandler.getValue()[index];
                 },
                 setter: function(value) {
-                    value = parseFloat(value);
-                    if (typeof value === 'number') {
+                    value = parseFloat(value.replace(",", "."));
+                    //q("setter:" + value);
+                    if (!isNaN(value)) {
+                        //q("numeeric" + value);
                         inputHandler.getValue()[index] = value;
                     } else {
-                        inputHandler.getValue().splice(index, 1);
+                        //q("set to 0");
+                        inputHandler.getValue()[index] = 0;
                     }
                 },
+                deleter: deleter,
                 editor: editor
             });
     }
@@ -96,17 +107,14 @@ function createSettingType(inputHandler, editors) {
         case "number":
         case "float":
             return (function() {
-                // HACK: !decorators[1]: when there is a delete or addNew option, display each element on a new row
                 var htmlString = "",
                     index,
                     inputBoxSize = 13,
                     extraInputAttributes = "",
                     extraHtml = "",
-                    inputTypes = decorators[0].split("+"),
                     inputTypeAttribute = decorators[0] === "float" ? "number" : decorators[0];
 
-                // todo: implement inputTypes
-
+                // HACK: !decorators[1]: when there is a delete or addNew option, display each element on a new row
                 htmlString += "<div id='{domId}_container' " + (decorators[0] == 'color' && !decorators[1] ? "style='display: inline'> &nbsp;" : ">");
 
                 switch (decorators[0]) {
@@ -128,7 +136,7 @@ function createSettingType(inputHandler, editors) {
                                     extraHtml += " &nbsp;<a href='#' id='{domId}_delete'><img src='graphic/delete.png' title='"+trans.sp.sp.settings.deleteTooltip+"' /></a>";
                                     break;
                                 case "step":
-                                    assert(decorators[0] === "float", "step only works with number inputs");
+                                    assert(decorators[0] === "float" || decorators[0] === "number", "step only works with numeric inputs");
                                     assert(keyValuePair.length === 2, "expected input: step=value");
                                     extraInputAttributes += " step='"+keyValuePair[1]+"'";
                                     break;
@@ -139,7 +147,7 @@ function createSettingType(inputHandler, editors) {
 
                 htmlString +=
                     "<input type='" + inputTypeAttribute + "' id='{domId}' size='" + inputBoxSize +"' "
-                        + (value ? " value='"+value+"'" : "")
+                        + (typeof value !== 'undefined' ? " value='"+value+"'" : "")
                         + extraInputAttributes +" />"
                         + extraHtml;
 
@@ -155,14 +163,14 @@ function createSettingType(inputHandler, editors) {
                         //$(document).on("click", "#" + id + "_button", function() {
                         $("#" + id).change(function() {
                             var newValue = $("#" + id).val();
-                            q("bind:" + id + " for index " + index + " to " + newValue);
+                            //q("bind:" + id + " for index " + index + " to " + newValue);
                             inputHandler.setValue(newValue);
 
                             return false;
                         });
 
                         $("#" + id + "_delete").click(function() {
-                            inputHandler.setValue("");
+                            inputHandler.deleteValue();
                             //$("#" + id + "_container").hide();
 
                             //q("delete");
@@ -249,7 +257,7 @@ function createSettingType(inputHandler, editors) {
                 };
             })();
     }
-    assert(false, editors[0] + " is not a valid createSettingType");
+    assert(false, editors[0] + " is not a valid editor");
     return;
 }
 
@@ -264,9 +272,15 @@ function FormInputHandler(propertyFormConfig, propSettings) {
     this.formConfig = propertyFormConfig;
     if (typeof propertyFormConfig.save === 'undefined') {
         this.setValue = propSettings.setter;
+        this.deleteValue = propSettings.deleter;
     } else {
         this.setValue = function(value) {
             propSettings.setter(value);
+            propertyFormConfig.save();
+        };
+
+        this.deleteValue = function() {
+            propSettings.deleter();
             propertyFormConfig.save();
         };
     }
@@ -336,7 +350,7 @@ function buildConfigForm(contentPage, propertyFormConfig) {
 
             form.append(formRow);
 
-            // bind the form to the js variable (with on)
+            // bind the form to the js variable
             if (typeof propUI.propUI.bind === 'function') {
                 propUI.propUI.bind(propertyFormConfig.id+"_"+propUI.ownName);
             }

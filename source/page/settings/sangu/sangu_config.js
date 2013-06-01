@@ -1,6 +1,142 @@
 var user_data_configs = [];
 
 user_data_configs.push({
+    id: "other",
+    title: sangu_trans.other.title,
+    save: function() { pers.set('sangusettings', JSON.stringify(user_data)); },
+    properties: {
+        /*proStyle: {
+            tooltip: sangu_trans.other.proStyleTooltip,
+            label: sangu_trans.other.proStyle,
+            propUI: {
+                getter: function() { return user_data.proStyle; },
+                setter: function(value) { user_data.proStyle = value; },
+                editor: "bool"
+            }
+        },
+        displayDays: {
+            label: sangu_trans.other.displayDays,
+            propUI: {
+                getter: function() { return user_data.displayDays; },
+                setter: function(value) { user_data.displayDays = value; },
+                editor: "bool"
+            }
+        },
+        calculateSnob: {
+            label: sangu_trans.other.calculateSnob,
+            show: !world_config.coins,
+            propUI: {
+                getter: function() { return user_data.other.calculateSnob; },
+                setter: function(value) { user_data.other.calculateSnob = value; },
+                editor: "bool"
+            }
+        },
+        overviewLinks: {
+            label: sangu_trans.other.overviewLinks,
+            propUI: {
+                getter: function() { return user_data.overviews.addFancyImagesToOverviewLinks; },
+                setter: function(value) { user_data.overviews.addFancyImagesToOverviewLinks = value; },
+                editor: "bool"
+            }
+        },
+        showPlayerProfileOnVillage: {
+            label: sangu_trans.other.showPlayerProfileOnVillage,
+            propUI: {
+                getter: function() { return user_data.showPlayerProfileOnVillage; },
+                setter: function(value) { user_data.showPlayerProfileOnVillage = value; },
+                editor: "bool"
+            }
+        },
+        overviewAjaxSeperateSupport: {
+            label: sangu_trans.other.ajaxSeperateSupport,
+            show: server_settings.ajaxAllowed,
+            propUI: {
+                getter: function() { return user_data.overview.ajaxSeperateSupport; },
+                setter: function(value) { user_data.overview.ajaxSeperateSupport = value; },
+                editor: "bool"
+            }
+        },
+        commandRenamerTitle: {
+            type: "subtitle",
+            label: sangu_trans.other.commandRenamer
+        },
+        commandRenamerActive: {
+            label: sangu_trans.other.commandRenamerActive,
+            propUI: {
+                getter: function() { return user_data.attackAutoRename.active; },
+                setter: function(value) { user_data.attackAutoRename.active = value; },
+                editor: "bool"
+            }
+        },
+        commandRenamerAddHaul: {
+            label: sangu_trans.other.commandRenamerAddHaul,
+            propUI: {
+                getter: function() { return user_data.attackAutoRename.addHaul; },
+                setter: function(value) { user_data.attackAutoRename.addHaul = value; },
+                editor: "bool"
+            }
+        },*/
+
+
+        farmLimitTitle: {
+            type: "subtitle",
+            label: sangu_trans.other.farmLimitTitle
+        },
+        farmLimitColors: {
+            label: sangu_trans.other.farmLimitStackColors,
+            propUI: {
+                getter: function() { return user_data.farmLimit.stackColors; },
+                setter: function(value) { user_data.farmLimit.stackColors = value; },
+                editor: "array|addNew:color|delete"
+            }
+        },
+        farmLimitAcceptableOverstack: {
+            label: sangu_trans.other.farmLimitAcceptableOverstack,
+            tooltip: sangu_trans.other.farmLimitAcceptableOverstackTooltip.replace("{farmlimit}", 30 * world_config.farmLimit),
+            show: world_config.farmLimit,
+            propUI: {
+                getter: function() { return user_data.farmLimit.acceptableOverstack; },
+                setter: function(value) { user_data.farmLimit.acceptableOverstack = value; },
+                editor: "array|addNew:float|delete|step=0.01"
+            }
+        },
+        farmLimitUnlimitedStack: {
+            label: sangu_trans.other.farmLimitUnlimitedStack,
+            show: !world_config.farmLimit,
+            propUI: {
+                getter: function() { return user_data.farmLimit.unlimitedStack; },
+                setter: function(value) { user_data.farmLimit.unlimitedStack = value; },
+                editor: "array|addNew:number|delete|step=1000"
+            }
+        },
+        farmLimitCombinedTest: {
+            label: sangu_trans.other.farmLimitStackColors,
+            propUI: {
+                getter: function(propName) {
+                    if (propName === "color") {
+                        return user_data.farmLimit.test.color;
+                    }
+                    return user_data.farmLimit.test.stack;
+                },
+                setter: function(value, propName) {
+                    if (propName === "color") {
+                        user_data.farmLimit.test.color = value;
+                    } else {
+                        user_data.farmLimit.test.stack = value;
+                    }
+                },
+                editor: "color+number"
+            }
+        }
+    }
+});
+
+
+
+
+
+
+user_data_configs.push({
     id: "global",
     title: sangu_trans.global.title,
     save: function() { pers.set('sangusettings', JSON.stringify(user_data)); },
@@ -209,112 +345,3 @@ user_data_configs.push({
 
 
 
-user_data_configs.push({
-    id: "other",
-    title: sangu_trans.other.title,
-    save: function() { pers.set('sangusettings', JSON.stringify(user_data)); },
-    properties: {
-        proStyle: {
-            tooltip: sangu_trans.other.proStyleTooltip,
-            label: sangu_trans.other.proStyle,
-            propUI: {
-                getter: function() { return user_data.proStyle; },
-                setter: function(value) { user_data.proStyle = value; },
-                editor: "bool"
-            }
-        },
-        displayDays: {
-            label: sangu_trans.other.displayDays,
-            propUI: {
-                getter: function() { return user_data.displayDays; },
-                setter: function(value) { user_data.displayDays = value; },
-                editor: "bool"
-            }
-        },
-        calculateSnob: {
-            label: sangu_trans.other.calculateSnob,
-            show: !world_config.coins,
-            propUI: {
-                getter: function() { return user_data.other.calculateSnob; },
-                setter: function(value) { user_data.other.calculateSnob = value; },
-                editor: "bool"
-            }
-        },
-        overviewLinks: {
-            label: sangu_trans.other.overviewLinks,
-            propUI: {
-                getter: function() { return user_data.overviews.addFancyImagesToOverviewLinks; },
-                setter: function(value) { user_data.overviews.addFancyImagesToOverviewLinks = value; },
-                editor: "bool"
-            }
-        },
-        showPlayerProfileOnVillage: {
-            label: sangu_trans.other.showPlayerProfileOnVillage,
-            propUI: {
-                getter: function() { return user_data.showPlayerProfileOnVillage; },
-                setter: function(value) { user_data.showPlayerProfileOnVillage = value; },
-                editor: "bool"
-            }
-        },
-        overviewAjaxSeperateSupport: {
-            label: sangu_trans.other.ajaxSeperateSupport,
-            show: server_settings.ajaxAllowed,
-            propUI: {
-                getter: function() { return user_data.overview.ajaxSeperateSupport; },
-                setter: function(value) { user_data.overview.ajaxSeperateSupport = value; },
-                editor: "bool"
-            }
-        },
-        commandRenamerTitle: {
-            type: "subtitle",
-            label: sangu_trans.other.commandRenamer
-        },
-        commandRenamerActive: {
-            label: sangu_trans.other.commandRenamerActive,
-            propUI: {
-                getter: function() { return user_data.attackAutoRename.active; },
-                setter: function(value) { user_data.attackAutoRename.active = value; },
-                editor: "bool"
-            }
-        },
-        commandRenamerAddHaul: {
-            label: sangu_trans.other.commandRenamerAddHaul,
-            propUI: {
-                getter: function() { return user_data.attackAutoRename.addHaul; },
-                setter: function(value) { user_data.attackAutoRename.addHaul = value; },
-                editor: "bool"
-            }
-        },
-        farmLimitTitle: {
-            type: "subtitle",
-            label: sangu_trans.other.farmLimitTitle
-        },
-        farmLimitColors: {
-            label: sangu_trans.other.farmLimitStackColors,
-            propUI: {
-                getter: function() { return user_data.farmLimit.stackColors; },
-                setter: function(value) { user_data.farmLimit.stackColors = value; },
-                editor: "array|addNew:color|delete"
-            }
-        },
-        farmLimitAcceptableOverstack: {
-            label: sangu_trans.other.farmLimitAcceptableOverstack,
-            tooltip: sangu_trans.other.farmLimitAcceptableOverstackTooltip.replace("{farmlimit}", 30 * world_config.farmLimit),
-            show: world_config.farmLimit,
-            propUI: {
-                getter: function() { return user_data.farmLimit.acceptableOverstack; },
-                setter: function(value) { user_data.farmLimit.acceptableOverstack = value; },
-                editor: "array|addNew:float|delete|step=0.01"
-            }
-        },
-        farmLimitUnlimitedStack: {
-            label: sangu_trans.other.farmLimitUnlimitedStack,
-            show: !world_config.farmLimit,
-            propUI: {
-                getter: function() { return user_data.farmLimit.unlimitedStack; },
-                setter: function(value) { user_data.farmLimit.unlimitedStack = value; },
-                editor: "array|addNew:number|delete|step=1000"
-            }
-        }
-    }
-});

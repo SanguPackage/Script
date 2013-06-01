@@ -21,8 +21,6 @@ var world_config = {
 
 if (pers.get('worldconfig') !== '') {
 	world_config = JSON.parse(pers.get("worldconfig"));
-    q("world_config.farmLimit = 10;");
-    world_config.farmLimit = 10;
 	
 } else {
 	// load new world through tw API

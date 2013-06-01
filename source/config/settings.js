@@ -54,7 +54,8 @@ if (user_data !== '') {
         farmLimit: {
             stackColors: ['#DED3B9', '#3CB371', '#FF6347'],
             acceptableOverstack: [0.5, 1.2, 1.35], /* Different pages: % of acceptable overstack (only relevant for farmlimit worlds) */
-            unlimitedStack: [24000, 60000, 100000] /* Different pages: Calculate stacks based on total troops (for non farmlimit worlds) */
+            unlimitedStack: [24000, 60000, 100000], /* Different pages: Calculate stacks based on total troops (for non farmlimit worlds) */
+			test: {color: '#DED3B9', stack: 24000}
         },
 
         command: { /* features for the own troops overview page */
