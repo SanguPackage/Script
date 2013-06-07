@@ -4,12 +4,12 @@
         sanguTitle = "<h3 id='sanguConfigTitle'>" + trans.sp.sp.configuration.replace("{version}", sangu_version) + "</h3>";
 
     function gimmeTheMoney() {
-        function createButton(paypalCode, euroAmount) {
+        function createButton(paypalCode, euroAmount, tooltip) {
             return '<div align="center">'
-                + '<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">'
+                + '<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">'
                 + '<input type="hidden" name="cmd" value="_s-xclick">'
                 + '<input type="hidden" name="hosted_button_id" value="' + paypalCode + '">'
-                + '<input type="image" src="https://www.paypalobjects.com/nl_NL/BE/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal, de veilige en complete manier van online betalen.">'
+                + '<input type="image" src="https://www.paypalobjects.com/nl_NL/BE/i/btn/btn_donate_SM.gif" border="0" name="submit" title="'+tooltip+'">'
                 + '<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">'
                 + '<br>' + trans.sp.sp.donate.buttonAmount.replace("{amount}", euroAmount)
                 + '</form></div>';
@@ -23,9 +23,9 @@
 
         html += "<br><br>"
             + "<table width='100%'><tr>"
-            + "<td>" + createButton("FA9MAMFAYKANL", 5) + "</td>"
-            + "<td>" + createButton("7WZURNFUAMNKY", 10) + "</td>"
-            + "<td>" + createButton("ELG8Y2GLSXAVA", 20) + "</td>"
+            + "<td>" + createButton("FA9MAMFAYKANL", 5, trans.sp.sp.donate.beer) + "</td>"
+            + "<td>" + createButton("R9RX6XBCV6T4G", 10, trans.sp.sp.donate.food) + "</td>"
+            + "<td>" + createButton("ELG8Y2GLSXAVA", 20, trans.sp.sp.donate.yaye) + "</td>"
             + "</tr>"
             + "</table>";
 
@@ -39,8 +39,6 @@
 
     // skeleton injection
     contentPage.html(sanguTitle + "<div id='sanguSettingsForm'>" + resetForm + gimmeTheMoney() + "<br><br></div>");
-
-
 
     gimmeTheMoney();
     $("#sanguSettingsForm").append("<br><br>");
@@ -61,7 +59,7 @@
         return false;
     });
 
-    /*(function() {
+    (function() {
         var sanguSettingsForm,
             configIterator;
 
@@ -71,7 +69,7 @@
             buildConfigForm(sanguSettingsForm, user_data_configs[configIterator]);
             sanguSettingsForm.append("<br>");
         }
-    })();*/
+    })();
 
     // notable contributors
     (function() {

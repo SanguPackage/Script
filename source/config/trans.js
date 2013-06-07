@@ -69,10 +69,15 @@ trans = {
             },
             donate: {
                 title: "Donatie",
-                whyWouldI: "Als je denkt dat deze tool handig is tijdens het spelen, dat is een goede reden om een donatie te doen.<br><br>Jouw dankbaarheid en financiële steun helpen me motiveren verder te blijven werken aan het Sangu Package.",
-                books: "Er staan ook een aantal zeer interessante JavaScript boeken op mijn {abegin}Amazon wishlist{aend} :)",
+                whyWouldI: "Als je op regelmatige basis functionaliteit van het Sangu Package gebruikt, dan is dat een goede reden om een donatie te doen."
+                            + "<br><br>"
+                            + "Jouw dankbaarheid en financiële steun helpen me motiveren verder te blijven werken aan het Sangu Package.",
+                books: "Er staan ook een aantal zeer interessante JavaScript boeken op mijn {abegin}Amazon wishlist{aend}. Daarmee kan je me ook altijd een plezier doen :)",
                 notable: "Een aantal personen hebben reeds een notabele donatie gedaan:",
-                buttonAmount: "Doneer €{amount}"
+                buttonAmount: "Doneer €{amount}",
+                beer: "Trakteer me een biertje",
+                food: "Een spaghetti voor Wouter! (of pizza!)",
+                yaye: "Een nieuw IT boek voor mijn verzameling!"
             },
 			configuration: "Sangu Package configureren (v{version})",
 			activatePackage: "Sangu Package activeren",
