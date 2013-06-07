@@ -55,6 +55,11 @@ if (user_data !== '') {
             stackColors: ['#DED3B9', '#3CB371', '#FF6347'],
             acceptableOverstack: [0.5, 1.2, 1.35], /* Different pages: % of acceptable overstack (only relevant for farmlimit worlds) */
             unlimitedStack: [24000, 60000, 100000], /* Different pages: Calculate stacks based on total troops (for non farmlimit worlds) */
+			stacksConfig: [
+				{color: '#DED3B9', stack: 24000},
+				{color: '#3CB371', stack: 60000},
+				{color: '#FF6347', stack: 100000}
+			],
 			test: {color: '#DED3B9', stack: 24000}
         },
 

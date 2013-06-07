@@ -67,6 +67,13 @@ trans = {
                 importError: "Het ziet er naar uit dat de geplakte tekst foutief is.",
                 importErrorContinueAnyway: "Toch importeren?"
             },
+            donate: {
+                title: "Donatie",
+                whyWouldI: "Als je denkt dat deze tool handig is tijdens het spelen, dat is een goede reden om een donatie te doen.<br><br>Jouw dankbaarheid en financiële steun helpen me motiveren verder te blijven werken aan het Sangu Package.",
+                books: "Er staan ook een aantal zeer interessante JavaScript boeken op mijn {abegin}Amazon wishlist{aend} :)",
+                notable: "Een aantal personen hebben reeds een notabele donatie gedaan:",
+                buttonAmount: "Doneer €{amount}"
+            },
 			configuration: "Sangu Package configureren (v{version})",
 			activatePackage: "Sangu Package activeren",
 			deactivatePackage: "Sangu Package deactiveren",

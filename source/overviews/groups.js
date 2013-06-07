@@ -39,8 +39,13 @@ selectAllRow.remove();
 
 $("#selectAllVisible").click(function () {
 	var isChecked = $(this).attr("checked") == "checked";
-	$("#group_assign_table input:hidden").attr("checked", false);
-	$("#group_assign_table input:visible").attr("checked", isChecked);
+    $("#group_assign_table input:checked").attr("checked", false);
+    if (isChecked) {
+        $("#group_assign_table input[type='checkbox']").not(":hidden").attr("checked", "checked");
+    }
+
+	//$("#group_assign_table input:hidden").attr("checked", false);
+	//$("#group_assign_table input:visible").attr("checked", isChecked);
 });
 
 $("#defReverseFilter").change(function () {
