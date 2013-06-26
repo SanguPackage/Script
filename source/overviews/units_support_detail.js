@@ -9,7 +9,7 @@ var menu = "<table class='vis' width='100%'>";
 menu += "<tr><th colspan=2>";
 menu += "<input type=button id=defTotals value='" + trans.sp.defOverview.stackButton + "' title='" + trans.sp.defOverview.stackTooltip + "'>";
 if (isSupport) {
-	menu += "&nbsp; <input type=text size=8 id=defFilterTotalPopValue value='" + user_data.restack.sufficient + "'>";
+	menu += "&nbsp; <input type=text size=8 id=defFilterTotalPopValue value='" + user_data.restack.defaultPopulationFilterAmount + "'>";
 	menu += "<select id=defFilterTotalPopComparer>";
 	menu += "<option value=-1>" + trans.sp.all.less + "</option><option value=1 selected>" + trans.sp.all.more + "</option></select>";
 	menu += "<input type=button id=defFilterTotalPop value='" + trans.sp.defOverview.stackFilter + "' title='" + trans.sp.defOverview.stackFilterTooltip + "'> &nbsp;| &nbsp;";

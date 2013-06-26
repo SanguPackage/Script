@@ -31,8 +31,7 @@ if (user_data !== '') {
 
         scriptbar: {
             editBoxCols: 700,
-            editBoxRows: 12,
-            active: false
+            editBoxRows: 12
         },
 
         main: {
@@ -55,26 +54,25 @@ if (user_data !== '') {
             stackColors: ['#DED3B9', '#3CB371', '#FF6347'],
             acceptableOverstack: [0.5, 1.2, 1.35], /* Different pages: % of acceptable overstack (only relevant for farmlimit worlds) */
             unlimitedStack: [24000, 60000, 100000], /* Different pages: Calculate stacks based on total troops (for non farmlimit worlds) */
-			stacksConfig: [
+			stacksConfig: [ /* TODO: not yet implemented */
 				{color: '#DED3B9', stack: 24000},
 				{color: '#3CB371', stack: 60000},
 				{color: '#FF6347', stack: 100000}
-			],
-			test: {color: '#DED3B9', stack: 24000}
+			]
         },
 
         command: { /* features for the own troops overview page */
             changeTroopsOverviewLink: true, /* Change the link to the own troops overview */
-            sumRow: true, /* Add a totalrow between different villages */
 
             filterMinPopulation: 18000, /* Default number filled in to filter on village stack */
             filterMinDefaultType: 'axe', /* This unit type is by default selected in the filter dropdown */
             filterMinDefault: 5000, /* The default number filled in to filter on troop amounts */
-            filterMin: { axe: 7000, spear: 3000, heavy: 500, catapult: 50, spy: 50, light: 2000, ram: 1, snob: 2 }, /* Default filter numbers for the other units */
+            filterMin: { axe: 7000, spear: 3000, archer: 3000, heavy: 500, catapult: 50, spy: 50, light: 2000, marcher: 2000, ram: 1, catapult: 50, snob: 2 }, /* Default filter numbers for the other units */
             filterMinOther: 5000, /* Use this number as the default when the unit is not present in filterMin */
             filterAutoSort: true, /* Automatically sort the list on walking distance when entering a target village */
 
             /* These features apply to the commands overview page */
+			sumRow: true, /* Add a totalrow between different villages */
             filterFakeMaxPop: 300, /* Commands fake filter: Everything below 300 pop is considered a fake attack */
             bbCodeExport: { /* BB code export */
                 requiredTroopAmount: 100
@@ -115,15 +113,17 @@ if (user_data !== '') {
             autoOpenCommands: false,
             minutesDisplayDodgeTimeOnMap: 3,
             minutesWithoutAttacksDottedLine: 3 * 60,
-            colorSupport: 'rgb(255, 245, 218)' /* Main village overview: give incoming support a different background color */
+            colorSupport: '#FFF5DA' /* Main village overview: give incoming support a different background color */
         },
 
-        villageInfo: [
+        villageInfo: {
             /* On info_village page add extra link to attack. 3093=group id of off villages. Filter: amount=5000 unit=2=axe */
-            /*active: true,
+            active: true,
+			off_linkName: "&raquo; Aanvalleuh!",
             off_link: "&group=3093&unit=2&amount=5000&sort=true&changeSpeed=ram",
-            def_link: "&group=9020&unit=0&amount=3000&sort=true&changeSpeed=spear"*/
-            {
+			def_linkName: "&raquo; Verdedigen!",
+            def_link: "&group=9020&unit=0&amount=3000&sort=true&changeSpeed=spear"
+            /*{
                 group: 0,
                 filter: {
                     unit: 2,
@@ -131,15 +131,16 @@ if (user_data !== '') {
                 },
                 changeSpeed: "ram",
                 sort: true
-            }
-        ],
+            }*/
+        },
 
         resources: {
             requiredResDefault: 250000,
             requiredMerchants: 50,
             filterMerchants: true,
             filterRows: false,
-            bbcodeMinimumDiff: 50000
+            bbcodeMinimumDiff: 50000,
+			highlightColor: "#DFD6BF"
         },
 
         jumper: {
@@ -154,7 +155,6 @@ if (user_data !== '') {
 
         confirm: {
             addExtraOkButton: false,
-            autoAttackFocus: true,
             replaceNightBonus: true,
             replaceTribeClaim: true,
             addCatapultImages: true
@@ -190,19 +190,31 @@ if (user_data !== '') {
                 ]
         },
 
-        restack: {
+        restack: { /* bbcode restack options on the 2 def troop overview pages (units_support_detail) */
             to: 72000,
             requiredDifference: 1000,
             fieldsDistanceFilterDefault: 30,
             filterReverse: true,
-            sufficient: 80000
+            defaultPopulationFilterAmount: 80000 /* this isn't related to restack */
         },
 
         showPlayerProfileOnVillage: false,
         profile: {
             show: true,
             moveClaim: true,
-            mapLink: { show: true, fill: '000000', zoom: '200', grid: true, playerColor: 'ffff00', tribeColor: '0000FF', centreX: 500, centreY: 500, ownColor: 'FFFFFF', markedOnly: true, yourTribeColor: "FF0000" },
+            mapLink: { 
+				show: true, 
+				fill: '#000000', 
+				zoom: '200', 
+				grid: true, 
+				playerColor: '#ffff00', 
+				tribeColor: '#0000FF', 
+				centreX: 500, 
+				centreY: 500, 
+				ownColor: '#FFFFFF', 
+				markedOnly: true, 
+				yourTribeColor: "#FF0000"
+			},
             playerGraph: [["points", false], ["villages", false], ["od", false], ["oda", false], ["odd", false], ["rank", false]], // small / big / false
             tribeGraph: [["points", false], ["villages", false], ["od", false], ["oda", false], ["odd", false], ["rank", false], ["members", 'big', true]],
             twMapPlayerGraph: { player: [true, true], p_player: [false, false], oda_player: [true, false], odd_player: [true, false] },

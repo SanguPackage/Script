@@ -1,8 +1,3 @@
-// automatically focus OK button when attacking
-if (user_data.proStyle && user_data.confirm.autoAttackFocus) {
-	$("input[name='submit']").focus();
-}
-
 // reorder the page
 if (user_data.proStyle) {
 	$("#content_value table:first").css("width", 500);

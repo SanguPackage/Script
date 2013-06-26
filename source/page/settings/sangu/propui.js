@@ -65,20 +65,19 @@ function createArraySettingType(inputHandler, index, editor) {
  * Factory for creating different representations of a property
  * @type {string}
  */
-function createSettingType(inputHandler, editors, propertyName) {
+function createSettingType(inputHandler, editors, editorIndex, arrayOptions) {
     var value = inputHandler.getValue(),
         decorators,
         inputType,
-        isArrayType = editors.indexOf("array") === 0,
         propName;
 
     //array|addNew:number|delete|step=1000
     //color=color+number=stack
 
-    //q("with -> " + editors);
+    //q("with -> " + editors + ". isArray: " + isArrayType);
+    //q(arrayOptions);
 
-
-    if (!isArrayType) {
+    if (!arrayOptions.isArrayType) {
         decorators = editors.split("|");
         inputType = decorators[0];
         if (inputType.indexOf("=") > -1) {
@@ -99,6 +98,25 @@ function createSettingType(inputHandler, editors, propertyName) {
                     bind: function(id) {
                         $("#" + id).click(function() {
                             inputHandler.setValue($(this).is(":checked"));
+                        });
+                    }
+                };
+            case "unit":
+                return {
+                    build: function(id) {
+                        var i,
+                            html = "<select id='"+id+"'>";
+
+                        for (i = 0; i < world_data.units.length; i++) {
+                            html += "<option "+(value == world_data.units[i] ? " selected" : "")+">"+world_data.units[i]+"</option>";
+                        }
+                        html += "</select>";
+
+                        return html;
+                    },
+                    bind: function(id) {
+                        $("#" + id).click(function() {
+                            inputHandler.setValue($(this).val());
                         });
                     }
                 };
@@ -135,6 +153,9 @@ function createSettingType(inputHandler, editors, propertyName) {
                                         assert(inputType === "float" || inputType === "number", "step only works with numeric inputs");
                                         assert(keyValuePair.length === 2, "expected input: step=value");
                                         extraInputAttributes += " step='"+keyValuePair[1]+"'";
+                                        break;
+                                    case "width":
+                                        inputBoxSize = keyValuePair[1];
                                         break;
                                 }
                             }
@@ -174,12 +195,13 @@ function createSettingType(inputHandler, editors, propertyName) {
                 canAddNew = false,
                 inlineDiv = false;
 
-            decorators = editors.split("|");
+            decorators = arrayOptions.decorators;
 
             //q(editors);
             //q(decorators);
+            //q("----");
 
-            if (decorators.length > 1) {
+            if (decorators.length > 0) {
                 for (arrayIndex = 0; arrayIndex < decorators.length; arrayIndex++) {
                     switch (decorators[arrayIndex]) {
                         case "addNew":
@@ -195,7 +217,8 @@ function createSettingType(inputHandler, editors, propertyName) {
             for (arrayIndex = 0; arrayIndex < value.length; arrayIndex++) {
                 (function() {
                     var fixedArrayIndex = arrayIndex;
-                    typesArray.push(createArraySettingType(inputHandler, fixedArrayIndex, editors[1]));
+                    //q("createArraySettingType for" + fixedArrayIndex + "=" +editors);
+                    typesArray.push(createArraySettingType(inputHandler, fixedArrayIndex, editors));
                 })();
             }
 
@@ -230,7 +253,7 @@ function createSettingType(inputHandler, editors, propertyName) {
                             var domId = id + "_" + typesArray.length,
                                 newType;
 
-                            newType = createArraySettingType(inputHandler, typesArray.length, editors[1]);
+                            newType = createArraySettingType(inputHandler, typesArray.length, editors);
                             $(this).before("<div>" + newType.build(domId) + "</div>");
                             newType.bind(domId);
                             typesArray.push(newType);
@@ -261,25 +284,24 @@ function createSettingType(inputHandler, editors, propertyName) {
  *	@constructor
  */
 function FormInputHandler(propertyFormConfig, propSettings, editorIndex) {
-    var arrayConfig = propSettings.editor.split(":"),
+    var arraySplit = propSettings.editor.split(":"),
         editors,
+        arrayOptions = {isArrayType: arraySplit[0].indexOf('array') === 0},
         strategy;
 
 	assert(typeof propSettings.getter === 'function', 'getter should be a function');
 	assert(typeof propSettings.setter === 'function', 'setter should be a function');
 
-    if (arrayConfig.length === 1) {
-        editors = arrayConfig[0].split("+");
+    if (arrayOptions.isArrayType) {
+        editors = arraySplit[1].split("+");
     } else {
-        editors = arrayConfig[1].split("+");
-        editors.splice(0, 0, arrayConfig[0]);
+        editors = arraySplit[0].split("+");
     }
 
-    q(editors);
+    //q(editors);
 
     this.formConfig = propertyFormConfig;
     if (typeof propertyFormConfig.save === 'undefined') {
-        assert("not implemented - provide save!");
         this.setValue = propSettings.setter;
         this.deleteValue = propSettings.deleter;
     } else {
@@ -294,13 +316,17 @@ function FormInputHandler(propertyFormConfig, propSettings, editorIndex) {
         };
     }
 
-
-
     this.getValue = propSettings.getter;
-    if (editors.length === 1) {
-        strategy = createSettingType(this, editors[0], editorIndex);
-        this.build = strategy.build;
-        this.bind = strategy.bind;
+    if (true) {
+        //q("createSettingType for " + editors[0] + " index " + editorIndex);
+            if (arrayOptions.isArrayType) {
+                arrayOptions.decorators = arraySplit[0].split("|");
+                arrayOptions.decorators.splice(0, 1);
+            }
+
+            strategy = createSettingType(this, editors[0], editorIndex, arrayOptions);
+            this.build = strategy.build;
+            this.bind = strategy.bind;
     } else {
         (function(inputHandler) {
             var handlers = [],

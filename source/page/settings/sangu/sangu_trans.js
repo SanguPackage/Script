@@ -39,6 +39,95 @@ var sangu_trans_nl = {
         invertSort: "De snelheid mogelijkheden sorteren",
         invertSortTooltip: "Vink dit aan om de traagste eenheid bovenaan te plaatsen"
     },
+    overviews: {
+        addFancyImagesToOverviewLinks: "De overzichtslinks opsmukken",
+        command: {
+            title: "Overzichtsscherm: Troepenoverzicht",
+            changeTroopsOverviewLink: "Link wijzigen om direct 'Eigen troepen' te openen",
+            filterMinPopulation: "De standaard ingevulde waarde om te filteren op populatie",
+            filterOnUnitTypeSeperator: "Filteren op aantal eenheden",
+            filterMinDefaultType: "De eenheid om te filteren die standaard geselecteerd is",
+            filterMinDefault: "Het aantal eenheden om te filteren dat standaard ingevuld is",
+            filterMinDefaultTooltip: "Dit aantal wordt ingevuld wanneer de pagina opent. Bij het selecteren van een andere eenheid worden de waarden hieronder gebruikt.",
+            filterMin: "Aantal {unitName}",
+            filterMinOther: "De standaard waarde voor de overige eenheden",
+            filterAutoSort: "De dorpenlijst automatisch sorteren na het ingeven van een doeldorp"
+        },
+        troopsRestack: {
+            title: "Stack BBCodes generatie",
+            to: "Stack een dorp tot hoeveel populatie",
+            requiredDifference: "Vereist verschil in huidige populatie in het dorp en de waarde hierboven",
+            fieldsDistanceFilterDefault: "Het standaard ingevuld aantal velden waarop gefilterd wordt",
+            filterReverse: "Aangevinkt: Rijen die voldoen aan de zoekopdracht tonen. Anders de rijen verbergen.",
+            filterReverseTooltip: "Dit kan op de pagina zelf nog aangepast worden",
+            defaultPopulationFilterAmount: "Het standaard ingevuld aantal voor de populatie filter"
+        },
+        commands: {
+            title: "Overzichtsscherm: Bevelen",
+            sumRow: "Een scheidingsrij tussen verschillende dorpen toevoegen",
+            filterFakeMaxPop: "Een bevel met minder dan deze populatie is een fake aanval (en wordt verborgen)",
+            requiredTroopAmount: "Bij de export naar BBCodes worden bevelen met minder dan deze populatie overgeslagen."
+        },
+        resources: {
+            title: "Overzichtsscherm: Productie",
+            requiredResDefault: "Het aantal grondstoffen dat standaard in het invoerveld ingevuld is",
+            requiredMerchants: "Het aantal handelaren dat standaard ingevuld is",
+            filterMerchants: "Ook filteren op aantal beschikbare handelaren",
+            filterRows: "Aanvinken om rijen te verbergen. Wanneer uitgevinkt wordt achtergrondkleur van de grondstoffen gewijzigd",
+            bbcodeMinimumDiff: "Het minimum verschil in grondstoffen tussen het aantal in het dorp en het aantal waarop gefilterd wordt voordat het dorp in de BBcode export opgenomen wordt",
+            highlightColor: "De achtergrondkleur die gebruikt wordt om de grondstoffen aan te duiden die voldoen aan de filtercriteria"
+        },
+        buildings: {
+            title: "Overzichtsscherm: Gebouwen",
+            minLevel: "De laagst aanvaardbare level voor {building}",
+            maxLevel: "De hoogst aanvaardbare level voor {building}"
+        }
+    },
+    profile: {
+        title: "Verfraaien van het profiel van spelers en stammen",
+        moveClaim: "Verplaats dorpsclaim zodat alle andere links op dezelfde plaats blijven staan",
+        mapLink: {
+            title: "Kaarteigenschappen van link naar TWMaps kaart generator",
+            fill: "Achtergrondkleur",
+            zoom: 'Inzoom niveau',
+            grid: 'Continentlijnen',
+            gridContinentNumbers: "Continent nummers",
+            playerColor: 'Spelerskleur',
+            tribeColor: 'Spelerststam',
+            centreX: "Centreren op X coördinaat",
+            centreY: "Centreren op Y coördinaat",
+            ownColor: 'Eigen kleur',
+            markedOnly: "Alleen gemarkeerde",
+            yourTribeColor: "Eigen stam kleur",
+            bigMarkers: "Grotere aanduidingen"
+        }
+    },
+    mainTagger: {
+        title: "Tagger op dorpsoverzicht",
+        autoOpen: "De tagger automatisch openen bij binnenkomende aanvallen",
+        inputBoxWidth: "De breedte van de bevel hernoemings inputvelden",
+        defaultDescription: "De naam die standaard in het hernoemings inputveld geplaatst wordt",
+        autoOpenCommands: "De bevel hernoemings inputvelden direct tonen",
+        minutesDisplayDodgeTimeOnMap: "Aantal minuten dat de laatste dodgetijd op de kaart getoond wordt",
+        minutesDisplayDodgeTimeOnMapTooltip: "De laatste dodgetijd is de laatste tijd, aangeduidt met gewijzigde achtergrondkleur na het herbenoemen van binnenkomende aanvallen.",
+        minutesWithoutAttacksDottedLine: "Elke zoveel minuten zonder een tussenliggende binnenkomende aanval aanduiden met een stippelijn (180 = 3 uur)",
+        colorSupport: "Binnenkomende ondersteuning een andere achtergrondkleur geven"
+    },
+    confirm: {
+        title: "Bevel comfirmatie pagina",
+        addExtraOkButton: "Links bovenaan de pagina een extra OK knop toevoegen",
+        replaceNightBonus: "Nachtbonus melding verwerken in de pagina titel",
+        replaceTribeClaim: "Dorpsclaim melding verwerken in de pagina titel",
+        addCatapultImages: "Gebouws iconen tonen om snel het katapult doelwit te wijzigen"
+    },
+    villageInfo: {
+      title: "Extra links op elke dorpsinformatie pagina",
+      off_linkName: "De link die toegevoegd wordt",
+      off_linkNameTooltip: "Er zijn twee sloten voorzien die standaard gebruikt worden om het troepenoverzicht te openen met filter op offensieve en defensieve troepen",
+      off_link: "De te openen url bij het klikken op de link",
+      def_linkName: "De omschrijving van de tweede link",
+      def_link: "De te openen url bij het klikken op de tweede link"
+    },
     other: {
         title: "Overige configuratie",
         proStyle: "Pro Style?",

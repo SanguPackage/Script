@@ -60,9 +60,9 @@ function filterRes(resourceIndex, hideRows) {
 	var minDif = user_data.resources.bbcodeMinimumDiff;
 
 	if (reverse) {
-		bbcodes = trans.sp.all.tooMuch + "\n";
-	} else {
 		bbcodes = trans.sp.all.tooLittle + "\n";
+	} else {
+		bbcodes = trans.sp.all.tooMuch + "\n";
 	}
 
 	function doResource(resCell, resArray, resIndex, reverse, minAmount) {
@@ -105,7 +105,7 @@ function filterRes(resourceIndex, hideRows) {
 		} else if (resourceIndex == 'full') {
 			// full storage rooms
 			if ($(".warn", this).size() > 0) {
-				resCell.css("background-color", user_data.colors.neutral);
+				resCell.css("background-color", user_data.resources.highlightColor);
 				isOk = false;
 			}
 			
@@ -122,7 +122,7 @@ function filterRes(resourceIndex, hideRows) {
 			}
 
 			if (!isOk) {
-				resCell.css("background-color", user_data.colors.neutral);
+				resCell.css("background-color", user_data.resources.highlightColor);
 			} else {
 				resCell.css("background-color", "");
 			}

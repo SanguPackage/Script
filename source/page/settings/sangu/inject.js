@@ -38,7 +38,7 @@
     resetForm += "<a href='#' id='resetAllSettings'>&raquo; " + trans.sp.sp.settings.resetAll + "</a>";
 
     // skeleton injection
-    contentPage.html(sanguTitle + "<div id='sanguSettingsForm'>" + resetForm + gimmeTheMoney() + "<br><br></div>");
+    contentPage.html(sanguTitle + "<div id='sanguSettingsForm'>" + resetForm + gimmeTheMoney() + "</div>");
 
     gimmeTheMoney();
     $("#sanguSettingsForm").append("<br><br>");

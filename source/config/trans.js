@@ -333,10 +333,6 @@ trans = {
 			graphMembers: "Leden",
 			graphTWMap: "TribalWarsMap.com"
 		},
-		infoVillage: {
-			toAttackGroupOnOwnTroopsOverview: "&raquo; Aanvalleuh!",
-			toDefenseGroupOnOwnTroopsOverview: "&raquo; Verdedigen!"
-		},
 		incomings: {
 			dynamicGrouping: "Dynamisch Groeperen",
 			summation: "Somlijn",

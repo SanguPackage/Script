@@ -7,7 +7,9 @@ if (game_data.player.premium && location.href.indexOf('screen=info_village') > -
 	var id = infoTable.find("td:eq(1)").text();
 	id = id.substr(id.lastIndexOf("=") + 1);
 	var link = getUrlString("&screen=overview_villages&type=own_home&mode=units&page=-1&targetvillage=" + id);
-	infoTable.find("tbody:first").append("<tr><td><a href='" + link + user_data.villageInfo.off_link + "'>" + trans.sp.infoVillage.toAttackGroupOnOwnTroopsOverview + "</a></td><td><a href='" + link + user_data.villageInfo.def_link + "'>" + trans.sp.infoVillage.toDefenseGroupOnOwnTroopsOverview + "</a></td><tr>");
+	infoTable.find("tbody:first").append(
+        "<tr><td><a href='" + link + user_data.villageInfo.off_link + "'>" + user_data.villageInfo.off_linkName + "</a></td>"
+            + "<td><a href='" + link + user_data.villageInfo.def_link + "'>" + user_data.villageInfo.def_linkName + "</a></td><tr>");
 }
 
 if (user_data.profile.show && (location.href.indexOf('screen=info_village') == -1 || user_data.showPlayerProfileOnVillage)) {
@@ -60,18 +62,24 @@ if (user_data.profile.show && (location.href.indexOf('screen=info_village') == -
 			} else tribeId = 0;
 
 			if (mapProfile.tribeColor != null) {
-				link += "&tribe_0_id=" + tribeId + "&tribe_0_colour=" + mapProfile.tribeColor;
+				link += "&tribe_0_id=" + tribeId + "&tribe_0_colour=" + mapProfile.tribeColor.substr(1);
 			}
 			if (mapProfile.yourTribeColor != null && game_data.player.ally_id != tribeId && game_data.player.ally_id > 0) {
-				link += "&tribe_1_id=" + game_data.player.ally_id + "&tribe_1_colour=" + mapProfile.yourTribeColor;
+				link += "&tribe_1_id=" + game_data.player.ally_id + "&tribe_1_colour=" + mapProfile.yourTribeColor.substr(1);
 			}
-			link += "&player_0_id=" + id + "&player_0_colour=" + mapProfile.playerColor;
-			link += "&grid=" + (mapProfile.grid ? 1 : 0) + "&fill=" + mapProfile.fill + "&zoom=" + mapProfile.zoom + "&centrex=" + mapProfile.centreX + "&centrey=" + mapProfile.centreY;
+			link += "&player_0_id=" + id + "&player_0_colour=" + mapProfile.playerColor.substr(1);
+			link += "&grid=" + (mapProfile.grid ? 1 : 0) + "&fill=" + mapProfile.fill.substr(1) + "&zoom=" + mapProfile.zoom + "&centrex=" + mapProfile.centreX + "&centrey=" + mapProfile.centreY;
 			if (mapProfile.markedOnly) {
 				link += "&nocache=1";
 			}
+            if (mapProfile.bigMarkers) {
+                link += "&bm=1";
+            }
+            if (mapProfile.gridContinentNumbers) {
+                link += "&kn=1";
+            }
 			if (mapProfile.ownColor != null && game_data.player.id != id) {
-				link += "&player_1_id=" + game_data.player.id + "&player_1_colour=" + mapProfile.ownColor;
+				link += "&player_1_id=" + game_data.player.id + "&player_1_colour=" + mapProfile.ownColor.substr(1);
 			}
 			infoTable.find("tr:last").after("<tr><td colspan=2><a href='" + link + "' target='_blank'>&raquo; " + trans.sp.profile.twStatsMap + "</a> " + trans.sp.profile.externalPage + "</td></tr>");
 		}
@@ -100,17 +108,23 @@ if (user_data.profile.show && (location.href.indexOf('screen=info_village') == -
 		id = id.last().attr("href").match(/id=(\d+)&/)[1];
 
 		var link = "http://" + game_data.market + ".twstats.com/" + game_data.world + "/index.php?page=map";
-		link += "&tribe_0_id=" + id + "&tribe_0_colour=" + mapProfile.tribeColor;
+		link += "&tribe_0_id=" + id + "&tribe_0_colour=" + mapProfile.tribeColor.substr(1);
 		link += "&centrex=" + mapProfile.centreX + "&centrey=" + mapProfile.centreY;
 		if (mapProfile.yourTribeColor != null && game_data.player.ally_id != id) {
-			link += "&tribe_1_id=" + game_data.player.ally_id + "&tribe_1_colour=" + mapProfile.yourTribeColor;
+			link += "&tribe_1_id=" + game_data.player.ally_id + "&tribe_1_colour=" + mapProfile.yourTribeColor.substr(1);
 		}
-		link += "&grid=" + (mapProfile.grid ? 1 : 0) + "&fill=" + mapProfile.fill + "&zoom=" + mapProfile.zoom
+		link += "&grid=" + (mapProfile.grid ? 1 : 0) + "&fill=" + mapProfile.fill.substr(1) + "&zoom=" + mapProfile.zoom
 		if (mapProfile.markedOnly) {
 			link += "&nocache=1";
 		}
+        if (mapProfile.bigMarkers) {
+            link += "&bm=1";
+        }
+        if (mapProfile.gridContinentNumbers) {
+            link += "&kn=1";
+        }
 		if (mapProfile.ownColor != null) {
-			link += "&player_0_id=" + game_data.player.id + "&player_0_colour=" + mapProfile.ownColor;
+			link += "&player_0_id=" + game_data.player.id + "&player_0_colour=" + mapProfile.ownColor.substr(1);
 		}
 		infoTable.find("tr:last").before("<tr><td colspan=2><a href='" + link + "' target='_blank'>&raquo; " + trans.sp.profile.twStatsMap + "</a> " + trans.sp.profile.externalPage + "</td></tr>");
 	}

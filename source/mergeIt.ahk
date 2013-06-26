@@ -1,5 +1,5 @@
 inputFile := "start.user.js"
-savePath := "C:\Users\PC\Documents\Dropbox\Personal\!Programming\OperaUserScripts\"
+savePath := "C:\CloudDrives\Dropbox\Personal\!Programming\OperaUserScripts\"
 saveAs := "sangupackage.user.js"
 
 ; Save current changes
