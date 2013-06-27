@@ -16,7 +16,7 @@ ParseAndSaveFile("..\site\index_toMerge.php", "..\site\", "index.php")
 
 ; Autocopy to Firefox greasemonkey directory
 ; I *really* *really* should've used something else but Autohotkey for this
-FileCopy, %savePath%%saveAs%, C:\Users\PC\AppData\Roaming\Mozilla\Firefox\Profiles\gg8w0cv7.default\gm_scripts\Sangu_Package\sangupackage.user.js, 1
+FileCopy, %savePath%%saveAs%, C:\Users\Wouter\AppData\Roaming\Mozilla\Firefox\Profiles\xtz5hi2x.default\gm_scripts\Sangu_Package\sangupackage.user.js, 1
 
 ; Check it in browser :)
 SetTitleMatchMode RegEx
