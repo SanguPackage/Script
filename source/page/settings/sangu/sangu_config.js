@@ -5,14 +5,18 @@ scoutTitle: {
         label: sangu_trans.place.scoutTitle
 }
 */
-var showConfigs = true;
-var user_data_configs = [];
+var showConfigs = true,
+    user_data_configs = [],
+    sangu_saver = function() {
+        pers.set('sangusettings', JSON.stringify(user_data));
+        trackEvent("ScriptUsage", "SettingEdit", "1");
+    };
 
 if (showConfigs)
 user_data_configs.push({
     id: "global",
     title: sangu_trans.global.title,
-    save: function() { pers.set('sangusettings', JSON.stringify(user_data)); },
+    save: sangu_saver,
     properties: {
         resourcesTitle: {
             type: "subtitle",
@@ -138,7 +142,7 @@ if (showConfigs)
 user_data_configs.push({
     id: "main",
     title: sangu_trans.main.title,
-    save: function() { pers.set('sangusettings', JSON.stringify(user_data)); },
+    save: sangu_saver,
     properties: {
         villageNames: {
             tooltip: sangu_trans.main.villageNamesTooltip,
@@ -174,7 +178,7 @@ if (showConfigs)
 user_data_configs.push({
     id: "incoming",
     title: sangu_trans.incoming.title,
-    save: function() { pers.set('sangusettings', JSON.stringify(user_data)); },
+    save: sangu_saver,
     properties: {
         autoOpenTagger: {
             label: sangu_trans.incoming.autoOpenTagger,
@@ -217,7 +221,7 @@ if (showConfigs)
 user_data_configs.push({
     id: "mainTagger",
     title: sangu_trans.mainTagger.title,
-    save: function() { pers.set('sangusettings', JSON.stringify(user_data)); },
+    save: sangu_saver,
     properties: {
         activate: {
             label: sangu_trans.global.resources.activate,
@@ -295,7 +299,7 @@ if (showConfigs)
 user_data_configs.push({
     id: "confirm",
     title: sangu_trans.confirm.title,
-    save: function() { pers.set('sangusettings', JSON.stringify(user_data)); },
+    save: sangu_saver,
     properties: {
         addExtraOkButton: {
             label: sangu_trans.confirm.addExtraOkButton,
@@ -337,7 +341,7 @@ if (showConfigs)
 user_data_configs.push({
     id: "profile",
     title: sangu_trans.profile.title,
-    save: function() { pers.set('sangusettings', JSON.stringify(user_data)); },
+    save: sangu_saver,
     properties: {
         show: {
             label: sangu_trans.global.resources.activate,
@@ -498,7 +502,7 @@ if (showConfigs)
     user_data_configs.push({
         id: "placeLinks",
         title: sangu_trans.place.title,
-        save: function() { pers.set('sangusettings', JSON.stringify(user_data)); },
+        save: sangu_saver,
         properties: {
             scoutTitle: {
                 type: "subtitle",
@@ -744,7 +748,7 @@ if (true)
         user_data_configs.push({
             id: "placeLinksCustom",
             title: sangu_trans.place.titleCustom,
-            save: function() { pers.set('sangusettings', JSON.stringify(user_data)); },
+            save: sangu_saver,
             properties: properties
         });
     })();
@@ -754,7 +758,7 @@ if (showConfigs)
 user_data_configs.push({
     id: "overviewsTroops",
     title: sangu_trans.overviews.command.title,
-    save: function() { pers.set('sangusettings', JSON.stringify(user_data)); },
+    save: sangu_saver,
     properties: {
         changeTroopsOverviewLink: {
             label: sangu_trans.overviews.command.changeTroopsOverviewLink,
@@ -951,7 +955,7 @@ if (showConfigs)
 user_data_configs.push({
     id: "overviewsCommands",
     title: sangu_trans.overviews.commands.title,
-    save: function() { pers.set('sangusettings', JSON.stringify(user_data)); },
+    save: sangu_saver,
     properties: {
         sumRow: {
             label: sangu_trans.overviews.commands.sumRow,
@@ -984,7 +988,7 @@ if (showConfigs)
 user_data_configs.push({
     id: "overviewsResources",
     title: sangu_trans.overviews.resources.title,
-    save: function() { pers.set('sangusettings', JSON.stringify(user_data)); },
+    save: sangu_saver,
     properties: {
         requiredResDefault: {
             label: sangu_trans.overviews.resources.requiredResDefault,
@@ -1072,7 +1076,7 @@ if (showConfigs)
     user_data_configs.push({
         id: "overviewsBuildings",
         title: sangu_trans.overviews.buildings.title,
-        save: function() { pers.set('sangusettings', JSON.stringify(user_data)); },
+        save: sangu_saver,
         properties: properties
     });
 })();
@@ -1081,7 +1085,7 @@ if (showConfigs)
 user_data_configs.push({
     id: "other",
     title: sangu_trans.other.title,
-    save: function() { pers.set('sangusettings', JSON.stringify(user_data)); },
+    save: sangu_saver,
     properties: {
         fancyImages: {
             label: sangu_trans.overviews.addFancyImagesToOverviewLinks,
