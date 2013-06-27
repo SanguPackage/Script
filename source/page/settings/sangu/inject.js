@@ -61,14 +61,60 @@
 
     (function() {
         var sanguSettingsForm,
-            configIterator;
+            configIterator,
+            settingFormTogglerHtml,
+            settingsFormsOpenFromPersistence,
+            adornButton = function(button) { $(button).css("background-color", user_data.colors.error); };
+
+        sanguSettingsForm = $("#sanguSettingsForm");
+
+        settingFormTogglerHtml = "<h3>" + trans.sp.sp.settings.configuration + "</h3>";
+        settingFormTogglerHtml +=
+            "<table class='vis' width='100%'><tr class='row_a'><th>"
+                + trans.sp.sp.settings.configurationFormTogglerTooltip
+                + "</th></tr><tr class='row_b'><td>";
+        for (configIterator = 0; configIterator < user_data_configs.length; configIterator++) {
+            settingFormTogglerHtml +=
+                "<input type='button' value=\""
+                    + user_data_configs[configIterator].title
+                    + "\" id='"+user_data_configs[configIterator].id
+                    + "_button' class='editFormToggler' /> &nbsp;";
+        }
+        settingFormTogglerHtml += "</td></tr></table><br>";
+        sanguSettingsForm.append(settingFormTogglerHtml);
+        $(".editFormToggler", sanguSettingsForm).click(function() {
+            var openForms = "",
+                linkedDiv = $("#" + this.id.replace("_button", ""));
+
+            if (linkedDiv.is(":visible")) {
+                linkedDiv.hide();
+                $(this).css("background-color", "");
+            } else {
+                linkedDiv.fadeIn();
+                adornButton(this);
+            }
+
+            $(".propertyEditFormContainer", sanguSettingsForm).each(function() {
+                if ($(this).is(":visible")) {
+                    openForms += this.id + "|";
+                }
+            });
+            pers.set("settingsFormsOpen", openForms);
+        });
 
         // build the property handler editting form
-        sanguSettingsForm = $("#sanguSettingsForm");
         for (configIterator = 0; configIterator < user_data_configs.length; configIterator++) {
             buildConfigForm(sanguSettingsForm, user_data_configs[configIterator]);
-            sanguSettingsForm.append("<br>");
         }
+
+        settingsFormsOpenFromPersistence = pers.get("settingsFormsOpen");
+        q(settingsFormsOpenFromPersistence);
+        $(".propertyEditFormContainer", sanguSettingsForm).each(function() {
+            if (settingsFormsOpenFromPersistence.indexOf(this.id+"|") > -1) {
+                adornButton($("#" + this.id + "_button"));
+                $(this).show();
+            }
+        });
     })();
 
     // notable contributors

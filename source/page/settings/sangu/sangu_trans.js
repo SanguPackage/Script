@@ -49,7 +49,6 @@ var sangu_trans_nl = {
             filterMinDefaultType: "De eenheid om te filteren die standaard geselecteerd is",
             filterMinDefault: "Het aantal eenheden om te filteren dat standaard ingevuld is",
             filterMinDefaultTooltip: "Dit aantal wordt ingevuld wanneer de pagina opent. Bij het selecteren van een andere eenheid worden de waarden hieronder gebruikt.",
-            filterMin: "Aantal {unitName}",
             filterMinOther: "De standaard waarde voor de overige eenheden",
             filterAutoSort: "De dorpenlijst automatisch sorteren na het ingeven van een doeldorp"
         },
@@ -79,9 +78,43 @@ var sangu_trans_nl = {
         },
         buildings: {
             title: "Overzichtsscherm: Gebouwen",
-            minLevel: "De laagst aanvaardbare level voor {building}",
-            maxLevel: "De hoogst aanvaardbare level voor {building}"
+            minMaxTitle: "Geef de laagst en hoogst aanvaardbare levels voor je gebouwen",
+            minLevel: "Min {building}",
+            maxLevel: "Max {building}"
         }
+    },
+    place: {
+        title: "Plaats: Speciale troepen invul links",
+        titleCustom: "Plaats: Extra troepen invul links",
+        linkText: "Link tekst",
+        link: "Link: {name}",
+
+        scoutTitle: "Verkenner links",
+        scoutVillage: "Een dorp krijgt verkenner links als er meer verkenners zijn dan dit",
+        scoutPlaceLinks: "Links om zoveel verkenners in te vullen",
+
+        fakePlaceLinkTitle: "Fake troepen link",
+        fakePlaceExcludeTroops: "Type troepen te negeren bij selecteren",
+        fakePlaceExcludeTroopsTooltip: "Gebruik de namen: spear, sword, axe, archer, sword, spy, light, marcher, heavy, ram, catapult",
+
+        noblePlaceLinkTitle: "Edel links",
+        noblePlaceLinkFirstTitle: "Edel link met het meeste troepen",
+        noblePlaceLinkFirstNameTooltip: "Er blijven genoeg troepen thuis om voor de resterende edels nog ondersteuning te kunnen sturen. Maak leeg om deze link niet te tonen.",
+
+        noblePlaceLinkSupportTitle: "Edel link met minimale ondersteuning",
+        noblePlaceLinksForceShow: "Ook tonen wanneer er slechts 1 edel in het dorp is",
+        nobleSupportOffTitle: "Edel ondersteuning voor offensief dorp",
+        nobleSupportDefTitle: "Edel ondersteuning voor defensief dorp",
+        nobleSupportUnit: "Eenheid",
+        nobleSupportAmount: "Aantal eenheden",
+
+        noblePlaceLinkDivideTitle: "Edel link met gelijk verdeelde ondersteuning",
+        noblePlaceLinkDivideAddRam: "Rammen mee selecteren",
+
+        customPlaceLinksTitle: "Andere links",
+        customPlaceOneTimeTooltip: "Vul een getal in om zoveel te sturen. Vul een negatief getal om zoveel te laten staan.",
+        customPlaceSendAlong: "Meesturen tot",
+        customPlaceSendAlongTooltip: "Indien er na selectie van bovenstaande troepen minder dan zoveel troepen in het dorp zou overblijven, selecteer dan alle troepen"
     },
     profile: {
         title: "Verfraaien van het profiel van spelers en stammen",
@@ -100,6 +133,13 @@ var sangu_trans_nl = {
             markedOnly: "Alleen gemarkeerde",
             yourTribeColor: "Eigen stam kleur",
             bigMarkers: "Grotere aanduidingen"
+        },
+        popup: {
+            title: "Overnames popup",
+            width: "Breedte van de popup",
+            height: "Hoogte van de popup",
+            left: "Horizontale positie",
+            top: "Verticale positie"
         }
     },
     mainTagger: {
@@ -109,7 +149,7 @@ var sangu_trans_nl = {
         defaultDescription: "De naam die standaard in het hernoemings inputveld geplaatst wordt",
         autoOpenCommands: "De bevel hernoemings inputvelden direct tonen",
         minutesDisplayDodgeTimeOnMap: "Aantal minuten dat de laatste dodgetijd op de kaart getoond wordt",
-        minutesDisplayDodgeTimeOnMapTooltip: "De laatste dodgetijd is de laatste tijd, aangeduidt met gewijzigde achtergrondkleur na het herbenoemen van binnenkomende aanvallen.",
+        minutesDisplayDodgeTimeOnMapTooltip: "De laatste dodgetijd is de tijd van het laatste bevel, aangeduidt met gewijzigde achtergrondkleur na het herbenoemen van binnenkomende aanvallen.",
         minutesWithoutAttacksDottedLine: "Elke zoveel minuten zonder een tussenliggende binnenkomende aanval aanduiden met een stippelijn (180 = 3 uur)",
         colorSupport: "Binnenkomende ondersteuning een andere achtergrondkleur geven"
     },

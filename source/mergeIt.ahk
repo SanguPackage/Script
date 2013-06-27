@@ -11,7 +11,7 @@ SetWorkingDir, %A_ScriptDir%
 
 UpdateVersion("version.txt")
 ParseAndSaveFile(inputFile, savePath, saveAs)
-;ParseAndSaveFile("release.user.js", "..\site\", saveAs)
+ParseAndSaveFile("release.user.js", "..\site\", saveAs)
 ParseAndSaveFile("..\site\index_toMerge.php", "..\site\", "index.php")
 
 ; Autocopy to Firefox greasemonkey directory

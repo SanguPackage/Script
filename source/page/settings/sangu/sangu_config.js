@@ -1,62 +1,14 @@
+//sangu_trans.global.resources.activate
+/*
+scoutTitle: {
+    type: "subtitle",
+        label: sangu_trans.place.scoutTitle
+}
+*/
+var showConfigs = true;
 var user_data_configs = [];
 
-/*user_data_configs.push({
-    id: "other",
-    title: sangu_trans.other.title,
-    save: function() { pers.set('sangusettings', JSON.stringify(user_data)); },
-    properties: {
-        proStyle: {
-            tooltip: sangu_trans.other.proStyleTooltip,
-            label: sangu_trans.other.proStyle,
-            propUI: {
-                getter: function() { return user_data.proStyle; },
-                setter: function(value) { user_data.proStyle = value; },
-                editor: "bool"
-            }
-        },
-        farmLimitColors: {
-            label: sangu_trans.other.farmLimitStackColors,
-            propUI: {
-                getter: function(propIndex) {
-                    return user_data.farmLimit.stackColors;
-                },
-                setter: function(value, propIndex) { user_data.farmLimit.stackColors = value; },
-                editor: "array:color"
-            }
-        }
-    }
-});*/
-
-/*user_data_configs.push({
-    id: "other",
-    title: sangu_trans.other.title,
-    save: function() { pers.set('sangusettings', JSON.stringify(user_data)); },
-    properties: {
-        farmLimitCombinedTest: {
-            label: sangu_trans.other.farmLimitStackColors,
-                propUI: {
-                getter: function() {
-                    return user_data.farmLimit.test;
-                },
-                setter: function(value) {
-                    user_data.farmLimit.test = value;
-                },
-                editor: "color+number"
-            }
-        },
-        farmLimitColorsCombined: {
-         label: sangu_trans.other.farmLimitStackColors,
-         propUI: {
-         getter: function() { return user_data.farmLimit.stacksConfig; },
-         setter: function(value) { user_data.farmLimit.stacksConfig = value; },
-         editor: "array|addNew:color+number|delete"
-         }
-         }
-    }
-});*/
-
-
-/*
+if (showConfigs)
 user_data_configs.push({
     id: "global",
     title: sangu_trans.global.title,
@@ -182,9 +134,7 @@ user_data_configs.push({
     }
 });
 
-
-
-
+if (showConfigs)
 user_data_configs.push({
     id: "main",
     title: sangu_trans.main.title,
@@ -220,8 +170,7 @@ user_data_configs.push({
     }
 });
 
-
-
+if (showConfigs)
 user_data_configs.push({
     id: "incoming",
     title: sangu_trans.incoming.title,
@@ -264,6 +213,7 @@ user_data_configs.push({
     }
 });
 
+if (showConfigs)
 user_data_configs.push({
     id: "mainTagger",
     title: sangu_trans.mainTagger.title,
@@ -341,6 +291,7 @@ user_data_configs.push({
     }
 });
 
+if (showConfigs)
 user_data_configs.push({
     id: "confirm",
     title: sangu_trans.confirm.title,
@@ -381,8 +332,8 @@ user_data_configs.push({
         }
     }
 });
-*/
 
+if (showConfigs)
 user_data_configs.push({
     id: "profile",
     title: sangu_trans.profile.title,
@@ -511,11 +462,295 @@ user_data_configs.push({
                 setter: function(value) { user_data.profile.mapLink.yourTribeColor = value; },
                 editor: "color"
             }
+        },
+        popup: {
+            type: "subtitle",
+            label: sangu_trans.profile.popup.title
+        },
+        popupShow: {
+            label: sangu_trans.global.resources.activate,
+            propUI: {
+                getter: function() { return user_data.profile.popup.show; },
+                setter: function(value) { user_data.profile.popup.show = value; },
+                editor: "bool"
+            }
+        },
+        popupWidth: {
+            label: sangu_trans.profile.popup.width,
+            propUI: {
+                getter: function() { return user_data.profile.popup.width; },
+                setter: function(value) { user_data.profile.popup.width = value; },
+                editor: "number|step=25"
+            }
+        },
+        popupHeight: {
+            label: sangu_trans.profile.popup.height,
+            propUI: {
+                getter: function() { return user_data.profile.popup.height; },
+                setter: function(value) { user_data.profile.popup.height = value; },
+                editor: "number|step=25"
+            }
         }
     }
 });
 
-/*
+if (showConfigs)
+    user_data_configs.push({
+        id: "placeLinks",
+        title: sangu_trans.place.title,
+        save: function() { pers.set('sangusettings', JSON.stringify(user_data)); },
+        properties: {
+            scoutTitle: {
+                type: "subtitle",
+                label: sangu_trans.place.scoutTitle
+            },
+            scoutPlaceLinksName: {
+                label: sangu_trans.place.linkText,
+                propUI: {
+                    getter: function() { return user_data.place.attackLinks.scoutPlaceLinksName; },
+                    setter: function(value) { user_data.place.attackLinks.scoutPlaceLinksName = value; },
+                    editor: "text|width=23"
+                }
+            },
+            scoutVillage: {
+                label: sangu_trans.place.scoutVillage,
+                    propUI: {
+                    getter: function() { return user_data.place.attackLinks.scoutVillage; },
+                    setter: function(value) { user_data.place.attackLinks.scoutVillage = value; },
+                    editor: "number|step=10"
+                }
+            },
+            scoutPlaceLinks: {
+                label: sangu_trans.place.scoutPlaceLinks,
+                    propUI: {
+                    getter: function() { return user_data.place.attackLinks.scoutPlaceLinks; },
+                    setter: function(value) { user_data.place.attackLinks.scoutPlaceLinks = value; },
+                    editor: "array|addNew:number|step=10|delete"
+                }
+            },
+
+
+
+
+
+            fakePlaceLinkTitle: {
+                type: "subtitle",
+                    label: sangu_trans.place.fakePlaceLinkTitle
+            },
+            fakePlaceLinkName: {
+                label: sangu_trans.place.linkText,
+                propUI: {
+                    getter: function() { return user_data.place.attackLinks.fakePlaceLinkName; },
+                    setter: function(value) { user_data.place.attackLinks.fakePlaceLinkName = value; },
+                    editor: "text|width=23"
+                }
+            },
+            fakePlaceLink: {
+                label: sangu_trans.global.resources.activate,
+                    propUI: {
+                    getter: function() { return user_data.place.attackLinks.fakePlaceLink; },
+                    setter: function(value) { user_data.place.attackLinks.fakePlaceLink = value; },
+                    editor: "bool"
+                }
+            },
+            fakePlaceExcludeTroops: {
+                label: sangu_trans.place.fakePlaceExcludeTroops,
+                tooltip: sangu_trans.place.fakePlaceExcludeTroopsTooltip,
+                    propUI: {
+                    getter: function() { return user_data.place.attackLinks.fakePlaceExcludeTroops; },
+                    setter: function(value) { user_data.place.attackLinks.fakePlaceExcludeTroops = value; },
+                    editor: "array|addNew:text|delete|width=7"
+                }
+            },
+
+
+
+
+
+
+            noblePlaceLinkTitle: {
+                type: "subtitle",
+                    label: sangu_trans.place.noblePlaceLinkTitle
+            },
+            noblePlaceLinkDivideName: {
+                label: sangu_trans.place.linkText,
+                propUI: {
+                    getter: function() { return user_data.place.attackLinks.noblePlaceLinkDivideName; },
+                    setter: function(value) { user_data.place.attackLinks.noblePlaceLinkDivideName = value; },
+                    editor: "text|width=23"
+                }
+            },
+            noblePlaceLink: {
+                label: sangu_trans.global.resources.activate,
+                    propUI: {
+                    getter: function() { return user_data.place.attackLinks.noblePlaceLink; },
+                    setter: function(value) { user_data.place.attackLinks.noblePlaceLink = value; },
+                    editor: "bool"
+                }
+            },
+            noblePlaceLinkDivideTitle: {
+                type: "subtitle",
+                    label: sangu_trans.place.noblePlaceLinkDivideTitle
+            },
+            noblePlaceLinkDivideAddRam: {
+                label: sangu_trans.place.noblePlaceLinkDivideAddRam,
+                    propUI: {
+                    getter: function() { return user_data.place.attackLinks.noblePlaceLinkDivideAddRam; },
+                    setter: function(value) { user_data.place.attackLinks.noblePlaceLinkDivideAddRam = value; },
+                    editor: "bool"
+                }
+            },
+            noblePlaceLinkFirstTitle: {
+                type: "subtitle",
+                    label: sangu_trans.place.noblePlaceLinkFirstTitle
+            },
+            noblePlaceLinkFirstName: {
+                label: sangu_trans.place.linkText,
+                    tooltip: sangu_trans.place.noblePlaceLinkFirstNameTooltip,
+                    propUI: {
+                    getter: function() { return user_data.place.attackLinks.noblePlaceLinkFirstName; },
+                    setter: function(value) { user_data.place.attackLinks.noblePlaceLinkFirstName = value; },
+                    editor: "text|width=23"
+                }
+            },
+            noblePlaceLinkSupportTitle: {
+                type: "subtitle",
+                    label: sangu_trans.place.noblePlaceLinkSupportTitle
+            },
+            noblePlaceLinkSupportName: {
+                label: sangu_trans.place.linkText,
+                    propUI: {
+                    getter: function() { return user_data.place.attackLinks.noblePlaceLinkSupportName; },
+                    setter: function(value) { user_data.place.attackLinks.noblePlaceLinkSupportName = value; },
+                    editor: "text|width=23"
+                }
+            },
+            noblePlaceLinksForceShow: {
+                label: sangu_trans.place.noblePlaceLinksForceShow,
+                    propUI: {
+                    getter: function() { return user_data.place.attackLinks.noblePlaceLinksForceShow; },
+                    setter: function(value) { user_data.place.attackLinks.noblePlaceLinksForceShow = value; },
+                    editor: "bool"
+                }
+            },
+            nobleSupportOffTitle: {
+                type: "subtitle",
+                    label: sangu_trans.place.nobleSupportOffTitle
+            },
+            nobleSupportOffUnit: {
+                label: sangu_trans.place.nobleSupportUnit,
+                    propUI: {
+                    getter: function() { return user_data.place.attackLinks.nobleSupport[0].unit; },
+                    setter: function(value) { user_data.place.attackLinks.nobleSupport[0].unit = value; },
+                    editor: "unit"
+                }
+            },
+            nobleSupportOffAmount: {
+                label: sangu_trans.place.nobleSupportAmount,
+                    propUI: {
+                    getter: function() { return user_data.place.attackLinks.nobleSupport[0].amount; },
+                    setter: function(value) { user_data.place.attackLinks.nobleSupport[0].amount = value; },
+                    editor: "number|step=50"
+                }
+            },
+            nobleSupportDefTitle: {
+                type: "subtitle",
+                    label: sangu_trans.place.nobleSupportDefTitle
+            },
+            nobleSupportDefUnit: {
+                label: sangu_trans.place.nobleSupportUnit,
+                    propUI: {
+                    getter: function() { return user_data.place.attackLinks.nobleSupport[1].unit; },
+                    setter: function(value) { user_data.place.attackLinks.nobleSupport[1].unit = value; },
+                    editor: "unit"
+                }
+            },
+            nobleSupportDefAmount: {
+                label: sangu_trans.place.nobleSupportAmount,
+                    propUI: {
+                    getter: function() { return user_data.place.attackLinks.nobleSupport[1].amount; },
+                    setter: function(value) { user_data.place.attackLinks.nobleSupport[1].amount = value; },
+                    editor: "number|step=50"
+                }
+            }
+        }
+    });
+
+
+if (true)
+    (function() {
+        var i,
+            properties = {};
+
+        for (i = 0; i < user_data.place.customPlaceLinks.length; i++) {
+            (function() {
+                var unitTypeIndex,
+                    customPlaceLink = user_data.place.customPlaceLinks[i],
+                    oneTimeTooltip = i == 0 ? sangu_trans.place.customPlaceOneTimeTooltip : undefined,
+                    oneTimeTooltipSendAlong = i == 0 ? sangu_trans.place.customPlaceSendAlongTooltip : undefined;
+
+                properties['customPlaceLink'+i+'Title'] = {
+                    type: "subtitle",
+                    label: sangu_trans.place.link.replace("{name}", customPlaceLink.name)
+                };
+
+                properties['customPlaceLink'+i+'Name'] = {
+                    label: sangu_trans.place.linkText,
+                    propUI: {
+                        getter: function() { return customPlaceLink.name; },
+                        setter: function(value) { customPlaceLink.name = value; },
+                        editor: "text|width=23"
+                    }
+                };
+
+                properties['customPlaceLink'+i+'Active'] = {
+                    label: sangu_trans.global.resources.activate,
+                    propUI: {
+                        getter: function() { return customPlaceLink.active; },
+                        setter: function(value) { customPlaceLink.active = value; },
+                        editor: "bool"
+                    }
+                };
+
+                for (unitTypeIndex = 0; unitTypeIndex < world_data.units.length; unitTypeIndex++) {
+                    (function() {
+                        var unit = world_data.units[unitTypeIndex],
+                            reallyOneTimeTooltip = unitTypeIndex == 0 && oneTimeTooltip ? oneTimeTooltip : undefined;
+
+                        properties['customPlaceLink'+i+unit] = {
+                            label: "<img src='graphic/unit/unit_"+unit+".png'/>",
+                            tooltip: reallyOneTimeTooltip,
+                            propUI: {
+                                getter: function() { return customPlaceLink[unit]; },
+                                setter: function(value) { customPlaceLink[unit] = value; },
+                                editor: "number|step=100"
+                            }
+                        };
+                    })();
+                }
+
+                properties['customPlaceLink'+i+'SendAlong'] = {
+                    label: sangu_trans.place.customPlaceSendAlong,
+                    tooltip: oneTimeTooltipSendAlong,
+                    propUI: {
+                        getter: function() { return customPlaceLink.sendAlong; },
+                        setter: function(value) { customPlaceLink.sendAlong = value; },
+                        editor: "number|step=100"
+                    }
+                };
+            })();
+        }
+
+        user_data_configs.push({
+            id: "placeLinksCustom",
+            title: sangu_trans.place.titleCustom,
+            save: function() { pers.set('sangusettings', JSON.stringify(user_data)); },
+            properties: properties
+        });
+    })();
+
+
+if (showConfigs)
 user_data_configs.push({
     id: "overviewsTroops",
     title: sangu_trans.overviews.command.title,
@@ -567,7 +802,7 @@ user_data_configs.push({
             }
         },
         filterMinSpear: {
-            label: sangu_trans.overviews.command.filterMin.replace("{unitName}", trans.tw.units.names.spear),
+            label: "<img src='graphic/unit/unit_spear.png' />",
             propUI: {
                 getter: function() { return user_data.command.filterMin.spear; },
                 setter: function(value) { user_data.command.filterMin.spear = value; },
@@ -575,7 +810,7 @@ user_data_configs.push({
             }
         },
         filterMinSword: {
-            label: sangu_trans.overviews.command.filterMin.replace("{unitName}", trans.tw.units.names.sword),
+            label: "<img src='graphic/unit/unit_sword.png' />",
             propUI: {
                 getter: function() { return user_data.command.filterMin.sword; },
                 setter: function(value) { user_data.command.filterMin.sword = value; },
@@ -583,7 +818,7 @@ user_data_configs.push({
             }
         },
         filterMinAxe: {
-            label: sangu_trans.overviews.command.filterMin.replace("{unitName}", trans.tw.units.names.axe),
+            label: "<img src='graphic/unit/unit_axe.png' />",
             propUI: {
                 getter: function() { return user_data.command.filterMin.axe; },
                 setter: function(value) { user_data.command.filterMin.axe = value; },
@@ -591,7 +826,7 @@ user_data_configs.push({
             }
         },
         filterMinArcher: {
-            label: sangu_trans.overviews.command.filterMin.replace("{unitName}", trans.tw.units.names.archer),
+            label: "<img src='graphic/unit/unit_archer.png' />",
             show: world_config.hasArchers,
             propUI: {
                 getter: function() { return user_data.command.filterMin.archer; },
@@ -600,7 +835,7 @@ user_data_configs.push({
             }
         },
         filterMinSpy: {
-            label: sangu_trans.overviews.command.filterMin.replace("{unitName}", trans.tw.units.names.spy),
+            label: "<img src='graphic/unit/unit_spy.png' />",
             propUI: {
                 getter: function() { return user_data.command.filterMin.spy; },
                 setter: function(value) { user_data.command.filterMin.spy = value; },
@@ -608,7 +843,7 @@ user_data_configs.push({
             }
         },
         filterMinLight: {
-            label: sangu_trans.overviews.command.filterMin.replace("{unitName}", trans.tw.units.names.light),
+            label: "<img src='graphic/unit/unit_light.png' />",
             propUI: {
                 getter: function() { return user_data.command.filterMin.light; },
                 setter: function(value) { user_data.command.filterMin.light = value; },
@@ -616,7 +851,7 @@ user_data_configs.push({
             }
         },
         filterMinMarcher: {
-            label: sangu_trans.overviews.command.filterMin.replace("{unitName}", trans.tw.units.names.marcher),
+            label: "<img src='graphic/unit/unit_marcher.png' />",
             show: world_config.hasArchers,
             propUI: {
                 getter: function() { return user_data.command.filterMin.marcher; },
@@ -625,7 +860,7 @@ user_data_configs.push({
             }
         },
         filterMinHeavy: {
-            label: sangu_trans.overviews.command.filterMin.replace("{unitName}", trans.tw.units.names.heavy),
+            label: "<img src='graphic/unit/unit_heavy.png' />",
             propUI: {
                 getter: function() { return user_data.command.filterMin.heavy; },
                 setter: function(value) { user_data.command.filterMin.heavy = value; },
@@ -633,7 +868,7 @@ user_data_configs.push({
             }
         },
         filterMinRam: {
-            label: sangu_trans.overviews.command.filterMin.replace("{unitName}", trans.tw.units.names.ram),
+            label: "<img src='graphic/unit/unit_ram.png' />",
             propUI: {
                 getter: function() { return user_data.command.filterMin.ram; },
                 setter: function(value) { user_data.command.filterMin.ram = value; },
@@ -641,7 +876,7 @@ user_data_configs.push({
             }
         },
         filterMinCatapult: {
-            label: sangu_trans.overviews.command.filterMin.replace("{unitName}", trans.tw.units.names.catapult),
+            label: "<img src='graphic/unit/unit_catapult.png' />",
             propUI: {
                 getter: function() { return user_data.command.filterMin.catapult; },
                 setter: function(value) { user_data.command.filterMin.catapult = value; },
@@ -649,7 +884,7 @@ user_data_configs.push({
             }
         },
         filterMinSnob: {
-            label: sangu_trans.overviews.command.filterMin.replace("{unitName}", trans.tw.units.names.snob),
+            label: "<img src='graphic/unit/unit_snob.png' />",
             propUI: {
                 getter: function() { return user_data.command.filterMin.snob; },
                 setter: function(value) { user_data.command.filterMin.snob = value; },
@@ -712,6 +947,7 @@ user_data_configs.push({
     }
 });
 
+if (showConfigs)
 user_data_configs.push({
     id: "overviewsCommands",
     title: sangu_trans.overviews.commands.title,
@@ -744,6 +980,7 @@ user_data_configs.push({
     }
 });
 
+if (showConfigs)
 user_data_configs.push({
     id: "overviewsResources",
     title: sangu_trans.overviews.resources.title,
@@ -800,6 +1037,7 @@ user_data_configs.push({
     }
 });
 
+if (showConfigs)
 // Buildingsoverview:
 (function() {
     var properties = {},
@@ -808,9 +1046,11 @@ user_data_configs.push({
     for (i = 0; i < world_data.buildings.length; i++) {
         (function() {
             var captured_index = i,
-                building_name = world_data.buildings[captured_index];
+                building_name = world_data.buildings[captured_index],
+                buildingPrettyfier = function(building) { return "<img src='graphic/buildings/"+building+".png'>"; };
+
             properties[building_name+'_min'] = {
-                label: sangu_trans.overviews.buildings.minLevel.replace("{building}", building_name),
+                label: sangu_trans.overviews.buildings.minLevel.replace("{building}", buildingPrettyfier(building_name)),
                 propUI: {
                     getter: function() { return user_data.buildings[building_name][0]; },
                     setter: function(value) { user_data.buildings[building_name][0] = value; },
@@ -819,7 +1059,7 @@ user_data_configs.push({
             };
 
             properties[building_name+'_max'] = {
-                label: sangu_trans.overviews.buildings.maxLevel.replace("{building}", building_name),
+                label: sangu_trans.overviews.buildings.maxLevel.replace("{building}", buildingPrettyfier(building_name)),
                 propUI: {
                     getter: function() { return user_data.buildings[building_name][1]; },
                     setter: function(value) { user_data.buildings[building_name][1] = value; },
@@ -837,6 +1077,7 @@ user_data_configs.push({
     });
 })();
 
+if (showConfigs)
 user_data_configs.push({
     id: "other",
     title: sangu_trans.other.title,
@@ -1000,5 +1241,3 @@ user_data_configs.push({
         }
     }
 });
-
-*/

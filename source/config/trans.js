@@ -57,6 +57,8 @@ trans = {
             settings: {
                 reset: "De standaard Sangu Package settings herstellen",
                 resetAll: "Sangu Package 'fabrieksinstellingen' herstellen",
+                configuration: "Configuratie",
+                configurationFormTogglerTooltip: "Klik op de knoppen om de verschillende editeerschermen te openen",
                 activate: "Activeer",
                 deleteTooltip: "Verwijderen",
                 addRecord: "&raquo; Toevoegen",
@@ -152,8 +154,7 @@ trans = {
 			backOn: "Terug op",
 			onlyAttack: "1 aanval op {arrivalDateFirst} ({timeLeftFirst})",
 			multipleAttack: "{amount} aanvallen tussen {arrivalDateFirst} ({timeLeftFirst}) en {arrivalDateLast} ({timeLeftLast})",
-			changeSpeedImageTooltips: "{originalTitle} - Klik om de traagste eenheid te wijzigen",
-			attackLinkNames: { fake: 'Fake', scout: 'Scout', nobleMax: 'NobleFirst', nobleMin: 'NobleMin', nobleDivide: 'NobleDivide' }
+			changeSpeedImageTooltips: "{originalTitle} - Klik om de traagste eenheid te wijzigen"
 		},
 		jumper: {
 			goToMap: "Ga naar de kaart"

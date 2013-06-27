@@ -92,7 +92,7 @@ function createSettingType(inputHandler, editors, editorIndex, arrayOptions) {
             case "bool":
                 return {
                     build: function(id) {
-                        assert(typeof value === 'boolean', (typeof value) + ": not a boolean");
+                        //assert(typeof value === 'boolean', (typeof value) + ": not a boolean");
                         return "<input type='checkbox' id='"+id+"' "+(value ? " checked" : "")+" />";
                     },
                     bind: function(id) {
@@ -361,7 +361,8 @@ function buildConfigForm(contentPage, propertyFormConfig) {
         properties = [],
         propIndex,
         form = "",
-        formRow;
+        formRow,
+        container;
 
     // show only relevant properties
     // has side-effects
@@ -389,7 +390,11 @@ function buildConfigForm(contentPage, propertyFormConfig) {
     form += "<tr><th colspan='2'>" + propertyFormConfig.title + "</th>";
     form += "</table>";
     form = $(form);
-    contentPage.append(form);
+
+    container = $("<div class='propertyEditFormContainer' id='"+propertyFormConfig.id+"' style='display: none' />");
+    container.append(form).append("<br>");
+
+    contentPage.append(container);
 
     for (propIndex = 0; propIndex < properties.length; propIndex++) {
         var propUI = properties[propIndex];

@@ -203,7 +203,7 @@ if (user_data.profile.show && (location.href.indexOf('screen=info_village') == -
 		var popupWidth = profile.popup.width;
 		var popupHeight = profile.popup.height;
 		infoTable.after('<div class="messagepop pop" id="popup" style="display: none"><iframe src=' + twLink + ' width=' + popupWidth + ' height=' + popupHeight + '></div>');
-		$("#popup").css({ "left": ($('window').width() - 60 - popupWidth), "top": 10, "background-color": "#FFFFFF", "border": "1px solid #999999", "position": "absolute", "width": popupWidth, "height": popupHeight, "z-index": 50, "padding": "25px 25px 20px" });
+		$("#popup").css({ "left": profile.popup.left, "top": profile.popup.top, "background-color": "#FFFFFF", "border": "1px solid #999999", "position": "absolute", "width": popupWidth, "height": popupHeight, "z-index": 50, "padding": "25px 25px 20px" });
 
 		$(function () {
 			$("#conquers").on('click', function (event) {

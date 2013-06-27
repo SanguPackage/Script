@@ -23,7 +23,7 @@ if (world_config.hasMinFakeLimit) {
 }
  
 if (user_data.place.attackLinks.fakePlaceLink && units['total'] >= minFake) {
-	createRallyPointScript(linksContainer, world_data.units, trans.sp.place.attackLinkNames.fake, 0, function (amount, v, tag) {
+	createRallyPointScript(linksContainer, world_data.units, user_data.place.attackLinks.fakePlaceLinkName, 0, function (amount, v, tag) {
 		if ((v == 'ram' || v == 'catapult') && !tag.rammed && amount > 0) {
 			tag.rammed = true;
 			return 1;
@@ -75,8 +75,8 @@ $.each(user_data.place.customPlaceLinks, function (i, v) {
 						}
 						if (send > 0 && !tag.ignoreNobles) {
 							$.each(user_data.place.attackLinks.nobleSupport, function (i, val) {
-								if (unitVal == val.Unit && villageType.isMatch(val.VillageType)) {
-									send -= Math.ceil(units.snob * (val.Population / world_data.unitsSize['unit_' + unitVal]));
+								if (unitVal == val.unit && villageType.isMatch(val.villageType)) {
+									send -= Math.ceil(units.snob * val.amount);
 								}
 							});
 						}
@@ -118,7 +118,7 @@ $.each(user_data.place.customPlaceLinks, function (i, v) {
 if (units.spy >= user_data.place.attackLinks.scoutVillage && user_data.place.attackLinks.scoutPlaceLinks != null && user_data.place.attackLinks.scoutPlaceLinks.length > 0) {
 	$.each(user_data.place.attackLinks.scoutPlaceLinks, function (i, v) {
 		if (units.spy >= v) {
-			createRallyPointScript(linksContainer, ["spy"], trans.sp.place.attackLinkNames.scout + v, 0, function (amount, v, tag) {
+			createRallyPointScript(linksContainer, ["spy"], user_data.place.attackLinks.scoutPlaceLinksName.replace("{amount}", v), 0, function (amount, v, tag) {
 				return tag;
 			}, v);
 		}
@@ -126,41 +126,43 @@ if (units.spy >= user_data.place.attackLinks.scoutVillage && user_data.place.att
 }
 
 if (units.snob > 0 && user_data.place.attackLinks.noblePlaceLink) {
-	createRallyPointScript(linksContainer, world_data.units, trans.sp.place.attackLinkNames.nobleMax, 0, function (amount, v, tag) {
-		if (v == 'snob') {
-			return 1;
-		}
-		if (tag > 0) {
-			var returned = null;
-			$.each(user_data.place.attackLinks.nobleSupport, function (i, val) {
-				if (v == val.Unit && villageType.isMatch(val.VillageType)) {
-					returned = amount - Math.ceil((tag - 1) * (val.Population / world_data.unitsSize['unit_' + v]));
-				}
-			});
-			if (returned != null) {
-				return returned;
-			}
-		}
-		return amount;
-	}, units.snob);
+    if (user_data.place.attackLinks.noblePlaceLinkFirstName) {
+        createRallyPointScript(linksContainer, world_data.units, user_data.place.attackLinks.noblePlaceLinkFirstName, 0, function (amount, v, tag) {
+            if (v == 'snob') {
+                return 1;
+            }
+            if (tag > 0) {
+                var returned = null;
+                $.each(user_data.place.attackLinks.nobleSupport, function (i, val) {
+                    if (v == val.unit && villageType.isMatch(val.villageType)) {
+                        returned = amount - Math.ceil((tag - 1) * val.amount);
+                    }
+                });
+                if (returned != null) {
+                    return returned;
+                }
+            }
+            return amount;
+        }, units.snob);
+    }
 
-	if (units.snob > 1 || user_data.place.attackLinks.noblePlaceLinksForceShow) {
-		createRallyPointScript(linksContainer, world_data.units, trans.sp.place.attackLinkNames.nobleMin, 0, function (amount, v, tag) {
+	if (user_data.place.attackLinks.noblePlaceLinkSupportName && (units.snob > 1 || user_data.place.attackLinks.noblePlaceLinksForceShow)) {
+		createRallyPointScript(linksContainer, world_data.units, user_data.place.attackLinks.noblePlaceLinkSupportName, 0, function (amount, v, tag) {
 			if (v == 'snob') {
 				return 1;
 			}
 			var returned = 0;
 			$.each(user_data.place.attackLinks.nobleSupport, function (i, val) {
-				if (v == val.Unit && villageType.isMatch(val.VillageType)) {
-					returned = Math.ceil(1 * (val.Population / world_data.unitsSize['unit_' + v]));
+				if (v == val.unit && villageType.isMatch(val.villageType)) {
+					returned = Math.ceil(1 * val.amount);
 				}
 			});
 			return returned;
 		});
 	}
 
-	if (units.snob > 0) {
-		createRallyPointScript(linksContainer, world_data.units, trans.sp.place.attackLinkNames.nobleDivide, 0, function (amount, v, tag) {
+	if (units.snob > 0 && user_data.place.attackLinks.noblePlaceLinkDivideName) {
+		createRallyPointScript(linksContainer, world_data.units, user_data.place.attackLinks.noblePlaceLinkDivideName, 0, function (amount, v, tag) {
 			if (v == 'snob') {
 				return 1;
 			}
