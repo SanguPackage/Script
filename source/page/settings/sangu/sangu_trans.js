@@ -126,7 +126,7 @@ var sangu_trans_nl = {
             grid: 'Continentlijnen',
             gridContinentNumbers: "Continent nummers",
             playerColor: 'Spelerskleur',
-            tribeColor: 'Spelerststam',
+            tribeColor: 'Zijn stam kleur',
             centreX: "Centreren op X coördinaat",
             centreY: "Centreren op Y coördinaat",
             ownColor: 'Eigen kleur',
