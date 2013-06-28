@@ -33,7 +33,7 @@ if (server_settings.ajaxAllowed && user_data.global.visualizeFriends) {
 	// check friends page only every 5 minutes (or when on friends page itself)
 	if ($("#village_link").val() == "/game.php?screen=buddies") {
 		friends = new Friends();
-		parseFriendsTable($("#content_value"));
+		parseFriendsTable(content_value);
 	}
 	else {
 		if (friends) {

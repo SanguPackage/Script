@@ -1,5 +1,5 @@
 var maxSitDays = server_settings.maxSitDays;
-var daysTable = $("#content_value table.vis:eq(1)");
+var daysTable = $("table.vis:eq(1)", content_value);
 var days = $("td:last", daysTable).text();
 days = maxSitDays - parseInt(days.substr(0, days.indexOf(" ")), 10);
 if (days > 0) {

@@ -1,6 +1,6 @@
 (function() {
     // contentPage is the place we will add the settings menu to
-    var contentPage = $("#content_value table:first td:last").attr("width", "99%"),
+    var contentPage = $("table:first td:last", content_value).attr("width", "99%"),
         sanguTitle = "<h3 id='sanguConfigTitle'>" + trans.sp.sp.configuration.replace("{version}", sangu_version) + "</h3>";
 
     function gimmeTheMoney() {
@@ -108,7 +108,6 @@
         }
 
         settingsFormsOpenFromPersistence = pers.get("settingsFormsOpen");
-        q(settingsFormsOpenFromPersistence);
         $(".propertyEditFormContainer", sanguSettingsForm).each(function() {
             if (settingsFormsOpenFromPersistence.indexOf(this.id+"|") > -1) {
                 adornButton($("#" + this.id + "_button"));

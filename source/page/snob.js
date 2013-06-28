@@ -1,6 +1,6 @@
 if (user_data.other.calculateSnob && !world_config.coins) {
 	// Calculate for how many nobles/snobs we've got packages
-	var table = $("#content_value table.vis:eq(1)");
+	var table = $("table.vis:eq(1)", content_value);
 	var cost = $("td:eq(1)", table).html();
 	cost = parseInt(cost.substr(0, cost.indexOf(" ")), 10);
 	var stored = $("tr:eq(1) td:eq(1)", table).html();

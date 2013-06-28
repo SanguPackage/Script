@@ -63,7 +63,7 @@ link.one('click', function () {
 				if (toFocusButton == null) {
 					toFocusButton = $("input:last", this);
 
-					$("#content_value table:first").prepend("<input type=submit id=focusPlaceHolder value='" + trans.sp.tagger.tagIt + " (" + trans.tw.units.names[unit] + ")'>");
+					$("table:first", content_value).prepend("<input type=submit id=focusPlaceHolder value='" + trans.sp.tagger.tagIt + " (" + trans.tw.units.names[unit] + ")'>");
 					$("#focusPlaceHolder").click(function () {
 						trackClickEvent("TagDefault");
 						toFocusButton.click();

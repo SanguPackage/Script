@@ -58,7 +58,7 @@ function createFixedTooltip(id, content, options) {
 	
 	var persKey = "fixedToolTip_"+id; // Other implementations depend on this naming
 	if (!options.showOnce || pers.getGlobal(persKey) == '') {
-		$("#content_value").after('<div id="' + id + '" class="vis" style="z-index: 100001; margin: 2px; '
+		content_value.after('<div id="' + id + '" class="vis" style="z-index: 100001; margin: 2px; '
 			+ 'width: '+options.width+'px; display: block; position:absolute; top: '+options.top+'px; left: '+options.left+'px; border: 1px solid black; background-color: #F4E4BC">'
 			+ '<h4>' + '<img id="'+id+'closeTooltip" style="float: right; cursor: pointer;" src="graphic/minus.png">' + content.title + '</h4>'
 			+ '<div style="display: block; text-align: left; margin: 2px;">' + content.body + '</div>'

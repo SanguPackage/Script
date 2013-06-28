@@ -9,13 +9,12 @@ if ($("#running_times").size() > 0) {
 	}
 
 	if (user_data.proStyle && user_data.incoming.villageBoxSize != null && user_data.incoming.villageBoxSize != false) {
-		$("#content_value table:first").css("width", user_data.incoming.villageBoxSize);
+		$("table:first", content_value).css("width", user_data.incoming.villageBoxSize);
 	}
 	
 } else {
 	// Own attack/support/return ---------------------------------------------------------------------------------- Own attack/support/return
-	var table = $("#content_value");
-	var infoTable = $("table.vis:first", table);
+	var infoTable = $("table.vis:first", content_value);
 	var type = $("h2:first", table).text();
 	var catapultTargetActive = infoTable.find("tr:eq(5) td:eq(0)").text() == trans.tw.command.catapultTarget;
 
@@ -69,7 +68,7 @@ if ($("#running_times").size() > 0) {
 	var haulDescription = "";
 
 	if (type.indexOf(trans.tw.command.returnText) == 0) {
-		infoTable = $("table.vis:last", table);
+		infoTable = $("table.vis:last", content_value);
 		if (infoTable.find("td:first").text() == trans.tw.command.haul) {
 			haulDescription = infoTable.find("td:last").text().match(/\s(\d+)\/(\d+)$/);
 			haulDescription = formatNumber(haulDescription[1]) + " / " + formatNumber(haulDescription[2]);
@@ -77,7 +76,7 @@ if ($("#running_times").size() > 0) {
 		}
 		infoTable = infoTable.find("tr:last");
 	} else {
-		infoTable = $("table.vis:last", table);
+		infoTable = $("table.vis:last", content_value);
 	}
 
 	var unitsSent = {};
@@ -85,7 +84,7 @@ if ($("#running_times").size() > 0) {
 		unitsSent[val] = parseInt($("td:eq(" + i + ")", infoTable).text(), 10);
 	});
 	var unitsCalc = calcTroops(unitsSent);
-	unitsCalc.colorIfNotRightAttackType($("h2:first", table), !isSupport);
+	unitsCalc.colorIfNotRightAttackType($("h2:first", content_value), !isSupport);
 
 	if (user_data.attackAutoRename.active) {
 		var inputBox = $("#editInput");
@@ -123,10 +122,10 @@ if ($("#running_times").size() > 0) {
 			villageid = location.href.match(/village=(\d+)/);
 			//alert(villageid[1]);
 			if (counter != 0) {
-				$("#content_value").find("h2").after('<table><tr><td id="lastattack" style="width:83%"><a href="/game.php?village=' + villageid + '&id=' + lastcommandID + '&type=own&screen=info_command">'+ trans.sp.command.precedingAttack + '</a></td> </tr> </table>');
+				content_value.find("h2").after('<table><tr><td id="lastattack" style="width:83%"><a href="/game.php?village=' + villageid + '&id=' + lastcommandID + '&type=own&screen=info_command">'+ trans.sp.command.precedingAttack + '</a></td> </tr> </table>');
 			}
 			else {
-			$("#content_value").find("h2").after('<table><tr><td id="lastattack" style="width:83%"><b> XX</b></td> </tr> </table>');
+			content_value.find("h2").after('<table><tr><td id="lastattack" style="width:83%"><b> XX</b></td> </tr> </table>');
 			}
 			if (counter != arraylengthminusone){
 			$("#lastattack").after('<td id="nextcommand" ><a href="/game.php?village=' + villageid + '&id=' + nextcommandID + '&type=own&screen=info_command">'+ trans.sp.command.nextAttack+ '</a></td>');
@@ -149,7 +148,7 @@ if ($("#running_times").size() > 0) {
 			}
 		});
 
-		var unitTable = $("table.vis:last", table);
+		var unitTable = $("table.vis:last", content_value);
 		unitTable.find("tr:first").append('<th width="50"><span class="icon header population" title="' + trans.sp.all.population + '"></span></th>');
 		unitTable.find("tr:last").append('<td>' + formatNumber(totalPop) + '</td>');
 	}

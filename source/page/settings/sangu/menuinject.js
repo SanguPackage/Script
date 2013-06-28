@@ -1,5 +1,5 @@
 (function() {
-    var settingsMenu = $("#content_value table.vis:first");
+    var settingsMenu = $("table.vis:first", content_value);
     settingsMenu.append(
         "<tr><td>&nbsp;</td></tr><tr><th><a href='"
             + getUrlString("screen=settings&mode=sangu")

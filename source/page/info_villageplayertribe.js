@@ -1,4 +1,4 @@
-var tables = $('#content_value table.vis');
+var tables = $('table.vis', content_value);
 var infoTable = tables.first();
 var profile = user_data.profile;
 
@@ -22,7 +22,7 @@ if (user_data.profile.show && (location.href.indexOf('screen=info_village') == -
 		// Extra links and info in table at the left top
 		screen = "player";
 		if (user_data.proStyle) {
-			$("#content_value td:first").css("width", "40%").next().css("width", "60%");
+			$("td:first", content_value).css("width", "40%").next().css("width", "60%");
 		}
 
 		if (location.href.indexOf('screen=info_player') > -1) {
@@ -39,8 +39,7 @@ if (user_data.profile.show && (location.href.indexOf('screen=info_village') == -
 		} else {
 			// village info page
 			isVillage = true;
-			tables = $("#content_value");
-			infoTable = $("table.vis:first", tables);
+			infoTable = $("table.vis:first", content_value);
 			id = infoTable.find("tr:eq(3) a");
             assert(id.size() == 1, "player id not found on info_village page");
 			if (id.size() > 0) {
@@ -88,7 +87,7 @@ if (user_data.profile.show && (location.href.indexOf('screen=info_village') == -
 			// Amount of villages
 			if (user_data.proStyle) {
 				// always show villagename on one line
-				var colWidth = $("#content_value table:eq(2) th");
+				var colWidth = $("table:eq(2) th", content_value);
 				colWidth.first().css("width", "98%");
 				colWidth.eq(1).css("width", "1%");
 				colWidth.eq(2).css("width", "1%");
@@ -168,7 +167,7 @@ if (user_data.profile.show && (location.href.indexOf('screen=info_village') == -
 				if (isVillage || pictureTable.html() == null) {
 					// With no info nor personal text
 					pictureTable = $("<table class='vis' width='100%'><tr><th colspan='2'>" + trans.tw.profile.title + "</th></tr></table>");
-					$("#content_value td:first").next().prepend(pictureTable);
+					$("td:first", content_value).next().prepend(pictureTable);
 				} else if (pictureTable.find("th").text() != trans.tw.profile.title) {
 					// TODO: There is a ; after the IF, is that the intention???
 					if (pictureTable.find("th:first").text() == trans.tw.profile.awardsWon);

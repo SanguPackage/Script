@@ -1,10 +1,10 @@
 // reorder the page
 if (user_data.proStyle) {
-	$("#content_value table:first").css("width", 500);
+	$("table:first", content_value).css("width", 500);
 
 	// Merge nightbonus & tribe claim statements (for OK button placement)
 	if (user_data.proStyle && (user_data.confirm.replaceTribeClaim || user_data.confirm.replaceNightBonus)) {
-		var header = $("#content_value h2:first");
+		var header = $("h2:first", content_value);
 		var claim = $("h3.error");
 		if (claim.size() != 0) {
 			claim.each(function() {
@@ -18,7 +18,7 @@ if (user_data.proStyle) {
 
 // extra attack button (always on the same place)
 if (user_data.confirm.addExtraOkButton) {
-	$("#content_value h2:first").prepend("<input type=submit style='font-size: 10pt' id=focusPlaceHolder value='" + $("#troop_confirm_go").val() + "'><br>");
+	$("h2:first", content_value).prepend("<input type=submit style='font-size: 10pt' id=focusPlaceHolder value='" + $("#troop_confirm_go").val() + "'><br>");
 	$("#focusPlaceHolder").click(function () {
 		$(this).attr("disabled", "disabled");
 		$("#troop_confirm_go").click();
@@ -40,8 +40,7 @@ if (user_data.confirm.addCatapultImages && $("#save_default_attack_building").le
 	});
 }
 
-var attackFrame = $("#content_value");
-var valueCells = $("table.vis:first td:odd", attackFrame);
+var valueCells = $("table.vis:first td:odd", content_value);
 var targetVillage = valueCells.first().text();
 
 // remember last attack
@@ -58,7 +57,7 @@ var player = (isBarbarian ? '' : valueCells.eq(1).text());
 
 var unitsSent = {};
 $.each(world_data.units, function (i, val) {
-	unitsSent[val] = parseInt($("input[name='" + val + "']", attackFrame).val(), 10);
+	unitsSent[val] = parseInt($("input[name='" + val + "']", content_value).val(), 10);
 });
 
 // compare runtime with dodgetime
@@ -66,7 +65,7 @@ var unitsCalc = calcTroops(unitsSent);
 var dodgeCookie = pers.getCookie("sanguDodge" + getQueryStringParam("village"));
 if (dodgeCookie) {
 	dodgeCookie = dodgeCookie.split("~");
-	var durationCell = $("#content_value table.vis:first td:contains('" + trans.tw.command.walkingTimeTitle + "')").next();
+	var durationCell = $("table.vis:first td:contains('" + trans.tw.command.walkingTimeTitle + "')", content_value).next();
 	var attackRunTime = getTimeFromTW(durationCell.text());
 	var dodgeTime = getTimeFromTW(dodgeCookie[1]);
 
@@ -90,11 +89,11 @@ if (dodgeCookie) {
 	}
 
 	if (dodgeCookie[0] != "unit_" + unitsCalc.getSlowest()) {
-		$("h2:first", attackFrame).css("background-color", user_data.colors.error);
+		$("h2:first", content_value).css("background-color", user_data.colors.error);
 	}
 } else {
 	// If a dodgecookie is in use, nightbonus etc isn't relevant
-	unitsCalc.colorIfNotRightAttackType($("h2:first", attackFrame), isAttack);
+	unitsCalc.colorIfNotRightAttackType($("h2:first", content_value), isAttack);
 	var arrivalTime = getDateFromTodayTomorrowTW($.trim($("#date_arrival").text()));
 	if (user_data.proStyle && user_data.confirm.replaceNightBonus && isDateInNightBonus(arrivalTime)) {
 		$("#date_arrival").css("background-color", user_data.colors.error).css("font-weight", "bold");
@@ -104,7 +103,7 @@ if (dodgeCookie) {
 if (user_data.attackAutoRename.active) {
 	// rename attack command
 	// cookie reading code in place.js
-	var villageCoord = $("input[name='x']", attackFrame).val() + '|' + $("input[name='y']", attackFrame).val();
+	var villageCoord = $("input[name='x']", content_value).val() + '|' + $("input[name='y']", content_value).val();
 	var sent = buildAttackString(villageCoord, unitsSent, player, !isAttack);
 	document.title = game_data.village.coord + " -> " + sent;
 	

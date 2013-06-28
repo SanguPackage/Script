@@ -295,8 +295,7 @@ $("#calculateStack").click(function () {
 					total += this.innerHTML * world_data.unitsPositionSize[i];
 				}
 			});
-			var color = getStackColor(total);
-			$("td:eq(1)", this).text(formatNumber(total)).css("background-color", color);
+			$("td:eq(1)", this).text(formatNumber(total)).css("background-color", getStackColor(total));
 		});
 	}
 });

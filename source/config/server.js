@@ -1,6 +1,7 @@
 var server_settings = {
 	incomingsIndicator: "({current} <small>{difference}</small>)"
 };
+
 switch (game_data.market) {
 	case 'de':
 		server_settings = {

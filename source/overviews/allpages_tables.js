@@ -45,8 +45,8 @@ var tableHandler;
 	
 	function ajaxLoadNextPageSetup() {
 		if (server_settings.ajaxAllowed) {
-			var nextPageLink = $("#paged_view_content a:first.paged-nav-item");
-			if (nextPageLink.length != 0) {
+			var nextPageLink = $("#paged_view_content a.paged-nav-item").first();
+			if (nextPageLink.length !== 0) {
 				// find all pages we can still add to the current table
 				var currentPageLabel = nextPageLink.parent().find("strong");
 				var nextPageLinks = [];

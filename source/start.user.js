@@ -1,14 +1,35 @@
 //<!--@@INCLUDE "greasemonkey\imports.txt" INDENT=0 //-->
 
-// The not-one-file source code can be found at: 
+// The not-one-file source code can be found at:
 // https://github.com/Laoujin/SanguPackage
 
-function sangu_ready() {
+//<!--@@INCLUDE "greasemonkey/sangu_readyStart.txt" INDENT=0 //-->
 	//var start_time = new Date();
 	//console.time("SanguPackage");
-    var sangu_version = '//<!--@@INCLUDE "version.txt" INDENT=0 //-->';
+    var sangu_version = '//<!--@@INCLUDE "version.txt" INDENT=0 //-->',
+        /**
+         * jQuery element of the cell (td) that contains all page specific widgets
+         */
+        content_value = $("#content_value"),
+        /**
+         * Contains all translations except for the setting related translations in sangu_trans
+         */
+        trans = {},
+        /**
+         * Contains all user settings
+         */
+        user_data = {},
+        /**
+         * Contains all data for this world (like hasArchers, nightbonus, etc)
+         */
+        world_data = {},
+        /**
+         * Identifies the current page based on the querystring
+         */
+        current_page;
 
-    var trans = {};
+
+
     //<!--@@INCLUDE "config\trans.js" INDENT=1 //-->
 
 	//<!--@@INCLUDE "func\debug.js" INDENT=2 //-->
@@ -19,12 +40,9 @@ function sangu_ready() {
     //<!--@@INCLUDE "global\activator.js" INDENT=1 //-->
 
     // User config
-    var user_data = {};
     //<!--@@INCLUDE "config\settings.js" INDENT=1 //-->
     
     if (isSanguActive) {
-		var world_data = {};
-		var current_page = "";
 		//<!--@@INCLUDE "config\world_config.js" INDENT=2 //-->
         //<!--@@INCLUDE "config\worlds.js" INDENT=2 //-->
 
@@ -39,12 +57,16 @@ function sangu_ready() {
 
         // BEGIN PAGE PROCESSING
 		// MAIN VILLAGE OVERVIEW 
-        if (location.href.indexOf('screen=overview') > -1 && location.href.indexOf('screen=overview_villages') == -1) {
-            var content_value = $("#content_value");
-            var slowest_unit = null;
+        if (location.href.indexOf('screen=overview') > -1 && location.href.indexOf('screen=overview_villages') === -1) {
+            (function() {
+                /**
+                 * The slowest unit in the village in the form unit_spear
+                 */
+                var slowest_unit = null;
 
-            //<!--@@INCLUDE "page\overview_mainvillage\supportingunits.js" INDENT=3 //-->
-			//<!--@@INCLUDE "page\overview_mainvillage\tagger.js" INDENT=3 //-->
+                //<!--@@INCLUDE "page\overview_mainvillage\supportingunits.js" INDENT=4 //-->
+                //<!--@@INCLUDE "page\overview_mainvillage\tagger.js" INDENT=4 //-->
+            })();
         }
 		
 		// MAP
@@ -90,6 +112,10 @@ function sangu_ready() {
                 // VACATION MODE
                 //<!--@@INCLUDE "page\settings\vacationmode.js" INDENT=4 //-->
             }
+            else if (location.href.indexOf('mode=logins') > -1) {
+                // LAST 20 LOGINS
+                //<!--@@INCLUDE "page\settings\logins.js" INDENT=4 //-->
+            }
 			else if (location.href.indexOf('mode=quickbar_edit') > -1) {
 				// EDIT/ADD TO QUICKBAR
 				//<!--@@INCLUDE "page\settings\quickbar.js" INDENT=4 //-->
@@ -131,8 +157,10 @@ function sangu_ready() {
             else if (location.href.indexOf('mode=groups') > -1) {
                 //<!--@@INCLUDE "overviews\groups.js" INDENT=4 //-->
             }
-			 // SUPPORT OVERVIEW
-            else if (location.href.indexOf('type=support_detail') > -1 || location.href.indexOf('type=away_detail') > -1) {
+            // SUPPORT OVERVIEW
+            else if (location.href.indexOf('type=support_detail') > -1
+                || location.href.indexOf('type=away_detail') > -1) {
+
                 //<!--@@INCLUDE "overviews\units_support_detail.js" INDENT=4 //-->
             }
 			// COMMANDS OVERVIEW
@@ -180,6 +208,6 @@ function sangu_ready() {
 		//console.timeEnd("SanguPackage");
 		//q("" + pad(Math.abs(start_time.getTime() - end_time.getTime()), 3) + " -> " + location.search);
     }
-}
+//<!--@@INCLUDE "greasemonkey/sangu_readyEnd.txt" INDENT=0 //-->
 
 //<!--@@INCLUDE "greasemonkey\inject.js" INDENT=0 //-->

@@ -39,7 +39,7 @@ if (user_data.overviews.addFancyImagesToOverviewLinks) {
 				break;
 			case 3:
 				if (overviewLink.parent().hasClass("selected")) {
-					$("#content_value table.modemenu:last a").each(function(index) {
+					$("table.modemenu:last a", content_value).each(function(index) {
 						imageToAdd = "";
 						switch (index) {
 							case 1:
@@ -70,7 +70,7 @@ if (user_data.overviews.addFancyImagesToOverviewLinks) {
 				break;
 			case 4:
 				if (overviewLink.parent().hasClass("selected")) {
-					$("#content_value table.modemenu:last a").each(function(index) {
+					$("table.modemenu:last a", content_value).each(function(index) {
 						imageToAdd = "";
 						switch (index) {
 							case 1:
@@ -94,7 +94,7 @@ if (user_data.overviews.addFancyImagesToOverviewLinks) {
 				break;
 			case 5:
 				if (overviewLink.parent().hasClass("selected")) {
-					$("#content_value table.modemenu:last a").each(function(index) {
+					$("table.modemenu:last a", content_value).each(function(index) {
 						imageToAdd = "";
 						switch (index) {
 							case 1:
