@@ -32,10 +32,11 @@ menu += "</table>";
 $("#commands_table").before(menu);
 
 $("#select_all").replaceWith("<input type='checkbox' id='selectAll'>");
-$("#selectAll").click(function() {
-	var isChecked = $("#selectAll").attr("checked") == "checked";
-	$("#commands_table tr:visible").find(":checkbox").attr("checked", isChecked);
-});
+var selectAllCheckboxes = function() {
+    var isChecked = $("#selectAll").attr("checked") == "checked";
+    $("#commands_table tr:visible").find(":checkbox").attr("checked", isChecked);
+};
+$("#selectAll").click(selectAllCheckboxes);
 
 var offsetToUnits = 3;
 
@@ -407,8 +408,10 @@ $("#sortIt").click(function () {
 		});
 	}
 
-	var menu = $("#commands_table tr").first().html();
-	$("#commands_table").html("<table id='commands_table' class='vis'>" + menu + newTable + "</table>");
+	var menu = $("#commands_table tr").first().html(),
+        totalRow = $("#commands_table tr:last");
+	$("#commands_table").html("<table id='commands_table' class='vis'>" + menu + newTable + totalRow.outerHTML() + "</table>");
+    $("#selectAll").click(selectAllCheckboxes);
 
 	// total number of attacks
 	if ($("#amountOfAttacks").size() == 0) {
