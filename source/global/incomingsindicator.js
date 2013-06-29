@@ -2,6 +2,14 @@
 if (user_data.global.incomings.editLinks || user_data.global.incomings.track) {
 	var incoming = $("table.box:last");
 	var incomingAttacksLinks = $("a[href*='subtype=attacks']", incoming);
+    var variableReplacer = function (text) {
+        return text.replace("{difference}", newAttacks)
+            .replace("{elapsed}", lastCheckTimeElapsed)
+            .replace("{time}", lastCheckTime)
+            .replace("{current}", currentAmountOfIncomings
+            .replace("{saved}", lastKnownAmountOfIncomings));
+    };
+
 	if (incomingAttacksLinks.size() > 0) {
 		if (user_data.global.incomings.editLinks) {
 			incomingAttacksLinks.attr("href", incomingAttacksLinks.attr("href") + "&page=-1&group=0");
@@ -15,28 +23,31 @@ if (user_data.global.incomings.editLinks || user_data.global.incomings.track) {
 			var lastKnownAmountOfIncomings = pers.get("lastKnownAmountOfIncomings" + game_data.player.sitter_id) || 0;
 			
 			var lastCheckTime = pers.get("lastKnownAmountOfIncomingsTime" + game_data.player.sitter_id);
+            var lastCheckTimeElapsed;
 			if (!lastCheckTime) {
 				lastCheckTime = trans.sp.incomings.indicator.lastTimeCheckNotYetSet;
+                lastCheckTimeElapsed = lastCheckTime;
 			} else {
-				lastCheckTime = prettyDate(new Date().getTime() - parseInt(lastCheckTime, 10));
+				lastCheckTime = new Date().getTime() - parseInt(lastCheckTime, 10);
+                lastCheckTimeElapsed = prettyDate(lastCheckTime);
+                lastCheckTime = twDateFormat(new Date(lastCheckTime));
 			}
 			
 			if (currentAmountOfIncomings != lastKnownAmountOfIncomings) {
 				var newAttacks = currentAmountOfIncomings - lastKnownAmountOfIncomings;
-				var lastCheckTimeTitle = trans.sp.incomings.indicator.setLastTimeCheckTitle.replace("{time}", lastCheckTime);
 				if (newAttacks >= 0) {
-					incomingAttacksLinks.attr("title", trans.sp.incomings.indicator.lastTimeCheckWarningMore.replace("{new#}", newAttacks).replace("{lastCheckTime}", lastCheckTimeTitle));
-					newAttacks = "+" + newAttacks;
+                    newAttacks = "+" + newAttacks;
+					incomingAttacksLinks.attr("title", variableReplacer(user_data.global.incomings.lastTimeCheckWarningMore));
 				} else {
-					incomingAttacksLinks.attr("title", trans.sp.incomings.indicator.lastTimeCheckWarningLess.replace("{new#}", Math.abs(newAttacks)).replace("{lastCheckTime}", lastCheckTimeTitle));
+					incomingAttacksLinks.attr("title", variableReplacer(user_data.global.incomings.lastTimeCheckWarningLess));
 				}
 				
-				incomingAttacksAmountLink.html(server_settings.scriptConfig.incomingsIndicator.replace("{current}", currentAmountOfIncomings).replace("{difference}", newAttacks));
+				incomingAttacksAmountLink.html(variableReplacer(user_data.global.incomings.indicator));
 				incomingAttacksLinks.fadeOut("slow").fadeIn("slow");
 			}
 			
 			// Set last incomings-check time
-			if (current_page == "overviews\\incomings") {
+			if (current_page.screen === "overview_villages" && current_page.mode === "incomings") {
 				if (lastCheckTime == trans.sp.incomings.indicator.lastTimeCheckNotYetSet) {
 					// show info tooltip
 					var position = incomingAttacksAmountLink.position();
@@ -53,7 +64,7 @@ if (user_data.global.incomings.editLinks || user_data.global.incomings.track) {
 				incomingAttacksLinks.last().parent().after(
 					"<td class='box-item' id='changeLastCheckTimeBox' style='white-space: nowrap'><a href='#' id='changeLastCheckTime'>&nbsp;"
 					+ "<img src='graphic/ally_forum.png' style='padding-top: 5px' "
-					+ "title='"+trans.sp.incomings.indicator.setLastTimeCheckTitle.replace("{time}", lastCheckTime)+"'/>&nbsp;</a></td>");
+					+ "title='"+variableReplacer(user_data.global.incomings.indicatorTooltip)+"'/>&nbsp;</a></td>");
 				
 				$("#changeLastCheckTime").click(function() {
 					var newCheckTime = new Date();

@@ -24,9 +24,14 @@ if (user_data !== '') {
             },
             incomings: {
                 editLinks: true, /* All pages: Edit the incoming attacks/support links: add "show all groups" and "show all pages" to the original links */
-                track: true
+                track: true,
+                indicator: "({current} <small>{difference}</small>)",
+                indicatorTooltip: "Laatste tijdcheck: {elapsed} geleden",
+                lastTimeCheckWarningMore: "{difference} nieuwe aanvallen.Laatste tijdcheck:  {elapsed} geleden",
+                lastTimeCheckWarningLess: "{difference} aanvallen minder. Laatste tijdcheck: {elapsed} geleden"
             },
-            visualizeFriends: true
+            visualizeFriends: true,
+            showCrashReport: true
         },
 
         scriptbar: {

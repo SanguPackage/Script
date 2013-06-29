@@ -84,6 +84,20 @@ trans = {
 			configuration: "Sangu Package configureren (v{version})",
 			activatePackage: "Sangu Package activeren",
 			deactivatePackage: "Sangu Package deactiveren",
+            packageCrash:
+                "<b>Foutmelding</b>: <i>{error}</i><br>"
+                + "<b>Details</b>:<br>"
+                + "<textarea cols='75' rows='20'>"
+                + "Foutmelding: {error}\n"
+                + "Pagina: {page}\n"
+                + "Versie: {version}\n"
+                + "{stacktrace}\n"
+                + "</textarea>"
+                + "<br><br>Je kan de bug <a href='{url}' target='_blank'>hier</a> melden."
+                + "<br>Of je kan de bug <a href='mailto:{email}'>mailen</a>."
+                + "<br><br><center><i>Een bug waarvan we niet weten dat ie bestaat zal ook niet gefixed worden!</i></center>"
+                + "<br><center><b>Geef zoveel mogelijk informatie mee bij het sturen van een bugrapport!!!</b></center>",
+
 			activatePackageWithCompatibility: "Sangu Package (v{version}) mogelijk incompatibel met huidige TW versie",
 			firstTimeRun: "<b>Welkom!</b> Het Sangu Package is momenteel inactief. Klik op de nieuwe {img} naast de opslagplaats hierboven om het package aan en uit te schakelen.",
 			removeScriptWarning: "Niet meer tonen"
@@ -341,11 +355,8 @@ trans = {
 			showNewIncomings: "Toon Nieuwe Aanvallen",
 			amount: "Aanvallen:",
 			indicator: {
-				setLastTimeCheckTitle: "Laatste tijdcheck: {time} geleden",
 				lastTimeCheckHintBoxTooltip: "Klik op {img} om de laatste tijdcheck met de huidige tijd te vervangen.",
-				lastTimeCheckNotYetSet: "(nog niet)",
-				lastTimeCheckWarningMore: "{new#} nieuwe aanvallen. {lastCheckTime}",
-				lastTimeCheckWarningLess: "{new#} aanvallen minder. {lastCheckTime}"
+				lastTimeCheckNotYetSet: "(nog niet)"
 			}
 		},
 		rest: {

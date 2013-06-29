@@ -1,6 +1,6 @@
-var tables = $('table.vis', content_value);
-var infoTable = tables.first();
-var profile = user_data.profile;
+var tables = $('table.vis', content_value),
+    infoTable = tables.first(),
+    profile = user_data.profile;
 
 // extra links on the village overview page
 if (game_data.player.premium && location.href.indexOf('screen=info_village') > -1 && user_data.villageInfo.active) {
@@ -17,7 +17,7 @@ if (user_data.profile.show && (location.href.indexOf('screen=info_village') == -
 	var id;
 	var mapProfile = user_data.profile.mapLink;
 	var isVillage = false;
-	if (location.href.indexOf('screen=info_ally') == -1 && location.href.indexOf('screen=ally&mode=profile') == -1) {
+	if (current_page.screen !== 'info_ally' && current_page.screen !== "ally") {
 		// player and village info page
 		// Extra links and info in table at the left top
 		screen = "player";
@@ -25,7 +25,7 @@ if (user_data.profile.show && (location.href.indexOf('screen=info_village') == -
 			$("td:first", content_value).css("width", "40%").next().css("width", "60%");
 		}
 
-		if (location.href.indexOf('screen=info_player') > -1) {
+		if (current_page.screen === 'info_player') {
 			// player info page
 			id = infoTable.find("tr:eq(5) a").attr("href");
 			if (id == undefined) {
@@ -100,7 +100,7 @@ if (user_data.profile.show && (location.href.indexOf('screen=info_village') == -
 		}
 	} else {
 		screen = "tribe";
-		if (location.href.indexOf('screen=ally&mode=profile') > -1) {
+		if (current_page.screen === 'ally') {
 			infoTable = tables.eq(1);
 		}
 		id = infoTable.find("a");
@@ -224,7 +224,7 @@ if (user_data.profile.show && (location.href.indexOf('screen=info_village') == -
 	}
 }
 
-if (location.href.indexOf('screen=info_village') > -1 && user_data.proStyle && profile.moveClaim) {
+if (current_page.screen === 'info_village' && user_data.proStyle && profile.moveClaim) {
 	// move claim to a position that does not interfere with more important links (2-click behavior)
 	if ($("td:eq(8)", infoTable).text() == trans.tw.profile.claimedBy) {
 		infoTable.append($("tr:eq(5),tr:eq(6)", infoTable));

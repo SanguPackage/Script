@@ -8,6 +8,10 @@
 	//console.time("SanguPackage");
     var sangu_version = '//<!--@@INCLUDE "version.txt" INDENT=0 //-->',
         /**
+         * Set to false to log errors to the console (true: popup with crash dump)
+         */
+        sangu_crash = true,
+        /**
          * jQuery element of the cell (td) that contains all page specific widgets
          */
         content_value = $("#content_value"),
@@ -26,7 +30,10 @@
         /**
          * Identifies the current page based on the querystring
          */
-        current_page;
+        current_page = {
+            screen: game_data.screen,
+            mode: game_data.mode
+        };
 
 
 
@@ -36,15 +43,15 @@
 	//<!--@@INCLUDE "func\!unsorted.js" INDENT=1 //-->
 	//<!--@@INCLUDE "func\persistence.js" INDENT=1 //-->
 	//<!--@@INCLUDE "func\ui.js" INDENT=1 //-->
-	//<!--@@INCLUDE "config\server.js" INDENT=1 //-->
+	//<!--@@INCLUDE "config\server_settings.js" INDENT=1 //-->
     //<!--@@INCLUDE "global\activator.js" INDENT=1 //-->
 
     // User config
-    //<!--@@INCLUDE "config\settings.js" INDENT=1 //-->
+    //<!--@@INCLUDE "config\user_data.js" INDENT=1 //-->
     
     if (isSanguActive) {
 		//<!--@@INCLUDE "config\world_config.js" INDENT=2 //-->
-        //<!--@@INCLUDE "config\worlds.js" INDENT=2 //-->
+        //<!--@@INCLUDE "config\world_data.js" INDENT=2 //-->
 
         //<!--@@INCLUDE "func\number.js" INDENT=2 //-->
         //<!--@@INCLUDE "func\datetime.js" INDENT=2 //-->
@@ -56,83 +63,105 @@
 		q("-------------------------------------------------------------------- Start: "+sangu_version);
 
         // BEGIN PAGE PROCESSING
-		// MAIN VILLAGE OVERVIEW 
-        if (location.href.indexOf('screen=overview') > -1 && location.href.indexOf('screen=overview_villages') === -1) {
-            (function() {
-                /**
-                 * The slowest unit in the village in the form unit_spear
-                 */
-                var slowest_unit = null;
+        switch (current_page.screen) {
+            case "overview":
+                // MAIN VILLAGE OVERVIEW
+                (function() {
+                    /**
+                     * The slowest unit in the village in the form unit_spear
+                     */
+                    var slowest_unit = null;
 
-                //<!--@@INCLUDE "page\overview_mainvillage\supportingunits.js" INDENT=4 //-->
-                //<!--@@INCLUDE "page\overview_mainvillage\tagger.js" INDENT=4 //-->
-            })();
+                    //<!--@@INCLUDE "page\overview_mainvillage\supportingunits.js" INDENT=4 //-->
+                    //<!--@@INCLUDE "page\overview_mainvillage\tagger.js" INDENT=4 //-->
+                }());
+                break;
+
+            case "map":
+                //<!--@@INCLUDE "page\map\dodge_fromMainTagger.js" INDENT=3 //-->
+                break;
+
+            case "report":
+                if (current_page.mode === 'publish') {
+                    //<!--@@INCLUDE "page\report.js" INDENT=3 //-->
+                }
+                break;
+
+            case "main":
+                //<!--@@INCLUDE "page\main_construction\main.js" INDENT=3 //-->
+                //<!--@@INCLUDE "page\main_construction\renamevillage.js" INDENT=3 //-->
+                //<!--@@INCLUDE "page\main_construction\loyalty.js" INDENT=3 //-->
+                break;
+
+            case "snob":
+                if (current_page.mode === "reserve") {
+                    //<!--@@INCLUDE "page\snob.js" INDENT=3 //-->
+                }
+                break;
+
+            case "info_command":
+                //<!--@@INCLUDE "page\info_command\info_command.js" INDENT=3 //-->
+                break;
+
+            case "market":
+                //<!--@@INCLUDE "page\market.js" INDENT=3 //-->
+                break;
+
+            case "settings":
+                // Add sangu to the menu
+                //<!--@@INCLUDE "page\settings\sangu\menuinject.js" INDENT=3 //-->
+
+                switch (current_page.mode) {
+                    case "vacation":
+                        //<!--@@INCLUDE "page\settings\vacationmode.js" INDENT=4 //-->
+                        break;
+
+                    case "logins":
+                        //<!--@@INCLUDE "page\settings\logins.js" INDENT=4 //-->
+                        break;
+
+                    case "quickbar_edit":
+                        //<!--@@INCLUDE "page\settings\quickbar.js" INDENT=4 //-->
+                        break;
+                }
+
+                // SANGU SETTING EDITOR
+                if (location.href.indexOf('mode=sangu') > -1) {
+                    //<!--@@INCLUDE "page\settings\sangu\propui.js" INDENT=4 //-->
+                    //<!--@@INCLUDE "page\settings\sangu\sangu_trans.js" INDENT=4 //-->
+                    //<!--@@INCLUDE "page\settings\sangu\sangu_config.js" INDENT=4 //-->
+                    //<!--@@INCLUDE "page\settings\sangu\inject.js" INDENT=4 //-->
+                }
+                break;
+
+            case "place":
+                // RALLYPOINT CONFIRM
+                if ($("#attack_name").size() > 0) {
+                    //<!--@@INCLUDE "page\place\confirm.js" INDENT=3 //-->
+                }
+                // RALLYPOINT UNITS THERE
+                else if (current_page.mode === 'units' && location.href.indexOf('try=back') == -1) {
+                    //<!--@@INCLUDE "page\place\units_back.js" INDENT=3 //-->
+                }
+                // RALLY POINT (DEFAULT)
+                else {
+                    //<!--@@INCLUDE "page\place\place.js" INDENT=3 //-->
+                }
+                break;
+
+            case "overview_villages":
+                break;
         }
-		
-		// MAP
-        else if (location.href.indexOf("screen=map") > -1) {
-            //<!--@@INCLUDE "page\map\dodge_fromMainTagger.js" INDENT=3 //-->
-        }
-		// REPORT PUBLISH
-        else if (location.href.indexOf('screen=report') > -1 && location.href.indexOf('mode=publish') > -1) {
-            //<!--@@INCLUDE "page\report.js" INDENT=3 //-->
-        }
-		// MAIN
-        else if (location.href.indexOf('screen=main') > -1) {
-			//<!--@@INCLUDE "page\main_construction\main.js" INDENT=3 //-->
-            //<!--@@INCLUDE "page\main_construction\renamevillage.js" INDENT=3 //-->
-            //<!--@@INCLUDE "page\main_construction\loyalty.js" INDENT=3 //-->
-        }
-		// SNOB
-        else if (location.href.indexOf('screen=snob') > -1 && location.href.indexOf('mode=reserve') == -1) {
-            //<!--@@INCLUDE "page\snob.js" INDENT=3 //-->
-        }
-		// COMMAND INFO
-        else if (location.href.indexOf('screen=info_command') > -1) {
-            //<!--@@INCLUDE "page\info_command\info_command.js" INDENT=3 //-->
-        }
+
 		// USERPROFIEL++ // INFO_ ALLY/PLAYER
-        else if ((location.href.indexOf('screen=info_') > -1 && location.href.indexOf('screen=info_member') == -1) || location.href.indexOf('screen=ally&mode=profile') > -1) {
+        if ((current_page.screen.indexOf('info_') === 0 && current_page.screen.indexOf('info_member') === -1)
+            || (current_page.screen === "ally" && current_page.mode === "profile")) {
+
 			//<!--@@INCLUDE "page\info_villageplayertribe.js" INDENT=3 //-->
         }
-		// MARKET
-        else if (location.href.indexOf('screen=market') > -1) {
-            //<!--@@INCLUDE "page\market.js" INDENT=3 //-->
-        }
-		
-		
-		
-		
-		// SETTINGS
-        else if (location.href.indexOf('screen=settings') > -1) {
-            // Add sangu to the menu
-            //<!--@@INCLUDE "page\settings\sangu\menuinject.js" INDENT=3 //-->
 
-            if (location.href.indexOf('mode=vacation') > -1) {
-                // VACATION MODE
-                //<!--@@INCLUDE "page\settings\vacationmode.js" INDENT=4 //-->
-            }
-            else if (location.href.indexOf('mode=logins') > -1) {
-                // LAST 20 LOGINS
-                //<!--@@INCLUDE "page\settings\logins.js" INDENT=4 //-->
-            }
-			else if (location.href.indexOf('mode=quickbar_edit') > -1) {
-				// EDIT/ADD TO QUICKBAR
-				//<!--@@INCLUDE "page\settings\quickbar.js" INDENT=4 //-->
-			}
-            else if (location.href.indexOf('mode=sangu') > -1) {
-				// SANGU SCREEN
-                //<!--@@INCLUDE "page\settings\sangu\propui.js" INDENT=4 //-->
-                //<!--@@INCLUDE "page\settings\sangu\sangu_trans.js" INDENT=4 //-->
-                //<!--@@INCLUDE "page\settings\sangu\sangu_config.js" INDENT=4 //-->
-				//<!--@@INCLUDE "page\settings\sangu\inject.js" INDENT=4 //-->
-            }
-        }
-		
-		
-		
 		// ALL OVERVIEW PAGES
-        else if (location.href.indexOf('screen=overview_villages') > -1) {
+        if (current_page.screen === 'overview_villages') {
 			var overviewTable;
 			//<!--@@INCLUDE "overviews\allpages_tables.js" INDENT=3 //-->
 
@@ -169,33 +198,10 @@
             }
 			// INCOMINGS OVERVIEW
             else if (location.href.indexOf('mode=incomings') > -1) {
-				current_page = "overviews\\incomings";
                 //<!--@@INCLUDE "overviews\incomings.js" INDENT=4 //-->
             }
 			
 			//<!--@@INCLUDE "overviews\allpages.js" INDENT=3 //-->
-        }
-
-
-
-
-
-
-
-		// RALLYPOINT PLACE
-        else if (location.href.indexOf('screen=place') > -1) {
-			// RALLYPOINT CONFIRM
-			if ($("#attack_name").size() > 0) {
-				//<!--@@INCLUDE "page\place\confirm.js" INDENT=3 //-->
-			}
-			// RALLYPOINT UNITS THERE
-			else if (location.href.indexOf('mode=units') > -1 && location.href.indexOf('try=back') == -1) {
-				//<!--@@INCLUDE "page\place\units_back.js" INDENT=3 //-->
-			}
-			// RALLY POINT (DEFAULT)
-			else {
-				//<!--@@INCLUDE "page\place\place.js" INDENT=3 //-->
-			}
         }
 
 		$("#footer_left").append(" - <a target='_top' href='"+getUrlString("screen=settings&mode=sangu")+"'>Sangu Package</a>");
