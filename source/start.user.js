@@ -35,8 +35,6 @@
             mode: game_data.mode
         };
 
-
-
     //<!--@@INCLUDE "config\trans.js" INDENT=1 //-->
 
 	//<!--@@INCLUDE "func\debug.js" INDENT=2 //-->

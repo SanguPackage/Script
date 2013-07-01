@@ -27,7 +27,7 @@ function sangu_alert(e) {
             showOnce: false
         },
         content = {
-            title: "Het Sangu Package is gecrasht :)",
+            title: trans.sp.sp.packageCrashTitle,
             body: trans.sp.sp.packageCrash
                 .replace("{url}", server_settings.helpdeskUrl)
                 .replace(/\{error\}/g, e.message)

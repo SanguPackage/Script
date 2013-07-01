@@ -24,9 +24,4 @@ var targetVillage = getVillageFromCoords(spTargetVillageCookie());
 if (targetVillage.isValid) {
 	var dist = getDistance(targetVillage.x, vilHome.x, targetVillage.y, vilHome.y, speedCookie);
 	$("#units_form").append("<br>" + printCoord(targetVillage, "&raquo; " + trans.sp.all.target + ": " + targetVillage.x + "|" + targetVillage.y) + " &nbsp;<span id=targetVilTime>" + dist.html + "</span>");
-
-	if (user_data.place.alternativeTargetPosition) {
-		var htmlStr = printCoord(targetVillage, "&raquo; " + targetVillage.x + "|" + targetVillage.y);
-		$("#target_attack").parent().prev().append(htmlStr);
-	}
 }

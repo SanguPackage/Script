@@ -176,12 +176,20 @@ var sangu_trans = (function() {
             addCatapultImages: "Gebouws iconen tonen om snel het katapult doelwit te wijzigen"
         },
         villageInfo: {
-            title: "Extra links op elke dorpsinformatie pagina",
-            off_linkName: "De link die toegevoegd wordt",
-            off_linkNameTooltip: "Er zijn twee sloten voorzien die standaard gebruikt worden om het troepenoverzicht te openen met filter op offensieve en defensieve troepen",
-            off_link: "De te openen url bij het klikken op de link",
-            def_linkName: "De omschrijving van de tweede link",
-            def_link: "De te openen url bij het klikken op de tweede link"
+            title: "Extra link op elke dorpsinformatie naar het troepenoverzicht",
+            off_title: "Extra link voor aanvallen",
+            def_title: "Extra link voor verdedigen",
+            linkName: "De link die toegevoegd wordt",
+            group: "Binnen welk groep id openen (kies 0 voor alle groepen)",
+            groupTitle: "Zodra je meer dan 1000 dorpen bezit worden enkel die eerste 1000 getoond & gefilterd. Door een groep id in te geven (vb je groep \"aanvalsdorpen\" of \"verdedigingsdorpen\") wordt de troepenlijst binnen deze groep geopend.",
+            activateFilter: "Filter activeren",
+            filter: {
+                title: "Direct filteren",
+                unit: "Eenheid",
+                amount: "Minimale hoeveelheid"
+            },
+            sort: "Dorpenlijst direct sorteren",
+            changeSpeed: "Traagste eenheid snelheid wijzigen"
         },
         other: {
             title: "Overige configuratie",

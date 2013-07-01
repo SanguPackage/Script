@@ -124,7 +124,7 @@ for (i = 0; i < search.length; i++) {
 	switch (item[0]) {
 		case 'unit':
 			doFilter = true;
-			unitIndex = item[1];
+			unitIndex = world_data.units.indexOf(item[1]);
 			break;
 		case 'amount':
 			doFilter = true;

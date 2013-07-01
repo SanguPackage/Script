@@ -84,6 +84,7 @@ trans = {
 			configuration: "Sangu Package configureren (v{version})",
 			activatePackage: "Sangu Package activeren",
 			deactivatePackage: "Sangu Package deactiveren",
+            packageCrashTitle: "Het Sangu Package is gecrasht :)",
             packageCrash:
                 "<b>Foutmelding</b>: <i>{error}</i><br>"
                 + "<b>Details</b>:<br>"

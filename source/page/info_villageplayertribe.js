@@ -3,13 +3,27 @@ var tables = $('table.vis', content_value),
     profile = user_data.profile;
 
 // extra links on the village overview page
-if (game_data.player.premium && location.href.indexOf('screen=info_village') > -1 && user_data.villageInfo.active) {
-	var id = infoTable.find("td:eq(1)").text();
-	id = id.substr(id.lastIndexOf("=") + 1);
-	var link = getUrlString("&screen=overview_villages&type=own_home&mode=units&page=-1&targetvillage=" + id);
+if (game_data.player.premium && location.href.indexOf('screen=info_village') > -1 && user_data.villageInfo2.active) {
+	var id = infoTable.find("td:eq(1)").text(),
+        link = getUrlString(
+            "&screen=overview_villages&type=own_home&mode=units&page=-1&targetvillage="
+                + id.substr(id.lastIndexOf("=") + 1));
+
+    /*
+    off_link: "&group=3093&unit=2&amount=5000&sort=true&changeSpeed=ram"*/
+    var createFilterLink = function(baseLink, settings) {
+        link = baseLink + "&group=" + settings.group + "&sort=" + settings.sort + "&changeSpeed=" + settings.changeSpeed;
+
+        if (settings.filter.active) {
+            link += "&unit=" + settings.filter.unit + "&amount=" + settings.filter.amount;
+        }
+
+        return "<a href='" + link + "'>" + settings.name + "</a>";
+    };
+
 	infoTable.find("tbody:first").append(
-        "<tr><td><a href='" + link + user_data.villageInfo.off_link + "'>" + user_data.villageInfo.off_linkName + "</a></td>"
-            + "<td><a href='" + link + user_data.villageInfo.def_link + "'>" + user_data.villageInfo.def_linkName + "</a></td><tr>");
+        "<tr><td>" + createFilterLink(link, user_data.villageInfo2.off_link) + "</td>"
+            + "<td>" + createFilterLink(link, user_data.villageInfo2.def_link) + "</td><tr>");
 }
 
 if (user_data.profile.show && (location.href.indexOf('screen=info_village') == -1 || user_data.showPlayerProfileOnVillage)) {
@@ -211,7 +225,7 @@ if (user_data.profile.show && (location.href.indexOf('screen=info_village') == -
 				} else {
 					$(this).addClass("selected");
 				}
-				$("#popup").css({ "left": ($(window).width() - 60 - popupWidth) }).toggle();
+				$("#popup").toggle();
 				return false;
 			});
 

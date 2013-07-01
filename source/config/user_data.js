@@ -1,10 +1,11 @@
 // Configure the Sangu Package
 
+/*
 user_data = pers.get('sangusettings');
 if (user_data !== '') {
     user_data = JSON.parse(user_data);
 
-} else {
+} else {*/
     user_data = {
         proStyle: true,
         displayDays: false, /* true: display (walking)times in days when > 24 hours. false: always displays in hours */
@@ -27,7 +28,7 @@ if (user_data !== '') {
                 track: true,
                 indicator: "({current} <small>{difference}</small>)",
                 indicatorTooltip: "Laatste tijdcheck: {elapsed} geleden",
-                lastTimeCheckWarningMore: "{difference} nieuwe aanvallen.Laatste tijdcheck:  {elapsed} geleden",
+                lastTimeCheckWarningMore: "{difference} nieuwe aanvallen. Laatste tijdcheck: {elapsed} geleden",
                 lastTimeCheckWarningLess: "{difference} aanvallen minder. Laatste tijdcheck: {elapsed} geleden"
             },
             visualizeFriends: true,
@@ -121,22 +122,31 @@ if (user_data !== '') {
             colorSupport: '#FFF5DA' /* Main village overview: give incoming support a different background color */
         },
 
-        villageInfo: {
-            /* On info_village page add extra link to attack. 3093=group id of off villages. Filter: amount=5000 unit=2=axe */
+        villageInfo2: {
+            /* On info_village page add extra link to attack. */
             active: true,
-			off_linkName: "&raquo; Aanvalleuh!",
-            off_link: "&group=3093&unit=2&amount=5000&sort=true&changeSpeed=ram",
-			def_linkName: "&raquo; Verdedigen!",
-            def_link: "&group=9020&unit=0&amount=3000&sort=true&changeSpeed=spear"
-            /*{
+            off_link: {
+              name: "&raquo; Aanvalleuh!",
+              group: 0,
+              filter: {
+                  active: true,
+                  unit: "axe",
+                  amount: 5000
+              },
+              sort: true,
+              changeSpeed: "ram"
+            },
+            def_link: {
+                name: "&raquo; Verdedigen!",
                 group: 0,
                 filter: {
-                    unit: 2,
+                    active: true,
+                    unit: "spear", /* TOOD: not yet implemented */
                     amount: 3000
                 },
-                changeSpeed: "ram",
-                sort: true
-            }*/
+                sort: true,
+                changeSpeed: "spear"
+            }
         },
 
         resources: {
@@ -188,7 +198,6 @@ if (user_data !== '') {
 				noblePlaceLinkDivideName: "NobleDivide",
                 noblePlaceLinkDivideAddRam: false /* false: Rams are not sent along with NobleDivide */
             },
-            alternativeTargetPosition: false,
             customPlaceLinks:
                 [
                     // use minus zero numbers to leave so many units at home
@@ -241,7 +250,7 @@ if (user_data !== '') {
 				show: true, 
 				width: 900, 
 				height: 865,
-				left: ($('window').width() - 990), /* Heh heh nice dependency :) */
+				left: 50,
 				top: 50
 			}
         },
@@ -272,4 +281,11 @@ if (user_data !== '') {
             wall: [20, 20]
         }
     };
-}
+//}
+
+(function() {
+    var saved_data = pers.get('sangusettings');
+    if (saved_data !== '') {
+        $.extend(user_data, JSON.parse(saved_data));
+    }
+}());
