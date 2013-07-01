@@ -114,10 +114,6 @@
                         //<!--@@INCLUDE "page\settings\vacationmode.js" INDENT=4 //-->
                         break;
 
-                    case "logins":
-                        //<!--@@INCLUDE "page\settings\logins.js" INDENT=4 //-->
-                        break;
-
                     case "quickbar_edit":
                         //<!--@@INCLUDE "page\settings\quickbar.js" INDENT=4 //-->
                         break;
