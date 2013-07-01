@@ -1,5 +1,4 @@
 inputFile := "start.user.js"
-savePath := "C:\CloudDrives\Dropbox\Personal\!Programming\OperaUserScripts\"
 saveAs := "sangupackage.user.js"
 
 ; Save current changes
@@ -9,14 +8,29 @@ FileEncoding, UTF-8-RAW
 workingDirectory = %A_WorkingDir%
 SetWorkingDir, %A_ScriptDir%
 
-UpdateVersion("version.txt")
+; savePaths
+IniRead, savePath, mergeIt.ini, SavePaths, operaSavePath, C:\CloudDrives\Dropbox\Personal\!Programming\OperaUserScripts\
+IniRead, firefoxLocation, mergeIt.ini, SavePaths, firefoxSavePath, C:\Users\Wouter\AppData\Roaming\Mozilla\Firefox\Profiles\xtz5hi2x.default\gm_scripts\Sangu_Package\sangupackage.user.js
+
+; update version
+versionFileName = version.txt
+newVersion := GetNewVersion(versionFileName)
+; MsgBox FINALOK: %newVersion%
+UpdateVersion(newVersion, versionFileName)
 ParseAndSaveFile(inputFile, savePath, saveAs)
+
+; release version does not include build nr
+StringSplit, versionArray, newVersion, .
+newReleaseVersion = %versionArray1%.%versionArray2%
+UpdateVersion(newReleaseVersion, versionFileName)
+
 ParseAndSaveFile("release.user.js", "..\site\", saveAs)
 ParseAndSaveFile("..\site\index_toMerge.php", "..\site\", "index.php")
+UpdateVersion(newVersion, versionFileName)
 
 ; Autocopy to Firefox greasemonkey directory
 ; I *really* *really* should've used something else but Autohotkey for this
-FileCopy, %savePath%%saveAs%, C:\Users\Wouter\AppData\Roaming\Mozilla\Firefox\Profiles\xtz5hi2x.default\gm_scripts\Sangu_Package\sangupackage.user.js, 1
+FileCopy, %savePath%%saveAs%, %firefoxlocation%, 1
 
 ; Check it in browser :)
 SetTitleMatchMode RegEx
@@ -31,13 +45,19 @@ SetWorkingDir, workingDirectory
 
 ; Below are functions etc
 
-UpdateVersion(versionFileName)
+GetNewVersion(versionFileName)
 {
 	currentVersion =
 	FileRead, currentVersion, %versionFileName%
 	StringSplit, versionNumber, currentVersion, .
 	versionNumber3 := versionNumber3 + 1
 	newVersion = %versionNumber1%.%versionNumber2%.%versionNumber3%
+
+	return %newVersion%
+}
+
+UpdateVersion(newVersion, versionFileName)
+{
 	FileDelete, %versionFileName%
 	FileAppend, %newVersion%, %versionFileName%
 }
