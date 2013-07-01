@@ -202,7 +202,20 @@
 			//<!--@@INCLUDE "overviews\allpages.js" INDENT=3 //-->
         }
 
-		$("#footer_left").append(" - <a target='_top' href='"+getUrlString("screen=settings&mode=sangu")+"'>Sangu Package</a>");
+		$("#footer_left").append(" - <a target='_top' id='sanguPackageEditSettingsLink' href='"+getUrlString("screen=settings&mode=sangu")+"'>Sangu Package</a>");
+
+        (function() {
+            var position = $("#sanguPackageEditSettingsLink").position(),
+                options = {
+                    left: position.left,
+                    top: ($(window).height() - 100)
+                },
+                content = {
+                    body: trans.sp.sp.firstTimeRunEditSettings
+                };
+
+            createFixedTooltip("sanguActivatorSettingsTooltip", content, options);
+        }());
 		
         //<!--@@INCLUDE "global\resourcecoloring.js" INDENT=2 //-->
 		//<!--@@INCLUDE "global\incomingsindicator.js" INDENT=2 //-->

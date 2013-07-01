@@ -40,11 +40,14 @@ $("#storage").parent()
 
 // First time run message - Position beneath resource/storage display
 if (!isSanguActive) {
-	var position = $("#storage").position();
-	var options = {
-		left: position.left - 150, 
-		top: position.top + 35
-	};
-	var content = {body: trans.sp.sp.firstTimeRun.replace("{img}", "<img src='graphic/dots/red.png' />")};
-	createFixedTooltip("sanguActivatorTooltip", content, options);
+    (function() {
+        var position = $("#storage").position(),
+            options = {
+                left: position.left - 150,
+                top: position.top + 35
+            },
+            content = {body: trans.sp.sp.firstTimeRun.replace("{img}", "<img src='graphic/dots/red.png' />")};
+
+        createFixedTooltip("sanguActivatorTooltip", content, options);
+    }());
 }

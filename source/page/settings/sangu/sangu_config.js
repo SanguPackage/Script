@@ -273,11 +273,8 @@ var user_data_configs = (function() {
     }
 
     if (showConfigs) {
-        user_data_configs.push({
-            id: "mainTagger",
-            title: sangu_trans.mainTagger.title,
-            save: sangu_saver,
-            properties: {
+        (function() {
+            var properties = {
                 activate: {
                     label: sangu_trans.global.resources.activate,
                     propUI: {
@@ -342,13 +339,59 @@ var user_data_configs = (function() {
                         setter: function(value) { user_data.mainTagger.defaultDescription = value; },
                         editor: "text"
                     }
+                },
+                otherButtonsTitle: {
+                    type: "subtitle",
+                    label: sangu_trans.mainTagger.otherButtons.title
                 }
+            };
 
+            for (var i = 0; i < user_data.mainTagger.otherDescs.length; i++) {
+                (function() {
+                    var otherDescription = user_data.mainTagger.otherDescs[i];
 
+                    properties['otherButton'+i] = {
+                        type: "subtitle",
+                        label: sangu_trans.mainTagger.otherButtons.title + ": " + otherDescription.name
+                    }
 
+                    properties['otherButtonActive'+i] = {
+                        label: sangu_trans.global.resources.activate,
+                        propUI: {
+                            getter: function() { return otherDescription.active; },
+                            setter: function(value) { otherDescription.active = value; },
+                            editor: "bool"
+                        }
+                    }
 
+                    properties['otherButtonName'+i] = {
+                        label: sangu_trans.mainTagger.otherButtons.button,
+                        propUI: {
+                            getter: function() { return otherDescription.name; },
+                            setter: function(value) { otherDescription.name = value; },
+                            editor: "text|width=10"
+                        }
+                    }
+
+                    properties['otherButtonDesc'+i] = {
+                        label: sangu_trans.mainTagger.otherButtons.renameTo,
+                        propUI: {
+                            getter: function() { return otherDescription.renameTo; },
+                            setter: function(value) { otherDescription.renameTo = value; },
+                            editor: "text|width=50"
+                        }
+                    }
+                }());
             }
-        });
+
+
+            user_data_configs.push({
+                id: "mainTagger",
+                title: sangu_trans.mainTagger.title,
+                save: sangu_saver,
+                properties: properties
+            });
+        }());
     }
 
     if (showConfigs) {

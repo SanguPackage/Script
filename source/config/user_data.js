@@ -107,15 +107,14 @@ if (user_data !== '') {
             autoOpen: true,
             inputBoxWidth: 300,
             defaultDescription: "OK",
-            otherDescriptions:
+            otherDescs:
                 [
-                    { name: "DODGE THIS", prefix: true },
-                    { name: "NIGHTBONUS", prefix: false },
-                    { name: "CHECK STACK", prefix: true },
-                    { name: "TIME IT!", prefix: true },
-                    { name: "NOBLE!!", prefix: true }
+                    { active: true, name: "Dodgen", renameTo: "----------------------------------------- DODGE THIS" },
+                    { active: true, name: "Nacht", renameTo: "NIGHTBONUS" },
+                    { active: true, name: "Check stack", renameTo: "----------------------------------------- CHECK STACK" },
+                    { active: true, name: "Timen!", renameTo: "***************************************** TIME IT!" },
+                    { active: true, name: "Edelen!", renameTo: "----------------------------------------- NOBLE!!" }
                 ],
-            prefix: "-----------------------------------------",
             autoOpenCommands: false,
             minutesDisplayDodgeTimeOnMap: 3,
             minutesWithoutAttacksDottedLine: 3 * 60,

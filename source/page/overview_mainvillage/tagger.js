@@ -36,9 +36,8 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 				dodgeMenu += '<img src="graphic/command/support.png" alt="" id="checkSupport" title="' + trans.sp.tagger.checkAllSupport + '" />';
 				dodgeMenu += "&nbsp;";
 				dodgeMenu += '<img src="graphic/command/return.png" alt="" id="uncheckSupport" title="' + trans.sp.tagger.uncheckAllSupport + '" />';
-				dodgeMenu += "<th colspan=3><input type=checkbox id=prefixInput>" + trans.sp.tagger.prefix;
-				dodgeMenu += " | ";
-				dodgeMenu += trans.sp.tagger.renameTo + "<input type=textbox doPrefix='false' size=30 id=commandInput value='" + user_data.mainTagger.defaultDescription + "'></th>";
+				dodgeMenu += "<th colspan=3>";
+				dodgeMenu += trans.sp.tagger.renameTo + "<input type=textbox size=30 id=commandInput value='" + user_data.mainTagger.defaultDescription + "'></th>";
 				dodgeMenu += "<th>" + trans.sp.tagger.slowest + "</th>";
 				dodgeMenu += "</td>";
 				dodgeMenu += "<td colspan=1 id=slowestUnitCell>";
@@ -47,9 +46,6 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 				}
 				dodgeMenu += "</td></tr>";
 				incomingTable.find("tbody:first").prepend(dodgeMenu);
-				$("#prefixInput").change(function () { 
-					$("#commandInput").attr("doPrefix", $(this).attr("checked") == "checked");
-				});
 
 				// checkbox manipulation
 				$("#uncheckSupport").click(function () {
@@ -60,31 +56,8 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 					$("input.incSupport", incomingTable).attr("checked", true);
 				});
 
-				function isDefaultTagName(currentDesc) {
-					if (user_data.mainTagger.defaultDescription == currentDesc) {
-						return true;
-					}
-					else if (user_data.mainTagger.otherDescriptions != null && user_data.mainTagger.otherDescriptions != false) {
-						var isDefault = false;
-						$.each(user_data.mainTagger.otherDescriptions,function (index, val) {
-							if (val.name == currentDesc || user_data.mainTagger.prefix + val.name == currentDesc) {
-								isDefault = true;
-							}
-						});
-						return isDefault;
-					}
-					return false;
-				}
-
 				var buttonParent = $("#commandInput").parent();
-				function renameCommand(commandName, addPrefix) {
-					if (addPrefix == "true") {
-						commandName = user_data.mainTagger.prefix + commandName;
-					} 
-					else if (addPrefix != "false") {
-						commandName = prefix + commandName;
-					}
-
+				function renameCommand(commandName) {
 					var dodgeCell = null;
 					$("input.taggerCheckbox", incomingTable).each(function () {
 						if ($(this).attr("checked")) {
@@ -112,23 +85,23 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 				button.click(function () {
 					trackClickEvent("MainTagger-CustomRename");
 					var tagName = $("#commandInput").val();
-					var pref = $("#commandInput").attr("doPrefix");
-					renameCommand(tagName, pref);
+					renameCommand(tagName);
 				});
 				buttonParent.append(button);
 
-				if (user_data.mainTagger.otherDescriptions != null && user_data.mainTagger.otherDescriptions != false) {
+				if (user_data.mainTagger.otherDescs != null && user_data.mainTagger.otherDescs != false) {
 					// custom buttons
-					$.each(user_data.mainTagger.otherDescriptions, function (index, val) {
-						var button = $("<input type=button doPrefix='" + val.prefix + "' value='" + val.name + "'>").click(
-							function () {
-								// Cannot use input:checked : this works for Firefox but there is a bug in Opera
-								trackClickEvent("MainTagger-ConfigRename");
-								var tagName = $(this).attr("value");
-								var prefix = $(this).attr("doPrefix");
-								renameCommand(tagName, prefix);
-							});
-						buttonParent.append(button);
+					$.each(user_data.mainTagger.otherDescs, function (index, val) {
+                        if (val.active) {
+                            var button = $("<input type=button data-rename-to='" + val.renameTo + "' value='" + val.name + "'>").click(
+                                function () {
+                                    // Cannot use input:checked : this works for Firefox but there is a bug in Opera
+                                    trackClickEvent("MainTagger-ConfigRename");
+                                    renameCommand($(this).data("rename-to"));
+                                });
+
+                            buttonParent.append(button);
+                        }
 					});
 				}
 

@@ -101,6 +101,7 @@ trans = {
 
 			activatePackageWithCompatibility: "Sangu Package (v{version}) mogelijk incompatibel met huidige TW versie",
 			firstTimeRun: "<b>Welkom!</b> Het Sangu Package is momenteel inactief. Klik op de nieuwe {img} naast de opslagplaats hierboven om het package aan en uit te schakelen.",
+            firstTimeRunEditSettings: "Klik op de nieuwe 'Sangu Package' link om het package naar jouw smaak in te stellen!",
 			removeScriptWarning: "Niet meer tonen"
 		},
 		all: {
@@ -156,7 +157,6 @@ trans = {
 			slowestTip: "Traagste eenheid in het dorp",
 			allAbove: "Alle vroegere aanvallen aanvinken",
 			allBelow: "Alle latere aanvallen aanvinken",
-			prefix: "Prefix? ",
 			renameTo: "Hernoemen naar: ",
 			switchModus: "&raquo; Alle aanvallen openen/sluiten",
 			checkAllAttacks: "Aanvinken van alle zichtbare aanvallen",

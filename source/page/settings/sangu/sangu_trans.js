@@ -166,7 +166,12 @@ var sangu_trans = (function() {
             minutesDisplayDodgeTimeOnMap: "Aantal minuten dat de laatste dodgetijd op de kaart getoond wordt",
             minutesDisplayDodgeTimeOnMapTooltip: "De laatste dodgetijd is de tijd van het laatste bevel, aangeduidt met gewijzigde achtergrondkleur na het herbenoemen van binnenkomende aanvallen.",
             minutesWithoutAttacksDottedLine: "Elke zoveel minuten zonder een tussenliggende binnenkomende aanval aanduiden met een stippelijn (180 = 3 uur)",
-            colorSupport: "Binnenkomende ondersteuning een andere achtergrondkleur geven"
+            colorSupport: "Binnenkomende ondersteuning een andere achtergrondkleur geven",
+            otherButtons: {
+                title: "Andere hernoemings knoppen",
+                renameTo: "Hernoemen naar",
+                button: "Tekst knop"
+            }
         },
         confirm: {
             title: "Bevel comfirmatie pagina",
