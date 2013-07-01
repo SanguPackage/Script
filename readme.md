@@ -22,7 +22,7 @@ Currently all NL worlds are supported.
 
 **Browsers**
 
-All features should work in the latest versions of Opera, FireFox and Chrome (easiest to install and manage with the Tampermonkey extension). 
+All features should work in the latest versions of Opera, FireFox and Chrome.
 
 Code
 ----
@@ -31,14 +31,22 @@ The code is pure JavaScript with extensive use of jQuery.
 
 Code structure:
 
- - **start.user.js** : The file that is merged by `mergeIt.ahk` to `sangupackage.user.js`
- - **page\** : The features per Tribal Wars page. **Most code is in here**.
- - **feature\** : Map jumper and the SP activator. Features active on all pages.
- - **config\** : Different world and user settings. Translations.
+ - **mergeIt.ahk** : The Autohotkey script that creates `sangupackage.user.js` from `start.user.js`.
+ - **mergeIt.ini** : Configuration for the merge script.
+ - **release.user.js** : The release version of the script.
+ - **start.user.js** : The file that is merged by `mergeIt.ahk` to `sangupackage.user.js`.
+ - **version.txt** : Current version of Sangu Package.
+ - **config\** : server and world config, user settings and translations.
  - **func\** : Functions of all kinds. (UI, DateTime, Debug, Persistence, Number and TW Building helpers)
- - **greasemonkey\** : Code specific for Greasemonkey/UserScript
- - **version.txt** : Current version of Sangu Package
- - **mergeIt.ahk** : The Autohotkey script that creates `sangupackage.user.js` from `start.user.js`
+ - **global\** : Features active on all pages. (activator, friends, incomingsindicator, map jumper, ...)
+ - **greasemonkey\** : Code specific for Greasemonkey/UserScript.
+ - **overviews\** : The features for the Tribal Wars overview pages. **Most code is in here**
+ - **page\** : The features per Tribal Wars page. **Most code is in here**.
+
+
+
+
+
 
 
 Building the script from source
@@ -47,10 +55,8 @@ Building the script from source
 An [Autohotkey](http://www.autohotkey.com) script (mergeIt.ahk) can be used to assemble the different js files
 into "sangupackage.user.js".
 To do this: Download and install Autohotkey, then double click mergeIt.ahk when in the same directory as the source files
-and it will create the complete Greasemonkey script. Change the following line (2nd line) in the script to change the path
-to the location you want it to end up at: (otherwise it will be placed in the same directory as mergeIt.ahk)
-
-    savePath := "yourFullPathHere" ;this is a comment
+and it will create the complete Greasemonkey script. Configure the path for Opera UserScripts and FireFox Greasemonkey in
+`mergeIt.ini`
 
 This (Autohotkey) means the script can currently only be assembled on a Windows machine. (This was perhaps not really
 thought through:). If a non Windows person wants to join the project, I'm sure we can come up with a solution that works
@@ -59,9 +65,7 @@ for both environments :)
 Contributing
 ------------
 
-Everyone is more than welcome to join in. Lots of features that can still be added or improved. 
-I think translating to DE should be priority no 1 so that German JavaScript/jQuery programmers or hackers can join
-in to make the Sangu Package even better.
+Everyone is more than welcome to join in. Lots of features that can still be added or improved :)
 
 Contact
 -------

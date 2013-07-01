@@ -1,3 +1,0 @@
-(function() {
-    //content_value
-})();
