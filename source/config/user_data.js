@@ -140,7 +140,7 @@ if (user_data !== '') {
                 group: 0,
                 filter: {
                     active: true,
-                    unit: "spear", /* TOOD: not yet implemented */
+                    unit: "spear",
                     amount: 3000
                 },
                 sort: true,

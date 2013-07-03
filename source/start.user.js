@@ -148,7 +148,7 @@
         }
 
 		// USERPROFIEL++ // INFO_ ALLY/PLAYER
-        if ((current_page.screen.indexOf('info_') === 0 && current_page.screen.indexOf('info_member') === -1)
+        if ((current_page.screen === 'info_ally' || current_page.screen === 'info_player' || current_page.screen === 'info_village')
             || (current_page.screen === "ally" && current_page.mode === "profile")) {
 
 			//<!--@@INCLUDE "page\info_villageplayertribe.js" INDENT=3 //-->

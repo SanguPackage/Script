@@ -9,8 +9,6 @@ if (game_data.player.premium && location.href.indexOf('screen=info_village') > -
             "&screen=overview_villages&type=own_home&mode=units&page=-1&targetvillage="
                 + id.substr(id.lastIndexOf("=") + 1));
 
-    /*
-    off_link: "&group=3093&unit=2&amount=5000&sort=true&changeSpeed=ram"*/
     var createFilterLink = function(baseLink, settings) {
         link = baseLink + "&group=" + settings.group + "&sort=" + settings.sort + "&changeSpeed=" + settings.changeSpeed;
 
