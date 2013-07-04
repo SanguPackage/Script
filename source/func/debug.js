@@ -18,7 +18,7 @@ function qa(what) { alert(typeof what === "undefined" ? "yaye" : what); }
 	return watch;
 }*/
 
-function sangu_alert(e) {
+function sangu_alert(e, title) {
     var position = $("#storage").position(),
         options = {
             left: $(window).width() / 2 - 300,
@@ -26,13 +26,31 @@ function sangu_alert(e) {
             width: 600,
             showOnce: false
         },
+        game_dataSubset = {
+            majorVersion: game_data.majorVersion,
+            market: game_data.market,
+            world: game_data.world,
+            sitter_id: game_data.player.sitter_id,
+            village_id: game_data.village.id,
+            player_id: game_data.player.id,
+            player_name: game_data.player.name,
+            ally_id: game_data.player.ally_id,
+            villages: game_data.player.villages,
+            premium: game_data.player.premium/*,
+            account_manager: game_data.player.account_manager,
+            farm_manager: game_data.player.farm_manager*/
+        },
         content = {
             title: trans.sp.sp.packageCrashTitle,
             body: trans.sp.sp.packageCrash
                 .replace("{url}", server_settings.helpdeskUrl)
+                .replace("{title}", title)
                 .replace(/\{error\}/g, e.message)
                 .replace("{page}", JSON.stringify(current_page))
+                .replace("{url}", document.location.href)
                 .replace("{version}", sangu_version)
+                .replace("{browser}", JSON.stringify($.browser))
+                .replace("{game_data}", JSON.stringify(game_dataSubset))
                 .replace("{stacktrace}", e.stack ? e.stack + "\n\n" + e.stacktrace : "assertion?")
                 .replace("{email}", server_settings.sanguEmail)
         };
@@ -43,12 +61,18 @@ function sangu_alert(e) {
     }
 }
 
+/**
+ * Failed assertions show the crash report!
+ */
 function assert(shouldBeTruthy, message) {
 	if (!shouldBeTruthy) {
-        sangu_alert({message: message ? message : "broken assertion"});
+        sangu_alert({message: message || "(broken assertion)"});
 	}
 }
 
-function handleException(e) {
-    sangu_alert(e);
+/**
+ * Show crash report
+ */
+function handleException(e, title) {
+    sangu_alert(e, title);
 }

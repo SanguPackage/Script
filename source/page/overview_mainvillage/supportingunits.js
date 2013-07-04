@@ -152,6 +152,6 @@
         }
     }
     catch (e) {
-        handleException(e);
+        handleException(e, "supportingunits");
     }
 }());
