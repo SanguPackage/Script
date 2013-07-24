@@ -207,7 +207,7 @@
                     $("input:eq(1)", this).val("");
                 }
             });
-            goners.hide();
+            goners.remove();
 
             // Show totals
             var amountOfCommandos = $("#commands_table " + filter).size();

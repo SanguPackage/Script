@@ -92,7 +92,7 @@
                     unitsAwayStrategy(prev, tag);
                 }
             });
-            goners.hide();
+            goners.remove();
             $("#units_table th:first").text(trans.sp.defOverview.totalVillages.replace("{0}", $("#units_table tr.grandTotal:visible").size()));
         }
 
@@ -125,7 +125,7 @@
                     goners = goners.add(nextRow).add(nextRow.next());
                 }
             });
-            goners.hide();
+            goners.remove();
             $("#units_table th:first").text(trans.sp.defOverview.totalVillages.replace("{0}", $("#units_table tr.grandTotal:visible").size()));
         });
 
@@ -175,7 +175,7 @@
                     }
                 }
             });
-            goners.hide();
+            goners.remove();
             $("#units_table th:first").text(trans.sp.defOverview.totalVillages.replace("{0}", $("#units_table tr.grandTotal:visible").size()));
         }
 
@@ -231,7 +231,7 @@
                     goners = goners.add(mainRow).add(row.next()).add(row);
                 }
             });
-            goners.hide();
+            goners.remove();
             $("#units_table th:first").text(trans.sp.defOverview.totalVillages.replace("{0}", $("#units_table tr.grandTotal:visible").size()));
         });
 
@@ -366,7 +366,7 @@
                 nextRow.before("<tr class='grandTotal " + (rowColor % 2 == 1 ? "row_b" : "row_a") + "' village='" + villageCoord.coord + "' population='" + grandTotal + "'><td>&nbsp;</td><td>" + (isSupport ? trans.sp.defOverview.totalFromOtherVillages : trans.sp.defOverview.totalInOtherVillages) + "</td>" + troopCells + color + "</tr><tr height=10></tr>");
             });
 
-            goners.hide();
+            goners.remove();
         });
     } catch (e) { handleException(e, "overview-supportdetail"); }
     //console.timeEnd("overview-supportdetail");

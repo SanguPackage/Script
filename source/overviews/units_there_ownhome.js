@@ -244,7 +244,7 @@
                     //	q("Right Button");
 
                     pageSize.val(parseInt(pageSize.val(), 10) - 1);
-                    $(e.target).parent().parent().hide();
+                    $(e.target).parent().parent().remove();
                 }
             }
         });
@@ -282,7 +282,7 @@
                 else
                     villageCounter++;
             });
-            goners.hide();
+            goners.remove();
             pageSize.val(villageCounter);
         });
 
@@ -345,7 +345,7 @@
                     else villageCounter++;
                 });
             });
-            goners.hide();
+            goners.remove();
             pageSize.val(villageCounter);
         });
 
@@ -361,7 +361,7 @@
                 } else
                     villageCounter++;
             });
-            goners.hide();
+            goners.remove();
             pageSize.val(villageCounter);
         });
 
@@ -380,7 +380,7 @@
                     villageCounter++;
                 }
             });
-            goners.hide();
+            goners.remove();
             pageSize.val(villageCounter);
         });
     } catch (e) { handleException(e, "overview-thereownhome"); }

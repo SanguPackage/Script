@@ -127,7 +127,7 @@
                     $(":checkbox", this).attr("checked", false);
                 }
             });
-            goners.hide();
+            goners.remove();
         });
     } catch (e) { handleException(e, "overview-incomings"); }
     //console.timeEnd("overview-incomings");

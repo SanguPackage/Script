@@ -49,7 +49,7 @@
                         $("input:first", $(this)).val("");
                     }
                 });
-                goners.hide();
+                goners.remove();
             }
 
             $("#smithyHighlight").click(function () {

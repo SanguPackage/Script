@@ -43,7 +43,7 @@
                     $("input:first", $(this)).val("");
                 }
             });
-            goners.hide();
+            goners.remove();
         }
 
         $("#buildingHighlight").click(function () {
