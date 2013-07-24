@@ -1,5 +1,5 @@
 (function() {
-    console.time("overview-groups");
+    //console.time("overview-groups");
     try {
         overviewTable = $("#group_assign_table");
         tableHandler.init("group_assign_table", {
@@ -41,7 +41,7 @@
         selectAllRow.remove();
 
         $("#selectAllVisible").click(function () {
-            var isChecked = $(this).attr("checked") == "checked";
+            var isChecked = $(this).is(":checked");
             $("#group_assign_table input:checked").attr("checked", false);
             if (isChecked) {
                 $("#group_assign_table input[type='checkbox']").not(":hidden").attr("checked", "checked");
@@ -67,7 +67,7 @@
 
         function filterGroupRows(filterStrategy, reverseFilter, keepRowStrategy, tag) {
             if (reverseFilter == undefined || reverseFilter == null) {
-                reverseFilter = !$("#defReverseFilter").attr("checked");
+                reverseFilter = !$("#defReverseFilter").is(":checked");
             }
 
             var goners = $();
@@ -84,7 +84,7 @@
                     }
                 }
             });
-            goners.hide();
+            goners.remove();
             var firstHeaderCell = $("#group_assign_table th:first");
             var firstHeaderCellHtml = firstHeaderCell.html();
             firstHeaderCell.html(firstHeaderCellHtml.substr(0, firstHeaderCellHtml.lastIndexOf(" ")) + " (" + totalVisible + ")");
@@ -178,12 +178,12 @@
             }
         });
 
-// filter on # groups
+        // filter on # groups
         $("#defFilterAmount").click(function (){
             trackClickEvent("FilterGroupCount");
             var compareTo = parseInt($("#defFilterAmountText").val(), 10);
             if (compareTo >= 0) {
-                if (!$("#defReverseFilter").attr("checked")) {
+                if (!$("#defReverseFilter").is(":checked")) {
                     filterGroupRows(function (row) {
                         return parseInt(row.find("td:eq(1)").text(), 10) > compareTo;
                     }, false);
@@ -217,5 +217,5 @@
             }
         });
     } catch (e) { handleException(e, "overview-groups"); }
-    console.timeEnd("overview-groups");
+    //console.timeEnd("overview-groups");
 }());

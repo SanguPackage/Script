@@ -5,7 +5,7 @@
 
 //<!--@@INCLUDE "greasemonkey/sangu_readyStart.txt" INDENT=0 //-->
 	//var start_time = new Date();
-	console.time("SanguPackage");
+	//console.time("SanguPackage");
     var sangu_version = '//<!--@@INCLUDE "version.txt" INDENT=0 //-->',
         /**
          * Set to false to log errors to the console (true: popup with crash dump)
@@ -129,8 +129,12 @@
                 break;
 
             case "place":
-                // RALLYPOINT CONFIRM
+                /**
+                 * {spVillage} The current village
+                 */
+                var vilHome = getVillageFromCoords(game_data.village.coord);
                 if ($("#attack_name").size() > 0) {
+                    // RALLYPOINT CONFIRM
                     //<!--@@INCLUDE "page\place\confirm.js" INDENT=3 //-->
                 }
                 // RALLYPOINT UNITS THERE
@@ -218,7 +222,7 @@
 		//<!--@@INCLUDE "global\friends.js" INDENT=2 //-->
 		
 		//var end_time = new Date();
-		console.timeEnd("SanguPackage");
+		//console.timeEnd("SanguPackage");
 		//q("" + pad(Math.abs(start_time.getTime() - end_time.getTime()), 3) + " -> " + location.search);
     }
 //<!--@@INCLUDE "greasemonkey/sangu_readyEnd.txt" INDENT=0 //-->

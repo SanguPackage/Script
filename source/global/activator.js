@@ -12,11 +12,12 @@ var activatorTitle = (!isSanguActive ? trans.sp.sp.activatePackage : trans.sp.sp
 if (pers.get("forceCompatibility") === '' || pers.get("forceCompatibility") === 'false') {
     if (isSanguActive) {
         // Check compatibility with TW version
-        if (pers.getGlobal("scriptWarningVersion") != server_settings.tw_version) {
+        q(pers.getGlobal("scriptWarningVersion") +"!="+ server_settings.tw_version + "=" + (pers.getGlobal("scriptWarningVersion") != server_settings.tw_version));
+        if (pers.getGlobal("scriptWarningVersion") != server_settings.tw_version && server_settings.tw_version != game_data.majorVersion) {
             try {
-                ScriptAPI.register('Sangu Package', server_settings.tw_version, 'Laoujin', server_settings.email);
+                ScriptAPI.register('Sangu Package', server_settings.tw_version, 'Laoujin', server_settings.sanguEmail);
             } catch (e) {
-                $("#script_list a[href='mailto:"+server_settings.sanguEmail+"']").after(" &nbsp;<a href='' id='removeScriptWarning'>"+trans.sp.sp.removeScriptWarning+"</a>");
+                $("#script_list a[href$='mailto:"+server_settings.sangu+"']").after(" &nbsp;<a href='' id='removeScriptWarning'>"+trans.sp.sp.removeScriptWarning+"</a>");
                 $("#removeScriptWarning").click(function() {
                     pers.setGlobal("scriptWarningVersion", server_settings.tw_version);
                 });
@@ -25,7 +26,7 @@ if (pers.get("forceCompatibility") === '' || pers.get("forceCompatibility") === 
     }
 
     // gray icon when tw version doesn't match
-    if (pers.getGlobal("scriptWarningVersion") == server_settings.tw_version) {
+    if (pers.getGlobal("scriptWarningVersion") != server_settings.tw_version && server_settings.tw_version != game_data.majorVersion) {
         activatorImage = "grey";
         activatorTitle = trans.sp.sp.activatePackageWithCompatibility.replace("{version}", sangu_version);
     }

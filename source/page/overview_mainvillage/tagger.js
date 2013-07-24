@@ -60,7 +60,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 				function renameCommand(commandName) {
 					var dodgeCell = null;
 					$("input.taggerCheckbox", incomingTable).each(function () {
-						if ($(this).attr("checked")) {
+						if ($(this).is(":checked")) {
 							dodgeCell = $(this).parent();
 							var button = dodgeCell.next().find("input[type='button']");
 							button.prev().val(commandName);
@@ -137,7 +137,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 							$("th:first", row).replaceWith("<th><input type=checkbox id=selectAllIgnore> " + $("th:first", row).text() + "</th>");
 							$("#selectAllIgnore").click(function () {
 								var ingoreBoxes = $("input[name^='id_']", incomingTable);
-								var isChecked = $("#selectAllIgnore").attr("checked") == "checked";
+								var isChecked = $("#selectAllIgnore").is(":checked");
 								ingoreBoxes.each(function() {
 									$(this).attr("checked", isChecked);
 								});

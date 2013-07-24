@@ -1,5 +1,5 @@
 (function() {
-    console.time("units_back");
+    //console.time("units_back");
     try {
         var units_awayTable = $("#units_away").width("100%");
         if (units_awayTable.size() != 0) {
@@ -137,5 +137,5 @@
             });
         }
     } catch (e) { handleException(e, "place-units_back"); }
-    console.timeEnd("units_back");
+    //console.timeEnd("units_back");
 }());

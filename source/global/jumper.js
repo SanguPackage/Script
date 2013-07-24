@@ -1,6 +1,6 @@
 if (user_data.jumper.enabled) {
     (function() {
-        console.time("jumper");
+        //console.time("jumper");
         try {
             var cell = "<span style='display: none;' id=sanguJumperFrame>";
             cell += "<input type=text type=text size=6 id=sangujumper style='height: 16px; border: 0; top: -2px; position: relative'>";
@@ -48,6 +48,6 @@ if (user_data.jumper.enabled) {
                 $("#sangujumperOpen").click();
             }
         } catch (e) { handleException(e, "jumper"); }
-        console.timeEnd("jumper");
+        //console.timeEnd("jumper");
     }());
 }

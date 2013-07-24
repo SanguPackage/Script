@@ -21,6 +21,7 @@ var user_data_configs = (function() {
             properties: {
                 twVersion: {
                     label: sangu_trans.global.tw_version.replace("{version}", game_data.majorVersion),
+                    tooltip: sangu_trans.global.tw_versionTooltip,
                     propUI: {
                         getter: function() { return pers.get("forceCompatibility") !== '' && pers.get("forceCompatibility") === 'true'; },
                         setter: function(value) { pers.set("forceCompatibility", value); },

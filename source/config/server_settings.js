@@ -1,24 +1,14 @@
 var server_settings = {
-    tw_version: 8.13,
+    tw_version: 8.14,
     maxSitDays: 60,
     helpdeskUrl: "http://forum.tribalwars.nl/showthread.php?137674-8-11-GM-Algemeen-discussietopic-Sangu-Package",
-    sanguEmail: "package@sangu.be"
+    sangu: "sangu.be", /* This needs to be here for 'historical' reasons (Innogames versionchecker API remembers email on the server) */
+    sanguEmail: "package@sangu.be",
+    ajaxAllowed: true,
+    coordinateLinkAllowed: false,
+    autoFillCoordinatesAllowed: true
 };
 
-switch (game_data.market) {
-	case 'de':
-        $.extend(server_settings, {
-            ajaxAllowed: false,
-            coordinateLinkAllowed: true,
-            autoFillCoordinatesAllowed: false
-		});
-		break;
-    default:
-        // nl server (and all others):
-        $.extend(server_settings, {
-			ajaxAllowed: true,
-			coordinateLinkAllowed: false,
-			autoFillCoordinatesAllowed: true
-		});
-		break;
-}
+//$.extend(server_settings, {
+//    extraProperty: "yaye"
+//});

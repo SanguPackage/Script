@@ -361,7 +361,10 @@ trans = {
 			indicator: {
 				lastTimeCheckHintBoxTooltip: "Klik op {img} om de laatste tijdcheck met de huidige tijd te vervangen.",
 				lastTimeCheckNotYetSet: "(nog niet)"
-			}
+			},
+            commandsExport: "Exporteren",
+            commandsExportTooltip: "",
+            commandsImport: "Importeren"
 		},
 		rest: {
 			sittingAttackTill: "Aanvallen en verdedigen van dorpen niet in eigen beheer tot:",

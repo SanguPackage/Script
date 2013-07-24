@@ -1,5 +1,5 @@
 (function() {
-    console.time("main-renamevillage");
+    //console.time("main-renamevillage");
     try {
         if (user_data.main.villageNames != null && user_data.main.villageNames.length > 0) {
             var showButtons = true;
@@ -22,5 +22,5 @@
             }
         }
     } catch (e) { handleException(e, "place-"); }
-    console.timeEnd("main-renamevillage");
+    //console.timeEnd("main-renamevillage");
 }());

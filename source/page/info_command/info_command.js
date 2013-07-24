@@ -1,7 +1,7 @@
 if ($("#running_times").size() > 0) {
 	// ---------------------------------------INCOMING ATTACK
     (function() {
-        console.time("info_command-incoming");
+        //console.time("info_command-incoming");
         try {
             var link = $("#contentContainer tr:eq(10) a:last");
             //<!--@@INCLUDE "page/info_command/incoming.js" INDENT=1 //-->
@@ -16,12 +16,12 @@ if ($("#running_times").size() > 0) {
             }
 
         } catch (e) { handleException(e, "info_command-incoming"); }
-        console.timeEnd("info_command-incoming");
+        //console.timeEnd("info_command-incoming");
     }());
 	
 } else {
     (function() {
-        console.time("info_command-command");
+        //console.time("info_command-command");
         try {
             // Own attack/support/return ---------------------------------------------------------------------------------- Own attack/support/return
             var infoTable = $("table.vis:first", content_value);
@@ -163,6 +163,6 @@ if ($("#running_times").size() > 0) {
                 unitTable.find("tr:last").append('<td>' + formatNumber(totalPop) + '</td>');
             }
         } catch (e) { handleException(e, "info_command-command"); }
-        console.timeEnd("info_command-command");
+        //console.timeEnd("info_command-command");
     }());
 }

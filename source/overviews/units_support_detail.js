@@ -1,5 +1,5 @@
 (function() {
-    console.time("overview-supportdetail");
+    //console.time("overview-supportdetail");
     try {
         overviewTable = $("#units_table");
         tableHandler.init("units_table", {
@@ -47,7 +47,7 @@
 
         $("input.selectAll").replaceWith("<input type=checkbox id=selectAllVisible>");
         $("#selectAllVisible").click(function () {
-            var isChecked = $(this).attr("checked") == "checked";
+            var isChecked = $(this).is(":checked");
             $("#units_table input.village_checkbox:hidden").attr("checked", false);
             $("#units_table input.village_checkbox:visible").attr("checked", isChecked);
         });
@@ -369,5 +369,5 @@
             goners.hide();
         });
     } catch (e) { handleException(e, "overview-supportdetail"); }
-    console.timeEnd("overview-supportdetail");
+    //console.timeEnd("overview-supportdetail");
 }());

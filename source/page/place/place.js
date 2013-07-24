@@ -1,5 +1,5 @@
 (function() {
-    console.time("place-place");
+    //console.time("place-place");
     try {
     // Auto rename attacks
     if (user_data.attackAutoRename.active) {
@@ -43,16 +43,12 @@
     }
 
     // Spice up rally point:
-    var speedCookie = spSpeedCookie(),
-        /**
-         * {spVillage} The current village
-         */
-        vilHome = getVillageFromCoords(game_data.village.coord);
+    var speedCookie = spSpeedCookie();
 
     //<!--@@INCLUDE "page\place\activespeed.js" INDENT=0 //-->
     //<!--@@INCLUDE "page\place\lastandtargetvillage.js" INDENT=0 //-->
     //<!--@@INCLUDE "page\place\extratrooplinks.js" INDENT=0 //-->
 
     } catch (e) { handleException(e, "place-place"); }
-    console.timeEnd("place-place");
+    //console.timeEnd("place-place");
 }());

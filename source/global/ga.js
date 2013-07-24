@@ -1,6 +1,6 @@
 // Send usage statistics to GA once/day
 (function() {
-    console.time("ga");
+    //console.time("ga");
     try {
         var loginMonitor = pers.get("sanguLogin");
         if (loginMonitor !== '') {
@@ -26,5 +26,5 @@
             trackEvent("ScriptUsage", "HasAM", game_data.player.account_manager ? "Yes" : "No");	// Do we need to do stuff on the AM pages?
         }
     } catch (e) { handleException(e, "ga"); }
-    console.timeEnd("ga");
+    //console.timeEnd("ga");
 }());

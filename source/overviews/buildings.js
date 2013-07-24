@@ -1,5 +1,5 @@
 (function() {
-    console.time("overview-buildings");
+    //console.time("overview-buildings");
     try {
         // Highlight everything not conform
         overviewTable = $("#buildings_table");
@@ -21,7 +21,7 @@
             });
 
             var goners = $();
-            var opti = $("#buildingOpti").attr("checked") == "checked";
+            var opti = $("#buildingOpti").is(":checked");
             overviewTable.find("tr:gt(0)").each(function () {
                 var isOk = true;
                 $(this).find("td:gt(3)").each(function (i, v) {
@@ -60,5 +60,5 @@
             }, true);
         });
     } catch (e) { handleException(e, "overview-buildings"); }
-    console.timeEnd("overview-buildings");
+    //console.timeEnd("overview-buildings");
 }());

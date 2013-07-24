@@ -1,5 +1,5 @@
 (function() {
-    console.time("overview-prod");
+    //console.time("overview-prod");
     try {
         overviewTable = $("#production_table");
         tableHandler.init("production_table");
@@ -37,7 +37,7 @@
 
         $("#resStorageFull").click(function () {
             trackClickEvent("FilterFullRes");
-            filterRes('full', $("#resFilter").attr("checked") == "checked");
+            filterRes('full', $("#resFilter").is(":checked"));
         });
 
         $("#resBBCode").click(function () {
@@ -55,11 +55,11 @@
             var bbcodes = '';
             var goners = $();
             var stayers = $();
-            var filterMerchants = $("#resMerchant").attr("checked") == "checked";
+            var filterMerchants = $("#resMerchant").is(":checked");
             var filterMerchantsAmount = parseInt($("#resMerchantAmount").val(), 10);
             var minAmount = parseInt($("#resAmount").val(), 10);
             var reverse = $("#resAmountType").val() == "-1";
-            var bbCodeImages = $("#resBBCodeImages").attr("checked") == "checked";
+            var bbCodeImages = $("#resBBCodeImages").is(":checked");
             var minDif = user_data.resources.bbcodeMinimumDiff;
 
             if (reverse) {
@@ -164,8 +164,8 @@
 
         $(".resFilter").click(function () {
             trackClickEvent("FilterResource");
-            filterRes($(this).attr("resIndex"), $("#resFilter").attr("checked") == "checked");
+            filterRes($(this).attr("resIndex"), $("#resFilter").is(":checked"));
         });
     } catch (e) { handleException(e, "overview-prod"); }
-    console.timeEnd("overview-prod");
+    //console.timeEnd("overview-prod");
 }());

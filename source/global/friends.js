@@ -1,6 +1,6 @@
 if (server_settings.ajaxAllowed && user_data.global.visualizeFriends) {
     (function() {
-        console.time("friends");
+        //console.time("friends");
         try {
             function Friends() {
                 this.lastCheck = new Date().getTime();
@@ -60,7 +60,7 @@ if (server_settings.ajaxAllowed && user_data.global.visualizeFriends) {
                 friendsLink.attr("title", trans.sp.rest.friendsOnlineTitle.replace("{playerNames}", friends.online.names.substr(1)));
             }
         } catch (e) { handleException(e, "friends"); }
-        console.timeEnd("friends");
+        //console.timeEnd("friends");
     }());
 }
 

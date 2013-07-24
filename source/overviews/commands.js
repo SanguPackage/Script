@@ -1,5 +1,5 @@
 (function() {
-    console.time("overview-commands");
+    //console.time("overview-commands");
     try {
         overviewTable = $("#commands_table");
         tableHandler.init("commands_table", {
@@ -36,7 +36,7 @@
 
         $("#select_all").replaceWith("<input type='checkbox' id='selectAll'>");
         var selectAllCheckboxes = function() {
-            var isChecked = $("#selectAll").attr("checked") == "checked";
+            var isChecked = $("#selectAll").is(":checked");
             $("#commands_table tr:visible").find(":checkbox").attr("checked", isChecked);
         };
         $("#selectAll").click(selectAllCheckboxes);
@@ -322,7 +322,7 @@
             var newTable = "";
             var targets = [];
             var amountOfCommandos = 0;
-            var sum = $('#sortSum').attr('checked') == "checked";
+            var sum = $('#sortSum').is(':checked');
             $("#filterReturning").attr("disabled", true);
 
             $("#commands_table").find("tr:gt(0)").filter(":visible").each(function () {
@@ -436,5 +436,5 @@
             }
         });
     } catch (e) { handleException(e, "overview-commands"); }
-    console.timeEnd("overview-commands");
+    //console.timeEnd("overview-commands");
 }());

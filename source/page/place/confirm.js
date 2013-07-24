@@ -1,5 +1,5 @@
 (function() {
-    console.time("confirm");
+    //console.time("confirm");
     try {
         // reorder the page
         if (user_data.proStyle) {
@@ -114,5 +114,5 @@
             pers.setSession("attRen_" + game_data.village.id + '_' + twInitialCommandName, sent);
         }
     } catch (e) { handleException(e, "place-confirm"); }
-    console.timeEnd("confirm");
+    //console.timeEnd("confirm");
 }());

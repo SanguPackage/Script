@@ -1,5 +1,5 @@
 (function() {
-    console.time("dodge_fromMainTagger");
+    //console.time("dodge_fromMainTagger");
     try {
         var isDodge = pers.getCookie("sanguDodge" + getQueryStringParam("village"));
         if (isDodge) {
@@ -15,5 +15,5 @@
             header.remove();
         }
     } catch (e) { handleException(e, "dodge_fromMainTagger-"); }
-    console.timeEnd("dodge_fromMainTagger");
+    //console.timeEnd("dodge_fromMainTagger");
 }());

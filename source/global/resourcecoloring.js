@@ -1,5 +1,5 @@
 (function() {
-    console.time("resourceColoring");
+    //console.time("resourceColoring");
     try {
         var storage = parseInt($("#storage").text(), 10);
 
@@ -18,5 +18,5 @@
             }).css({ "font-weight": "bolder", "color": "black" }).fadeOut().fadeIn();
         }
     } catch (e) { handleException(e, "resourcecoloring"); }
-    console.timeEnd("resourceColoring");
+    //console.timeEnd("resourceColoring");
 }());

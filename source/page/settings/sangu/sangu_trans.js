@@ -15,6 +15,7 @@ var sangu_trans = (function() {
         global: {
             title: "Op alle pagina's",
             tw_version: "Compatibiliteit met TW versie {version} afdwingen",
+            tw_versionTooltip: "Dit gaat enkel de grijze Sangu bol niet meer tonen. Bugs door de TW update gaan niet op een magische manier opgelost zijn!",
             showCrashReport: "Crash rapport tonen bij het optreden van fouten",
             showCrashReportTooltip: "Aan de hand van jouw feedback kunnen bugs sneller gevonden en opgelost worden. Zet dit enkel af als je voortdurend foutmeldingen krijgt :)",
             resources: {

@@ -1,5 +1,5 @@
 (function() {
-    console.time("overview-thereownhome");
+    //console.time("overview-thereownhome");
     try {
         var villageCounter = 0;
         var rowSize = world_data.units.length + 1;
@@ -384,5 +384,5 @@
             pageSize.val(villageCounter);
         });
     } catch (e) { handleException(e, "overview-thereownhome"); }
-    console.timeEnd("overview-thereownhome");
+    //console.timeEnd("overview-thereownhome");
 }());

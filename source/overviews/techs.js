@@ -1,5 +1,5 @@
 (function() {
-    console.time("overview-techs");
+    //console.time("overview-techs");
     try {
         overviewTable = $("#techs_table");
         tableHandler.init("techs_table");
@@ -21,7 +21,7 @@
 
             function filterTechs(cellAction, hideRows) {
                 var goners = $();
-                var opti = $("#buildingOpti").attr("checked") == "checked";
+                var opti = $("#buildingOpti").is(":checked");
                 var def = user_data.smithy[$("#groupType").val()][1];
                 $("#techs_table").find("tr:gt(0)").each(function () {
                     var isOk = true;
@@ -67,5 +67,5 @@
             });
         }
     } catch (e) { handleException(e, "overview-techs"); }
-    console.timeEnd("overview-techs");
+    //console.timeEnd("overview-techs");
 }());

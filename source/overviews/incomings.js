@@ -1,12 +1,12 @@
 (function() {
-    console.time("overview-incomings");
+    //console.time("overview-incomings");
     try {
         overviewTable = $("#incomings_table");
         tableHandler.init("incomings_table", {
             hasBottomTotalRow: true
         });
 
-// Group attacks per village
+        // Group attacks per village
         var menu = "";
         menu += "<table width='100%'>";
         menu += "<tr><th colspan=6>";
@@ -14,17 +14,20 @@
         menu += "&nbsp;&nbsp; <input type=checkbox id=sortShowTotalRow " + (user_data.command.sumRow ? "checked" : "") + "> " + trans.sp.incomings.summation + " ";
         menu += "<input type=button id=sortQuick value='" + trans.sp.incomings.fastGrouping + "'>";
         menu += "<input type=button id=filterAttack value='" + trans.sp.incomings.showNewIncomings + "'>";
+        menu += "<br>";
+        menu += "<input type=text id='commandExportPlayer' size='15'> <input type=button id=commandsExport value='" + trans.sp.incomings.commandsExport + "'>";
+        menu += "<input type=button id=commandsImport value='" + trans.sp.incomings.commandsImport + "'>";
         menu += "</th></tr>";
         menu += "</table>";
         $("#incomings_table").before(menu);
 
         $("#select_all").replaceWith("<input type='checkbox' id='selectAll'>");
         $("#selectAll").click(function() {
-            var isChecked = $("#selectAll").attr("checked") == "checked";
+            var isChecked = $("#selectAll").is(":checked");
             $("#incomings_table tr:visible").find(":checkbox").attr("checked", isChecked);
         });
 
-// Amount of attacks
+        // Amount of attacks
         function showAmountOfAttacks(amountOfVillages, amountOfCommands) {
             if ($("#amountOfAttacks").size() == 0) {
                 var pageSize = $("input[name='page_size']");
@@ -36,7 +39,7 @@
             $("#incomings_table tr").not(":visible").find(":checkbox").attr("checked", false);
         }
 
-// Sort incoming attacks
+        // Sort incoming attacks
         $("#sortIt").click(function () {
             this.disabled = true;
             $("#sortQuick").attr("disabled", true);
@@ -67,8 +70,8 @@
             showAmountOfAttacks(amountOfVillages, rows.size());
         });
 
-// Quick sort: performs faster but also freezes the screen (ie no countdowns)
-// --> This might also be good in case the page is refreshing too often otherwise
+        // Quick sort: performs faster but also freezes the screen (ie no countdowns)
+        // --> This might also be good in case the page is refreshing too often otherwise
         $("#sortQuick").click(function () {
             trackClickEvent("SortQuick");
             this.disabled = true;
@@ -77,7 +80,7 @@
             var newTable = "";
             var targets = [];
             var commandCounter = 0;
-            var addTotalRow = $('#sortShowTotalRow').attr('checked') == "checked";
+            var addTotalRow = $('#sortShowTotalRow').is(':checked');
 
             $("#incomings_table").find("tr:gt(0)").each(function () {
                 var target = $("td:eq(1)", this).text();
@@ -127,5 +130,5 @@
             goners.hide();
         });
     } catch (e) { handleException(e, "overview-incomings"); }
-    console.timeEnd("overview-incomings");
+    //console.timeEnd("overview-incomings");
 }());

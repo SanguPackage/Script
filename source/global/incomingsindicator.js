@@ -2,7 +2,7 @@
 // keep track of current amount of incomings
 if (user_data.global.incomings.editLinks || user_data.global.incomings.track) {
     (function() {
-        console.time("incomingsindicator");
+        //console.time("incomingsindicator");
         try {
             var incoming = $("table.box:last"),
                 incomingAttacksLinks = $("a[href*='subtype=attacks']", incoming),
@@ -97,6 +97,6 @@ if (user_data.global.incomings.editLinks || user_data.global.incomings.track) {
                 }
             }
         } catch (e) { handleException(e, "incomingsindicator"); }
-        console.time("incomingsindicator");
+        //console.time("incomingsindicator");
     }());
 }
