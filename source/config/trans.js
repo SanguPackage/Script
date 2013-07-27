@@ -392,9 +392,13 @@ trans = {
 				lastTimeCheckHintBoxTooltip: "Klik op {img} om de laatste tijdcheck met de huidige tijd te vervangen.",
 				lastTimeCheckNotYetSet: "(nog niet)"
 			},
-            commandsExport: "Exporteren",
-            commandsExportTooltip: "",
-            commandsImport: "Importeren"
+            commandsImport: "Ondersteuning importeren",
+            commandsImportTooltip: "Ondersteuning naar jouw dorpen kan op jouw account ingelezen worden"
+                + " door de andere speler zijn bevelen te laten exporteren via Sangu Package (Pagina Overzicht: Bevelen)"
+                + " en die export hier te plakken.",
+            commandsImportError: "Fout bij het inladen van de ondersteuningen.\nHet zou er zoals dit moeten uitzien: \n"
+                + '[{"commandName": "702|459 (speler) Zw=1 (Pop: 1)", "commandId": "7538763"}]',
+            commandsImportSuccess: "{replaced} van de {total} ondersteuningen zijn hernoemd."
 		},
 		rest: {
 			sittingAttackTill: "Aanvallen en verdedigen van dorpen niet in eigen beheer tot:",
