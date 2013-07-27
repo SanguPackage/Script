@@ -10,13 +10,20 @@
 
         var menu = "";
         menu += "<table class=vis width='100%'>";
-        menu += "<tr><th colspan=" + (3 + world_data.units.length) + ">";
+        menu += "<tr>";
         if (location.href.indexOf('type=all') > -1 || location.href.indexOf('&type=') == -1) {
-            menu += "<input type=button id=filterReturning value='" + trans.sp.commands.filterReturn + "'>&nbsp;";
+            menu += "<th width='1%'>";
+            menu += "<input type=button id=filterReturning value='" + trans.sp.commands.filterReturn + "' title=\"" + trans.sp.commands.filterReturnTooltip + "\">&nbsp;";
+            menu += "</th>";
         }
+
+        menu += "<th width='1%' nowrap>";
         menu += "<input type=checkbox id=sortSum " + (user_data.command.sumRow ? "checked" : "") + "> " + trans.sp.commands.totalRows + " ";
         var isSupport = location.href.indexOf('type=support') > -1;
         menu += "<input type=button id=sortIt value='" + trans.sp.commands.group + "'>";
+
+        menu += "</th><th width='98%'>";
+
         menu += "&nbsp; <input type=button id=BBCodeOutput value='" + trans.sp.commands.bbCodeExport + "' title='" + trans.sp.commands.bbCodeExportTooltip + "'>";
 
         if (commandListType !== "attack" && commandListType !== "return") {
@@ -24,7 +31,7 @@
             menu += "<input type=text id=supportPlayerName size=>&nbsp;";
             menu += "<input type=button id=supportPlayerExport value='" + trans.sp.commands.supportPlayerExport + "' title='" + trans.sp.commands.supportPlayerExportTooltip + "'>";
         }
-        menu += "<br>";
+        menu += "</th><tr><th colspan=3>";
         menu += "<input type=checkbox id=defReverseFilter title='" + trans.sp.commands.filtersReverse + "'> " + trans.sp.commands.filtersReverseInfo + ": ";
         menu += "&nbsp; <span style='background-color: #ecd19a; border: 1px solid black' id='unitFilterBox'>";
         menu += "&nbsp; <img src='graphic/unit/unit_snob.png' id=filtersnob>&nbsp; <img src='graphic/unit/unit_spy.png' id=filterspy>&nbsp; <img src='graphic/face.png' id=filterFake>&nbsp;";
@@ -191,7 +198,7 @@
                 }
 
                 for (i = 0; i < requestsPer500.length; i++) {
-                    exportWidgets.push("<textarea cols=50 rows=10 class=restackArea>" + requestsPer500[i] + "</textarea>");
+                    exportWidgets.push("<textarea cols=80 rows=10 class=restackArea>" + requestsPer500[i] + "</textarea>");
                 }
 
             } else {
@@ -222,21 +229,27 @@
                     }
                 }
 
-                exportWidgets.push("<textarea cols=50 rows=10 class=restackArea>" + JSON.stringify(exportAttacks, null, 4) + "</textarea>");
+                if (exportAttacks.length > 0) {
+                    exportWidgets.push("<textarea style='width: 96%' rows=10 class=restackArea>" + JSON.stringify(exportAttacks, null, 4) + "</textarea>");
+                } else {
+                    alert(trans.sp.commands.exportNone);
+                }
             }
 
-            if ($("#textsArea").size() == 0) {
-                $(this).parent().parent().parent().append("<tr><td id=textsArea></td></tr>");
-            } else {
-                $("#textsArea").html("");
+            if (exportWidgets.length > 0) {
+                if ($("#textsArea").size() == 0) {
+                    $(this).parent().parent().parent().append("<tr><td id=textsArea colspan=3></td></tr>");
+                } else {
+                    $("#textsArea").html("");
+                }
+                for (var i = 0; i < exportWidgets.length; i++) {
+                    $("#textsArea").append(exportWidgets[i]);
+                }
+                $("#textsArea").append("<br><input type=button value='" + trans.sp.all.close + "' id=closeTextsArea>");
+                $("#closeTextsArea").click(function() {
+                    $("#textsArea").parent().remove();
+                });
             }
-            for (var i = 0; i < exportWidgets.length; i++) {
-                $("#textsArea").append(exportWidgets[i]);
-            }
-            $("#textsArea").append("<br><input type=button value='" + trans.sp.all.close + "' id=closeTextsArea>");
-            $("#closeTextsArea").click(function() {
-                $("#textsArea").parent().remove();
-            });
         });
 
         function filterCommandRows(filterStrategy) {

@@ -88,7 +88,7 @@ trans = {
             packageCrash:
                 "<b>Foutmelding</b>: <i>{error}</i><br>"
                 + "<b>Details</b>:<br>"
-                + "<textarea cols='75' rows='20'>"
+                + "<textarea style='width: 95%' rows='20'>"
                 + "Foutmelding: {error}\n"
                 + "Pagina: {title} -> {page}\n"
                 + "URL: {url}\n"
@@ -311,6 +311,7 @@ trans = {
 		},
 		commands: {
 			filterReturn: "Filter terugkeer",
+			filterReturnTooltip: "'Teruggestuurd' en 'Terugkeer' bevelen verbergen",
 			totalRows: "Somlijn",
 			group: "Groeperen",
 			totalRowsText: "{0}x OS = {1} pop",
@@ -344,7 +345,8 @@ trans = {
 			continentFilterTooltipReverse: "Alle dorpen in continent tonen",
 			exportAttackHeader: "{village} {#} aanvallen, laatste [b]{lastAttack}[/b]",
 			exportDefenseHeader: "{village} {support#} ondersteuningen voor [b]{totalStack} pop[/b]",
-			exportCompleteHeader: "{village} {#} aanvallen, laatste [b]{lastAttack}[/b]\n+ {support#} ondersteuningen voor [b]{totalStack} pop[/b]"
+			exportCompleteHeader: "{village} {#} aanvallen, laatste [b]{lastAttack}[/b]\n+ {support#} ondersteuningen voor [b]{totalStack} pop[/b]",
+            exportNone: "Geen ondersteuning gevonden!"
 		},
 		groups: {
 			villageFilter: "Dorpsnaam",
