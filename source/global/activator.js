@@ -12,7 +12,6 @@ var activatorTitle = (!isSanguActive ? trans.sp.sp.activatePackage : trans.sp.sp
 if (pers.get("forceCompatibility") === '' || pers.get("forceCompatibility") === 'false') {
     if (isSanguActive) {
         // Check compatibility with TW version
-        q(pers.getGlobal("scriptWarningVersion") +"!="+ server_settings.tw_version + "=" + (pers.getGlobal("scriptWarningVersion") != server_settings.tw_version));
         if (pers.getGlobal("scriptWarningVersion") != server_settings.tw_version && server_settings.tw_version != game_data.majorVersion) {
             try {
                 ScriptAPI.register('Sangu Package', server_settings.tw_version, 'Laoujin', server_settings.sanguEmail);

@@ -119,11 +119,10 @@ trans = {
 			all: "Alle",
 			withText: "met",
 			merchants: "Handelaren",
-			tooMuch: "Teveel:",
-			tooLittle: "Te weinig:",
 			further: "verder",
 			closer: "dichter",
-			fieldsSuffix: "(F{0})"
+			fieldsSuffix: "(F{0})",
+            close: "Sluiten"
 		},
 		main: {
 			unitsReplacement: "Eigen",
@@ -182,11 +181,7 @@ trans = {
 			arrival: "Aankomst",
 			dodgeNotFarEnough: "De dodge is niet ver genoeg!",
 			dodgeMinuteReturn: "(Terugkeer na {minutes})",
-			catapultImageTitle: "Klik om gebouw te vernietigen",
-			nextAttack: "volgend bevel",
-			nextIncoming: "volgend incoming", /* Currently not in use */
-			precedingAttack: "vorig bevel",
-			precedingIncoming: "vorige incoming"
+			catapultImageTitle: "Klik om gebouw te vernietigen"
 		},
 		overviews: {
 			totalVillages: "Aantal dorpen:",
@@ -223,7 +218,11 @@ trans = {
 			filterAllTooltip: "Dorpen waarbij niet minstens 1 van de grondstoffen meer/minder dan x is verbergen",
 			filterAllTooltipReverse: "Dorpen waarbij minstens 1 van de grondstoffen meer/minder dan x is highlighten",
 			filter1Tooltip: "Dorpen waarbij er nier meer/minder dan x {0} is verbergen",
-			filter1TooltipReverse: "Dorpen waarbij er meer/minder dan x {0} is highlighten"
+			filter1TooltipReverse: "Dorpen waarbij er meer/minder dan x {0} is highlighten",
+            tooMuch: "Teveel:",
+            tooMuchText: "Alle dorpen met minstens {diff}k meer grondstoffen dan {min}k",
+            tooLittle: "Te weinig:",
+            tooLittleText: "Alle dorpen met minstens {diff}k minder grondstoffen dan {min}k"
 		},
 		buildOverview: {
 			optimistic: "Optimistisch",
@@ -298,6 +297,12 @@ trans = {
 			totalAttack: "Aanvallen",
 			bbCodeExport: "BBCode Export",
 			bbCodeExportTooltip: "Overblijvende aanvallen exporteren",
+            supportPlayerExport: "Ondersteuning exporteren",
+            supportPlayerExportTooltip: "Geef de naam van de speler waarvoor je de ondersteuning wil exporteren "
+                + "(of laat leeg om alle ondersteuningen te exporteren). Door de export als mededeling "
+                + "naar de andere speler door te sturen "
+                + "kan deze jouw gestuurde troepen als bevelnaam zetten. (Hij heeft daarvoor natuurlijk"
+                + " ook het Sangu Package nodig :)",
 			filtersReverse: "De filtering omdraaien",
 			filtersReverseInfo: "Filters omdraaien",
 			freeTextFilter: "Tekst filter",

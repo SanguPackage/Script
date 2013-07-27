@@ -94,9 +94,10 @@
             });
             goners.remove();
             $("#units_table th:first").text(trans.sp.defOverview.totalVillages.replace("{0}", $("#units_table tr.grandTotal:visible").size()));
+            $("#defHideEmpty").click();
         }
 
-// Hide rows not under attack
+        // Hide rows not under attack
         $("#attackFilter").click(function () {
             trackClickEvent("FilterAttack");
             var reverseFilter = true; // never reverse this filter!
@@ -127,6 +128,7 @@
             });
             goners.remove();
             $("#units_table th:first").text(trans.sp.defOverview.totalVillages.replace("{0}", $("#units_table tr.grandTotal:visible").size()));
+            //$("#defHideEmpty").click();
         });
 
         $("#defFilterTotalPop").click(function () {
@@ -177,6 +179,7 @@
             });
             goners.remove();
             $("#units_table th:first").text(trans.sp.defOverview.totalVillages.replace("{0}", $("#units_table tr.grandTotal:visible").size()));
+            $("#defHideEmpty").click();
         }
 
         $("#defRestack").click(function () {
@@ -208,6 +211,7 @@
         });
 
         $("#defHideEmpty").click( function () {
+            q("defHideEmpty")
             trackClickEvent("FilterEmpty");
             if (!$("#defTotals").is(":disabled")) {
                 $("#defTotals").click();
@@ -243,7 +247,7 @@
             });
         });
 
-// filter support from other players
+        // filter support from other players
         $("#filterSupport").click( function () {
             trackClickEvent("FilterSupport");
             filterTable($("#units_table tr"), function (row) {

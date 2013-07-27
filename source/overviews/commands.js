@@ -6,7 +6,8 @@
             hasBottomTotalRow: true
         });
 
-// Group attacks per village
+        var commandListType = getQueryStringParam("type");
+
         var menu = "";
         menu += "<table class=vis width='100%'>";
         menu += "<tr><th colspan=" + (3 + world_data.units.length) + ">";
@@ -16,8 +17,13 @@
         menu += "<input type=checkbox id=sortSum " + (user_data.command.sumRow ? "checked" : "") + "> " + trans.sp.commands.totalRows + " ";
         var isSupport = location.href.indexOf('type=support') > -1;
         menu += "<input type=button id=sortIt value='" + trans.sp.commands.group + "'>";
-        menu += "&nbsp; <input type=button id=defRestack value='" + trans.sp.commands.bbCodeExport + "' title='" + trans.sp.commands.bbCodeExportTooltip + "'>";
+        menu += "&nbsp; <input type=button id=BBCodeOutput value='" + trans.sp.commands.bbCodeExport + "' title='" + trans.sp.commands.bbCodeExportTooltip + "'>";
 
+        if (commandListType !== "attack" && commandListType !== "return") {
+            menu += "&nbsp; &nbsp;";
+            menu += "<input type=text id=supportPlayerName size=>&nbsp;";
+            menu += "<input type=button id=supportPlayerExport value='" + trans.sp.commands.supportPlayerExport + "' title='" + trans.sp.commands.supportPlayerExportTooltip + "'>";
+        }
         menu += "<br>";
         menu += "<input type=checkbox id=defReverseFilter title='" + trans.sp.commands.filtersReverse + "'> " + trans.sp.commands.filtersReverseInfo + ": ";
         menu += "&nbsp; <span style='background-color: #ecd19a; border: 1px solid black' id='unitFilterBox'>";
@@ -27,8 +33,6 @@
         menu += "<input type=button id=defFilterText value='" + trans.sp.commands.freeTextFilter + "'>";
 
         menu += "&nbsp; <input type=textbox size=3 id=defFilterContinentText maxlength=2><input type=button id=defFilterContinent value='" + trans.sp.commands.continentFilter + "'>";
-
-        var commandListType = getQueryStringParam("type");
 
         menu += "</th></tr>";
         menu += "</table>";
@@ -58,13 +62,13 @@
         $("#defReverseFilter").change();
         var hasGrouped = false;
 
-        // generate bb code export
-        $("#defRestack").click(function () {
-            trackClickEvent("BBCodeOutput");
+        // generate bb code or JSON (for player os) export
+        $("#BBCodeOutput,#supportPlayerExport").click(function () {
+            trackClickEvent($(this).attr("id"));
             var villages = [];
             var request = {};
             var filter = hasGrouped ? "tr.command" : "tr:gt(0)";
-            $("#commands_table " + filter).filter(":visible").each( function () {
+            $("#commands_table " + filter).filter(":visible").each(function () {
                 var row = $(this);
                 var cells = $("td", row);
                 var firstCell = cells.first();
@@ -79,7 +83,7 @@
                     //assert(village.isValid, $.trim(firstCell.text()) + " could not be converted to village");
                     if (village.isValid) {
                         if (request[village.coord] == undefined) {
-                            request[village.coord] = { village: village.coord, attacks: [], hasSupport: false, hasAttack: false };
+                            request[village.coord] = { village: village.coord, attacks: [], hasSupport: false };
                             villages.push(village.coord);
                         }
 
@@ -104,82 +108,121 @@
                             isSupport: isSupport,
                             units: unitsSent,
                             unitsString: buildAttackString(null, unitsSent, null, isSupport, user_data.command.bbCodeExport.requiredTroopAmount),
-                            arrival: cells.eq(2).text(),
+                            commandName: isSupport ? $.trim(firstCell.text()) : "",
+                            commandId: isSupport ? firstCell.find(":checkbox").attr("value") : null,
                             arrivalDate: getDateFromTodayTomorrowTW(cells.eq(2).text())
                         });
                     }
                 }
             });
 
-            var requestsPer500 = [""];
-            var requestComposed = "";
-            for (var i = 0; i < villages.length; i++) {
-                var currentVillage = request[villages[i]];
-                var currentText = "";
-                currentText += "[spoiler][code]";
-                var attackCount = 0;
-                var supportCount = 0;
-                var lastAttack = null;
-                var largestAttack = 0;
-                var totalPop = 0;
-                for (var attackId = 0; attackId < currentVillage.attacks.length; attackId++) {
-                    var currentAttack = currentVillage.attacks[attackId];
-                    if (currentAttack.isSupport) {
-                        supportCount++;
-                        $.each(world_data.units, function (i, val) {
-                            totalPop += currentAttack.units[val] * world_data.unitsPositionSize[i];
-                        });
-                    } else {
-                        attackCount++;
-                        if (lastAttack == null || lastAttack < currentAttack.arrivalDate) {
-                            lastAttack = currentAttack.arrivalDate;
+            var exportWidgets = [];
+            if ($(this).attr("id") === "BBCodeOutput") {
+                var requestsPer500 = [""];
+                var requestComposed = "";
+                for (var i = 0; i < villages.length; i++) {
+                    var currentVillage = request[villages[i]];
+                    var currentText = "";
+                    currentText += "[spoiler][code]";
+                    var attackCount = 0;
+                    var supportCount = 0;
+                    var lastAttack = null;
+                    var largestAttack = 0;
+                    var totalPop = 0;
+                    for (var attackId = 0; attackId < currentVillage.attacks.length; attackId++) {
+                        var currentAttack = currentVillage.attacks[attackId];
+                        if (currentAttack.isSupport) {
+                            supportCount++;
+                            $.each(world_data.units, function (i, val) {
+                                totalPop += currentAttack.units[val] * world_data.unitsPositionSize[i];
+                            });
+                        } else {
+                            attackCount++;
+                            if (lastAttack == null || lastAttack < currentAttack.arrivalDate) {
+                                lastAttack = currentAttack.arrivalDate;
+                            }
+                        }
+                        if (largestAttack < currentAttack.unitsString.length) {
+                            largestAttack = currentAttack.unitsString.length;
                         }
                     }
-                    if (largestAttack < currentAttack.unitsString.length) {
-                        largestAttack = currentAttack.unitsString.length;
+
+                    for (var attackId = 0; attackId < currentVillage.attacks.length; attackId++) {
+                        var currentAttack = currentVillage.attacks[attackId];
+                        currentText += currentAttack.unitsString;
+                        var extraTabs = (largestAttack - currentAttack.unitsString.length) / 1;
+                        if (Math.ceil(extraTabs) == extraTabs) {
+                            extraTabs = Math.ceil(extraTabs);
+                        }
+                        for (var tabs = 0; tabs < extraTabs + 1; tabs++) {
+                            currentText += " ";
+                        }
+
+                        currentText += "\t" + twDateFormat(currentAttack.arrivalDate, true) + "\n";
+                    }
+                    currentText += "[/code][/spoiler]\n";
+
+                    var headerTemplate;
+                    if (!currentVillage.hasSupport && attackCount !== 0) {
+                        headerTemplate = trans.sp.commands.exportAttackHeader;
+                    }
+                    else if (currentVillage.hasSupport && attackCount === 0) {
+                        headerTemplate = trans.sp.commands.exportDefenseHeader;
+                    } else {
+                        headerTemplate = trans.sp.commands.exportCompleteHeader;
+                    }
+
+                    requestComposed +=
+                        headerTemplate
+                            .replace("{#}", attackCount)
+                            .replace("{support#}", supportCount)
+                            .replace("{totalStack}", formatNumber(totalPop))
+                            .replace("{lastAttack}", lastAttack !== null ? twDateFormat(lastAttack, true) : "")
+                            .replace("{village}", "[village]" + villages[i] + "[/village]")
+                            + "\n " + currentText;
+
+                    // splits per 500 [ characters (limit in TW)
+                    var amountBracket = requestsPer500[requestsPer500.length - 1].match(/\[/g);
+                    if (amountBracket != null && (requestComposed.match(/\[/g).length + amountBracket.length > server_settings.allowedSquareBrackets)) {
+                        requestsPer500.push("");
+                    }
+                    requestsPer500[requestsPer500.length - 1] += requestComposed;
+                    requestComposed = "";
+                }
+
+                for (i = 0; i < requestsPer500.length; i++) {
+                    exportWidgets.push("<textarea cols=50 rows=10 class=restackArea>" + requestsPer500[i] + "</textarea>");
+                }
+
+            } else {
+                // JSON export for player support
+                var exportAttacks = [],
+                    playerName = $("#supportPlayerName").val(),
+                    filter = playerName.length === 0
+                        ? function(attackString) { return true; }
+                        : function(attackString) { return attackString.indexOf(playerName) !== -1 };
+
+                for (var i = 0; i < villages.length; i++) {
+                    var currentVillage = request[villages[i]];
+
+                    if (currentVillage.hasSupport) {
+                        for (var attackId = 0; attackId < currentVillage.attacks.length; attackId++) {
+                            var currentAttack = currentVillage.attacks[attackId];
+                            if (currentAttack.isSupport && filter(currentAttack.commandName)) {
+                                exportAttacks.push({
+                                    commandName: currentAttack.commandName,
+                                    commandId: currentAttack.commandId
+                                });
+                                /*q(villages[i]);
+                                q(currentVillage)
+                                q(currentAttack);
+                                q("---------------------");*/
+                            }
+                        }
                     }
                 }
 
-                for (var attackId = 0; attackId < currentVillage.attacks.length; attackId++) {
-                    var currentAttack = currentVillage.attacks[attackId];
-                    currentText += currentAttack.unitsString;
-                    var extraTabs = (largestAttack - currentAttack.unitsString.length) / 1;
-                    if (Math.ceil(extraTabs) == extraTabs) {
-                        extraTabs = Math.ceil(extraTabs);
-                    }
-                    for (var tabs = 0; tabs < extraTabs + 1; tabs++) {
-                        currentText += " ";
-                    }
-                    currentText += "\t" + twDateFormat(currentAttack.arrivalDate, true) + "\n";
-                }
-                currentText += "[/code][/spoiler]\n";
-
-                var headerTemplate;
-                if (!currentVillage.hasSupport && currentVillage.hasAttack) {
-                    headerTemplate = trans.sp.commands.exportAttackHeader;
-                }
-                else if (currentVillage.hasSupport && !currentVillage.hasAttack) {
-                    headerTemplate = trans.sp.commands.exportDefenseHeader;
-                } else {
-                    headerTemplate = trans.sp.commands.exportCompleteHeader;
-                }
-
-                requestComposed +=
-                    headerTemplate
-                        .replace("{#}", attackCount)
-                        .replace("{support#}", supportCount)
-                        .replace("{totalStack}", formatNumber(totalPop))
-                        .replace("{lastAttack}", currentVillage.hasAttack ? twDateFormat(lastAttack, true) : "")
-                        .replace("{village}", "[village]" + villages[i] + "[/village]")
-                        + "\n " + currentText;
-
-                // splits per 500 [ characters (limit in TW)
-                var amountBracket = requestsPer500[requestsPer500.length - 1].match(/\[/g);
-                if (amountBracket != null && (requestComposed.match(/\[/g).length + amountBracket.length > 500)) {
-                    requestsPer500.push("");
-                }
-                requestsPer500[requestsPer500.length - 1] += requestComposed;
-                requestComposed = "";
+                exportWidgets.push("<textarea cols=50 rows=10 class=restackArea>" + JSON.stringify(exportAttacks, null, 4) + "</textarea>");
             }
 
             if ($("#textsArea").size() == 0) {
@@ -187,9 +230,13 @@
             } else {
                 $("#textsArea").html("");
             }
-            for (var i = 0; i < requestsPer500.length; i++) {
-                $("#textsArea").append("<textarea cols=50 rows=10 class=restackArea>" + requestsPer500[i] + "</textarea>");
+            for (var i = 0; i < exportWidgets.length; i++) {
+                $("#textsArea").append(exportWidgets[i]);
             }
+            $("#textsArea").append("<br><input type=button value='" + trans.sp.all.close + "' id=closeTextsArea>");
+            $("#closeTextsArea").click(function() {
+                $("#textsArea").remove();
+            });
         });
 
         function filterCommandRows(filterStrategy) {

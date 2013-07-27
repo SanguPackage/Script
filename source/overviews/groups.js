@@ -29,8 +29,8 @@
         menu += "&nbsp; <input type=textbox size=3 id=defFilterContinentText maxlength=2><input type=button id=defFilterContinent value='" + trans.sp.commands.continentFilter + "'>";
 
         menu += "&nbsp; <input type=textbox size=3 id=defFilterAmountText maxlength=2><input type=button id=defFilterAmount value='" + trans.sp.groups.amountFilter + "'>";
-        menu += "&nbsp; <input type=textbox size=3 id=defFilterPointsText maxlength=5><input type=button id=defFilterPoints value='" + trans.sp.groups.pointsFilter + "'>";
-        menu += "&nbsp; <input type=textbox size=3 id=defFilterFarmText maxlength=5><input type=button id=defFilterFarm value='" + trans.tw.all.farm + "'>";
+        menu += "&nbsp; <input type=textbox size=4 id=defFilterPointsText maxlength=5><input type=button id=defFilterPoints value='" + trans.sp.groups.pointsFilter + "'>";
+        menu += "&nbsp; <input type=textbox size=5 id=defFilterFarmText maxlength=6><input type=button id=defFilterFarm value='" + trans.tw.all.farm + "'>";
 
         menu += "&nbsp; <input type=text size=12 id=defFilterGroupValue value=''>";
         menu += "<input type=button id=defFilterGroup value='" + trans.sp.groups.groupNameFilter + "'>";

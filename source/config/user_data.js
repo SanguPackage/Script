@@ -154,7 +154,7 @@ if (user_data !== '') {
             filterMerchants: true,
             filterRows: false,
             bbcodeMinimumDiff: 50000,
-			highlightColor: "#DFD6BF"
+			highlightColor: "#FF7F27"
         },
 
         jumper: {

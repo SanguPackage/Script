@@ -30,9 +30,10 @@ if (pers.get('worldconfig') !== '') {
 		
 	} else {
 		// Not allowed to get data with ajax: need to store the configuration here
-		world_config = (function() {
-			//<!--@@INCLUDE "config\world_config_de.js" INDENT=5 //-->
-		})();
+		//world_config = (function() {
+			// paste the world configurations for all worlds on servers that disallow ajax
+		//})();
+        alert("No configurations present for this server! (see world_config.js)\nContinueing with default settings.");
 	}
 	
 	pers.set("worldconfig", JSON.stringify(world_config));

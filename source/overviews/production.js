@@ -4,7 +4,7 @@
         overviewTable = $("#production_table");
         tableHandler.init("production_table");
 
-// Filter full storage rooms
+        // Filter full storage rooms
         var resTable = $("#production_table");
         var menu = "<table class='vis' width='100%'>";
         menu += "<tr><th>";
@@ -42,12 +42,27 @@
 
         $("#resBBCode").click(function () {
             trackClickEvent("BBCodeOutput");
-            var bbs = filterRes("bbcode", false);
-            if ($("#bbcodeArea").size() == 0) {
-                $(this).after("<textarea id=bbcodeArea cols=50 rows=10 wrap=off>");
+            var bbs = filterRes("bbcode", false),
+                reverse = $("#resAmountType").val() == "-1",
+                bbCodesTitle = reverse ? trans.sp.prodOverview.tooLittleText : trans.sp.prodOverview.tooMuchText;
+
+            bbCodesTitle = bbCodesTitle
+                .replace("{diff}", parseInt(user_data.resources.bbcodeMinimumDiff / 1000, 10))
+                .replace("{min}", parseInt(parseInt($("#resAmount").val(), 10) / 1000, 10));
+
+            if ($("#textsArea").size() == 0) {
+                $(this).parent().parent().parent().append("<tr><td id=textsArea></td></tr>");
+            } else {
+                $("#textsArea").html("");
             }
 
+            $("#textsArea").append("<b>" + bbCodesTitle + "</b><br><textarea id=bbcodeArea cols=50 rows=10 wrap=off>");
             $("#bbcodeArea").val(bbs);
+
+            $("#textsArea").append("<br><input type=button value='" + trans.sp.all.close + "' id=closeTextsArea>");
+            $("#closeTextsArea").click(function() {
+                $("#textsArea").remove();
+            });
         });
 
         function filterRes(resourceIndex, hideRows) {
@@ -61,12 +76,16 @@
             var reverse = $("#resAmountType").val() == "-1";
             var bbCodeImages = $("#resBBCodeImages").is(":checked");
             var minDif = user_data.resources.bbcodeMinimumDiff;
+            var bbCodesTitle;
 
             if (reverse) {
-                bbcodes = trans.sp.all.tooLittle + "\n";
+                bbcodes = trans.sp.prodOverview.tooLittle + "\n";
+                bbCodesTitle = trans.sp.prodOverview.tooLittleText;
             } else {
-                bbcodes = trans.sp.all.tooMuch + "\n";
+                bbcodes = trans.sp.prodOverview.tooMuch + "\n";
+                bbCodesTitle = trans.sp.prodOverview.tooMuchText;
             }
+            bbCodesTitle = bbCodesTitle.replace("{min}", minDif).replace("{diff}", minAmount);
 
             function doResource(resCell, resArray, resIndex, reverse, minAmount) {
                 var resAmount = parseInt(resArray[resIndex], 10);
@@ -157,8 +176,15 @@
                     stayers = stayers.add($(this));
                 }
             });
-            stayers.show();
-            goners.hide();
+            if (hideRows) {
+                goners.remove();
+                var amountOfVillagesCell = $("tr:first th", resTable).eq(hasNotes ? 1 : 0);
+                amountOfVillagesCell.text(amountOfVillagesCell.text().replace(/\d+/, $("tr", resTable).size() - 1));
+            } else {
+                stayers.show();
+                goners.hide();
+            }
+
             return bbcodes;
         }
 
