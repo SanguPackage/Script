@@ -235,7 +235,7 @@
             }
             $("#textsArea").append("<br><input type=button value='" + trans.sp.all.close + "' id=closeTextsArea>");
             $("#closeTextsArea").click(function() {
-                $("#textsArea").remove();
+                $("#textsArea").parent().remove();
             });
         });
 

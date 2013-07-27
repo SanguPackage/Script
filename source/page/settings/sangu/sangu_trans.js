@@ -59,9 +59,11 @@ var sangu_trans = (function() {
             addFancyImagesToOverviewLinks: "De overzichtslinks opsmukken",
             command: {
                 title: "Overzichtsscherm: Troepenoverzicht",
+                titleOwnTroopsPage: "Pagina's 'Eigen' en 'In het dorp'",
+                titleDefensePage: "Pagina's 'Verdediging' en 'Ondersteuning'",
                 changeTroopsOverviewLink: "Link wijzigen om direct 'Eigen troepen' te openen",
                 filterMinPopulation: "De standaard ingevulde waarde om te filteren op populatie",
-                filterOnUnitTypeSeperator: "Filteren op aantal eenheden",
+                filterOnUnitTypeSeperator: "Eigen/In het dorp: Filteren op aantal eenheden",
                 filterMinDefaultType: "De eenheid om te filteren die standaard geselecteerd is",
                 filterMinDefault: "Het aantal eenheden om te filteren dat standaard ingevuld is",
                 filterMinDefaultTooltip: "Dit aantal wordt ingevuld wanneer de pagina opent. Bij het selecteren van een andere eenheid worden de waarden hieronder gebruikt.",
@@ -69,7 +71,7 @@ var sangu_trans = (function() {
                 filterAutoSort: "De dorpenlijst automatisch sorteren na het ingeven van een doeldorp"
             },
             troopsRestack: {
-                title: "Stack BBCodes generatie",
+                title: "Alle pagina's: Stack BBCodes generatie",
                 to: "Stack een dorp tot hoeveel populatie",
                 requiredDifference: "Vereist verschil in huidige populatie in het dorp en de waarde hierboven",
                 fieldsDistanceFilterDefault: "Het standaard ingevuld aantal velden waarop gefilterd wordt",
@@ -201,7 +203,11 @@ var sangu_trans = (function() {
             title: "Overige configuratie",
             proStyle: "Pro Style?",
             proStyleTooltip: "Met deze setting worden een heleboel kleinere features aan of uitgeschakeld",
+            timeDisplayTitle: "Hoe looptijden weergeven",
             displayDays: "Dagen tonen wanneer de troepen langer dan 24 uur lopen?",
+            displayDaysTooltip: "Voorbeeld: toon \"1.18:01:36\" wanneer aangevinkt, zoniet wordt die looptijd als \"42:01:36\" weergegeven",
+            walkingTimeDisplay: "Te tonen tekst",
+            walkingTimeDisplayTooltip: "Gebruik {duration} voor het aantal uren en {arrival} voor de aankomstdatum",
             calculateSnob: "Berekenen hoeveel edels direct kunnen geproduceerd worden",
             overviewLinks: "Iconen toevoegen aan de overzichtenlinks",
             showPlayerProfileOnVillage: "Het uitgebreide spelersprofiel tonen op een dorpsinformatie pagina",

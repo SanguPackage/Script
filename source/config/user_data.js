@@ -9,6 +9,7 @@ if (user_data !== '') {
     user_data = {
         proStyle: true,
         displayDays: false, /* true: display (walking)times in days when > 24 hours. false: always displays in hours */
+        walkingTimeDisplay: "{duration} || {arrival}",
 
         colors: {
             error: "#FF6347",
@@ -285,6 +286,6 @@ if (user_data !== '') {
 (function() {
     var saved_data = pers.get('sangusettings');
     if (saved_data !== '') {
-        $.extend(user_data, JSON.parse(saved_data));
+        user_data = $.extend(true, user_data, JSON.parse(saved_data));
     }
 }());

@@ -113,7 +113,7 @@ trans = {
 			total: "Totaal",
 			last: "Laatste",
 			target: "Doel",
-			targetEx: "Doelwit",
+			targetEx: "Doeldorp",
 			more: "meer",
 			less: "minder",
 			all: "Alle",
@@ -188,20 +188,42 @@ trans = {
 			loadNextPage: "[volgende pagina laden]"
 		},
 		troopOverview: {
+            help: "<b>Laat je looptijden uitrekenen door Sangu!</b><br>"
+                + "Gebruik de nieuwe kolom uiterst rechts om de looptijden tot een ingegeven doeldorp te berekenen.<br>"
+                + "<br>Je kan de eenheden icons ({unitIcon}) aanklikken om de snelheid van de traagste eenheid te wijzigen."
+                + "<span style='line-height: 2'>"
+                + "<br>Klikken wijzigt de <span style='border: 2px green dotted'>snelheid op de huidige pagina</span>. "
+                + "<br>Dubbelklikken wijzigt de <span style='border: 3px red solid'>snelheid op alle pagina's</span>."
+                + "</span>"
+                + "<br>De cellen met de groene en rode rand geven de huidige traagst eenheid-snelheid aan."
+                + "<br><br><b>De iconen in de 'Opdracht' kolom</b>:"
+                + "<br>Gebruik <img src='graphic/dots/red.png'> om een rij te verwijderen."
+                + "<br>Gebruik <img src='graphic/command/attack.png'> om naar de verzamelplaats te gaan."
+                + "(gebruik de middelste muisknop om in een nieuwe tab te openen)",
+            helpTitle: "Snel dorpen aanvallen (of ondersteunen)",
 			removeVillage: "Dorp verwijderen",
 			toThePlace: "Verzamelplaats",
 			setTargetVillageButton: "OK",
+			setTargetVillageButtonAlert: "Geef de coördinaten van het dorp dat je wil aanvallen (of ondersteunen)",
 			commandTitle: "Opdracht",
 			selectUnitSpeed: "Selecteer {0} als traagste eenheid. (Klik op deze pagina, Dubbel klik op alle pagina's.)",
 			nightBonus: "Nacht?",
 			village: "Dorp",
 			filterTroops: "Filter",
+			filterTroopsTooltip: "Toon enkel de dorpen met minder dan het aangegeven aantal eenheden",
 			filterPopulation: "Filter populatie",
+			filterPopulationTooltip: "Toon enkel de dorpen met meer/minder bevolking",
 			calcStack: "Bereken stack",
+			calcStackTooltip: "Toon de bevolking per dorp in de \"Nacht?\" kolom",
 			filterNoble: "Filter edels",
+			filterNobleTooltip: "Toon enkel de dorpen waar edels aanwezig zijn",
 			filterUnderAttack: "Filter onder aanval",
+			filterUnderAttackTooltip: "Toon enkel de dorpen die onder aanval zijn",
 			sort: "Sorteren",
+			sortTooltip: "Sorteren op looptijd tot doeldorp",
 			restack: "Stack BB Codes",
+			restackTitle: "<b>Alle dorpen met minstens {requiredDiff}k bevolking minder dan {to}k</b><br>"
+                + "<font size='-2'>(configuratie wijzigbaar bij Sangu instellingen)</font>",
 			cheapNobles: "Goedkope edelmannen beschikbaar"
 		},
 		prodOverview: {
@@ -222,7 +244,8 @@ trans = {
             tooMuch: "Teveel:",
             tooMuchText: "Alle dorpen met minstens {diff}k meer grondstoffen dan {min}k",
             tooLittle: "Te weinig:",
-            tooLittleText: "Alle dorpen met minstens {diff}k minder grondstoffen dan {min}k"
+            tooLittleText: "Alle dorpen met minstens {diff}k minder grondstoffen dan {min}k",
+            bbCodeExtraInfo: "<br><font size='-2'>(configuratie wijzigbaar bij Sangu instellingen)</font>"
 		},
 		buildOverview: {
 			optimistic: "Optimistisch",

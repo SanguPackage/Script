@@ -89,14 +89,16 @@ function getDistance(x1, x2, y1, y2, speed) {
 	dist.isNightBonus = isDateInNightBonus(dist.arrivalTime);
 
 	if (speed == 'snob' && dist.travelTime > world_config.maxNobleWalkingTime) {
-		dist.html = "<font color=red><b>" + twDurationFormat(dist.travelTime) + "</b></font>";
+		dist.html = "<font color='" + user_data.colors.error + "'><b>" + twDurationFormat(dist.travelTime) + "</b></font>";
 		dist.isNightBonus = true;
 	} else {
 		var displayTime = twDateFormat(dist.arrivalTime);
 		if (speed != 'merchant' && dist.isNightBonus) {
-			displayTime = "<font color=red><b>" + displayTime + "</b></font>";
+			displayTime = "<font color='" + user_data.colors.error + "'><b>" + displayTime + "</b></font>";
 		}
-		dist.html = twDurationFormat(dist.travelTime) + ' || ' + displayTime;
+		dist.html = user_data.walkingTimeDisplay
+            .replace("{duration}", twDurationFormat(dist.travelTime))
+            .replace("{arrival}", displayTime);
 	}
 	if (dist.fields == 0) {
 		dist.html = "";

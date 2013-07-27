@@ -886,14 +886,29 @@ var user_data_configs = (function() {
                         editor: "bool"
                     }
                 },
-                filterAutoSort: {
-                    label: sangu_trans.overviews.command.filterAutoSort,
+                titleDefensePage: {
+                    type: "subtitle",
+                    label: sangu_trans.overviews.command.titleDefensePage
+                },
+                fieldsDistanceFilterDefault: {
+                    label: sangu_trans.overviews.troopsRestack.fieldsDistanceFilterDefault,
                     propUI: {
-                        getter: function() { return user_data.command.filterAutoSort; },
-                        setter: function(value) { user_data.command.filterAutoSort = value; },
+                        getter: function() { return user_data.restack.fieldsDistanceFilterDefault; },
+                        setter: function(value) { user_data.restack.fieldsDistanceFilterDefault = value; },
+                        editor: "number"
+                    }
+                },
+                filterReverse: {
+                    label: sangu_trans.overviews.troopsRestack.filterReverse,
+                    tooltip: sangu_trans.overviews.troopsRestack.filterReverseTooltip,
+                    propUI: {
+                        getter: function() { return user_data.restack.filterReverse; },
+                        setter: function(value) { user_data.restack.filterReverse = value; },
                         editor: "bool"
                     }
                 },
+
+
                 filterMinPopulation: {
                     label: sangu_trans.overviews.command.filterMinPopulation,
                     propUI: {
@@ -902,6 +917,23 @@ var user_data_configs = (function() {
                         editor: "number|step=1000"
                     }
                 },
+
+
+
+                titleOwnTroopsPage: {
+                    type: "subtitle",
+                    label: sangu_trans.overviews.command.titleOwnTroopsPage
+                },
+                filterAutoSort: {
+                    label: sangu_trans.overviews.command.filterAutoSort,
+                    propUI: {
+                        getter: function() { return user_data.command.filterAutoSort; },
+                        setter: function(value) { user_data.command.filterAutoSort = value; },
+                        editor: "bool"
+                    }
+                },
+
+
                 commandTitle: {
                     type: "subtitle",
                     label: sangu_trans.overviews.command.filterOnUnitTypeSeperator
@@ -1021,6 +1053,14 @@ var user_data_configs = (function() {
                         editor: "number|step=500"
                     }
                 },
+                defaultPopulationFilterAmount: {
+                    label: sangu_trans.overviews.troopsRestack.defaultPopulationFilterAmount,
+                    propUI: {
+                        getter: function() { return user_data.restack.defaultPopulationFilterAmount; },
+                        setter: function(value) { user_data.restack.defaultPopulationFilterAmount = value; },
+                        editor: "number|step=1000"
+                    }
+                },
                 restackTitle: {
                     type: "subtitle",
                     label: sangu_trans.overviews.troopsRestack.title
@@ -1038,32 +1078,7 @@ var user_data_configs = (function() {
                     propUI: {
                         getter: function() { return user_data.restack.requiredDifference; },
                         setter: function(value) { user_data.restack.requiredDifference = value; },
-                        editor: "number"
-                    }
-                },
-                fieldsDistanceFilterDefault: {
-                    label: sangu_trans.overviews.troopsRestack.fieldsDistanceFilterDefault,
-                    propUI: {
-                        getter: function() { return user_data.restack.fieldsDistanceFilterDefault; },
-                        setter: function(value) { user_data.restack.fieldsDistanceFilterDefault = value; },
-                        editor: "number"
-                    }
-                },
-                filterReverse: {
-                    label: sangu_trans.overviews.troopsRestack.filterReverse,
-                    tooltip: sangu_trans.overviews.troopsRestack.filterReverseTooltip,
-                    propUI: {
-                        getter: function() { return user_data.restack.filterReverse; },
-                        setter: function(value) { user_data.restack.filterReverse = value; },
-                        editor: "bool"
-                    }
-                },
-                defaultPopulationFilterAmount: {
-                    label: sangu_trans.overviews.troopsRestack.defaultPopulationFilterAmount,
-                    propUI: {
-                        getter: function() { return user_data.restack.defaultPopulationFilterAmount; },
-                        setter: function(value) { user_data.restack.defaultPopulationFilterAmount = value; },
-                        editor: "number|step=1000"
+                        editor: "number|step=500"
                     }
                 }
             }
@@ -1226,14 +1241,6 @@ var user_data_configs = (function() {
                         editor: "bool"
                     }
                 },
-                displayDays: {
-                    label: sangu_trans.other.displayDays,
-                    propUI: {
-                        getter: function() { return user_data.displayDays; },
-                        setter: function(value) { user_data.displayDays = value; },
-                        editor: "bool"
-                    }
-                },
                 calculateSnob: {
                     label: sangu_trans.other.calculateSnob,
                     show: !world_config.coins,
@@ -1265,6 +1272,28 @@ var user_data_configs = (function() {
                     propUI: {
                         getter: function() { return user_data.overview.ajaxSeperateSupport; },
                         setter: function(value) { user_data.overview.ajaxSeperateSupport = value; },
+                        editor: "bool"
+                    }
+                },
+                timeDisplayTitle: {
+                    type: "subtitle",
+                    label: sangu_trans.other.timeDisplayTitle
+                },
+                walkingTimeDisplay: {
+                    label: sangu_trans.other.walkingTimeDisplay,
+                    tooltip: sangu_trans.other.walkingTimeDisplayTooltip,
+                    propUI: {
+                        getter: function() { return user_data.walkingTimeDisplay; },
+                        setter: function(value) { user_data.walkingTimeDisplay = value; },
+                        editor: "text"
+                    }
+                },
+                displayDays: {
+                    label: sangu_trans.other.displayDays,
+                    tooltip: sangu_trans.other.displayDaysTooltip,
+                    propUI: {
+                        getter: function() { return user_data.displayDays; },
+                        setter: function(value) { user_data.displayDays = value; },
                         editor: "bool"
                     }
                 },

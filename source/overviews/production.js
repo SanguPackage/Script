@@ -7,7 +7,7 @@
         // Filter full storage rooms
         var resTable = $("#production_table");
         var menu = "<table class='vis' width='100%'>";
-        menu += "<tr><th>";
+        menu += "<tr><th width='99%'>";
         menu += " <input type=checkbox id=resFilter " + (user_data.resources.filterRows ? "checked" : "") + "> " + trans.sp.prodOverview.filter + " ";
         menu += "&nbsp;<input type=button id=resStorageFull value='" + trans.sp.prodOverview.filterFullGS + "' title=''>&nbsp; &nbsp; ";
         menu += "<select id=resAmountType><option value=1>" + trans.sp.all.more + "</option>";
@@ -16,7 +16,10 @@
         menu += " <input type=button class=resFilter value='" + trans.tw.all.wood + "' resIndex=0><input type=button class=resFilter value='" + trans.tw.all.stone + "' resIndex=1><input type=button class=resFilter value='" + trans.tw.all.iron + "' resIndex=2><input type=button class=resFilter value='" + trans.sp.all.all + "' resIndex=-1>";
         menu += " " + trans.sp.all.withText + " <input type=checkbox id=resMerchant " + (user_data.resources.filterMerchants ? "checked" : "") + " title='" + trans.sp.prodOverview.merchantTooltip + "'>";
         menu += "<input type=text id=resMerchantAmount size=2 value=" + user_data.resources.requiredMerchants + " title='" + trans.sp.prodOverview.merchantAmountTooltip + "'> " + trans.sp.all.merchants + " ";
-        menu += "&nbsp; &nbsp; <input type=button id=resBBCode value='" + trans.sp.prodOverview.bbCodes + "'> <input type=checkbox id=resBBCodeImages> " + trans.sp.prodOverview.bbCodesInfo;
+
+        menu += "</th><th width='1%' nowrap>";
+        menu += "<input type=button id=resBBCode value='" + trans.sp.prodOverview.bbCodes + "'> "
+            + "<input type=checkbox id=resBBCodeImages> " + trans.sp.prodOverview.bbCodesInfo + "&nbsp; ";
         menu += "</th></tr></table>";
         resTable.before(menu);
 
@@ -51,17 +54,17 @@
                 .replace("{min}", parseInt(parseInt($("#resAmount").val(), 10) / 1000, 10));
 
             if ($("#textsArea").size() == 0) {
-                $(this).parent().parent().parent().append("<tr><td id=textsArea></td></tr>");
+                $(this).parent().parent().parent().append("<tr><td colspan=2 id=textsArea></td></tr>");
             } else {
                 $("#textsArea").html("");
             }
 
-            $("#textsArea").append("<b>" + bbCodesTitle + "</b><br><textarea id=bbcodeArea cols=50 rows=10 wrap=off>");
+            $("#textsArea").append("<b>" + bbCodesTitle + "</b>" + trans.sp.prodOverview.bbCodeExtraInfo + "<br><textarea id=bbcodeArea cols=50 rows=10 wrap=off>");
             $("#bbcodeArea").val(bbs);
 
             $("#textsArea").append("<br><input type=button value='" + trans.sp.all.close + "' id=closeTextsArea>");
             $("#closeTextsArea").click(function() {
-                $("#textsArea").remove();
+                $("#textsArea").parent().remove();
             });
         });
 
