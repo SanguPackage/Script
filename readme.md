@@ -9,20 +9,8 @@ adding extra features on pretty much every page, most notably the village overvi
 Support
 -------
 
-**Servers**
-
-Currently only the .nl Tribal Wars server is supported. There is a `trans` JS object that should
-make it (relatively) easy to make the script work on DE worlds aswell. The use of Greasemonkey is (last
-time I checked) not allowed on any other server, so NL and DE are the only ones translations
-can be added for.
-
-**Worlds**
-
-Currently all NL worlds are supported.
-
-**Browsers**
-
-All features should work in the latest versions of Opera, FireFox and Chrome.
+The Sangu Package supports all TribalWars.nl worlds.
+All features should work on the latest versions of Opera, FireFox and Chrome.
 
 Code
 ----
@@ -70,4 +58,4 @@ Everyone is more than welcome to join in. Lots of features that can still be add
 Contact
 -------
 
-You can contact me at woutervs@hotmail.com.
+You can contact me at package@sangu.be.
