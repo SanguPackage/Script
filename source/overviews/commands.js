@@ -13,7 +13,7 @@
         menu += "<tr>";
         if (location.href.indexOf('type=all') > -1 || location.href.indexOf('&type=') == -1) {
             menu += "<th width='1%'>";
-            menu += "<input type=button id=filterReturning value='" + trans.sp.commands.filterReturn + "' title=\"" + trans.sp.commands.filterReturnTooltip + "\">&nbsp;";
+            menu += "<input type=button id=filterReturning value='" + trans.sp.commands.filterReturn + "' title=\"" + trans.sp.commands.filterReturnTooltip + "\">";
             menu += "</th>";
         }
 
@@ -24,7 +24,7 @@
 
         menu += "</th><th width='98%'>";
 
-        menu += "&nbsp; <input type=button id=BBCodeOutput value='" + trans.sp.commands.bbCodeExport + "' title='" + trans.sp.commands.bbCodeExportTooltip + "'>";
+        menu += "<input type=button id=BBCodeOutput value='" + trans.sp.commands.bbCodeExport + "' title='" + trans.sp.commands.bbCodeExportTooltip + "'>";
 
         if (commandListType !== "attack" && commandListType !== "return") {
             menu += "&nbsp; &nbsp;";
