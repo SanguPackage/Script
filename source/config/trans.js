@@ -97,7 +97,7 @@ trans = {
                 + "game_data: {game_data}\n"
                 + "\n{stacktrace}\n"
                 + "</textarea>"
-                + "<br><br>Je kan de bug <a href='{url}' target='_blank'>hier</a> melden."
+                + "<br><br>Je kan de bug <a href='{forum-url}' target='_blank'>hier</a> melden."
                 + "<br>Of je kan de bug <a href='mailto:{email}'>mailen</a>."
                 + "<br><br><center><i>Een bug waarvan we niet weten dat ie bestaat zal ook niet gefixed worden!</i></center>"
                 + "<br><center><b>Geef zoveel mogelijk informatie mee bij het sturen van een bugrapport!!!</b></center>",

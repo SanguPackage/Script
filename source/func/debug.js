@@ -43,7 +43,7 @@ function sangu_alert(e, title) {
         content = {
             title: trans.sp.sp.packageCrashTitle,
             body: trans.sp.sp.packageCrash
-                .replace("{url}", server_settings.helpdeskUrl)
+                .replace("{forum-url}", server_settings.helpdeskUrl)
                 .replace("{title}", title)
                 .replace(/\{error\}/g, e.message)
                 .replace("{page}", JSON.stringify(current_page))
