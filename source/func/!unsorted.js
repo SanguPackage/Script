@@ -124,7 +124,13 @@ function trackEvent(category, action, label) {
 	//_gaq.push(['b._setAccount', 'UA-30075487-3']);
 	//_gaq.push(['b._trackPageview']);
 	// _gat._getTrackerByName('b')._trackEvent("SanguPackage", "Loaded", "withGetB");
-	_gat._getTrackerByName('b')._trackEvent(category, action, label);
+    try
+    {
+        _gat._getTrackerByName('b')._trackEvent(category, action, label);
+    }
+	catch (e) {
+        // no crash report for this
+    }
 }
 
 function fillRallyPoint(units) {
