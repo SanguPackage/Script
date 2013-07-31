@@ -105,7 +105,7 @@
                     (function() {
                         var supportDisplay = stackDisplay(totalFarm - ownFarmTotal, { showFarmLimit: true });
                         supportingTroopsTable +=
-                            '<tr><td style="border-top: 1px solid #85550d ;background-color: ' + supportDisplay.color + '">"'
+                            '<tr><td style="border-top: 1px solid #85550d ;background-color: ' + supportDisplay.color + '">'
                                 + '<span class="icon header population" title="' + trans.sp.main.supportingStackTitle
                                 + '"></span>'
                                 + '<b>' + supportDisplay.desc + '</b>' + '</td></tr>';

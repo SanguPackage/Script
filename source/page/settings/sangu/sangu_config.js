@@ -694,6 +694,10 @@ var user_data_configs = (function() {
                     type: "subtitle",
                     label: sangu_trans.place.noblePlaceLinkTitle
                 },
+                noblePlaceLinkDivideTitle: {
+                    type: "subtitle",
+                    label: sangu_trans.place.noblePlaceLinkDivideTitle
+                },
                 noblePlaceLinkDivideName: {
                     label: sangu_trans.place.linkText,
                     propUI: {
@@ -709,10 +713,6 @@ var user_data_configs = (function() {
                         setter: function(value) { user_data.place.attackLinks.noblePlaceLink = value; },
                         editor: "bool"
                     }
-                },
-                noblePlaceLinkDivideTitle: {
-                    type: "subtitle",
-                    label: sangu_trans.place.noblePlaceLinkDivideTitle
                 },
                 noblePlaceLinkDivideAddRam: {
                     label: sangu_trans.place.noblePlaceLinkDivideAddRam,

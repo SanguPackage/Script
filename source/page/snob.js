@@ -4,6 +4,7 @@ if (user_data.other.calculateSnob && !world_config.coins) {
         try {
             var table = $("table.vis:eq(1)", content_value);
             var cost = $("td:eq(1)", table).html();
+            // TODO tw 8.14.1 : bug here!
             cost = parseInt(cost.substr(0, cost.indexOf(" ")), 10);
             var stored = $("tr:eq(1) td:eq(1)", table).html();
             stored = parseInt(stored.substr(0, stored.indexOf(" ")), 10);
