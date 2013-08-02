@@ -11,6 +11,7 @@ SetWorkingDir, %A_ScriptDir%
 ; savePaths
 IniRead, savePath, mergeIt.ini, SavePaths, operaSavePath, C:\CloudDrives\Dropbox\Personal\!Programming\OperaUserScripts\
 IniRead, firefoxLocation, mergeIt.ini, SavePaths, firefoxSavePath, C:\Users\Wouter\AppData\Roaming\Mozilla\Firefox\Profiles\xtz5hi2x.default\gm_scripts\Sangu_Package\sangupackage.user.js
+IniRead, sourceLocation, mergeIt.ini, Site, sourceLocation, C:\Users\Wouter\AppData\Roaming\Mozilla\Firefox\Profiles\xtz5hi2x.default\gm_scripts\Sangu_Package\sangupackage.user.js
 
 ; update version
 versionFileName = version.txt
@@ -24,8 +25,8 @@ StringSplit, versionArray, newVersion, .
 newReleaseVersion = %versionArray1%.%versionArray2%
 UpdateVersion(newReleaseVersion, versionFileName)
 
-ParseAndSaveFile("release.user.js", "..\site\", saveAs)
-ParseAndSaveFile("..\site\index_toMerge.php", "..\site\", "index.php")
+ParseAndSaveFile("release.user.js", sourceLocation, saveAs)
+ParseAndSaveFile(sourceLocation . "index_toMerge.php", sourceLocation, "index.php")
 UpdateVersion(newVersion, versionFileName)
 
 ; Autocopy to Firefox greasemonkey directory
