@@ -70,6 +70,7 @@ if (user_data !== '') {
 
         command: { /* features for the own troops overview page */
             changeTroopsOverviewLink: true, /* Change the link to the own troops overview */
+            middleMouseClickDeletesRow: true,
 
             filterMinPopulation: 18000, /* Default number filled in to filter on village stack */
             filterMinDefaultType: 'axe', /* This unit type is by default selected in the filter dropdown */

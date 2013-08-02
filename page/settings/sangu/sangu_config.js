@@ -886,6 +886,30 @@ var user_data_configs = (function() {
                         editor: "bool"
                     }
                 },
+
+                titleOwnTroopsPage: {
+                    type: "subtitle",
+                    label: sangu_trans.overviews.command.titleOwnTroopsPage
+                },
+                middleMouseClickDeletesRow: {
+                    label: sangu_trans.overviews.command.middleMouseClickDeletesRow,
+                    tooltip: sangu_trans.overviews.command.middleMouseClickDeletesRowTooltip,
+                    propUI: {
+                        getter: function() { return user_data.command.middleMouseClickDeletesRow; },
+                        setter: function(value) { user_data.command.middleMouseClickDeletesRow = value; },
+                        editor: "bool"
+                    }
+                },
+                filterAutoSort: {
+                    label: sangu_trans.overviews.command.filterAutoSort,
+                    propUI: {
+                        getter: function() { return user_data.command.filterAutoSort; },
+                        setter: function(value) { user_data.command.filterAutoSort = value; },
+                        editor: "bool"
+                    }
+                },
+
+
                 titleDefensePage: {
                     type: "subtitle",
                     label: sangu_trans.overviews.command.titleDefensePage
@@ -907,29 +931,12 @@ var user_data_configs = (function() {
                         editor: "bool"
                     }
                 },
-
-
                 filterMinPopulation: {
                     label: sangu_trans.overviews.command.filterMinPopulation,
                     propUI: {
                         getter: function() { return user_data.command.filterMinPopulation; },
                         setter: function(value) { user_data.command.filterMinPopulation = value; },
                         editor: "number|step=1000"
-                    }
-                },
-
-
-
-                titleOwnTroopsPage: {
-                    type: "subtitle",
-                    label: sangu_trans.overviews.command.titleOwnTroopsPage
-                },
-                filterAutoSort: {
-                    label: sangu_trans.overviews.command.filterAutoSort,
-                    propUI: {
-                        getter: function() { return user_data.command.filterAutoSort; },
-                        setter: function(value) { user_data.command.filterAutoSort = value; },
-                        editor: "bool"
                     }
                 },
 

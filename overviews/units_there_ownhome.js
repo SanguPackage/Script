@@ -296,25 +296,24 @@
         }
 
         // delete a table row
-        // TODO: Opera doesn't recognize right mouse clicks :(.. Perhaps we can implement this now and make it work for Firefox?
         $("#units_table").mouseup(function (e) {
             if (e.target.nodeName === 'IMG') {
                 if (e.target.title == trans.sp.troopOverview.removeVillage) {
-                    //if ((!$.browser.msie && e.button == 0) || ($.browser.msie && e.button == 1))
-                    //	q("Left Button");
-                    // else if (e.button == 2)
-                    //	q("Right Button");
-
                     setVillageCount(parseInt(pageSize.val(), 10) - 1);
                     $(e.target).parent().parent().remove();
                 }
             }
         });
 
+        // remove row or add border to command cell when middle mouse click (open in new tab)
         $(".attackLinks", tableHandler.overviewTable).bind("mousedown", function(e) {
             if (e.which == 2) {
-                var img = $(e.target).parent().parent();
-                img.css("border", (img.css("border-width").substr(0, 1) * 1 + 1) + "px red solid");
+                var cell = $(e.target).parent().parent();
+                if (user_data.command.middleMouseClickDeletesRow) {
+                    cell.parent().remove();
+                } else {
+                    cell.css("border", (parseInt(cell.css("border-width").substr(0, 1), 10) + 1) + "px red solid");
+                }
             }
         });
 

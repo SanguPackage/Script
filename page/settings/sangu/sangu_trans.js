@@ -60,6 +60,9 @@ var sangu_trans = (function() {
             command: {
                 title: "Overzichtsscherm: Troepenoverzicht",
                 titleOwnTroopsPage: "Pagina's 'Eigen' en 'In het dorp'",
+                middleMouseClickDeletesRow: "Actie bij <img src='graphic/command/attack.png'>"
+                    + " aanklikken met de middelste muisknop.",
+                middleMouseClickDeletesRowTooltip: "Vink aan om de dorpsrij te verwijderen. Uitgevinkt: Een zwarte rand wordt rond de \"Opdracht\" cell geplaatst.",
                 titleDefensePage: "Pagina's 'Verdediging' en 'Ondersteuning'",
                 changeTroopsOverviewLink: "Link wijzigen om direct 'Eigen troepen' te openen",
                 filterMinPopulation: "De standaard ingevulde waarde om te filteren op populatie",
