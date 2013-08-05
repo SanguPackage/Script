@@ -56,7 +56,7 @@ var sangu_trans = (function() {
             invertSortTooltip: "Vink dit aan om de traagste eenheid bovenaan te plaatsen"
         },
         overviews: {
-            addFancyImagesToOverviewLinks: "De overzichtslinks opsmukken",
+            addFancyImagesToOverviewLinks: "Icons toevoegen aan de overzichtslinks",
             command: {
                 title: "Overzichtsscherm: Troepenoverzicht",
                 titleOwnTroopsPage: "Pagina's 'Eigen' en 'In het dorp'",
@@ -187,7 +187,7 @@ var sangu_trans = (function() {
             addCatapultImages: "Gebouws iconen tonen om snel het katapult doelwit te wijzigen"
         },
         villageInfo: {
-            title: "Extra link op elke dorpsinformatie naar het troepenoverzicht",
+            title: "Twee extra links naar het troepenoverzicht op elke dorpsinformatie pagina toevoegen",
             off_title: "Extra link voor aanvallen",
             def_title: "Extra link voor verdedigen",
             linkName: "De link die toegevoegd wordt",
@@ -212,7 +212,6 @@ var sangu_trans = (function() {
             walkingTimeDisplay: "Te tonen tekst",
             walkingTimeDisplayTooltip: "Gebruik {duration} voor het aantal uren en {arrival} voor de aankomstdatum",
             calculateSnob: "Berekenen hoeveel edels direct kunnen geproduceerd worden",
-            overviewLinks: "Iconen toevoegen aan de overzichtenlinks",
             showPlayerProfileOnVillage: "Het uitgebreide spelersprofiel tonen op een dorpsinformatie pagina",
             farmLimitTitle: "Dorpstacks achtergrondkleuren",
             farmLimitStackColors: "Kleurenschakering",

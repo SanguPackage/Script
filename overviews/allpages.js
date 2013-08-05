@@ -1,5 +1,5 @@
 // make the editting groups box less wide
-// add alternating row colors
+// and add alternating row colors
 $("#edit_group_href").click(function () {
 	var groupTable = $("#group_list");
 	groupTable.width(300);
@@ -132,15 +132,5 @@ if (user_data.overviews.addFancyImagesToOverviewLinks) {
 		if (imageToAdd !== "") {
 			overviewLink.prepend("<img src='http://cdn2.tribalwars.net/"+imageToAdd+"' title='"+overviewLink.text()+"' />&nbsp;&nbsp;");
 		}
-		
-		// Add hover highlight on all overview links
-		$("table.modemenu td").hover(function() {
-			// Mouseover state
-			$(this).animate({ backgroundColor: "#FFF5DA" }, { duration: 500, queue: false });
-		},
-		function() {
-			// Mouseout state
-		   $(this).animate({ backgroundColor: "#F4E4BC" }, { duration: 500, queue: false });
-		});
 	});
 }

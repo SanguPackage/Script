@@ -1257,14 +1257,6 @@ var user_data_configs = (function() {
                         editor: "bool"
                     }
                 },
-                overviewLinks: {
-                    label: sangu_trans.other.overviewLinks,
-                    propUI: {
-                        getter: function() { return user_data.overviews.addFancyImagesToOverviewLinks; },
-                        setter: function(value) { user_data.overviews.addFancyImagesToOverviewLinks = value; },
-                        editor: "bool"
-                    }
-                },
                 showPlayerProfileOnVillage: {
                     label: sangu_trans.other.showPlayerProfileOnVillage,
                     propUI: {
