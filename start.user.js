@@ -92,7 +92,7 @@
                 break;
 
             case "snob":
-                if (current_page.mode === "reserve") {
+                if (current_page.mode === "train") {
                     //<!--@@INCLUDE "page\snob.js" INDENT=3 //-->
                 }
                 break;
