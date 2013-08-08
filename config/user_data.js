@@ -217,11 +217,17 @@ if (user_data !== '') {
                 ]
         },
 
-        restack: { /* bbcode restack options on the 2 def troop overview pages (units_support_detail) */
+        /**
+         * units_support_detail: options on the 2 def troop overview pages
+         * on bbcode restack - and others!!)
+         */
+        restack: {
             to: 72000,
             requiredDifference: 1000,
             fieldsDistanceFilterDefault: 30,
             filterReverse: true,
+            autohideWithoutSupportAfterFilter: true,
+            calculateDefTotalsAfterFilter: true,
             defaultPopulationFilterAmount: 80000 /* this isn't related to restack */
         },
 
