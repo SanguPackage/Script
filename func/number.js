@@ -1,3 +1,6 @@
+/**
+ * Adds a . thousands separator
+ */
 function formatNumber(nStr) {
 	nStr += '';
 	var x = nStr.split('.');

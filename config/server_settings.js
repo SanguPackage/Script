@@ -1,4 +1,4 @@
-var server_settings = {
+server_settings = {
     /**
      * When game_data.majorVersion is different from this version then activate sangu 'compatibility' mode (gray icon)
      */

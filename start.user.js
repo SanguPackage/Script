@@ -16,15 +16,25 @@
          */
         content_value = $("#content_value"),
         /**
-         * Contains all translations except for the setting related translations in sangu_trans
+         * config/ Configuration per server (nl, de). Contains stuff like the tw_version, ajaxAllowed, etc
+         */
+            server_settings = {},
+        /**
+         * config/ Contains all translations except for the setting related translations in sangu_trans
          */
         trans = {},
         /**
-         * Contains all user settings
+         * config/ Contains all user settings
          */
         user_data = {},
         /**
-         * Contains all data for this world (like hasArchers, nightbonus, etc)
+         * config/ The current world configuration. settings like hasArchers, nightbonus, etc
+         */
+         world_config = {},
+        /**
+         * config/ Contains all data for this world (resources, units, buildings, units_off, unitsSize, ...)
+         * What's in this variable depends on world_config.
+         * This variable is a complete and utter mess :)
          */
         world_data = {},
         /**

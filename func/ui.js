@@ -36,15 +36,16 @@ $.fn.outerHTML =
 		return $('<div>').append(this.clone()).remove().html();
 	};
 
-/** Create a dialog box on a fixed position with self closing functionality
-	@id			The DOM ID of the div
-	@content	.title: Short title. Defaults to Sangu Package.
-				.body: The HTML to show in the body of the tooltip
-	@options	.top: CSS top in px
-				.left: CSS left in px
-				.width: CSS width in px. Defaults to 350.
-				.showOnce: If true the tooltip will never be shown again once closed. Defaults to true.
-*/
+/**
+ * Create a dialog box on a fixed position with self closing functionality
+ * @param {string} id The DOM ID of the div
+ * @param content .title: Short title. Defaults to Sangu Package.
+ *                .body: The HTML to show in the body of the tooltip
+ * @param options .top: CSS top in px
+ *                .left: CSS left in px
+ *                .width: CSS width in px. Defaults to 350.
+ *                .showOnce: If true the tooltip will never be shown again once closed. Defaults to true.
+ */
 function createFixedTooltip(id, content, options) {
 	if (typeof options.width === 'undefined') {
 		options.width = 350;

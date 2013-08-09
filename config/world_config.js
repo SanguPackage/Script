@@ -1,5 +1,5 @@
 // world config: global game settings
-var world_config = {
+world_config = {
 	hasMilitia: false,
 	nightbonus: {
 		active: false,
