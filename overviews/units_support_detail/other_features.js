@@ -61,12 +61,13 @@ $("#defTotals").click(function () {
             self.removeClass("row_b").addClass("row_a");
         }
 
+        // village attribute both to .units_away and .grandTotal rows ;)
+        self.attr("village", villageCoord.coord);
+
         var nextRow = self.next();
         if (nextRow.hasClass("units_away")) {
             if (user_data.restack.removeRowsWithoutSupport) {
                 goners = goners.add(self);
-            } else {
-                self.attr("village", villageCoord.coord);
             }
         } else {
             // calculate total support
@@ -120,6 +121,7 @@ $("#defTotals").click(function () {
                 }
             }
 
+            self.attr("population", grandTotal);
             var color = getStackColor(grandTotal);
             color = "<td style='background-color: " + color + "; border:1px solid black'>" + formatNumber(grandTotal) + "</td>";
 

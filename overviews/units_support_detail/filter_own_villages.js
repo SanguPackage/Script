@@ -47,15 +47,13 @@ $("#attackFilter").click(function () {
  * @param {boolean} reverseFilter reverse the above strategy
  * @param {function} [survivorRowStrategy] execute on all rows that are not being removed (gets passed the row and optional tag)
  * @param {*} [tag] this value is passed onto filterStrategy and survivorRowStrategy as the second parameter (row is the first param)
- * @param {boolean} [forceTotalCalcWithoutSupport] pass true if the total calculation needs to happen on villages without support also
  */
-function filterMainRows(filterStrategy, reverseFilter, survivorRowStrategy, tag, forceTotalCalcWithoutSupportParam) {
-    var forceTotalCalcWithoutSupport = forceTotalCalcWithoutSupportParam;
+function filterMainRows(filterStrategy, reverseFilter, survivorRowStrategy, tag) {
     if (!$("#defTotals").is(":disabled")) {
         $("#defTotals").click();
     }
 
-    var goners = $();
+    /*var goners = $();
     $("tr.grandTotal", overviewTable).each(function () {
         var self = $(this),
             prev;
@@ -77,6 +75,30 @@ function filterMainRows(filterStrategy, reverseFilter, survivorRowStrategy, tag,
             survivorRowStrategy(prev, tag);
         }
     });
+     goners.remove();
+     setTotalCount();*/
+
+    var lastRow = $("tr:last", overviewTable).get(0);
+    var goners = $();
+    $("tr.units_away", overviewTable).each(function () {
+        var self = $(this);
+        if (!reverseFilter != !filterStrategy(self, tag)) {
+            goners = goners.add(self);
+
+            var nextRow = self.next();
+            while (!nextRow.hasClass("units_away") && nextRow.get(0) !== lastRow) {
+                goners = goners.add(nextRow);
+                nextRow = nextRow.next();
+            }
+        }
+        else if (survivorRowStrategy != null) {
+            /*prev = self.prev();
+            while (!prev.hasClass("units_away")) {
+                prev = prev.prev();
+            }*/
+            survivorRowStrategy(self, tag);
+        }
+    });
     goners.remove();
     setTotalCount();
 }
@@ -90,7 +112,7 @@ $("#defFilterTotalPop").click(function () {
     var compareTo = parseInt($("#defFilterTotalPopValue").val(), 10);
 
     filterMainRows(
-        function (row) { return (parseInt(row.attr("population"), 10) > compareTo); },
+        function (row) { q(row.attr("village") + "is:" + row.attr("population")); return (parseInt(row.attr("population"), 10) > compareTo); },
         reverseFilter);
 });
 
@@ -120,6 +142,5 @@ $("#defFilterDist").click(function () {
             // Adds the distance between OWN village and the user given coordinates
             mainRow.find("td:eq(1)").html("<b>" + trans.sp.defOverview.fieldsPrefix.replace("{0}", parseInt(tag.distance, 10)) + "</b>");
         },
-        { distance: 0 },
-        true);
+        { distance: 0 });
 });

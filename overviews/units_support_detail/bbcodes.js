@@ -11,13 +11,12 @@ $("#defRestack").click(function () {
 
     var request = "";
     $("tr.grandTotal", overviewTable).each(function () {
-        if ($(this).is(":visible")) {
-            var total = parseInt($(this).attr('population'), 10);
-            if (restackTo - total > user_data.restack.requiredDifference) {
-                var villageCoords = $(this).attr("village");
-                counter++;
-                request += counter + "[village]" + villageCoords + "[/village] (" + parseInt((restackTo - total) / 1000, 10) + trans.sp.defOverview.thousandSuffix + ")\n";
-            }
+        var self = $(this);
+        var total = parseInt(self.attr('population'), 10);
+        if (restackTo - total > user_data.restack.requiredDifference) {
+            var villageCoords = self.attr("village");
+            counter++;
+            request += counter + "[village]" + villageCoords + "[/village] (" + parseInt((restackTo - total) / 1000, 10) + trans.sp.defOverview.thousandSuffix + ")\n";
         }
     });
 
@@ -35,7 +34,11 @@ $("#defRestack").click(function () {
         $("#textsArea").html("");
     }
 
-    $("#textsArea").append("<textarea cols=50 rows=10 id=restackArea>" + request + "</textarea>");
+    var title = trans.sp.troopOverview.restackTitle
+        .replace("{to}", parseInt(restackTo / 1000, 10))
+        .replace("{requiredDiff}", parseInt(user_data.restack.requiredDifference / 1000, 10));
+
+    $("#textsArea").append(title + "<br><textarea cols=50 rows=10 id=restackArea>" + request + "</textarea>");
 
     $("#closeTextsArea").click(function() {
         $("#textsArea").parent().parent().remove();
