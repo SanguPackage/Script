@@ -228,7 +228,8 @@ if (user_data !== '') {
             filterReverse: true,
             autohideWithoutSupportAfterFilter: true,
             calculateDefTotalsAfterFilter: true,
-            defaultPopulationFilterAmount: 80000 /* this isn't related to restack */
+            defaultPopulationFilterAmount: 80000, /* this isn't related to restack */
+            removeRowsWithoutSupport: false
         },
 
         showPlayerProfileOnVillage: false,

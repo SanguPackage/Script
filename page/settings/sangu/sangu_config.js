@@ -886,6 +886,14 @@ var user_data_configs = (function() {
                         editor: "bool"
                     }
                 },
+                defaultPopulationFilterAmount: {
+                    label: sangu_trans.overviews.troopsRestack.defaultPopulationFilterAmount,
+                    propUI: {
+                        getter: function() { return user_data.restack.defaultPopulationFilterAmount; },
+                        setter: function(value) { user_data.restack.defaultPopulationFilterAmount = value; },
+                        editor: "number|step=1000"
+                    }
+                },
 
                 titleOwnTroopsPage: {
                     type: "subtitle",
@@ -939,7 +947,32 @@ var user_data_configs = (function() {
                         editor: "number|step=1000"
                     }
                 },
-
+                removeRowsWithoutSupport: {
+                    label: sangu_trans.overviews.troopsRestack.removeRowsWithoutSupport,
+                    propUI: {
+                        getter: function() { return user_data.restack.removeRowsWithoutSupport; },
+                        setter: function(value) { user_data.restack.removeRowsWithoutSupport = value; },
+                        editor: "bool"
+                    }
+                },
+                autohideWithoutSupportAfterFilter: {
+                    label: sangu_trans.overviews.troopsRestack.autohideWithoutSupportAfterFilter,
+                    tooltip: sangu_trans.overviews.troopsRestack.autohideWithoutSupportAfterFilterTooltip,
+                    propUI: {
+                        getter: function() { return user_data.restack.autohideWithoutSupportAfterFilter; },
+                        setter: function(value) { user_data.restack.autohideWithoutSupportAfterFilter = value; },
+                        editor: "bool"
+                    }
+                },
+                calculateDefTotalsAfterFilter: {
+                    label: sangu_trans.overviews.troopsRestack.calculateDefTotalsAfterFilter,
+                    tooltip: sangu_trans.overviews.troopsRestack.calculateDefTotalsAfterFilterTooltip,
+                    propUI: {
+                        getter: function() { return user_data.restack.calculateDefTotalsAfterFilter; },
+                        setter: function(value) { user_data.restack.calculateDefTotalsAfterFilter = value; },
+                        editor: "bool"
+                    }
+                },
 
                 commandTitle: {
                     type: "subtitle",
@@ -1058,14 +1091,6 @@ var user_data_configs = (function() {
                         getter: function() { return user_data.command.filterMinOther; },
                         setter: function(value) { user_data.command.filterMinOther = value; },
                         editor: "number|step=500"
-                    }
-                },
-                defaultPopulationFilterAmount: {
-                    label: sangu_trans.overviews.troopsRestack.defaultPopulationFilterAmount,
-                    propUI: {
-                        getter: function() { return user_data.restack.defaultPopulationFilterAmount; },
-                        setter: function(value) { user_data.restack.defaultPopulationFilterAmount = value; },
-                        editor: "number|step=1000"
                     }
                 },
                 restackTitle: {

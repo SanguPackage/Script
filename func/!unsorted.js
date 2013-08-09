@@ -146,10 +146,20 @@ function fillRallyPoint(units) {
 	return script;
 }
 
+/**
+ * Tries to find village coords in str and convert it to a 'village' object
+ * @param {string} str the string to be converted to a village object
+ * @param {true|} looseMatch !!!Do not provide a value for looseMatch when converting a real village name.!!!
+ *          It should be set to true when it was the user that provided the input str. When true,
+ *          a str like 456-789 would also match. (so that Sangu Package users don't have to use | but can instead
+ *          use anything to seperate the 2 coordinates).
+ * @returns {object} object with parameters isValid: false when the string could not be matched and true with extra properties
+ * x, y, coord, validName (=html friendly id name) and continent
+ */
 function getVillageFromCoords(str, looseMatch) {
 	// if str is "villageName (X|Y) C54" then the villageName could be something like "456-321"
 	// the regex then thinks that the villageName are the coords
-	// looseMatch is thus only true when it was the user entering str.
+	// looseMatch
 	var targetMatch = looseMatch != undefined ? str.match(/(\d+)\D(\d+)/g) : str.match(/(\d+)\|(\d+)/g);
 	if (targetMatch != null && targetMatch.length > 0) {
 		var coordMatch = targetMatch[targetMatch.length - 1].match(/(\d+)\D(\d+)/);

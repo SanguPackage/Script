@@ -188,7 +188,7 @@
             else if (location.href.indexOf('type=support_detail') > -1
                 || location.href.indexOf('type=away_detail') > -1) {
 
-                //<!--@@INCLUDE "overviews\units_support_detail.js" INDENT=4 //-->
+                //<!--@@INCLUDE "overviews\units_support_detail/loader.js" INDENT=4 //-->
             }
 			// COMMANDS OVERVIEW
             else if (location.href.indexOf('mode=commands') > -1) {

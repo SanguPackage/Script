@@ -80,7 +80,12 @@ var sangu_trans = (function() {
                 fieldsDistanceFilterDefault: "Het standaard ingevuld aantal velden waarop gefilterd wordt",
                 filterReverse: "Aangevinkt: Rijen die voldoen aan de zoekopdracht tonen. Anders de rijen verbergen.",
                 filterReverseTooltip: "Dit kan op de pagina zelf nog aangepast worden",
-                defaultPopulationFilterAmount: "Het standaard ingevuld aantal voor de populatie filter"
+                defaultPopulationFilterAmount: "Het standaard ingevuld aantal voor de populatie filter",
+                removeRowsWithoutSupport: "Bij het berekenen van de totalen dorpen zonder ondersteuning direct verbergen",
+                autohideWithoutSupportAfterFilter: "Automatisch dorpen zonder overige ondersteuning wegfilteren na het toepassen van een filter",
+                autohideWithoutSupportAfterFilterTooltip: "Bij de aanvalsfilter worden de dorpen die niet onder aanval zijn sowieso verborgen.",
+                calculateDefTotalsAfterFilter: "Automatisch de totale ondersteuning per dorp berekenen na het toepassen van een filter",
+                calculateDefTotalsAfterFilterTooltip: "Voor sommige filters moeten de totalen sowieso toch eerst berekend worden."
             },
             commands: {
                 title: "Overzichtsscherm: Bevelen",
