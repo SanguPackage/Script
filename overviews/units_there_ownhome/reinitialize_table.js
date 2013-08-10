@@ -27,7 +27,11 @@ menu += "<option value=-1>" + trans.sp.all.less + "</option></select>";
 menu += "<input type=text size=5 id=filterPopValue value='" + user_data.command.filterMinPopulation + "'>";
 menu += "<input type=button id=filterPop value='" + trans.sp.troopOverview.filterPopulation + "' title='" + trans.sp.troopOverview.filterPopulationTooltip + "'> ";
 
-menu += "</th><th width='96%'>";
+menu += "</th><th nowrap width='1%'>";
+menu += "<input type=text size=5 id=filterWalkingTimeValue>";
+menu += "<input type=button id=filterWalkingTime value='" + trans.sp.troopOverview.filterWalkingTime + "' title='" + trans.sp.troopOverview.filterWalkingTimeTooltip + "'> ";
+
+menu += "</th><th width='95%'>";
 
 menu += "<input type=button id=calculateStack value='" + trans.sp.troopOverview.calcStack + "' title='" + trans.sp.troopOverview.calcStackTooltip + "'> &nbsp; ";
 menu += "<input type=button id=snobFilter value='" + trans.sp.troopOverview.filterNoble + "' title='" + trans.sp.troopOverview.filterNobleTooltip + "'> &nbsp; ";

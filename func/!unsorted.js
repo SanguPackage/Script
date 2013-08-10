@@ -6,6 +6,11 @@ function pad(number, length) {
 	return str;
 }
 
+/**
+ * Gets a value from the querystring (or returns "")
+ * @param {string} name the name of the querystring parameter
+ * @param {string} [url] when omitted, the current location.url is assumed
+ */
 function getQueryStringParam(name, url) {
 	name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
 	var regexS = "[\\?&]" + name + "=([^&#]*)";
@@ -18,6 +23,11 @@ function getQueryStringParam(name, url) {
 	}
 }
 
+/**
+ * Get a TW url taking account sitting etc in account
+ * @param {string} url provide the url starting from &screen=
+ * @param {number} [villageId] when omitted the current village is assumed
+ */
 function getUrlString(url, villageId) {
 	if (url.indexOf("?") == -1) {
 		var link = location.href.substr(0, location.href.indexOf("?"));

@@ -1,6 +1,9 @@
-function filterVillageRows(filterStrategy) {
+function filterVillageRows(filterStrategy, options) {
     // return true to hidethe row; false keep row visible (without reverse filter checkbox)
-    var reverseFilter = $("#defReverseFilter").is(":checked"),
+    options = options || {
+            allowFilter: true
+        };
+    var reverseFilter = options.allowFilter && $("#defReverseFilter").is(":checked"),
         goners = $(),
         villageCounter = 0;
 
@@ -19,6 +22,7 @@ function filterVillageRows(filterStrategy) {
     setVillageCount(villageCounter);
 }
 
+// CONTINENT FILTER
 $("#defFilterContinent").click(function () {
     trackClickEvent("FilterContinent");
     var continent = parseInt($("#defFilterContinentText").val(), 10);
@@ -33,6 +37,7 @@ $("#defFilterContinent").click(function () {
     }
 });
 
+// TEXT FILTER
 $("#defFilterText").click(function () {
     trackClickEvent("FilterText");
     var compareTo = $("#defFilterTextValue").val().toLowerCase();
@@ -43,6 +48,24 @@ $("#defFilterText").click(function () {
     }
 });
 
+// WALKINGTIME FILTER
+$("#filterWalkingTime").click(function () {
+    var minWalkingTime = parseInt($("#filterWalkingTimeValue").val(), 10) * 60;
+
+    if (!isNaN(minWalkingTime)) {
+        trackClickEvent("WalkingTime");
+        filterVillageRows(
+            function (row) {
+                return parseInt(row.attr("arrival"), 10) < minWalkingTime;
+            },
+            {
+                allowFilter: false
+            }
+        );
+    } else {
+        alert(trans.sp.troopOverview.filterWalkingTimeTooltip);
+    }
+});
 
 
 

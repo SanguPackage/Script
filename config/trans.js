@@ -213,6 +213,8 @@ trans = {
 			filterTroopsTooltip: "Toon enkel de dorpen met meer dan het aangegeven aantal eenheden",
 			filterPopulation: "Filter populatie",
 			filterPopulationTooltip: "Toon enkel de dorpen met meer/minder bevolking",
+            filterWalkingTime: "Filter looptijd",
+            filterWalkingTimeTooltip: "Toon enkel de dorpen met een langere looptijd (in uren) tot het doeldorp",
 			calcStack: "Bereken stack",
 			calcStackTooltip: "Toon de bevolking per dorp in de \"Nacht?\" kolom",
 			filterNoble: "Filter edels",

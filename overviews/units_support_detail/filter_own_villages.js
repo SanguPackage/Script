@@ -118,18 +118,23 @@ $("#defFilterTotalPop").click(function () {
 
 // filter the OWN villages on less/more distance to given coordinates (requires total calculation)
 $("#defFilterDist").click(function () {
-    trackClickEvent("FilterDistanceToX");
     var targetVillage = getVillageFromCoords($("#defFilterDistVillage").val(), true);
     if (!targetVillage.isValid) {
         alert(trans.sp.defOverview.distanceToVillageNoneEntered);
         return;
     }
 
+    trackClickEvent("FilterDistanceToX");
     var reverseFilter = !($("#defFilterDistType").val() != "-1");
     var maxDistance = parseInt($("#defFilterDistanceValue").val(), 10);
 
     // Change text of th cell to 'distance to ' + given village
-    overviewTable.find("th:eq(1)").html(trans.sp.defOverview.distanceToVillage.replace("{0}", targetVillage.coord));
+    overviewTable.find("th:eq(1)").html(
+        trans.sp.defOverview.distanceToVillage.replace(
+            "{0}",
+            "<a href='"
+                + getUrlString("&screen=map&x=" + targetVillage.x + "&y=" + targetVillage.y + "'>")
+                + targetVillage.coord + "</a>"));
 
     filterMainRows(
         function (row, tag) {

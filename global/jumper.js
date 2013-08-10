@@ -21,7 +21,8 @@ if (user_data.jumper.enabled) {
                     if (village.isValid) {
                         trackClickEvent("JumperOpen_RealValue");
                         // Jump to coordinates on the map
-                        location.href = location.href.substr(0, location.href.indexOf("&screen")) + "&screen=map&x=" + village.x + "&y=" + village.y;
+                        location.href = getUrlString("&screen=map&x=" + village.x + "&y=" + village.y);
+
                     } else {
                         // incorrect coordinates
                         if (!$("#sangujumperpos").is(":visible")) {

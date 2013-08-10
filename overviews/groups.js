@@ -90,23 +90,30 @@
             firstHeaderCell.html(firstHeaderCellHtml.substr(0, firstHeaderCellHtml.lastIndexOf(" ")) + " (" + totalVisible + ")");
         }
 
-// Filter on distance to given village
+        // Filter on distance to given village
         $("#defFilterDist").click(function () {
-            trackClickEvent("FilterDistance");
             var targetVillage = getVillageFromCoords($("#defFilterDistVillage").val(), true);
             if (!targetVillage.isValid) {
                 alert(trans.sp.defOverview.distanceToVillageNoneEntered);
                 return;
             }
 
+            trackClickEvent("FilterDistance");
             var reverseFilter = !($("#defFilterDistType").val() != "-1");
             var maxDistance = parseInt($("#defFilterDistFields").val(), 10);
 
             var isAlreadyVisible = $("#filterContext").size() == 1;
+            var distanceHeader =
+                trans.sp.defOverview.distanceToVillage.replace(
+                    "{0}",
+                    "<a href='"
+                        + getUrlString("&screen=map&x=" + targetVillage.x + "&y=" + targetVillage.y + "'>")
+                        + targetVillage.coord + "</a>");
+
             if (isAlreadyVisible) {
-                $("#filterContext").html(trans.sp.defOverview.distanceToVillage.replace("{0}", targetVillage.coord));
+                $("#filterContext").html(distanceHeader);
             } else {
-                $("#group_assign_table").find("th:first").after("<th><span id=filterContext>" + trans.sp.defOverview.distanceToVillage.replace("{0}", targetVillage.coord) + "</span> <img src='graphic/oben.png' class=sortDistance direction=up> <img src='graphic/unten.png' class=sortDistance direction=down></th>");
+                $("#group_assign_table").find("th:first").after("<th><span id=filterContext>" + distanceHeader + "</span> <img src='graphic/oben.png' class=sortDistance direction=up> <img src='graphic/unten.png' class=sortDistance direction=down></th>");
                 $(".sortDistance").click(function () {
                     if ($(this).attr("direction") == "up") {
                         $("#group_assign_table").find("tr:gt(0)").filter(":visible").sortElements(function (a, b) {
