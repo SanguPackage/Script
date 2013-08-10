@@ -28,15 +28,6 @@ var user_data_configs = (function() {
                         editor: "bool"
                     }
                 },
-                showCrashReport: {
-                    label: sangu_trans.global.showCrashReport,
-                    tooltip: sangu_trans.global.showCrashReportTooltip,
-                    propUI: {
-                        getter: function() { return user_data.global.showCrashReport; },
-                        setter: function(value) { user_data.global.showCrashReport = value; },
-                        editor: "bool"
-                    }
-                },
                 resourcesTitle: {
                     type: "subtitle",
                     label: sangu_trans.global.resources.title

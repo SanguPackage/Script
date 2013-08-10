@@ -32,8 +32,7 @@ if (user_data !== '') {
                 lastTimeCheckWarningMore: "{difference} nieuwe aanvallen. Laatste tijdcheck: {elapsed} geleden",
                 lastTimeCheckWarningLess: "{difference} aanvallen minder. Laatste tijdcheck: {elapsed} geleden"
             },
-            visualizeFriends: true,
-            showCrashReport: true
+            visualizeFriends: true
         },
 
         scriptbar: {

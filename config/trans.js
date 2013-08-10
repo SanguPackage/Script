@@ -85,10 +85,12 @@ trans = {
 			activatePackage: "Sangu Package activeren",
 			deactivatePackage: "Sangu Package deactiveren",
             packageCrashTitle: "Het Sangu Package is gecrasht :)",
+            packageCrashTooltip: "Crash!!! Klik op de bol om het crash rapport te bekijken. "
+                + "Je kan dit rapport naar ons doorsturen waardoor we het probleem mogelijk kunnen oplossen.",
             packageCrash:
                 "<b>Foutmelding</b>: <i>{error}</i><br>"
                 + "<b>Details</b>:<br>"
-                + "<textarea style='width: 95%' rows='20'>"
+                + "<textarea style='width: 95%' rows='20' id='crashArea'>"
                 + "Foutmelding: {error}\n"
                 + "Pagina: {title} -> {page}\n"
                 + "URL: {url}\n"
@@ -96,6 +98,7 @@ trans = {
                 + "Brower: {browser}\n"
                 + "game_data: {game_data}\n"
                 + "\n{stacktrace}\n"
+                + "\n\n\n[HTML]\n"
                 + "</textarea>"
                 + "<br><br>Je kan de bug <a href='{forum-url}' target='_blank'>hier</a> melden."
                 + "<br>Of je kan de bug <a href='mailto:{email}'>mailen</a>."
