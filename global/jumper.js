@@ -15,11 +15,11 @@ if (user_data.jumper.enabled) {
             });
 
             $("#sangujumperOpen").click(function () {
-                trackClickEvent("JumperOpen");
                 var input = $("#sangujumper");
                 if ($("#sanguJumperFrame").is(":visible")) {
                     var village = getVillageFromCoords(input.val(), true);
                     if (village.isValid) {
+                        trackClickEvent("JumperOpen_RealValue");
                         // Jump to coordinates on the map
                         location.href = location.href.substr(0, location.href.indexOf("&screen")) + "&screen=map&x=" + village.x + "&y=" + village.y;
                     } else {
