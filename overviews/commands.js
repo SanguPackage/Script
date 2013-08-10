@@ -31,15 +31,22 @@
             menu += "<input type=text id=supportPlayerName size=>&nbsp;";
             menu += "<input type=button id=supportPlayerExport value='" + trans.sp.commands.supportPlayerExport + "' title='" + trans.sp.commands.supportPlayerExportTooltip + "'>";
         }
-        menu += "</th><tr><th colspan=3>";
+
+        menu += "</th></tr></table>";
+        menu += "<table><tr><th width='1%' nowrap>";
         menu += "<input type=checkbox id=defReverseFilter title='" + trans.sp.commands.filtersReverse + "'> " + trans.sp.commands.filtersReverseInfo + ": ";
-        menu += "&nbsp; <span style='background-color: #ecd19a; border: 1px solid black' id='unitFilterBox'>";
+
+        menu += "</th><th width='1%' nowrap>";
+        menu += "<span style='background-color: #ecd19a; border: 1px solid black' id='unitFilterBox'>";
         menu += "&nbsp; <img src='graphic/unit/unit_snob.png' id=filtersnob>&nbsp; <img src='graphic/unit/unit_spy.png' id=filterspy>&nbsp; <img src='graphic/face.png' id=filterFake>&nbsp;";
-        menu += "</span>";
-        menu += "&nbsp; <input type=text size=12 id=defFilterTextValue value=''>";
+        menu += "&nbsp; </span>";
+
+        menu += "</th><th width='1%' nowrap>";
+        menu += "<input type=text size=12 id=defFilterTextValue value=''>";
         menu += "<input type=button id=defFilterText value='" + trans.sp.commands.freeTextFilter + "'>";
 
-        menu += "&nbsp; <input type=textbox size=3 id=defFilterContinentText maxlength=2><input type=button id=defFilterContinent value='" + trans.sp.commands.continentFilter + "'>";
+        menu += "</th><th width='97%' nowrap>";
+        menu += "<input type=textbox size=3 id=defFilterContinentText maxlength=2><input type=button id=defFilterContinent value='" + trans.sp.commands.continentFilter + "'>";
 
         menu += "</th></tr>";
         menu += "</table>";

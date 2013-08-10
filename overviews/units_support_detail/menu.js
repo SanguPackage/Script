@@ -18,6 +18,7 @@ if (!isSupport) {
     menu += trans.sp.defOverview.village + " <input type=text size=5 id=defFilterDistVillage value=''>";
     menu += "<select id=defFilterDistType>";
     menu += "<option value=1 selected>" + trans.sp.all.closer + "</option><option value=-1>" + trans.sp.all.further + "</option></select>";
+    // TODO: untranslated F(ields)
     menu += "&nbsp;F <input type=text size=3 id=defFilterDistanceValue value=" + user_data.restack.fieldsDistanceFilterDefault + ">";
     menu += "<input type=button id=defFilterDist value='" + trans.sp.defOverview.distFilter + "' title='" + trans.sp.defOverview.distFilterTooltip + "'>";
 

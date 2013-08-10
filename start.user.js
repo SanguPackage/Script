@@ -1,7 +1,7 @@
 //<!--@@INCLUDE "greasemonkey\imports.txt" INDENT=0 //-->
 
 // The not-one-file source code can be found at:
-// https://github.com/Laoujin/SanguPackage
+// https://github.com/SanguPackage/Script
 
 //<!--@@INCLUDE "greasemonkey/sangu_readyStart.txt" INDENT=0 //-->
 	//var start_time = new Date();

@@ -1,3 +1,94 @@
+/**
+ * Creates a select box with all unit types in this world
+ * @param {string} id the DOM ID
+ * @param {string} select the currently selected unit
+ */
+function makeUnitBox(id, select) {
+    var box = "<select id=" + id + ">";
+    $.each(world_data.units, function (i, v) {
+        box += "<option value=" + i + (v == select ? " selected" : "") + ">" + trans.tw.units.names[v] + "</option>";
+    });
+    box += "</select>";
+    return box;
+}
+
+var menu = "<table width='100%' class='vis'>";
+menu += "<tr>";
+menu += "<th nowrap width='1%'>";
+menu += "<input type=text size=5 id=filterAxeValue value='" + user_data.command.filterMinDefault + "'>";
+menu += makeUnitBox("filterAxeType", user_data.command.filterMinDefaultType);
+menu += "<input type=button id=filterAxe value='" + trans.sp.troopOverview.filterTroops + "'";
+menu += " title='" + trans.sp.troopOverview.filterTroopsTooltip + "'> ";
+
+menu += "</th><th nowrap width='1%'>";
+
+menu += "<select id=filterPopValueType><option value=1>" + trans.sp.all.more + "</option>";
+menu += "<option value=-1>" + trans.sp.all.less + "</option></select>";
+menu += "<input type=text size=5 id=filterPopValue value='" + user_data.command.filterMinPopulation + "'>";
+menu += "<input type=button id=filterPop value='" + trans.sp.troopOverview.filterPopulation + "' title='" + trans.sp.troopOverview.filterPopulationTooltip + "'> ";
+
+menu += "</th><th width='96%'>";
+
+menu += "<input type=button id=calculateStack value='" + trans.sp.troopOverview.calcStack + "' title='" + trans.sp.troopOverview.calcStackTooltip + "'> &nbsp; ";
+menu += "<input type=button id=snobFilter value='" + trans.sp.troopOverview.filterNoble + "' title='" + trans.sp.troopOverview.filterNobleTooltip + "'> &nbsp; ";
+menu += "<input type=button id=attackFilter value='" + trans.sp.troopOverview.filterUnderAttack + "' title='" + trans.sp.troopOverview.filterUnderAttackTooltip + "'> &nbsp; ";
+
+menu += "</th><th nowrap width='1%' style='padding-right: 8px; padding-top: 3px;'>";
+
+menu += "<input type=checkbox id=sortIt title='" + trans.sp.troopOverview.sortTooltip + "'"
+    + (user_data.command.filterAutoSort ? " checked" : "") + "> "
+    + trans.sp.troopOverview.sort;
+
+menu += "</th>";
+
+if (location.href.indexOf('type=there') > -1) {
+    menu += "<th><input type=button id=defRestack value='" + trans.sp.troopOverview.restack + "'></th>";
+}
+menu += "</tr></table>";
+
+menu += "<table><tr><th width='1%' nowrap>";
+menu += "<input type=checkbox id=defReverseFilter title='" + trans.sp.commands.filtersReverse + "'> " + trans.sp.commands.filtersReverseInfo + ": ";
+
+menu += "</th><th width='1%' nowrap>";
+menu += "<input type=text size=12 id=defFilterTextValue value=''>";
+menu += "<input type=button id=defFilterText value='" + trans.sp.commands.freeTextFilter + "'>";
+
+menu += "</th><th width='98%' nowrap>";
+menu += "<input type=textbox size=3 id=defFilterContinentText maxlength=2><input type=button id=defFilterContinent value='" + trans.sp.commands.continentFilter + "'>";
+
+menu += "</th></tr>";
+menu += "</table>";
+
+// Sangu filter menu
+var sanguMenu = menu;
+
+// Overview table menu
+menu = "<tr id=units_table_header>";
+menu += "<th>" + trans.sp.troopOverview.village + "</th>";
+menu += "<th>" + trans.sp.troopOverview.nightBonus + "</th>";
+$.each(world_data.units, function (i, v) {
+    menu += "<th><img src='/graphic/unit/unit_" + v + ".png' title=\"" + trans.sp.troopOverview.selectUnitSpeed.replace("{0}", trans.tw.units.names[v]) + "\" alt='' id=" + v + " /></th>";
+});
+if (world_config.hasMilitia) {
+    menu += "<th><img src='/graphic/unit/unit_militia.png' title='" + trans.tw.units.militia + "' alt='' id=militia /></th>";
+}
+menu += "<th>" + trans.sp.troopOverview.commandTitle + "</th>";
+
+
+target = getVillageFromCoords(spTargetVillageCookie());
+menu += "<th nowrap>" + trans.sp.all.targetEx
+    + " <input type=text id=targetVillage name=targetVillage size=8 value='"
+    + (target.isValid ? target.coord : "") + "'>"
+    + "<input type=button id=targetVillageButton value='"
+    + trans.sp.troopOverview.setTargetVillageButton + "'></th>";
+menu += "</tr>";
+
+
+
+
+
+
+// function to replace the village rows
 tableHandler.init("units_table", {
     rowReplacer: function (row) {
         //q($(row).html());
@@ -73,84 +164,24 @@ tableHandler.init("units_table", {
     }
 });
 
-function makeUnitBox(id, select) {
-    var box = "<select id=" + id + ">";
-    $.each(world_data.units, function (i, v) {
-        box += "<option value=" + i + (v == select ? " selected" : "") + ">" + trans.tw.units.names[v] + "</option>";
-    });
-    box += "</select>";
-    return box;
-}
-
-var menu = "<table width='100%' class='vis'>";
-menu += "<tr>";
-menu += "<th nowrap width='1%'>";
-menu += "<input type=text size=5 id=filterAxeValue value='" + user_data.command.filterMinDefault + "'>";
-menu += makeUnitBox("filterAxeType", user_data.command.filterMinDefaultType);
-menu += "<input type=button id=filterAxe value='" + trans.sp.troopOverview.filterTroops + "'";
-menu += " title='" + trans.sp.troopOverview.filterTroopsTooltip + "'> ";
-
-menu += "</th><th nowrap width='1%'>";
-
-menu += "<select id=filterPopValueType><option value=1>" + trans.sp.all.more + "</option>";
-menu += "<option value=-1>" + trans.sp.all.less + "</option></select>";
-menu += "<input type=text size=5 id=filterPopValue value='" + user_data.command.filterMinPopulation + "'>";
-menu += "<input type=button id=filterPop value='" + trans.sp.troopOverview.filterPopulation + "' title='" + trans.sp.troopOverview.filterPopulationTooltip + "'> ";
-
-menu += "</th><th width='96%'>";
-
-menu += "<input type=button id=calculateStack value='" + trans.sp.troopOverview.calcStack + "' title='" + trans.sp.troopOverview.calcStackTooltip + "'> &nbsp; ";
-menu += "<input type=button id=snobFilter value='" + trans.sp.troopOverview.filterNoble + "' title='" + trans.sp.troopOverview.filterNobleTooltip + "'> &nbsp; ";
-menu += "<input type=button id=attackFilter value='" + trans.sp.troopOverview.filterUnderAttack + "' title='" + trans.sp.troopOverview.filterUnderAttackTooltip + "'> &nbsp; ";
-
-menu += "</th><th nowrap width='1%' style='padding-right: 8px; padding-top: 3px;'>";
-
-menu += "<input type=checkbox id=sortIt title='" + trans.sp.troopOverview.sortTooltip + "'"
-    + (user_data.command.filterAutoSort ? " checked" : "") + "> "
-    + trans.sp.troopOverview.sort;
-
-menu += "</th>";
-
-if (location.href.indexOf('type=there') > -1) {
-    menu += "<th><input type=button id=defRestack value='" + trans.sp.troopOverview.restack + "'></th>";
-}
-menu += "</tr>";
-menu += "</table>";
-
-// Sangu filter menu
-var sanguMenu = menu;
-
-// Overview table menu
-menu = "<tr id=units_table_header>";
-menu += "<th>" + trans.sp.troopOverview.village + "</th>";
-menu += "<th>" + trans.sp.troopOverview.nightBonus + "</th>";
-$.each(world_data.units, function (i, v) {
-    menu += "<th><img src='/graphic/unit/unit_" + v + ".png' title=\"" + trans.sp.troopOverview.selectUnitSpeed.replace("{0}", trans.tw.units.names[v]) + "\" alt='' id=" + v + " /></th>";
-});
-if (world_config.hasMilitia) {
-    menu += "<th><img src='/graphic/unit/unit_militia.png' title='" + trans.tw.units.militia + "' alt='' id=militia /></th>";
-}
-menu += "<th>" + trans.sp.troopOverview.commandTitle + "</th>";
-
-
-
-target = getVillageFromCoords(spTargetVillageCookie());
-menu += "<th nowrap>" + trans.sp.all.targetEx
-    + " <input type=text id=targetVillage name=targetVillage size=8 value='"
-    + (target.isValid ? target.coord : "") + "'>"
-    + "<input type=button id=targetVillageButton value='"
-    + trans.sp.troopOverview.setTargetVillageButton + "'></th>";
-menu += "</tr>";
-
 var newTable = tableHandler.getReplacedVillageRows();
 $("#units_table")
     .html("<table width='100%' class='vis' id='units_table' target='false'>" + menu + newTable + "</table>")
     .before(sanguMenu);
 
 
+// Tooltips
+$("#defReverseFilter").change( function () {
+    var isChecked = $(this).is(":checked");
+    var defTrans = trans.sp.troopOverview;
+
+    $("#defFilterContinent").attr("title", isChecked ? defTrans.continentFilterTooltip : defTrans.continentFilterTooltipReverse);
+    $("#defFilterText").attr("title", defTrans.freeTextFilterTooltip.replace("{filterType}", isChecked ? defTrans.freeTextFilterTooltipFilterTypeWith : defTrans.freeTextFilterTooltipFilterTypeWithout));
+});
+$("#defReverseFilter").change();
 
 
-
+// Initial focus on target inputbox
 $('#targetVillage').click(function () {
     $(this).focus().select();
 });

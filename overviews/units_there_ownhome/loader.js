@@ -7,7 +7,7 @@
             rowSize++;
         }
 
-        var overviewMenuRowFilter = "tr:visible:gt(0)",
+        var overviewMenuRowFilter = "tr:gt(0)",
             /**
              * Page speed can be overruled by the querystring
              */
@@ -27,6 +27,8 @@
             changeSpeed = false,
             i;
         //<!--@@INCLUDE "overviews\units_there_ownhome\querystring_filter.js" INDENT=6 //-->
+
+        // Sangu package menu is also built in reinitialize_table
         //<!--@@INCLUDE "overviews\units_there_ownhome\reinitialize_table.js" INDENT=6 //-->
 
         //<!--@@INCLUDE "overviews\units_there_ownhome\table_actions.js" INDENT=6 //-->

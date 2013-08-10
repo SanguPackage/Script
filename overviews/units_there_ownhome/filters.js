@@ -1,12 +1,53 @@
-// change by default selected unit the filter will be active for
-$("#filterAxeType").change(function () {
-    var unit = world_data.units[$(this).val()];
-    if (typeof user_data.command.filterMin[unit] !== 'undefined') {
-        $("#filterAxeValue").val(user_data.command.filterMin[unit]);
-    } else {
-        $("#filterAxeValue").val(user_data.command.filterMinOther);
+function filterVillageRows(filterStrategy) {
+    // return true to hidethe row; false keep row visible (without reverse filter checkbox)
+    var reverseFilter = $("#defReverseFilter").is(":checked"),
+        goners = $(),
+        villageCounter = 0;
+
+    $("#units_table").find(overviewMenuRowFilter).each(function () {
+        var self = $(this);
+        if (!reverseFilter != !filterStrategy(self)) {
+            goners = goners.add(self);
+            $("input:eq(1)", self).val("");
+        } else {
+            villageCounter++;
+        }
+    });
+    goners.remove();
+
+    // Show totals
+    setVillageCount(villageCounter);
+}
+
+$("#defFilterContinent").click(function () {
+    trackClickEvent("FilterContinent");
+    var continent = parseInt($("#defFilterContinentText").val(), 10);
+    if (!isNaN(continent)) {
+        filterVillageRows(function (row) {
+            var village = getVillageFromCoords(row.find("td:first").text());
+            if (!village.isValid ) {
+                return true;
+            }
+            return village.continent() != continent;
+        });
     }
 });
+
+$("#defFilterText").click(function () {
+    trackClickEvent("FilterText");
+    var compareTo = $("#defFilterTextValue").val().toLowerCase();
+    if (compareTo.length > 0) {
+        filterVillageRows(function (row) {
+            return row.text().toLowerCase().indexOf(compareTo) == -1;
+        });
+    }
+});
+
+
+
+
+
+
 
 // Filter rows with less than x axemen (or another unit)
 $("#filterAxe").click(function () {
@@ -27,6 +68,17 @@ $("#filterAxe").click(function () {
     goners.remove();
     setVillageCount(villageCounter);
 });
+// change by default selected unit the filter will be active for
+$("#filterAxeType").change(function () {
+    var unit = world_data.units[$(this).val()];
+    if (typeof user_data.command.filterMin[unit] !== 'undefined') {
+        $("#filterAxeValue").val(user_data.command.filterMin[unit]);
+    } else {
+        $("#filterAxeValue").val(user_data.command.filterMinOther);
+    }
+});
+
+
 
 // Filter rows without snobs/nobles
 $("#snobFilter").click(function () {

@@ -210,7 +210,7 @@ trans = {
 			nightBonus: "Nacht?",
 			village: "Dorp",
 			filterTroops: "Filter",
-			filterTroopsTooltip: "Toon enkel de dorpen met minder dan het aangegeven aantal eenheden",
+			filterTroopsTooltip: "Toon enkel de dorpen met meer dan het aangegeven aantal eenheden",
 			filterPopulation: "Filter populatie",
 			filterPopulationTooltip: "Toon enkel de dorpen met meer/minder bevolking",
 			calcStack: "Bereken stack",
@@ -224,7 +224,17 @@ trans = {
 			restack: "Stack BB Codes",
 			restackTitle: "<b>Alle dorpen met minstens {requiredDiff}k bevolking minder dan {to}k</b><br>"
                 + "<font size='-2'>(configuratie wijzigbaar bij Sangu instellingen)</font>",
-			cheapNobles: "Goedkope edelmannen beschikbaar"
+			cheapNobles: "Goedkope edelmannen beschikbaar",
+
+            filtersReverse: "De filtering omdraaien",
+            filtersReverseInfo: "Filters omdraaien",
+            freeTextFilter: "Tekst filter",
+            freeTextFilterTooltip: "Dorpen {filterType} de tekst wegfilteren",
+            freeTextFilterTooltipFilterTypeWith: "met",
+            freeTextFilterTooltipFilterTypeWithout: "zonder",
+            continentFilter: "Continent",
+            continentFilterTooltip: "Alle dorpen in continent wegfilteren",
+            continentFilterTooltipReverse: "Alle dorpen in continent tonen"
 		},
 		prodOverview: {
 			filter: "Filter",
