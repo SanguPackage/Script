@@ -180,7 +180,7 @@
 			// TROOPS OVERVIEW
             else if (location.href.indexOf('mode=units') > -1
 						&& (location.href.indexOf('type=own_home') > -1 || location.href.indexOf('type=there') > -1)) {
-                //<!--@@INCLUDE "overviews\units_there_ownhome.js" INDENT=4 //-->
+                //<!--@@INCLUDE "overviews\units_there_ownhome\loader.js" INDENT=4 //-->
             }
 			// BUILDINGS OVERVIEW
             else if (location.href.indexOf('mode=buildings') > -1) {
