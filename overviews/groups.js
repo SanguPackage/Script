@@ -40,17 +40,19 @@
         $("#group_assign_table").before(menu).after("<table class=vis width='100%'><tr><th><input type=checkbox id=selectAllVisible> " + selectAllRow.text() + "</th></tr></table>");
         selectAllRow.remove();
 
-        $("#selectAllVisible").click(function () {
+        // Select all checkbox behavior
+        $("#selectAllVisible").change(function () {
             var isChecked = $(this).is(":checked");
-            $("#group_assign_table input:checked").attr("checked", false);
+            $("#group_assign_table input:checked").prop("checked", false);
             if (isChecked) {
-                $("#group_assign_table input[type='checkbox']").not(":hidden").attr("checked", "checked");
+                $("#group_assign_table input[type='checkbox']").not(":hidden").prop("checked", true);
             }
 
-            //$("#group_assign_table input:hidden").attr("checked", false);
-            //$("#group_assign_table input:visible").attr("checked", isChecked);
+            //$("#group_assign_table input:hidden").prop("checked", false);
+            //$("#group_assign_table input:visible").prop("checked", isChecked);
         });
 
+        // Change tooltips when clicking the reverse filter checkbox
         $("#defReverseFilter").change(function () {
             var isChecked = $(this).is(":checked");
             var defTrans = trans.sp.groups;
@@ -65,18 +67,25 @@
         });
         $("#defReverseFilter").change();
 
+        /**
+         * Perform a filter on the groups table rows
+         * @param {function} filterStrategy jQuery object with the row is the first parameter
+         * @param {boolean} reverseFilter
+         * @param {function} [keepRowStrategy]
+         * @param {*} [tag] passed as second param to filterStrategy and keepRowStrategy
+         */
         function filterGroupRows(filterStrategy, reverseFilter, keepRowStrategy, tag) {
-            if (reverseFilter == undefined || reverseFilter == null) {
+            if (typeof reverseFilter === "undefined") {
                 reverseFilter = !$("#defReverseFilter").is(":checked");
             }
 
             var goners = $();
             var totalVisible = 0;
-            $("#group_assign_table tr:gt(0)").filter(":visible").each(function () {
+            $("#group_assign_table tr:gt(0)").each(function () {
                 var row = $(this);
                 if (!reverseFilter != !filterStrategy(row, tag)) {
                     goners = goners.add(row);
-                    $("input:eq(1)", row).val("");
+                    //$("input:eq(1)", row).val("");
                 } else {
                     totalVisible++;
                     if (keepRowStrategy != null) {
@@ -144,7 +153,7 @@
                 }, { distance: 0 });
         });
 
-// Filter on incoming attacks
+        // Filter on incoming attacks
         $("#attackFilter").click(function () {
             trackClickEvent("FilterUnderAttack");
             filterGroupRows(function (row) {
@@ -152,7 +161,7 @@
             });
         });
 
-// filter on village name
+        // filter on village name
         $("#defFilterText").click(function () {
             trackClickEvent("FilterText");
             var compareTo = $("#defFilterTextValue").val().toLowerCase();
@@ -163,7 +172,7 @@
             }
         });
 
-// filter on group names
+        // filter on group names
         $("#defFilterGroup").click(function () {
             trackClickEvent("FilterGroupName");
             var compareTo = $("#defFilterGroupValue").val().toLowerCase();
@@ -191,13 +200,17 @@
             var compareTo = parseInt($("#defFilterAmountText").val(), 10);
             if (compareTo >= 0) {
                 if (!$("#defReverseFilter").is(":checked")) {
-                    filterGroupRows(function (row) {
-                        return parseInt(row.find("td:eq(1)").text(), 10) > compareTo;
-                    }, false);
+                    filterGroupRows(
+                        function (row) {
+                            return parseInt(row.find("td:eq(1)").text(), 10) > compareTo;
+                        },
+                        false);
                 } else {
-                    filterGroupRows(function (row) {
-                        return parseInt(row.find("td:eq(1)").text(), 10) < compareTo;
-                    }, false);
+                    filterGroupRows(
+                        function (row) {
+                            return parseInt(row.find("td:eq(1)").text(), 10) < compareTo;
+                        },
+                        false);
                 }
             }
         });

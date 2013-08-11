@@ -55,9 +55,9 @@
         $("#select_all").replaceWith("<input type='checkbox' id='selectAll'>");
         var selectAllCheckboxes = function() {
             var isChecked = $("#selectAll").is(":checked");
-            $("#commands_table tr:visible").find(":checkbox").attr("checked", isChecked);
+            $("#commands_table tr:visible").find(":checkbox").prop("checked", isChecked);
         };
-        $("#selectAll").click(selectAllCheckboxes);
+        $("#selectAll").change(selectAllCheckboxes);
 
         var offsetToUnits = 3;
 
@@ -87,12 +87,15 @@
                 var cells = $("td", row);
                 var firstCell = cells.first();
                 var commandType = firstCell.find("img:first").attr("src");
+
                 if (typeof commandType !== 'undefined'
                     && commandType.indexOf("command/cancel.png") == -1
                     && commandType.indexOf("command/other_back.png") == -1
                     && commandType.indexOf("command/back.png") == -1
                     && commandType.indexOf("command/return.png") == -1) {
 
+                    // We get the village coords from the description of the command
+                    // Meaning if the user changes the name to "blabla" that we can't parse it
                     var village = getVillageFromCoords($.trim(firstCell.text()));
                     //assert(village.isValid, $.trim(firstCell.text()) + " could not be converted to village");
                     if (village.isValid) {
@@ -211,7 +214,7 @@
             } else {
                 // JSON export for player support
                 var exportAttacks = [],
-                    playerName = $("#supportPlayerName").val(),
+                    playerName = $.trim($("#supportPlayerName").val()),
                     filter = playerName.length === 0
                         ? function(attackString) { return true; }
                         : function(attackString) { return attackString.indexOf(playerName) !== -1 };
@@ -290,7 +293,7 @@
                 $("#amountOfTargets").val("???");
             }
 
-            $("#commands_table tr").not(":visible").find(":checkbox").attr("checked", false);
+            $("#commands_table tr").not(":visible").find(":checkbox").prop("checked", false);
         }
 
         // Filter sent back, returning and cancelled commands
@@ -481,7 +484,7 @@
             var menu = $("#commands_table tr").first().html(),
                 totalRow = $("#commands_table tr:last");
             $("#commands_table").html("<table id='commands_table' class='vis'>" + menu + newTable + totalRow.outerHTML() + "</table>");
-            $("#selectAll").click(selectAllCheckboxes);
+            $("#selectAll").change(selectAllCheckboxes);
 
             // total number of attacks
             if ($("#amountOfAttacks").size() == 0) {

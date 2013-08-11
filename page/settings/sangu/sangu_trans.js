@@ -59,8 +59,8 @@ var sangu_trans = (function() {
                 title: "Overzichtsscherm: Troepenoverzicht",
                 titleOwnTroopsPage: "Pagina's 'Eigen' en 'In het dorp'",
                 middleMouseClickDeletesRow: "Actie bij <img src='graphic/command/attack.png'>"
-                    + " aanklikken met de middelste muisknop.",
-                middleMouseClickDeletesRowTooltip: "Vink aan om de dorpsrij te verwijderen. Uitgevinkt: Een zwarte rand wordt rond de \"Opdracht\" cell geplaatst.",
+                    + " aanklikken met de middelste muisknop: Aangevinkt=rij verwijderen. Uitgevinkt: rode rand rond de \"Opdracht\" cell.",
+                middleMouseClickDeletesRowTooltip: "Dit werkt enkel in Opera. Vink dit NIET AAN in Firefox of Chrome!! (De rode rand werkt ook niet in Firefox)",
                 titleDefensePage: "Pagina's 'Verdediging' en 'Ondersteuning'",
                 changeTroopsOverviewLink: "Link wijzigen om direct 'Eigen troepen' te openen",
                 filterMinPopulation: "De standaard ingevulde waarde om te filteren op populatie",

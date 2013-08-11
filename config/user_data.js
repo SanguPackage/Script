@@ -59,17 +59,12 @@ if (user_data !== '') {
         farmLimit: {
             stackColors: ['#DED3B9', '#3CB371', '#FF6347'],
             acceptableOverstack: [0.5, 1.2, 1.35], /* Different pages: % of acceptable overstack (only relevant for farmlimit worlds) */
-            unlimitedStack: [24000, 60000, 100000], /* Different pages: Calculate stacks based on total troops (for non farmlimit worlds) */
-			stacksConfig: [ /* TODO: not yet implemented */
-				{color: '#DED3B9', stack: 24000},
-				{color: '#3CB371', stack: 60000},
-				{color: '#FF6347', stack: 100000}
-			]
+            unlimitedStack: [24000, 60000, 100000] /* Different pages: Calculate stacks based on total troops (for non farmlimit worlds) */
         },
 
         command: { /* features for the own troops overview page */
             changeTroopsOverviewLink: true, /* Change the link to the own troops overview */
-            middleMouseClickDeletesRow: true,
+            middleMouseClickDeletesRow2: false, /* Let the new default overwrite the old one */
 
             filterMinPopulation: 18000, /* Default number filled in to filter on village stack */
             filterMinDefaultType: 'axe', /* This unit type is by default selected in the filter dropdown */

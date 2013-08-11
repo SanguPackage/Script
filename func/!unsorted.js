@@ -47,6 +47,15 @@ function getUrlString(url, villageId) {
 	}
 }
 
+/**
+ * Perform an ajax call (if the server allows it)
+ * @param {string} screen passed to getUrlString. (start from &screen=)
+ * @param {function} strategy executed on success. Has parameter text (content of the parameter depends on opts.contentValue)
+ * @param {object} [opts] object with properties
+ *              {false|number} [villageId] passed to getUrlString. Default is false which defaults to current village. Otherwise pass a village id.
+ *              {boolean=true} [contentValue] true (default): only return the #content_value. false: return entire DOM HTML
+ *              {boolean=true} [async] defaults to true
+ */
 function ajax(screen, strategy, opts) {
 	if (!server_settings.ajaxAllowed) {
 		alert("Ajax is not allowed on this server.");
@@ -122,6 +131,9 @@ function trackClickEvent(action) {
 	trackEvent("ButtonClick", action);
 }
 
+/**
+ * google analytics event tracking
+ */
 function trackEvent(category, action, label) {
 	// category: clicks (downloads, ...)
 	// action: which button clicked

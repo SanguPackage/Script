@@ -1,14 +1,15 @@
 // Check all villages checkbox replacement
 $("input.selectAll").replaceWith("<input type=checkbox id=selectAllVisible>");
-$("#selectAllVisible").click(function () {
+$("#selectAllVisible").change(function () {
     var isChecked = $(this).is(":checked");
-    $("input.village_checkbox:hidden", overviewTable).attr("checked", false);
-    $("input.village_checkbox:visible", overviewTable).attr("checked", isChecked);
+
+    $("input.village_checkbox:hidden", overviewTable).prop("checked", false);
+    $("input.village_checkbox:visible", overviewTable).prop("checked", isChecked);
 });
 
 
 // Hide all OWN rows/villages that don't have any support rows anymore
-$("#defHideEmpty").click( function () {
+$("#defHideEmpty").click(function () {
     trackClickEvent("FilterEmpty");
     var goners = $();
     if ($("#defTotals").is(":disabled")) {
@@ -74,8 +75,10 @@ $("#defTotals").click(function () {
             var grandTotal = 0;
             var totals = [];
             while (nextRow.hasClass("row_a") || nextRow.hasClass("row_b")) {
+                // supporting rows loop
                 var total = 0;
                 $("td:gt(0)", nextRow).each(function (i) {
+                    // total support per supporting village
                     var cellSelf = $(this);
                     var cellContent = $.trim(cellSelf.text());
                     if (!(cellContent == '0' || i >= world_data.unitsPositionSize.length)) {
@@ -90,10 +93,12 @@ $("#defTotals").click(function () {
                 grandTotal += total;
                 $("td:eq(" + (world_data.unitsPositionSize.length + 1) + ")", nextRow).text(formatNumber(total));
 
+                // print distance between own village
                 var supportedCell = $("td:first", nextRow);
                 var supportedVillage = getVillageFromCoords(supportedCell.text());
                 var distance = parseInt(getDistance(supportedVillage.x, villageCoord.x, supportedVillage.y, villageCoord.y, 'ram').fields, 10);
-                supportedCell.html(supportedCell.html() + ' <b>' + trans.sp.all.fieldsSuffix.replace("{0}", distance) + '</b>');
+                //supportedCell.html(supportedCell.html() + ' <b>' + trans.sp.all.fieldsSuffix.replace("{0}", distance) + '</b>');
+                supportedCell.append(' <b>' + trans.sp.all.fieldsSuffix.replace("{0}", distance) + '</b>');
                 nextRow.attr("distance", distance);
 
                 if (rowColor % 2 == 1) {

@@ -61,11 +61,11 @@ function createFixedTooltip(id, content, options) {
 	if (!options.showOnce || pers.getGlobal(persKey) == '') {
 		content_value.after('<div id="' + id + '" class="vis" style="z-index: 100001; margin: 2px; '
 			+ 'width: '+options.width+'px; display: block; position:absolute; top: '+options.top+'px; left: '+options.left+'px; border: 1px solid black; background-color: #F4E4BC">'
-			+ '<h4>' + '<img id="'+id+'closeTooltip" style="float: right; cursor: pointer;" src="graphic/minus.png">' + content.title + '</h4>'
+			+ '<h4>' + '<img class="'+id+'closeTooltip" style="float: right; cursor: pointer;" src="graphic/minus.png">' + content.title + '</h4>'
 			+ '<div style="display: block; text-align: left; margin: 2px;">' + content.body + '</div>'
 			+ '</div>');
-		
-		$("#"+id+"closeTooltip").click(function() {
+
+		$("."+id+"closeTooltip", "#" + id).click(function() {
 			$("#" + id).hide();
 			if (options.showOnce) {
 				pers.setGlobal(persKey, "1");

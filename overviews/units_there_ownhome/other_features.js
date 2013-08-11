@@ -1,5 +1,10 @@
 // One time help display
 (function() {
+    if ($("#targetVillageButton").length === 0) {
+        // group without villages
+        return;
+    }
+
     var position = $("#targetVillageButton").position(),
         options = {
             left: position.left - 300,

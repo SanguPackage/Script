@@ -57,7 +57,7 @@ $("#units_table").mouseup(function (e) {
 $(".attackLinks", tableHandler.overviewTable).bind("mousedown", function(e) {
     if (e.which == 2) {
         var cell = $(e.target).parent().parent();
-        if (user_data.command.middleMouseClickDeletesRow) {
+        if (user_data.command.middleMouseClickDeletesRow2) {
             cell.parent().remove();
         } else {
             cell.css("border", (parseInt(cell.css("border-width").substr(0, 1), 10) + 1) + "px red solid");

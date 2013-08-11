@@ -894,8 +894,8 @@ var user_data_configs = (function() {
                     label: sangu_trans.overviews.command.middleMouseClickDeletesRow,
                     tooltip: sangu_trans.overviews.command.middleMouseClickDeletesRowTooltip,
                     propUI: {
-                        getter: function() { return user_data.command.middleMouseClickDeletesRow; },
-                        setter: function(value) { user_data.command.middleMouseClickDeletesRow = value; },
+                        getter: function() { return user_data.command.middleMouseClickDeletesRow2; },
+                        setter: function(value) { user_data.command.middleMouseClickDeletesRow2 = value; },
                         editor: "bool"
                     }
                 },

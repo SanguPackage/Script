@@ -33,23 +33,17 @@ menu += "<input type=button id=filterWalkingTime value='" + trans.sp.troopOvervi
 
 menu += "</th><th width='95%'>";
 
-menu += "<input type=button id=calculateStack value='" + trans.sp.troopOverview.calcStack + "' title='" + trans.sp.troopOverview.calcStackTooltip + "'> &nbsp; ";
 menu += "<input type=button id=snobFilter value='" + trans.sp.troopOverview.filterNoble + "' title='" + trans.sp.troopOverview.filterNobleTooltip + "'> &nbsp; ";
 menu += "<input type=button id=attackFilter value='" + trans.sp.troopOverview.filterUnderAttack + "' title='" + trans.sp.troopOverview.filterUnderAttackTooltip + "'> &nbsp; ";
 
-menu += "</th><th nowrap width='1%' style='padding-right: 8px; padding-top: 3px;'>";
+menu += "</th><th width='1%'>";
 
-menu += "<input type=checkbox id=sortIt title='" + trans.sp.troopOverview.sortTooltip + "'"
-    + (user_data.command.filterAutoSort ? " checked" : "") + "> "
-    + trans.sp.troopOverview.sort;
-
+menu += "<input type=button id=calculateStack value='" + trans.sp.troopOverview.calcStack + "' title='" + trans.sp.troopOverview.calcStackTooltip + "'>";
 menu += "</th>";
 
-if (location.href.indexOf('type=there') > -1) {
-    menu += "<th><input type=button id=defRestack value='" + trans.sp.troopOverview.restack + "'></th>";
-}
 menu += "</tr></table>";
 
+// second row
 menu += "<table><tr><th width='1%' nowrap>";
 menu += "<input type=checkbox id=defReverseFilter title='" + trans.sp.commands.filtersReverse + "'> " + trans.sp.commands.filtersReverseInfo + ": ";
 
@@ -57,8 +51,19 @@ menu += "</th><th width='1%' nowrap>";
 menu += "<input type=text size=12 id=defFilterTextValue value=''>";
 menu += "<input type=button id=defFilterText value='" + trans.sp.commands.freeTextFilter + "'>";
 
-menu += "</th><th width='98%' nowrap>";
+menu += "</th><th width='97%' nowrap>";
 menu += "<input type=textbox size=3 id=defFilterContinentText maxlength=2><input type=button id=defFilterContinent value='" + trans.sp.commands.continentFilter + "'>";
+
+menu += "</th>";
+
+if (location.href.indexOf('type=there') > -1) {
+    menu += "<th width='1%'><input type=button id=defRestack value='" + trans.sp.troopOverview.restack + "'></th>";
+}
+menu += "<th nowrap width='1%' style='padding-right: 8px; padding-top: 3px;'>";
+
+menu += "<input type=checkbox id=sortIt title='" + trans.sp.troopOverview.sortTooltip + "'"
+    + (user_data.command.filterAutoSort ? " checked" : "") + "> "
+    + trans.sp.troopOverview.sort;
 
 menu += "</th></tr>";
 menu += "</table>";
@@ -195,7 +200,7 @@ $('#targetVillage').click(function () {
 // "Attacks per page" -> change to # villages in the list
 var pageSize = $("input[name='page_size']");
 var villageAmountCell = $("#units_table tr:first th:first");
-assert(villageAmountCell.length === 1, "village cell Dorp (xxx) niet gevonden");
+//assert(villageAmountCell.length === 1, "village cell Dorp (xxx) niet gevonden");
 villageAmountCell.text(villageAmountCell.text() + " (0)");
 function setVillageCount(amount) {
     pageSize.val(amount);

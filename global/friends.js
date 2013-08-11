@@ -11,6 +11,29 @@ if (server_settings.ajaxAllowed && user_data.global.visualizeFriends) {
                 this.offlineAmount = 0;
             }
 
+            /**
+             * Update the 'friends' links with visual online/offline indication
+             */
+            function updateTWFriendsLink() {
+                var friendsLink = $("#footer_left").find("a[href$='&screen=buddies']");
+                friendsLink.html(
+                    trans.sp.rest.friendsOnline
+                        .replace("{friends}", friendsLink.text())
+                        .replace("{onlineimg}", "<img src='graphic/dots/green.png' />")
+                        .replace("{online#}", friends.online.amount)
+                        .replace("{offlineimg}", "<img src='graphic/dots/red.png' />")
+                        .replace("{offline#}", friends.offlineAmount)
+                );
+                if (friends.online.amount > 0) {
+                    friendsLink.attr("title", trans.sp.rest.friendsOnlineTitle.replace("{playerNames}", friends.online.names.substr(1)));
+                }
+            }
+
+            /**
+             * Parse the #content_value and update the friends link.
+             * Is called from ajax call.
+             * @param {string} overview the #content_value of the friends page
+             */
             function parseFriendsTable(overview) {
                 var friendsTable = $("table.vis:first", overview);
                 if (friendsTable.size() == 1) {
@@ -26,12 +49,14 @@ if (server_settings.ajaxAllowed && user_data.global.visualizeFriends) {
                         }
                     });
 
+                    // localStorage save of online friends
                     pers.set("friendsOnline", JSON.stringify(friends));
+
+                    updateTWFriendsLink();
                 }
             }
 
-            var friendsLink = $("#footer_left").find("a[href$='&screen=buddies']"),
-                friends = pers.get("friendsOnline");
+            var friends = pers.get("friendsOnline");
 
             // check friends page only every 5 minutes (or when on friends page itself)
             if ($("#village_link").val() == "/game.php?screen=buddies") {
@@ -44,20 +69,10 @@ if (server_settings.ajaxAllowed && user_data.global.visualizeFriends) {
                 }
                 if (!friends || friends.lastCheck < new Date().getTime() - 1000 * 60 * 3) {
                     friends = new Friends();
-                    ajax("buddies", parseFriendsTable, {async: false});
+                    ajax("buddies", parseFriendsTable);
+                } else {
+                    updateTWFriendsLink();
                 }
-            }
-
-            friendsLink.html(
-                trans.sp.rest.friendsOnline
-                    .replace("{friends}", friendsLink.text())
-                    .replace("{onlineimg}", "<img src='graphic/dots/green.png' />")
-                    .replace("{online#}", friends.online.amount)
-                    .replace("{offlineimg}", "<img src='graphic/dots/red.png' />")
-                    .replace("{offline#}", friends.offlineAmount)
-            );
-            if (friends.online.amount > 0) {
-                friendsLink.attr("title", trans.sp.rest.friendsOnlineTitle.replace("{playerNames}", friends.online.names.substr(1)));
             }
         } catch (e) { handleException(e, "friends"); }
         //console.timeEnd("friends");

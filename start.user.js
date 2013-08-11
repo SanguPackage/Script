@@ -82,6 +82,7 @@
 
                     //<!--@@INCLUDE "page\overview_mainvillage\supportingunits.js" INDENT=4 //-->
                     //<!--@@INCLUDE "page\overview_mainvillage\tagger.js" INDENT=4 //-->
+                    //<!--@@INCLUDE "page\overview_mainvillage\layout.js" INDENT=4 //-->
                 }());
                 break;
 

@@ -22,9 +22,9 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 							$("input.incAt", incomingTable).each( function () {
 								var rowIndexAttributeValue = parseInt($(this).attr("rowIndex"), 10);
 								if ((direction && rowIndexAttributeValue <= rowIndex) || (!direction && rowIndexAttributeValue >= rowIndex)) {
-									$(this).attr("checked", true);
+									$(this).prop("checked", true);
 								} else {
-									$(this).attr("checked", false);
+									$(this).prop("checked", false);
 								}
 							});
 						}
@@ -49,11 +49,11 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 
 				// checkbox manipulation
 				$("#uncheckSupport").click(function () {
-					$("input.incSupport", incomingTable).attr("checked", false);
+					$("input.incSupport", incomingTable).prop("checked", false);
 				});
 
 				$("#checkSupport").click(function () {
-					$("input.incSupport", incomingTable).attr("checked", true);
+					$("input.incSupport", incomingTable).prop("checked", true);
 				});
 
 				var buttonParent = $("#commandInput").parent();
@@ -122,11 +122,11 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 						row.replaceWith("<tr>" + header + "<th width='68%'>" + trans.sp.tagger.incomingTroops + "</th><th width='30%'>" + trans.sp.tagger.arrival + "</th><th width='10%'>" + trans.sp.tagger.arrival + "</th><th width=10% nowrap>" + trans.sp.tagger.dodgeTime + "</th><th width='1%'>&nbsp;</th>" + "</tr>");
 
 						$("#checkAll").click(function () {
-							$("input.incAt", incomingTable).attr("checked", true);
+							$("input.incAt", incomingTable).prop("checked", true);
 						});
 
 						$("#uncheckAll").click( function () {
-							$("input.incAt", incomingTable).attr("checked", false);
+							$("input.incAt", incomingTable).prop("checked", false);
 						});
 						
 					} else {
