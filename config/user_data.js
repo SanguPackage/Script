@@ -81,6 +81,20 @@ if (user_data !== '') {
             }
         },
 
+        incomings: {
+            attackIdDescriptions: [
+                {minValue: 10, text: "&nbsp;"},
+                {minValue: 50, text: "10-50"},
+                {minValue: 100, text: "50-100"},
+                {minValue: 200, text: "100-200"},
+                {minValue: 500, text: "200-500"},
+                {minValue: 1000, text: "500-1000"},
+                {minValue: 5000, text: "1000-5000"}
+            ],
+            attackIdHigherDescription: "5000+"
+        },
+
+
         overviews: {
             addFancyImagesToOverviewLinks: true
         },

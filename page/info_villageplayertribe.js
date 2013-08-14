@@ -55,7 +55,7 @@
                     isVillage = true;
                     infoTable = $("table.vis:first", content_value);
                     id = infoTable.find("tr:eq(3) a");
-                    assert(id.size() == 1, "player id not found on info_village page");
+                    //assert(id.size() == 1, "player id not found on info_village page");
                     if (id.size() > 0) {
                         id = id.attr("href").match(/id=(\d+)/)[1];
                         assert(!!id, "player id href is not set");

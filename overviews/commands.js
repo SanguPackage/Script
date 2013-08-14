@@ -33,6 +33,8 @@
         }
 
         menu += "</th></tr></table>";
+
+        // second row
         menu += "<table><tr><th width='1%' nowrap>";
         menu += "<input type=checkbox id=defReverseFilter title='" + trans.sp.commands.filtersReverse + "'> " + trans.sp.commands.filtersReverseInfo + ": ";
 

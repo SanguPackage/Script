@@ -1242,6 +1242,65 @@ var user_data_configs = (function() {
     }
 
     if (showConfigs) {
+        // Incomingsoverview:
+        (function() {
+            var properties = {},
+                i;
+
+            properties.attackIdTitle = {
+                type: "subtitle",
+                    label: sangu_trans.overviews.incomings.attackIdTitle
+            };
+
+            for (i = 0; i < user_data.incomings.attackIdDescriptions.length; i++) {
+                (function() {
+                    var captured_index = i;
+
+                    properties['incomings_attackIdDesc'+captured_index+'_title'] = {
+                        type: "subtitle",
+                            label: sangu_trans.overviews.incomings.seperatorTitle.replace("{minValue}", user_data.incomings.attackIdDescriptions[captured_index].minValue)
+                    };
+
+                    properties['incomings_attackIdDesc'+captured_index+'_minValue'] = {
+                        label: sangu_trans.overviews.incomings.minValue,
+                        tooltip: captured_index == 0 ? sangu_trans.overviews.incomings.minValueTooltip : undefined,
+                        propUI: {
+                            getter: function() { return user_data.incomings.attackIdDescriptions[captured_index].minValue; },
+                            setter: function(value) { user_data.incomings.attackIdDescriptions[captured_index].minValue = value; },
+                            editor: "number"
+                        }
+                    };
+
+                    properties['incomings_attackIdDesc'+captured_index+'_text'] = {
+                        label: sangu_trans.overviews.incomings.text,
+                        propUI: {
+                            getter: function() { return user_data.incomings.attackIdDescriptions[captured_index].text; },
+                            setter: function(value) { user_data.incomings.attackIdDescriptions[captured_index].text = value; },
+                            editor: "text"
+                        }
+                    };
+                })();
+            }
+
+            properties['incomings_attackIdDescMaxText'] = {
+                label: sangu_trans.overviews.incomings.attackIdHigherDescription,
+                propUI: {
+                    getter: function() { return user_data.incomings.attackIdHigherDescription; },
+                    setter: function(value) { user_data.incomings.attackIdHigherDescription = value; },
+                    editor: "text"
+                }
+            };
+
+            user_data_configs.push({
+                id: "overviewsIncomings",
+                title: sangu_trans.overviews.incomings.title,
+                save: sangu_saver,
+                properties: properties
+            });
+        }());
+    }
+
+    if (showConfigs) {
         user_data_configs.push({
             id: "other",
             title: sangu_trans.other.title,

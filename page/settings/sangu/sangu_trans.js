@@ -105,6 +105,15 @@ var sangu_trans = (function() {
                 minMaxTitle: "Geef de laagst en hoogst aanvaardbare levels voor je gebouwen",
                 minLevel: "Min {building}",
                 maxLevel: "Max {building}"
+            },
+            incomings: {
+                title: "Overzichtsscherm: Aankomend",
+                attackIdTitle: "Groeperen op aanvalsid",
+                minValueTooltip: "De te tonen tekst wanneer het verschil in aanvalsid tussen de vorige binnenkomende aanval meer is dan het aangegeven verschil",
+                seperatorTitle: "Bij verschil &lt; {minValue}",
+                minValue: "Minimum verschil",
+                text: "Tekst",
+                attackIdHigherDescription: "Te tonen tekst bij groter verschil in aanvalsid"
             }
         },
         place: {

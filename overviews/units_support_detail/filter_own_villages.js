@@ -112,7 +112,8 @@ $("#defFilterTotalPop").click(function () {
     var compareTo = parseInt($("#defFilterTotalPopValue").val(), 10);
 
     filterMainRows(
-        function (row) { q(row.attr("village") + "is:" + row.attr("population")); return (parseInt(row.attr("population"), 10) > compareTo); },
+        //q(row.attr("village") + "is:" + row.attr("population"));
+        function (row) { return (parseInt(row.attr("population"), 10) > compareTo); },
         reverseFilter);
 });
 

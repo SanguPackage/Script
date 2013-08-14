@@ -8,9 +8,9 @@
 	//console.time("SanguPackage");
     var sangu_version = '//<!--@@INCLUDE "version.txt" INDENT=0 //-->',
         /**
-         * Set to false to log errors to the console (true: popup with crash dump)
+         * true: popup with crash dump, false: don't show the popup
          */
-        sangu_crash = true,
+        sangu_crash = sangu_version.indexOf(".") !== sangu_version.lastIndexOf("."),
         /**
          * jQuery element of the cell (td) that contains all page specific widgets
          */

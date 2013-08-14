@@ -1,3 +1,9 @@
+/**
+ * Contains all translation
+ * The highest level is split in
+ * - tw = translations that should be translated by their server equivalents (they are used somewhere in the html by Innogames)
+ * - sp = new translations specific for the Sangu Package
+ */
 trans = {
 	tw: {
 		units: {
@@ -116,7 +122,7 @@ trans = {
 			total: "Totaal",
 			last: "Laatste",
 			target: "Doel",
-			targetEx: "Doeldorp",
+			targetEx: "Doelwit",
 			more: "meer",
 			less: "minder",
 			all: "Alle",
@@ -220,9 +226,9 @@ trans = {
             filterWalkingTimeTooltip: "Toon enkel de dorpen met een langere looptijd (in uren) tot het doeldorp",
 			calcStack: "Bereken stack",
 			calcStackTooltip: "Toon de bevolking per dorp in de \"Nacht?\" kolom",
-			filterNoble: "Filter edels",
+			filterNoble: "Toon edels",
 			filterNobleTooltip: "Toon enkel de dorpen waar edels aanwezig zijn",
-			filterUnderAttack: "Filter onder aanval",
+			filterUnderAttack: "Toon onder aanval",
 			filterUnderAttackTooltip: "Toon enkel de dorpen die onder aanval zijn",
 			sort: "Sorteren",
 			sortTooltip: "Sorteren op looptijd tot doeldorp",
@@ -398,11 +404,20 @@ trans = {
 			graphTWMap: "TribalWarsMap.com"
 		},
 		incomings: {
-			dynamicGrouping: "Dynamisch Groeperen",
+			dynamicGrouping: "Dynamisch groeperen",
+            dynamicGroupingTooltip: "Groepeert trager maar bevriest de pagina niet",
 			summation: "Somlijn",
-			fastGrouping: "Snel Groeperen",
-			showNewIncomings: "Toon Nieuwe Aanvallen",
+			fastGrouping: "Snel groeperen",
+            fastGroupingTooltip: "Groepeert sneller en bevriest de pagina (geen refreshs wanneer een aanval binnenkomt)",
+			showNewIncomings: "Toon nieuwe aanvallen",
+            sortByAttackId: "Sorteer op aanvalsid",
+            sortByAttackIdTooltip: "Een kleiner aanvalsid betekent een eerder verstuurde aanval",
 			amount: "Aanvallen:",
+            attackId: "Aanvalsid",
+            attackIdDifference: "Verschil",
+            filterColumnButton: "Kolom filter",
+            filterColumnButtonTooltip: "Alle bevelen waarbij de geselecteerde kolom de ingegeven tekst bevat verbergen",
+
 			indicator: {
 				lastTimeCheckHintBoxTooltip: "Klik op {img} om de laatste tijdcheck met de huidige tijd te vervangen.",
 				lastTimeCheckNotYetSet: "(nog niet)"

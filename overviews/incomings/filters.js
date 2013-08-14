@@ -1,3 +1,4 @@
+// Show new attacks only
 $("#filterAttack").click(function () {
     trackClickEvent("FilterNewAttacks");
     var goners = $();
@@ -16,3 +17,4 @@ $("#filterAttack").click(function () {
     assert(amountOfCommandsHeaderCell.length === 1, "couldn't find the command headercell");
     amountOfCommandsHeaderCell.html(amountOfCommandsHeaderCell.html().replace(/\(\d+\)/, "(" + remainingVillages + ")"));
 });
+
