@@ -10,7 +10,7 @@ server_settings = {
     helpdeskUrl: "http://forum.tribalwars.nl/showthread.php?137674-8-11-GM-Algemeen-discussietopic-Sangu-Package",
     /**
      * This needs to be here for 'historical' reasons (Innogames versionchecker API remembers email on the server)
-     * when in 'compatibility' mode (gray sangu icon)
+     * when in 'compatibility' mode (gray sangu icon). Also used in the crash report.
      */
     sangu: "sangu.be",
     sanguEmail: "package@sangu.be",

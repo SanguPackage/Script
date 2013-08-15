@@ -94,7 +94,8 @@ trans = {
             packageCrashTooltip: "Crash!!! Klik op de bol om het crash rapport te bekijken. "
                 + "Je kan dit rapport naar ons doorsturen waardoor we het probleem mogelijk kunnen oplossen.",
             packageCrash:
-                "<b>Foutmelding</b>: <i>{error}</i><br>"
+                "<a href='http://" + server_settings.sangu + "'>Controleer eerst of er een update is!</a><br>"
+                + "<b>Foutmelding</b>: <i>{error}</i><br>"
                 + "<b>Details</b>:<br>"
                 + "<textarea style='width: 95%' rows='20' id='crashArea'>"
                 + "Foutmelding: {error}\n"

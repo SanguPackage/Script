@@ -5,6 +5,8 @@
 // @description     We are Sangu. You will be assimilated. Resistance is Futile.
 // @icon            http://www.sangu.be/images/favicon.png
 // @include         http://*.tribalwars.nl/game.php?*
+// @include         http://sangu.be/*
+// @include         http://www.sangu.be/*
 // @version         //<!--@@INCLUDE "version.txt" INDENT=0 //-->
 // @grant           none
 // ==/UserScript==
