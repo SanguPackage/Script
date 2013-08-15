@@ -127,6 +127,11 @@ function getDistance(x1, x2, y1, y2, speed) {
 }
 
 _gaq.push(['b._setAccount', 'UA-30075487-3']);
+
+/**
+ * Send click to google analytics
+ * @param {string} action
+ */
 function trackClickEvent(action) {
 	trackEvent("ButtonClick", action);
 }

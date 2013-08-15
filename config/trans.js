@@ -416,7 +416,9 @@ trans = {
             attackId: "Aanvalsid",
             attackIdDifference: "Verschil",
             filterColumnButton: "Kolom filter",
-            filterColumnButtonTooltip: "Alle bevelen waarbij de geselecteerde kolom de ingegeven tekst bevat verbergen",
+            filterColumnButtonTooltip: "Alle bevelen waarbij de geselecteerde kolom de ingegeven tekst bevat {type}",
+            filterColumnButtonTooltipHide: "verbergen",
+            filterColumnButtonTooltipShow: "tonen",
 
 			indicator: {
 				lastTimeCheckHintBoxTooltip: "Klik op {img} om de laatste tijdcheck met de huidige tijd te vervangen.",

@@ -1,6 +1,8 @@
+var columnsToFilterCount = 5;
+
 // build sangu menu
 var menu = "";
-menu += "<table width='100%' class=vis>";
+menu += "<table width='100%' class='vis' id='sangu_menu'>";
 menu += "<tr><th width='1%'>";
 menu += "<input type=button id=sortIt value='" + trans.sp.incomings.dynamicGrouping + "' title='" + trans.sp.incomings.dynamicGroupingTooltip + "'>";
 menu += "</th><th width='1%' nowrap>";
@@ -31,7 +33,7 @@ var defaultColumnFilters = (function() {
         cols = [],
         headerCellText;
 
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < columnsToFilterCount; i++) {
         headerCellText = headerCells.eq(i).text();
         if (headerCellText.indexOf(" ") !== -1) {
             headerCellText = $.trim(headerCellText.substr(0, headerCellText.indexOf(" ")));
@@ -48,14 +50,13 @@ function buildColumnFilter() {
     var i,
         menu = "<th width='99%' nowrap>";
     menu += "<input type='text' size='12' id='filterColumnValue'>";
-    menu += "<select id='filterColumnValue'>";
+    menu += "<select id='filterColumnIndex'>";
     for (i = 0; i < defaultColumnFilters.length; i++) {
-        menu += "<option>" + defaultColumnFilters[i] + "</option>";
+        menu += "<option value='" + i + "'>" + defaultColumnFilters[i] + "</option>";
     }
     menu += "</select>";
     menu += "<input type='button' id='filterColumn' value='"
         + trans.sp.incomings.filterColumnButton + "'"
-        + " title='" + trans.sp.incomings.filterColumnButtonTooltip + "'"
         + "'>";
     menu += "</th>";
     return menu;
@@ -71,23 +72,23 @@ menu += buildColumnFilter();
 menu += "</table>";
 overviewTable.before(menu);
 
-// switch tooltips on reverse filter checkbox change
-$("#defReverseFilter").change( function () {
-    var isChecked = $(this).is(":checked");
-    var defTrans = trans.sp.commands;
-    var i;
-
-    //filterButtonId
-
-    $("#defFilterContinent").attr("title", isChecked ? defTrans.continentFilterTooltip : defTrans.continentFilterTooltipReverse);
-
-    $("#defFilterText").attr("title", defTrans.freeTextFilterTooltip.replace("{filterType}", isChecked ? defTrans.freeTextFilterTooltipFilterTypeWith : defTrans.freeTextFilterTooltipFilterTypeWithout));
+$("#filterColumnIndex").change(function() {
+    
 });
 
+// switch tooltips on reverse filter checkbox change
+$("#defReverseFilter").change( function () {
+    var isChecked = $(this).is(":checked"),
+        overviewTrans = trans.sp.incomings;
 
+    //$("#").attr("title", isChecked ? overviewTrans.continentFilterTooltip : overviewTrans.continentFilterTooltipReverse);
 
-
-
+    $("#filterColumn").attr(
+        "title",
+        overviewTrans.filterColumnButtonTooltip.replace(
+            "{type}",
+            isChecked ? overviewTrans.filterColumnButtonTooltipHide : overviewTrans.filterColumnButtonTooltipShow));
+}).change();
 
 
 // select all checkbox
@@ -96,13 +97,3 @@ $("#selectAll").change(function() {
     var isChecked = $("#selectAll").is(":checked");
     $("tr", overviewTable).find(":checkbox").prop("checked", isChecked);
 });
-
-// total row stuff
-function showAmountOfAttacks(amountOfVillages, amountOfCommands) {
-    if ($("#amountOfAttacks").size() == 0) {
-        var pageSize = $("input[name='page_size']");
-        pageSize.parent().prev().text(trans.sp.commands.totalVillagesAttack);
-        pageSize = pageSize.val(amountOfVillages).parent().parent().parent();
-        pageSize.append('<tr><th colspan=2 id="amountOfAttacks">' + trans.sp.incomings.amount + '</th><td>' + amountOfCommands + '</td></tr>');
-    }
-}

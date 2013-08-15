@@ -30,7 +30,7 @@ $("#commandsImport").click(function() {
                 commandsSent[commandsToImport[i].commandId] = commandsToImport[i].commandName;
             }
 
-            overviewTable.find("tr:gt(0)").not("tr:last").each(function () {
+            table.getVillageRows().each(function () {
                 var firstCell = $("td:first", this),
                     commandId = firstCell.find(":input:first").attr("name");
 

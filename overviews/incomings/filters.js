@@ -1,20 +1,60 @@
-// Show new attacks only
-$("#filterAttack").click(function () {
-    trackClickEvent("FilterNewAttacks");
-    var goners = $();
-    var remainingVillages = 0;
-    getVillageRows().each(function() {
+/**
+ *
+ * @param {function} filterStrategy return true to hidethe row; false keep row visible (without reverse filter checkbox)
+ * @param {Object} options
+ */
+function filterVillageRows(filterStrategy, options) {
+    options = $.extend({}, {
+        checkboxReverses: true
+    }, options);
+
+    var reverseFilter = options.checkboxReverses && $("#defReverseFilter").is(":checked"),
+        goners = $(),
+        villageCounter = 0;
+
+    trackClickEvent(options.gaEventName);
+
+    table.fixTable();
+
+    table.getVillageRows().each(function () {
         var self = $(this);
-        if ($.trim($("td:first", self).text()) != trans.tw.command.attack) {
+        if (!reverseFilter != !filterStrategy(self)) {
             goners = goners.add(self);
         } else {
-            remainingVillages++;
+            villageCounter++;
         }
     });
     goners.remove();
 
-    var amountOfCommandsHeaderCell = $("tr:first", overviewTable).find("th:first");
-    assert(amountOfCommandsHeaderCell.length === 1, "couldn't find the command headercell");
-    amountOfCommandsHeaderCell.html(amountOfCommandsHeaderCell.html().replace(/\(\d+\)/, "(" + remainingVillages + ")"));
+    // Show totals
+    table.setTotals(villageCounter);
+}
+
+// Show new attacks only
+$("#filterAttack").click(function () {
+    var strategy = function(row) {
+        return $.trim($("td:first", row).text()) != trans.tw.command.attack;
+    };
+
+    filterVillageRows(strategy, {
+        gaEventName: "FilterNewAttacks",
+        checkboxReverses: false
+    });
 });
 
+
+// Filter rows on column 0 - 3 (command, target, origin, player)
+$("#filterColumn").click(function() {
+    var filter = {
+        index: $("#filterColumnIndex").val(),
+        searchText: $.trim($("#filterColumnValue").val()).toLowerCase()
+    };
+
+    var filterStrategy = function(row) {
+        return row.find("td").eq(filter.index).text().toLowerCase().indexOf(filter.searchText) === -1;
+    };
+
+    filterVillageRows(filterStrategy, {
+        gaEventName: "column-" + $("#filterColumnIndex").text()
+    });
+});
