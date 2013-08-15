@@ -19,49 +19,49 @@ menu += "</th></tr>";
 menu += "</table>";
 
 // second row
-//menu += "<table width='100%' class=vis>";
-//menu += "<tr><th width='1%' nowrap>";
-//
-//menu += "<input type=checkbox id=defReverseFilter title='" + trans.sp.commands.filtersReverse + "'> " + trans.sp.commands.filtersReverseInfo + ": ";
-//menu += "</th>";
-//
-//// generate one input field/button filter with a select for the first cells
-//var defaultColumnFilters = (function() {
-//    var headerCells = $("tr:first th", overviewTable),
-//        cols = [],
-//        headerCellText;
-//
-//    for (i = 0; i < 4; i++) {
-//        headerCellText = headerCells.eq(i).text();
-//        if (headerCellText.indexOf(" ") !== -1) {
-//            headerCellText = $.trim(headerCellText.substr(0, headerCellText.indexOf(" ")));
-//        }
-//        cols.push(headerCellText);
-//    }
-//    return cols;
-//}());
-//
-///**
-// * builds a textinput+select+button filter that filters rows based on table column index
-// */
-//function buildColumnFilter() {
-//    var i,
-//        menu = "<th width='99%' nowrap>";
-//    menu += "<input type='text' size='12' id='filterColumnValue'>";
-//    menu += "<select id='filterColumnValue'>";
-//    for (i = 0; i < defaultColumnFilters.length; i++) {
-//        menu += "<option>" + defaultColumnFilters[i] + "</option>";
-//    }
-//    menu += "</select>";
-//    menu += "<input type='button' id='filterColumn' value='"
-//        + trans.sp.incomings.filterColumnButton + "'"
-//        + " title='" + trans.sp.incomings.filterColumnButtonTooltip + "'"
-//        + "'>";
-//    menu += "</th>";
-//    return menu;
-//}
-//
-//menu += buildColumnFilter();
+menu += "<table width='100%' class=vis>";
+menu += "<tr><th width='1%' nowrap>";
+
+menu += "<input type=checkbox id=defReverseFilter title='" + trans.sp.commands.filtersReverse + "'> " + trans.sp.commands.filtersReverseInfo + ": ";
+menu += "</th>";
+
+// generate one input field/button filter with a select for the first cells
+var defaultColumnFilters = (function() {
+    var headerCells = $("tr:first th", overviewTable),
+        cols = [],
+        headerCellText;
+
+    for (i = 0; i < 4; i++) {
+        headerCellText = headerCells.eq(i).text();
+        if (headerCellText.indexOf(" ") !== -1) {
+            headerCellText = $.trim(headerCellText.substr(0, headerCellText.indexOf(" ")));
+        }
+        cols.push(headerCellText);
+    }
+    return cols;
+}());
+
+/**
+* builds a textinput+select+button filter that filters rows based on table column index
+*/
+function buildColumnFilter() {
+    var i,
+        menu = "<th width='99%' nowrap>";
+    menu += "<input type='text' size='12' id='filterColumnValue'>";
+    menu += "<select id='filterColumnValue'>";
+    for (i = 0; i < defaultColumnFilters.length; i++) {
+        menu += "<option>" + defaultColumnFilters[i] + "</option>";
+    }
+    menu += "</select>";
+    menu += "<input type='button' id='filterColumn' value='"
+        + trans.sp.incomings.filterColumnButton + "'"
+        + " title='" + trans.sp.incomings.filterColumnButtonTooltip + "'"
+        + "'>";
+    menu += "</th>";
+    return menu;
+}
+
+menu += buildColumnFilter();
 
 //menu += "<th width='97%' nowrap>";
 //menu += "<input type=textbox size=3 id=defFilterContinentText maxlength=2><input type=button id=defFilterContinent value='" + trans.sp.commands.continentFilter + "'>";
@@ -84,11 +84,9 @@ $("#defReverseFilter").change( function () {
     $("#defFilterText").attr("title", defTrans.freeTextFilterTooltip.replace("{filterType}", isChecked ? defTrans.freeTextFilterTooltipFilterTypeWith : defTrans.freeTextFilterTooltipFilterTypeWithout));
 });
 
-// Auto filter - column 1 (commandName)
-//filterCommandName
 
-// Auto filter - column 2 (target village)
-//filterTarget
+
+
 
 
 
