@@ -81,7 +81,11 @@ if ($("#running_times").size() > 0) {
                 infoTable = $("table.vis:last", content_value);
                 if (infoTable.find("td:first").text() == trans.tw.command.haul) {
                     haulDescription = infoTable.find("td:last").text().match(/\s(\d+)\/(\d+)$/);
-                    haulDescription = formatNumber(haulDescription[1]) + " / " + formatNumber(haulDescription[2]);
+                    if (haulDescription) {
+                        haulDescription = formatNumber(haulDescription[1]) + " / " + formatNumber(haulDescription[2]);
+                    } else {
+                        assert(infoTable.find("td:last").text() + " didn't match regexp for tw.command.haul");
+                    }
                     infoTable = infoTable.prev();
                 }
                 infoTable = infoTable.find("tr:last");

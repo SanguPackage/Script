@@ -13,6 +13,14 @@
             + "<a href='#' id='sanguExport'>" + trans.sp.sp.settings.exportSettings + "</a>"
             + "</td></tr>");
 
+    settingsMenu.after(
+        "<br>"
+            + "<a target='_blank' href='http://"+server_settings.sangu+"'>"
+            + "<div style='width: 100%; text-align: center; border: 1px solid black; background-color: yellow; padding: 10px 0 10px;'>"
+            + "Sangu Website"
+            + "</div>"
+            + "</a>");
+
     /**
      * Creates the textarea (and other UI elements) for displaying the user_data
      * @param activate {string} either Import or Export

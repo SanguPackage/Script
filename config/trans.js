@@ -117,7 +117,8 @@ trans = {
             firstTimeRunEditSettings: "Klik op de nieuwe 'Sangu Package' link om het package naar jouw smaak in te stellen!",
 			removeScriptWarning: "Niet meer tonen",
             moreScripts: "Meer scripts",
-            moreScriptsTooltip: "Ga naar de site met alle goedgekeurde TW scripts"
+            moreScriptsTooltip: "Ga naar de site met alle goedgekeurde TW scripts",
+            sanguLinkTitle: "Het package naar jouw smaak instellen"
 		},
 		all: {
 			populationShort: "Pop",

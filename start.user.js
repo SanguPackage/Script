@@ -215,7 +215,9 @@ var sangu_version = '//<!--@@INCLUDE "version.txt" INDENT=0 //-->';
 			//<!--@@INCLUDE "overviews\allpages.js" INDENT=3 //-->
         }
 
-		$("#footer_left").append(" - <a target='_top' id='sanguPackageEditSettingsLink' href='"+getUrlString("screen=settings&mode=sangu")+"'>Sangu Package</a>");
+		$("#footer_left")
+            .append(" - <a target='_top' id='sanguPackageEditSettingsLink' href='"+getUrlString("screen=settings&mode=sangu")+"' title='" + trans.sp.sp.sanguLinkTitle + "'>Sangu Package</a>")
+            .append(" - <a target='_blank' title='"+trans.sp.sp.moreScriptsTooltip+"' href='"+server_settings.scriptsDatabaseUrl+"'>"+trans.sp.sp.moreScripts+"</a>");
 
         (function() {
             var position = $("#sanguPackageEditSettingsLink").position(),
