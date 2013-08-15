@@ -3,15 +3,14 @@
 // The not-one-file source code can be found at:
 // https://github.com/SanguPackage/Script
 
-var sangu_version = '//<!--@@INCLUDE "version.txt" INDENT=0 //-->';
-
 //<!--@@INCLUDE "greasemonkey/sangu_readyStart.txt" INDENT=0 //-->
 	//var start_time = new Date();
 	//console.time("SanguPackage");
+    var sangu_version = '//<!--@@INCLUDE "version.txt" INDENT=0 //-->',
         /**
          * true: popup with crash dump, false: don't show the popup
          */
-    var sangu_crash = sangu_version.indexOf(".") !== sangu_version.lastIndexOf("."),
+        sangu_crash = sangu_version.indexOf(".") !== sangu_version.lastIndexOf("."),
         /**
          * jQuery element of the cell (td) that contains all page specific widgets
          */

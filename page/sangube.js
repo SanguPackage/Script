@@ -11,7 +11,7 @@
         resultBox.css("height", 30);
         resultBox.css("text-align", "center");
 
-        if (lastVersion.text() === sangu_version) {
+        if (lastVersion.text() === '//<!--@@INCLUDE "version.txt" INDENT=0 //-->') {
             resultBox.css("background-color", "green");
             resultBox.text("Je hebt de laatste versie!");
         } else {
