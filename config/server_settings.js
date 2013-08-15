@@ -29,7 +29,8 @@ server_settings = {
     /**
      * Can we fill in the coordinates directly in the place (using the url querystring) from troops overview
      */
-    autoFillCoordinatesAllowed: true
+    autoFillCoordinatesAllowed: true,
+    scriptsDatabaseUrl: "http://www.twscripts.nl/"
 };
 
 //$.extend(server_settings, {

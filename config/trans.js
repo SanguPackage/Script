@@ -115,7 +115,9 @@ trans = {
 			activatePackageWithCompatibility: "Sangu Package (v{version}) mogelijk incompatibel met huidige TW versie",
 			firstTimeRun: "<b>Welkom!</b> Het Sangu Package is momenteel inactief. Klik op de nieuwe {img} naast de opslagplaats hierboven om het package aan en uit te schakelen.",
             firstTimeRunEditSettings: "Klik op de nieuwe 'Sangu Package' link om het package naar jouw smaak in te stellen!",
-			removeScriptWarning: "Niet meer tonen"
+			removeScriptWarning: "Niet meer tonen",
+            moreScripts: "Meer scripts",
+            moreScriptsTooltip: "Ga naar de site met alle goedgekeurde TW scripts"
 		},
 		all: {
 			populationShort: "Pop",
