@@ -48,11 +48,15 @@ var defaultColumnFilters = (function() {
 */
 function buildColumnFilter() {
     var i,
+        defualtIndex = pers.get("incomingsColumnFilterIndex"),
         menu = "<th width='99%' nowrap>";
-    menu += "<input type='text' size='12' id='filterColumnValue'>";
+
+    menu += "<input type='text' size='20' id='filterColumnValue'>";
     menu += "<select id='filterColumnIndex'>";
     for (i = 0; i < defaultColumnFilters.length; i++) {
-        menu += "<option value='" + i + "'>" + defaultColumnFilters[i] + "</option>";
+        menu += "<option value='" + i + "'"
+            + (defualtIndex == i ? " selected" : "") + ">"
+            + defaultColumnFilters[i] + "</option>";
     }
     menu += "</select>";
     menu += "<input type='button' id='filterColumn' value='"
@@ -73,7 +77,7 @@ menu += "</table>";
 overviewTable.before(menu);
 
 $("#filterColumnIndex").change(function() {
-    
+    pers.set("incomingsColumnFilterIndex", $("#filterColumnIndex").val());
 });
 
 // switch tooltips on reverse filter checkbox change

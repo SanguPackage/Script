@@ -43,10 +43,6 @@ $("#sortByAttackId").click(function() {
     });
 });
 
-
-
-
-
 // QUICK sort: performs faster but also freezes the screen (ie no countdowns)
 // --> This might also be good in case the page is refreshing too often otherwise
 $("#sortQuick").click(function () {
