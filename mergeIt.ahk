@@ -12,6 +12,8 @@ SetWorkingDir, %A_ScriptDir%
 IniRead, savePath, mergeIt.ini, SavePaths, operaSavePath, C:\CloudDrives\Dropbox\Personal\!Programming\OperaUserScripts\
 IniRead, firefoxLocation, mergeIt.ini, SavePaths, firefoxSavePath, C:\Users\Wouter\AppData\Roaming\Mozilla\Firefox\Profiles\xtz5hi2x.default\gm_scripts\Sangu_Package\sangupackage.user.js
 IniRead, sourceLocation, mergeIt.ini, Site, sourceLocation, C:\Users\Wouter\AppData\Roaming\Mozilla\Firefox\Profiles\xtz5hi2x.default\gm_scripts\Sangu_Package\sangupackage.user.js
+IniRead, chromeRunSavePath, mergeIt.ini, SavePaths, chromeRunSavePath, C:\CloudDrives\Dropbox\Personal\!Programming\OperaUserScripts\
+IniRead, chromeInstallSavePath, mergeIt.ini, SavePaths, chromeInstallSavePath, C:\CloudDrives\Dropbox\Personal\!Programming\UnixCode\TribalWars\sangupackage-chrome-store
 
 ; update version
 versionFileName = version.txt
@@ -32,6 +34,16 @@ UpdateVersion(newVersion, versionFileName)
 ; Autocopy to Firefox greasemonkey directory
 ; I *really* *really* should've used something else but Autohotkey for this
 FileCopy, %savePath%%saveAs%, %firefoxlocation%, 1
+
+; Autocopy for Chrome (with manifest.json)
+FileCopy, %savePath%%saveAs%, %chromeRunSavePath%, 1
+FileCopy, greasemonkey\manifest.json, %chromeRunSavePath%, 1
+FileCopy, greasemonkey\favicon.png, %chromeRunSavePath%, 1
+
+; Autocopy for chrome WEB STORE
+FileCopy, %savePath%%saveAs%, %chromeInstallSavePath%, 1
+FileCopy, greasemonkey\manifest.json, %chromeInstallSavePath%, 1
+FileCopy, greasemonkey\favicon.png, %chromeInstallSavePath%, 1
 
 ; Check it in browser :)
 SetTitleMatchMode RegEx
