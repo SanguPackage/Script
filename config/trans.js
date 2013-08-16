@@ -142,7 +142,9 @@ trans = {
 			unitsOther: "Ondersteunende Eenheden",
 			rallyPointTroops: "troepen",
 			ownStackTitle: "Totale populatie van de eigen troepen",
-			supportingStackTitle: "Totale populatie van de ondersteunende troepen"
+			supportingStackTitle: "Totale populatie van de ondersteunende troepen",
+            showHiddenDivs: "&raquo; Alle verborgen terugzetten ({amount} verborgen)",
+            hideDiv: "Volledig verbergen"
 		},
 		map: {
 			dodgeLastTagged: "Dodgetijd van de laatst getagde aanval"

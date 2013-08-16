@@ -31,11 +31,6 @@ Code structure:
  - **start.user.js** : The file that is merged by `mergeIt.ahk` to `sangupackage.user.js`.
  - **version.txt** : Current version of Sangu Package.
 
-
-
-
-
-
 Building the script from source
 -------------------------------
 
@@ -52,7 +47,7 @@ for both environments :)
 Contributing
 ------------
 
-Everyone is more than welcome to join in. Lots of features that can still be added or improved :)
+**The Sangu Package is currently looking for a project maintainer**
 
 Contact
 -------

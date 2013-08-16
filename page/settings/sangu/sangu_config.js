@@ -1349,6 +1349,14 @@ var user_data_configs = (function() {
                         editor: "bool"
                     }
                 },
+                canHideDiv: {
+                    label: sangu_trans.other.canHideDiv,
+                    propUI: {
+                        getter: function() { return user_data.overview.canHideDiv; },
+                        setter: function(value) { user_data.overview.canHideDiv = value; },
+                        editor: "bool"
+                    }
+                },
                 timeDisplayTitle: {
                     type: "subtitle",
                     label: sangu_trans.other.timeDisplayTitle

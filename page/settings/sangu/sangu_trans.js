@@ -10,7 +10,7 @@ var sangu_trans = (function() {
             villageNamesTooltip: "Voeg je veelgebruikte dorpsnamen toe om een dorp met 1 klik te hernoemen.",
             villageNameClick: "Autoclick?",
             villageNameClickTooltip: "Schakel deze feature uit indien je bijvoorbeeld nog een nummer aan een standaard dorpsnaam wil toevoegen.",
-            ajaxLoyalty: "Toestemming tonen?",
+            ajaxLoyalty: "Toestemming tonen?"
         },
         global: {
             title: "Op alle pagina's",
@@ -230,7 +230,8 @@ var sangu_trans = (function() {
             farmLimitAcceptableOverstack: "Acceptabele overstack voor elke kleurschakering",
             farmLimitAcceptableOverstackTooltip: "Boerderijlimiet: {farmlimit}",
             farmLimitUnlimitedStack: "Aantal populatie voor elke kleurschakering",
-            ajaxSeperateSupport: "Visualiseer het verschil tussen eigen en ondersteunende troepen in het dorpsoverzicht",
+            ajaxSeperateSupport: "Dorpsoverzicht: Visualiseer het verschil tussen eigen en ondersteunende troepen in het dorpsoverzicht",
+            canHideDiv: "Dorpsoverzicht: Een extra X icon toevoegen om een info kader volledig te verwijderen",
             commandRenamer: "Bevelen automatisch hernoemen",
             commandRenamerActive: "De verzonden troepen in de bevelnaam weergeven",
             commandRenamerAddHaul: "De buit aan de bevelnaam toevoegen"

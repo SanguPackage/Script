@@ -264,6 +264,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 		$("#switchModus").click();
 	}
 
+    // BUG: This breaks the TW remembering of the div positions!!
 	var newLayout = "<tbody><tr><td colspan=2><div class='outerBorder' id=myprettynewcell>";
 	newLayout += "</div></td></tr></tbody>";
 	mainTable.append(newLayout);

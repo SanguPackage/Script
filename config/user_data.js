@@ -109,7 +109,8 @@ if (user_data !== '') {
 
         overview: { /* The default village overview page */
             ajaxSeperateSupport: true, /* Village overview: Seperate own and supported troops */
-            ajaxSeperateSupportStacks: true /* Village overview: Calculate stacks for own and supported troops */
+            ajaxSeperateSupportStacks: true, /* Village overview: Calculate stacks for own and supported troops */
+            canHideDiv: true
         },
 
         mainTagger: {
