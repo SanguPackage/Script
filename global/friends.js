@@ -15,7 +15,7 @@ if (server_settings.ajaxAllowed && user_data.global.visualizeFriends) {
              * Update the 'friends' links with visual online/offline indication
              */
             function updateTWFriendsLink() {
-                var friendsLink = $("#footer_left").find("a[href$='&screen=buddies']");
+                var friendsLink = $("#linkContainer").find("a[href$='&screen=buddies']");
                 friendsLink.html(
                     trans.sp.rest.friendsOnline
                         .replace("{friends}", friendsLink.text())
