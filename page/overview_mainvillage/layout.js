@@ -52,10 +52,9 @@ if (user_data.overview.canHideDiv) {
         + "background: url(" + deleteImage + "); width: 12px; height: 12px; }";
     document.body.appendChild(css);
 
-
     // show everything link
     content_value.append(
-        "<br><a href='#' id='resetSanguMenu'>wtf..."
+        "<br><a href='#' id='resetSanguMenu'>"
             + trans.sp.main.showHiddenDivs.replace("{amount}", currentlyHidden.length)
             + "</a>"
     );
