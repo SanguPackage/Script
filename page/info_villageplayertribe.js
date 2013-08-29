@@ -12,7 +12,7 @@
                         + id.substr(id.lastIndexOf("=") + 1));
 
             var createFilterLink = function(baseLink, settings) {
-                link = baseLink + "&group=" + settings.group + "&sort=" + settings.sort + "&changeSpeed=" + settings.changeSpeed;
+                var link = baseLink + "&group=" + settings.group + "&sort=" + settings.sort + "&changeSpeed=" + settings.changeSpeed;
 
                 if (settings.filter.active) {
                     link += "&unit=" + settings.filter.unit + "&amount=" + settings.filter.amount;
