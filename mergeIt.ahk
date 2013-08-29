@@ -8,7 +8,7 @@ FileEncoding, UTF-8-RAW
 workingDirectory = %A_WorkingDir%
 SetWorkingDir, %A_ScriptDir%
 
-; savePaths
+; savePaths - to configure in merge.ini (make sure to end the paths with a \ or it might silently do nothing
 IniRead, savePath, mergeIt.ini, SavePaths, operaSavePath, C:\CloudDrives\Dropbox\Personal\!Programming\OperaUserScripts\
 IniRead, firefoxLocation, mergeIt.ini, SavePaths, firefoxSavePath, C:\Users\Wouter\AppData\Roaming\Mozilla\Firefox\Profiles\xtz5hi2x.default\gm_scripts\Sangu_Package\sangupackage.user.js
 IniRead, sourceLocation, mergeIt.ini, Site, sourceLocation, C:\Users\Wouter\AppData\Roaming\Mozilla\Firefox\Profiles\xtz5hi2x.default\gm_scripts\Sangu_Package\sangupackage.user.js
@@ -20,6 +20,7 @@ versionFileName = version.txt
 newVersion := GetNewVersion(versionFileName)
 ; MsgBox FINALOK: %newVersion%
 UpdateVersion(newVersion, versionFileName)
+;signature: ParseAndSaveFile(inputFile, savePath, saveFileName)
 ParseAndSaveFile(inputFile, savePath, saveAs)
 
 ; release version does not include build nr
@@ -27,23 +28,27 @@ StringSplit, versionArray, newVersion, .
 newReleaseVersion = %versionArray1%.%versionArray2%
 UpdateVersion(newReleaseVersion, versionFileName)
 
+; RELEASE COPIES
 ParseAndSaveFile("release.user.js", sourceLocation, saveAs)
 ParseAndSaveFile(sourceLocation . "index_toMerge.php", sourceLocation, "index.php")
+
+; Autocopy for chrome WEB STORE
+ParseAndSaveFile("start.user.js", chromeInstallSavePath, saveAs)
+;FileCopy, %sourceLocation%%saveAs%, %chromeInstallSavePath%, 1
+FileCopy, greasemonkey\manifest.json, %chromeInstallSavePath%, 1
+FileCopy, greasemonkey\favicon.png, %chromeInstallSavePath%, 1
+
 UpdateVersion(newVersion, versionFileName)
 
+; BUILD COPIES
 ; Autocopy to Firefox greasemonkey directory
 ; I *really* *really* should've used something else but Autohotkey for this
 FileCopy, %savePath%%saveAs%, %firefoxlocation%, 1
 
-; Autocopy for Chrome (with manifest.json)
+; Autocopy for local Chrome script refresh(with manifest.json)
 FileCopy, %savePath%%saveAs%, %chromeRunSavePath%, 1
 FileCopy, greasemonkey\manifest.json, %chromeRunSavePath%, 1
 FileCopy, greasemonkey\favicon.png, %chromeRunSavePath%, 1
-
-; Autocopy for chrome WEB STORE
-FileCopy, %savePath%%saveAs%, %chromeInstallSavePath%, 1
-FileCopy, greasemonkey\manifest.json, %chromeInstallSavePath%, 1
-FileCopy, greasemonkey\favicon.png, %chromeInstallSavePath%, 1
 
 ; Check it in browser :)
 SetTitleMatchMode RegEx
@@ -143,6 +148,8 @@ SaveFile(fileContent, savePath, saveFileName)
 
 ParseAndSaveFile(inputFile, savePath, saveFileName)
 {
+	;MsgBox %inputFile%, %savePath%, %saveFileName%
+
 	formattedOutput := ParseFile(inputFile, 0)
 	SaveFile(formattedOutput, savePath, saveFileName)
 	return %formattedOutput%
