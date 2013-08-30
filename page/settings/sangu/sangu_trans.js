@@ -199,7 +199,8 @@ var sangu_trans = (function() {
             addCatapultImages: "Gebouws iconen tonen om snel het katapult doelwit te wijzigen"
         },
         villageInfo: {
-            title: "Twee extra links naar het troepenoverzicht op elke dorpsinformatie pagina toevoegen",
+            title: "Extra links naar het troepenoverzicht",
+            title2: "Twee extra links naar het troepenoverzicht op elke dorpsinformatie pagina toevoegen",
             off_title: "Extra link voor aanvallen",
             def_title: "Extra link voor verdedigen",
             linkName: "De link die toegevoegd wordt",

@@ -2,15 +2,11 @@
     try {
         var tables = $('table.vis', content_value),
             infoTable = tables.first(),
-            profile = user_data.profile;
+            profile = user_data.profile,
+            i;
 
-        // extra links on the village overview page
-        if (game_data.player.premium && location.href.indexOf('screen=info_village') > -1 && user_data.villageInfo2.active) {
-            var id = infoTable.find("td:eq(1)").text(),
-                link = getUrlString(
-                    "&screen=overview_villages&type=own_home&mode=units&page=-1&targetvillage="
-                        + id.substr(id.lastIndexOf("=") + 1));
-
+        if (game_data.player.premium && location.href.indexOf('screen=info_village') > -1) {
+            // extra links on the village overview page
             var createFilterLink = function(baseLink, settings) {
                 var link = baseLink + "&group=" + settings.group + "&sort=" + settings.sort + "&changeSpeed=" + settings.changeSpeed;
 
@@ -21,9 +17,19 @@
                 return "<a href='" + link + "'>" + settings.name + "</a>";
             };
 
-            infoTable.find("tbody:first").append(
-                "<tr><td>" + createFilterLink(link, user_data.villageInfo2.off_link) + "</td>"
-                    + "<td>" + createFilterLink(link, user_data.villageInfo2.def_link) + "</td><tr>");
+            for (i = 0; i < user_data.villageInfo3.length; i++) {
+                var currentPairInfo = user_data.villageInfo3[i];
+                if (currentPairInfo.active) {
+                    var id = infoTable.find("td:eq(1)").text(),
+                        link = getUrlString(
+                            "&screen=overview_villages&type=own_home&mode=units&page=-1&targetvillage="
+                                + id.substr(id.lastIndexOf("=") + 1));
+
+                    infoTable.find("tbody:first").append(
+                        "<tr><td>" + createFilterLink(link, currentPairInfo.off_link) + "</td>"
+                            + "<td>" + createFilterLink(link, currentPairInfo.def_link) + "</td><tr>");
+                }
+            }
         }
 
         if (user_data.profile.show && (location.href.indexOf('screen=info_village') == -1 || user_data.showPlayerProfileOnVillage)) {

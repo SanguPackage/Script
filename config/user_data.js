@@ -132,32 +132,60 @@ if (user_data !== '') {
             colorSupport: '#FFF5DA' /* Main village overview: give incoming support a different background color */
         },
 
-        villageInfo2: {
-            /* On info_village page add extra link to attack. */
-            active: true,
-            off_link: {
-              name: "&raquo; Aanvalleuh!",
-              group: 0,
-              filter: {
-                  active: true,
-                  unit: "axe",
-                  amount: 5000
-              },
-              sort: true,
-              changeSpeed: "ram"
-            },
-            def_link: {
-                name: "&raquo; Verdedigen!",
-                group: 0,
-                filter: {
-                    active: true,
-                    unit: "spear",
-                    amount: 3000
+        villageInfo3: [
+            {
+                /* On info_village page add extra link to attack. */
+                active: true,
+                off_link: {
+                    name: "&raquo; Aanvalleuh!",
+                    group: 0,
+                    filter: {
+                        active: true,
+                        unit: "axe",
+                        amount: 5000
+                    },
+                    sort: true,
+                    changeSpeed: "ram"
                 },
-                sort: true,
-                changeSpeed: "spear"
+                def_link: {
+                    name: "&raquo; Verdedigen!",
+                    group: 0,
+                    filter: {
+                        active: true,
+                        unit: "spear",
+                        amount: 4000
+                    },
+                    sort: true,
+                    changeSpeed: "spear"
+                }
+            },
+            {
+                /* On info_village page add extra link to attack. */
+                active: false,
+                off_link: {
+                    name: "&raquo; off2",
+                    group: 0,
+                    filter: {
+                        active: false,
+                        unit: "axe",
+                        amount: 4000
+                    },
+                    sort: true,
+                    changeSpeed: "ram"
+                },
+                def_link: {
+                    name: "&raquo; Snelle Os!",
+                    group: 0,
+                    filter: {
+                        active: true,
+                        unit: "spear",
+                        amount: 1000
+                    },
+                    sort: true,
+                    changeSpeed: "spear"
+                }
             }
-        },
+        ],
 
         resources: {
             requiredResDefault: 250000,
