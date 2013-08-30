@@ -1454,8 +1454,8 @@ var user_data_configs = (function() {
                     label: label,
                     tooltip: tooltip,
                     propUI: {
-                        getter: function() { return user_data.villageInfo3[index][offDef][propName]; },
-                        setter: function(value) { user_data.villageInfo3[index][offDef][propName] = value; },
+                        getter: function() { return user_data.villageInfo4[index][offDef][propName]; },
+                        setter: function(value) { user_data.villageInfo4[index][offDef][propName] = value; },
                         editor: editor
                     }
                 };
@@ -1467,17 +1467,16 @@ var user_data_configs = (function() {
                     label: label,
                     tooltip: tooltip,
                     propUI: {
-                        getter: function() { return user_data.villageInfo3[index][offDef].filter[propName]; },
-                        setter: function(value) { user_data.villageInfo3[index][offDef].filter[propName] = value; },
+                        getter: function() { return user_data.villageInfo4[index][offDef].filter[propName]; },
+                        setter: function(value) { user_data.villageInfo4[index][offDef].filter[propName] = value; },
                         editor: editor
                     }
                 };
             }
 
             function add2Links(captured_index, offDef) {
-
-
                 addSetting(properties, captured_index, offDef+"_link", "name", sangu_trans.villageInfo.linkName, "text");
+                addSetting(properties, captured_index, offDef+"_link", "icon", sangu_trans.villageInfo.icon, "text");
                 addSetting(properties, captured_index, offDef+"_link", "sort", sangu_trans.villageInfo.sort, "bool");
                 addSetting(properties, captured_index, offDef+"_link", "changeSpeed", sangu_trans.villageInfo.changeSpeed, "unit");
                 addSetting(properties, captured_index, offDef+"_link", "group", sangu_trans.villageInfo.group, "number", sangu_trans.villageInfo.groupTitle);
@@ -1492,7 +1491,7 @@ var user_data_configs = (function() {
                 addSetting2(properties, captured_index, offDef+"_link", "amount", sangu_trans.villageInfo.filter.amount, "number|step=100");
             }
 
-            for (i = 0; i < user_data.villageInfo3.length; i++) {
+            for (i = 0; i < user_data.villageInfo4.length; i++) {
                 (function() {
                     var captured_index = i;
 
@@ -1504,8 +1503,8 @@ var user_data_configs = (function() {
                     properties['infoPage_extra_link'+captured_index+'_activate'] = {
                         label: sangu_trans.global.resources.activate,
                         propUI: {
-                            getter: function() { return user_data.villageInfo3[captured_index].active; },
-                            setter: function(value) { user_data.villageInfo3[captured_index].active = value; },
+                            getter: function() { return user_data.villageInfo4[captured_index].active; },
+                            setter: function(value) { user_data.villageInfo4[captured_index].active = value; },
                             editor: "bool"
                         }
                     };

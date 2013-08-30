@@ -14,11 +14,12 @@
                     link += "&unit=" + settings.filter.unit + "&amount=" + settings.filter.amount;
                 }
 
-                return "<a href='" + link + "'>" + settings.name + "</a>";
+                var fancyIcon = settings.icon ? "<img src='" + settings.icon + "'>" : "";
+                return "<a href='" + link + "'>" + fancyIcon + settings.name + "</a>";
             };
 
-            for (i = 0; i < user_data.villageInfo3.length; i++) {
-                var currentPairInfo = user_data.villageInfo3[i];
+            for (i = 0; i < user_data.villageInfo4.length; i++) {
+                var currentPairInfo = user_data.villageInfo4[i];
                 if (currentPairInfo.active) {
                     var id = infoTable.find("td:eq(1)").text(),
                         link = getUrlString(

@@ -132,12 +132,12 @@ if (user_data !== '') {
             colorSupport: '#FFF5DA' /* Main village overview: give incoming support a different background color */
         },
 
-        villageInfo3: [
+        villageInfo4: [
             {
                 /* On info_village page add extra link to attack. */
                 active: true,
                 off_link: {
-                    name: "&raquo; Aanvalleuh!",
+                    name: "Aanvalleuh!",
                     group: 0,
                     filter: {
                         active: true,
@@ -145,10 +145,11 @@ if (user_data !== '') {
                         amount: 5000
                     },
                     sort: true,
-                    changeSpeed: "ram"
+                    changeSpeed: "ram",
+                    icon: "graphic/unit/unit_knight.png"
                 },
                 def_link: {
-                    name: "&raquo; Verdedigen!",
+                    name: "Verdedigen!",
                     group: 0,
                     filter: {
                         active: true,
@@ -156,7 +157,8 @@ if (user_data !== '') {
                         amount: 4000
                     },
                     sort: true,
-                    changeSpeed: "spear"
+                    changeSpeed: "spear",
+                    icon: "graphic/command/support.png"
                 }
             },
             {

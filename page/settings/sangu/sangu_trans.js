@@ -201,6 +201,7 @@ var sangu_trans = (function() {
         villageInfo: {
             title: "Extra links naar het troepenoverzicht",
             title2: "Twee extra links naar het troepenoverzicht op elke dorpsinformatie pagina toevoegen",
+            icon: "Kies een icoon",
             off_title: "Extra link voor aanvallen",
             def_title: "Extra link voor verdedigen",
             linkName: "De link die toegevoegd wordt",
