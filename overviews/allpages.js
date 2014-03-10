@@ -26,7 +26,7 @@ if (user_data.overviews.addFancyImagesToOverviewLinks) {
 		
 		switch (index) {
 			case 0:
-				overviewLink.parent().css("background-image", 'url("http://cdn2.tribalwars.net/graphic/icons/header.png")');
+				overviewLink.parent().css("background-image", 'url("http://cdn.tribalwars.net/graphic/icons/header.png")');
 				overviewLink.parent().css("background-repeat", "no-repeat");
 				overviewLink.parent().css("background-position", "-324px 0px");
 				overviewLink.prepend("&nbsp; &nbsp;");
@@ -61,7 +61,7 @@ if (user_data.overviews.addFancyImagesToOverviewLinks) {
 						}
 						
 						if (imageToAdd !== "") {
-							$(this).prepend("<img src='http://cdn2.tribalwars.net/"+imageToAdd+"' title='"+overviewLink.text() + " &gt; " + $(this).text()+"' /> &nbsp;");
+							$(this).prepend("<img src='http://cdn.tribalwars.net/"+imageToAdd+"' title='"+overviewLink.text() + " &gt; " + $(this).text()+"' /> &nbsp;");
 						}
 					});
 				}
@@ -85,7 +85,7 @@ if (user_data.overviews.addFancyImagesToOverviewLinks) {
 						}
 						
 						if (imageToAdd !== "") {
-							$(this).prepend("<img src='http://cdn2.tribalwars.net/"+imageToAdd+"' title='"+overviewLink.text() + " &gt; " + $(this).text()+"' /> &nbsp;");
+							$(this).prepend("<img src='http://cdn.tribalwars.net/"+imageToAdd+"' title='"+overviewLink.text() + " &gt; " + $(this).text()+"' /> &nbsp;");
 						}
 					});
 				}
@@ -106,7 +106,7 @@ if (user_data.overviews.addFancyImagesToOverviewLinks) {
 						}
 						
 						if (imageToAdd !== "") {
-							$(this).prepend("<img src='http://cdn2.tribalwars.net/"+imageToAdd+"' title='"+overviewLink.text() + " &gt; " + $(this).text()+"' /> &nbsp;");
+							$(this).prepend("<img src='http://cdn.tribalwars.net/"+imageToAdd+"' title='"+overviewLink.text() + " &gt; " + $(this).text()+"' /> &nbsp;");
 						}
 					});
 				}
@@ -121,7 +121,7 @@ if (user_data.overviews.addFancyImagesToOverviewLinks) {
 				break;
 			case 8:
 				imageToAdd = "graphic/group_right.png";
-				overviewLink.prepend("<img src='http://cdn2.tribalwars.net/"+imageToAdd+"' title='"+overviewLink.text()+"' /> &nbsp;");
+				overviewLink.prepend("<img src='http://cdn.tribalwars.net/"+imageToAdd+"' title='"+overviewLink.text()+"' /> &nbsp;");
 				imageToAdd = "graphic/group_left.png";
 				break;
 			case 9:
@@ -130,7 +130,7 @@ if (user_data.overviews.addFancyImagesToOverviewLinks) {
 				break;
 		}
 		if (imageToAdd !== "") {
-			overviewLink.prepend("<img src='http://cdn2.tribalwars.net/"+imageToAdd+"' title='"+overviewLink.text()+"' />&nbsp;&nbsp;");
+			overviewLink.prepend("<img src='http://cdn.tribalwars.net/"+imageToAdd+"' title='"+overviewLink.text()+"' />&nbsp;&nbsp;");
 		}
 	});
 }
