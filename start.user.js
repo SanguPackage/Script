@@ -104,7 +104,7 @@
                 break;
 
             case "snob":
-                if (current_page.mode === "train") {
+                if (current_page.mode === "train" || current_page.mode === null || current_page.mode === "produce") {
                     //<!--@@INCLUDE "page\snob.js" INDENT=3 //-->
                 }
                 break;
