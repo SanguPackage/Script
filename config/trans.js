@@ -440,7 +440,7 @@ trans = {
 		},
 		rest: {
 			sittingAttackTill: "Aanvallen en verdedigen van dorpen niet in eigen beheer tot:",
-			friendsOnline: "{friends} ({onlineimg} {online#} | {offlineimg} {offline#})",
+			friendsOnline: "Vrienden {friends} ({onlineimg} {online#} | {offlineimg} {offline#})",
 			friendsOnlineTitle: "Online: {playerNames}"
 		}
 	}

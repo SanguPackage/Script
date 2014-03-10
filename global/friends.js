@@ -12,10 +12,10 @@ if (server_settings.ajaxAllowed && user_data.global.visualizeFriends) {
             }
 
             /**
-             * Update the 'friends' links with visual online/offline indication
+             * Insert a 'friends' link with visual online/offline indication
              */
             function updateTWFriendsLink() {
-                var friendsLink = $("#linkContainer").find("a[href$='&screen=buddies']");
+                var friendsLink = $("<a href='" + getUrlString("&screen=buddies") + "'></a>");
                 friendsLink.html(
                     trans.sp.rest.friendsOnline
                         .replace("{friends}", friendsLink.text())
@@ -27,6 +27,8 @@ if (server_settings.ajaxAllowed && user_data.global.visualizeFriends) {
                 if (friends.online.amount > 0) {
                     friendsLink.attr("title", trans.sp.rest.friendsOnlineTitle.replace("{playerNames}", friends.online.names.substr(1)));
                 }
+                $("#linkContainer").append(" - ");
+                $("#linkContainer").append(friendsLink);
             }
 
             /**
@@ -35,7 +37,7 @@ if (server_settings.ajaxAllowed && user_data.global.visualizeFriends) {
              * @param {string} overview the #content_value of the friends page
              */
             function parseFriendsTable(overview) {
-                var friendsTable = $("table.vis:first", overview);
+                var friendsTable = $("h3+table.vis:first", overview);
                 if (friendsTable.size() == 1) {
                     var friendRows = friendsTable.find("tr:gt(0)");
                     friendRows.each(function() {
