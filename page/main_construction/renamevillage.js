@@ -9,7 +9,7 @@
                 var submitButton = $("input[type='submit']:last");
                 $.each(user_data.main.villageNames, function (i, v) {
                     // rename village to one of the provided villageNames options
-                    var button = $("<input type=button value='" + v + "'>")
+                    var button = $("<input type=button class='btn' value='" + v + "'>")
                         .click(function () {
                             trackClickEvent("RenameVillage");
                             $("input[name='name']").val(v);

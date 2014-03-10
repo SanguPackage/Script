@@ -88,7 +88,7 @@ target = getVillageFromCoords(spTargetVillageCookie());
 menu += "<th nowrap>" + trans.sp.all.targetEx
     + " <input type=text id=targetVillage name=targetVillage size=8 value='"
     + (target.isValid ? target.coord : "") + "'>"
-    + "<input type=button id=targetVillageButton value='"
+    + "<input type=button class='btn' id=targetVillageButton value='"
     + trans.sp.troopOverview.setTargetVillageButton + "'></th>";
 menu += "</tr>";
 
