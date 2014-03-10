@@ -36,7 +36,7 @@
     // fill in coordinates? (links from troops overview page)
     if (server_settings.autoFillCoordinatesAllowed && window.location.search.indexOf("&sanguX=") != -1) {
         var match = window.location.search.match(/sanguX=(\d+)&sanguY=(\d+)/);
-        if (match[1] != 0) {
+        if (typeof match[1] !== "undefined") {
             $("#inputx").val(match[1]);
             $("#inputy").val(match[2]);
         }
