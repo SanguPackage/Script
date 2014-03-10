@@ -103,7 +103,7 @@
                         var incomingTable = $("table th:contains('" + trans.tw.overview.incomingTroops + "')", villageDetails);
                         if (incomingTable.size() > 0) {
                             incomingTable = incomingTable.parent().parent();
-                            var incomingRows = $("tr:has(img[src*='attack.png'])", incomingTable);
+                            var incomingRows = $("tr:has(img[src*='attack'])", incomingTable);
                             if (incomingRows.size() > 0) {
                                 var firstAttack = incomingRows.eq(0);
                                 var timeLeft = $("td:eq(2)", firstAttack).text();
