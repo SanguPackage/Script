@@ -8,7 +8,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 		if (user_data.mainTagger.inputBoxWidth != null) {
 			$("input[type='button']", incomingTable).prev().width(user_data.mainTagger.inputBoxWidth);
 		}
-		if (user_data.mainTagger.active && incomingTable.has("img[src*='attack.png']").size() != 0) {
+		if (user_data.mainTagger.active && incomingTable.has("img[src*='attack']").size() != 0) {
 			$("th:first", incomingTable).append("<input type=button value='" + trans.sp.tagger.openButton + "' id=openTaggerButton>");
 			$("#openTaggerButton").click(function () {
 				$(this).hide();
