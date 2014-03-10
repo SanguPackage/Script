@@ -46,7 +46,7 @@ if (user_data.global.incomings.editLinks || user_data.global.incomings.track) {
                             incomingAttacksLinks.attr("title", variableReplacer(user_data.global.incomings.lastTimeCheckWarningLess));
                         }
 
-                        incomingAttacksAmountLink.html(variableReplacer(user_data.global.incomings.indicator));
+                        $("#incomings_amount").html(variableReplacer(user_data.global.incomings.indicator));
                         incomingAttacksLinks.fadeOut("slow").fadeIn("slow");
                     }
 
