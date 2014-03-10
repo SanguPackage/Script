@@ -97,7 +97,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
                                 function () {
                                     // Cannot use input:checked : this works for Firefox but there is a bug in Opera
                                     trackClickEvent("MainTagger-ConfigRename");
-                                    renameCommand($(this).data("rename-to"));
+                                    renameCommand($(this).attr("data-rename-to"));
                                 });
 
                             buttonParent.append(button);

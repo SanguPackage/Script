@@ -19,7 +19,7 @@ $("#targetVillageButton").click(function () {
         spTargetVillageCookie(targetMatch.coord);
         $("#units_table").find(overviewMenuRowFilter).each(function () {
             var unitRow = $(this),
-                dist = getDistance(targetMatch.x, unitRow.data("coord-x"), targetMatch.y, unitRow.data("coord-y"), currentPageSpeed);
+                dist = getDistance(targetMatch.x, unitRow.attr("data-coord-x"), targetMatch.y, unitRow.attr("data-coord-y"), currentPageSpeed);
 
             $("td:last", unitRow).html(dist.html);
             $(this).attr("arrival", dist.travelTime);

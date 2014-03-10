@@ -28,7 +28,7 @@ if (user_data.overview.canHideDiv) {
 
     // X image event
     $(".sanguHide", content_value).click(function() {
-        var toHideId = $(this).data("divid");
+        var toHideId = $(this).attr("data-divid");
         currentlyHidden.push(toHideId);
         $("#" + toHideId).hide();
         q(currentlyHidden);
