@@ -124,7 +124,11 @@ if (user_data !== '') {
                     { active: true, name: "Nacht", renameTo: "NIGHTBONUS" },
                     { active: true, name: "Check stack", renameTo: "----------------------------------------- CHECK STACK" },
                     { active: true, name: "Timen!", renameTo: "***************************************** TIME IT!" },
-                    { active: true, name: "Edelen!", renameTo: "----------------------------------------- NOBLE!!" }
+                    { active: true, name: "Edelen!", renameTo: "----------------------------------------- NOBLE!!" },
+                    { active: false, name: "Leeg1", renameTo: "It has to be, automatically" },
+                    { active: false, name: "Leeg2", renameTo: "Check it out, you'd better work it out" },
+                    { active: false, name: "Leeg3", renameTo: "Change to another route" },
+                    { active: false, name: "Leeg4", renameTo: "My techniques, strategies, abilities" }
                 ],
             autoOpenCommands: false,
             minutesDisplayDodgeTimeOnMap: 3,
