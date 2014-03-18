@@ -5,15 +5,17 @@ var outgoingTable = $("#show_outgoing_units");
 if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 	if (incomingTable.size() == 1) {
 		// tagger - add header
-        if (user_data.mainTagger.inputBoxWidth != null) {
+        // inputBoxWidth : clicking the button focusses the newly created inputbox
+        //                 solution is to no longer show inputboxes on screen load
+        /*if (user_data.mainTagger.inputBoxWidth != null) {
             $("a.rename-icon", incomingTable).click();
             $("span.quickedit", incomingTable).each(function() {
                 var renameSpan = this;
-                setTimeout(function() {
-                    $("span.quickedit-edit input:first", renameSpan).width(user_data.mainTagger.inputBoxWidth);
-                }, 1);
+                //setTimeout(function() {
+                $("span.quickedit-edit input:first", renameSpan).width(user_data.mainTagger.inputBoxWidth);
+                //}, 1);
             });
-        }
+        }*/
 
 		if (user_data.mainTagger.active && incomingTable.has("img[src*='attack']").size() != 0) {
 			$("th:first", incomingTable).append("<input type=button value='" + trans.sp.tagger.openButton + "' id=openTaggerButton>");
@@ -187,9 +189,9 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
                                         if (switchToOpen && isDisplayMode) {
                                             // make input form visible
                                             $("a.rename-icon", editSpan).click();
-                                            setTimeout(function() {
-                                                $("span.quickedit-edit input:first", editSpan).width(user_data.mainTagger.inputBoxWidth);
-                                            }, 1);
+                                            //setTimeout(function() {
+                                            $("span.quickedit-edit input:first", editSpan).width(user_data.mainTagger.inputBoxWidth);
+                                            //}, 1);
 
                                         } else if (!switchToOpen && !isDisplayMode) {
                                             // make label display visible

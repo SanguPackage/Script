@@ -41,8 +41,9 @@ link.one('click', function () {
 		infoCell.eq(14).css("background-color", user_data.colors.error);
 	}
 
-	var remainingRunningTime = convertTime($("tr:eq(9)", infoTable));
-	var toFocusButton = null;
+	var remainingRunningTime = convertTime($("tr:eq(9)", infoTable)),
+	    plausibleSpeedFound = false;
+
 	unitRows.each(function () {
 		var unit = $("img:first", this).attr("src");
 		unit = unit.substr(unit.lastIndexOf("unit_") + 5);
@@ -76,27 +77,29 @@ link.one('click', function () {
                     }
                 }
 
-                $("span.quickedit-label", troopsRow).text(str);
-                // setTimeout: some sort of 'protection' Innogames built in? (or perhaps they just don't understand JavaScript)
-                setTimeout(function() {
-                    $("a.rename-icon", troopsRow).click();
-                    if (runningTime.totalSeconds > remainingRunningTime.totalSeconds && toFocusButton == null) {
-                        toFocusButton = $("span.quickedit-edit input:last", troopsRow);
-                        console.log(toFocusButton.length);
+                $("span.quickedit-label", troopsRow).text(str).show();
+                if (runningTime.totalSeconds > remainingRunningTime.totalSeconds && !plausibleSpeedFound) {
+                    plausibleSpeedFound = true;
 
-                        $("table:first", content_value).prepend("<input type=submit class='btn' id=focusPlaceHolder value='" + trans.sp.tagger.tagIt + " (" + trans.tw.units.names[unit] + ")'>");
-                        $("#focusPlaceHolder").click(function () {
-                            trackClickEvent("TagDefault");
-                            console.log("click");
-                            toFocusButton.click();
-                            $(this).val(trans.sp.tagger.tagged).attr("disabled", "disabled");
-                        });
+                    $("table:first", content_value).prepend(
+                        "<input type=submit class='btn' id=focusPlaceHolder value='"
+                            + trans.sp.tagger.tagIt
+                            + " (" + trans.tw.units.names[unit] + ")'"
+                            + " data-command-name='" + str + "'"
+                            + ">");
 
-                        if (unit == "snob") {
-                            $("tr:last td", table).css("background-color", user_data.colors.error);
-                        }
+                    $("#focusPlaceHolder").focus().click(function () {
+                        trackClickEvent("TagDefault");
+                        $("#command_comment").text($(this).attr("data-command-name"));
+                        $("#command_comment+a").click();
+                        $("#quickedit-rename input:last").click();
+                        $(this).val(trans.sp.tagger.tagged).attr("disabled", "disabled");
+                    });
+
+                    if (unit == "snob") {
+                        $("tr:last td", table).css("background-color", user_data.colors.error);
                     }
-                }, 1);
+                }
             }
 
 			// Possible send times (now) in bold
@@ -115,12 +118,6 @@ link.one('click', function () {
 	if (user_data.incoming.invertSort) {
 		unitRows.sortElements(function (a, b) {
 			return convertTime(a).totalSeconds < convertTime(b).totalSeconds ? 1 : -1;
-		});
+        });
     }
-
-	// auto-show input textboxes
-    $("span.quickedit-label", table).show();
-
-	//$("span:odd", table).show();
-	//$("span:even", table).hide();
 });
