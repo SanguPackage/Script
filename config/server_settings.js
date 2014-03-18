@@ -2,7 +2,7 @@ server_settings = {
     /**
      * When game_data.majorVersion is different from this version then activate sangu 'compatibility' mode (gray icon)
      */
-    tw_version: "8.19",
+    tw_version: "8.20",
     /**
      * Calculate how many more days we can attack in vacation mode
      */
