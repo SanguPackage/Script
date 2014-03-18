@@ -1431,10 +1431,6 @@ var user_data_configs = (function() {
                         setter: function(value) { user_data.farmLimit.unlimitedStack = value; },
                         editor: "array|addNew:number|delete|step=1000"
                     }
-                },
-                villageInfoTitle: {
-                    type: "subtitle",
-                    label: sangu_trans.villageInfo.title
                 }
             }
         });

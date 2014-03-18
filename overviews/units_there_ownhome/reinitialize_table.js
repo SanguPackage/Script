@@ -108,7 +108,7 @@ tableHandler.init("units_table", {
         var cells = $("td:gt(0)", row);
         var units = {};
         var villageCell = $("td:first", row);
-        var villageId = $("span[id*='label_text']", villageCell).attr("id").substr(11);
+        var villageId = $("span.quickedit-vn", villageCell).attr("data-id");
 
         cells.each(function (index, element) {
             if (doFilter && index - 1 == unitIndex && parseInt(this.innerHTML, 10) < unitAmount) {
@@ -152,8 +152,6 @@ tableHandler.init("units_table", {
             } else {
                 mod = !villageType.isDef ? "row_a" : "row_b";
             }
-
-            //$("td:first span[id*='label_text']", row).attr("id").substr(11);
 
             var coord = getVillageFromCoords(villageCell.text());
 

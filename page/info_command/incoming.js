@@ -51,52 +51,57 @@ link.one('click', function () {
 		if (unit == "spear") {
 			$(this).hide();
 		} else {
-			var runningTime = convertTime(this);
-			var newDate = new Date(arrivalTime.getTime() - runningTime.totalSeconds * 1000);
-			var sendAt = prettyDate((new Date()).getTime() - newDate.getTime());
+			var runningTime = convertTime(this),
+			    newDate = new Date(arrivalTime.getTime() - runningTime.totalSeconds * 1000),
+			    sendAt = prettyDate((new Date()).getTime() - newDate.getTime()),
+                troopsRow = this,
+                str;
 
 			// Extra column with time sent
-			$("td:eq(2)", this).before("<td>" + twDateFormat(newDate, true) + "</td><td>" + sendAt + "</td>");
+			$("td:eq(2)", troopsRow).before("<td>" + twDateFormat(newDate, true) + "</td><td>" + sendAt + "</td>");
+
+            // Rename default command name for each speed
+            if (user_data.incoming.renameInputTexbox) {
+                str = user_data.incoming.renameInputTexbox;
+
+                var attackId = $("span.quickedit", this).attr("data-id");
+                str = str.replace("{village}", attackerVillageName).replace("{c}", attackerVillage.continent()).replace("{id}", attackId);
+                str = str.replace("{player}", attacker).replace("{xy}", attackerVillage.coord).replace("{unit}", trans.tw.units.shortNames[unit]);
+                str = str.replace("{fields}", fields);
+                if (str.indexOf("{night}") != -1) {
+                    if (isNightbonus) {
+                        str = str.replace("{night}", trans.sp.tagger.arrivesInNightBonus);
+                    } else {
+                        str = str.replace("{night}", "");
+                    }
+                }
+
+                $("span.quickedit-label", troopsRow).text(str);
+                // setTimeout: some sort of 'protection' Innogames built in? (or perhaps they just don't understand JavaScript)
+                setTimeout(function() {
+                    $("a.rename-icon", troopsRow).click();
+                    if (runningTime.totalSeconds > remainingRunningTime.totalSeconds && toFocusButton == null) {
+                        toFocusButton = $("span.quickedit-edit input:last", troopsRow);
+                        console.log(toFocusButton.length);
+
+                        $("table:first", content_value).prepend("<input type=submit class='btn' id=focusPlaceHolder value='" + trans.sp.tagger.tagIt + " (" + trans.tw.units.names[unit] + ")'>");
+                        $("#focusPlaceHolder").click(function () {
+                            trackClickEvent("TagDefault");
+                            console.log("click");
+                            toFocusButton.click();
+                            $(this).val(trans.sp.tagger.tagged).attr("disabled", "disabled");
+                        });
+
+                        if (unit == "snob") {
+                            $("tr:last td", table).css("background-color", user_data.colors.error);
+                        }
+                    }
+                }, 1);
+            }
 
 			// Possible send times (now) in bold
 			if (runningTime.totalSeconds > remainingRunningTime.totalSeconds) {
-				if (toFocusButton == null) {
-					toFocusButton = $("input:last", this);
-
-					$("table:first", content_value).prepend("<input type=submit class='btn' id=focusPlaceHolder value='" + trans.sp.tagger.tagIt + " (" + trans.tw.units.names[unit] + ")'>");
-					$("#focusPlaceHolder").click(function () {
-						trackClickEvent("TagDefault");
-						toFocusButton.click();
-						$(this).val(trans.sp.tagger.tagged).attr("disabled", "disabled");
-					});
-
-					if (unit == "snob") {
-						$("tr:last td", table).css("background-color", user_data.colors.error)
-					}
-				}
 				$(this).css("font-weight", "bold");
-			}
-
-			// Rename default command name
-			if (user_data.incoming.renameInputTexbox) {
-				var str = user_data.incoming.renameInputTexbox;
-				unit = trans.tw.units.shortNames[unit];
-
-				var attackId = $("input:eq(1)", this).parent().html();
-				attackId = attackId.substr(attackId.lastIndexOf("id=") + 3);
-				attackId = attackId.substr(0, attackId.indexOf("'"));
-
-				str = str.replace("{village}", attackerVillageName).replace("{c}", attackerVillage.continent()).replace("{id}", attackId);
-				str = str.replace("{player}", attacker).replace("{xy}", attackerVillage.coord).replace("{unit}", unit);
-				str = str.replace("{fields}", fields);
-				if (str.indexOf("{night}") != -1) {
-					if (isNightbonus) {
-						str = str.replace("{night}", trans.sp.tagger.arrivesInNightBonus);
-					} else {
-						str = str.replace("{night}", "");
-					}
-				}
-				$(this).find("input:first").val(str);
 			}
 		}
 	});
@@ -107,12 +112,15 @@ link.one('click', function () {
 		nobles.find("td").css("text-decoration", "line-through");
 	}
 
-	if (user_data.incoming.invertSort)
+	if (user_data.incoming.invertSort) {
 		unitRows.sortElements(function (a, b) {
 			return convertTime(a).totalSeconds < convertTime(b).totalSeconds ? 1 : -1;
 		});
+    }
 
 	// auto-show input textboxes
-	$("span:odd", table).show();
-	$("span:even", table).hide();
+    $("span.quickedit-label", table).show();
+
+	//$("span:odd", table).show();
+	//$("span:even", table).hide();
 });

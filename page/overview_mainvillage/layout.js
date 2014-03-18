@@ -1,5 +1,5 @@
 if (user_data.overview.canHideDiv) {
-    console.time("main_overview_deletebuttons");
+    //console.time("main_overview_deletebuttons");
 
     /**
      * Array with domIds of the hideable divs
@@ -66,5 +66,5 @@ if (user_data.overview.canHideDiv) {
 
 
 
-    console.timeEnd("main_overview_deletebuttons");
+    //console.timeEnd("main_overview_deletebuttons");
 }

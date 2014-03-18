@@ -5,9 +5,16 @@ var outgoingTable = $("#show_outgoing_units");
 if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 	if (incomingTable.size() == 1) {
 		// tagger - add header
-		if (user_data.mainTagger.inputBoxWidth != null) {
-			$("input[type='button']", incomingTable).prev().width(user_data.mainTagger.inputBoxWidth);
-		}
+        if (user_data.mainTagger.inputBoxWidth != null) {
+            $("a.rename-icon", incomingTable).click();
+            $("span.quickedit", incomingTable).each(function() {
+                var renameSpan = this;
+                setTimeout(function() {
+                    $("span.quickedit-edit input:first", renameSpan).width(user_data.mainTagger.inputBoxWidth);
+                }, 1);
+            });
+        }
+
 		if (user_data.mainTagger.active && incomingTable.has("img[src*='attack']").size() != 0) {
 			$("th:first", incomingTable).append("<input type=button value='" + trans.sp.tagger.openButton + "' id=openTaggerButton>");
 			$("#openTaggerButton").click(function () {
@@ -58,11 +65,19 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 
 				var buttonParent = $("#commandInput").parent();
 				function renameCommand(commandName) {
-					var dodgeCell = null;
+					var dodgeCell = null,
+                        openRenameButton;
+
 					$("input.taggerCheckbox", incomingTable).each(function () {
 						if ($(this).is(":checked")) {
-							dodgeCell = $(this).parent();
-							var button = dodgeCell.next().find("input[type='button']");
+							dodgeCell = $(this).parent().next();
+
+                            openRenameButton = $("a.rename-icon", dodgeCell);
+                            if (openRenameButton.is(":visible")) {
+                                openRenameButton.click();
+                            }
+
+							var button = dodgeCell.find("input[type='button']");
 							button.prev().val(commandName);
 							button.click();
 						}
@@ -106,11 +121,12 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 				}
 
 				// add checkboxes
-				var lastRowIndex = rows.size();
-				var lastSend = 0;
-				var prevSendTime = 0;
-				var firstNight = true;
-				var amountOfAttacks = 0;
+				var lastRowIndex = rows.size(),
+                    lastSend = 0,
+                    prevSendTime = 0,
+				    firstNight = true,
+				    amountOfAttacks = 0;
+
 				rows.each(function (rowIndex, rowValue) {
 					var row = $(rowValue);
 					if (rowIndex == 0) {
@@ -151,22 +167,42 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 								if ($("#selectAllIgnore").size() == 0) {
 									// attack hiding disabled in tw settings -> there is not yet a totalrow
 									row.prepend("<td title='" + trans.sp.tagger.totalAttacksOnVillage + "' align=center><b># " + amountOfAttacks + "</b></td>");
-								}
-								else row.prepend("<td>&nbsp;</td>")
+								} else {
+                                    row.prepend("<td>&nbsp;</td>");
+                                }
 
 								row.before("<tr><td>&nbsp;</td><td colspan=5><a href='' id=switchModus>" + trans.sp.tagger.switchModus + "</a></td></tr>");
 								$("#switchModus").click(function () {
 									trackClickEvent("MainTagger-OpenClose");
-									var attackRows = $("input.incAt", incomingTable).parent().parent();
-									if (attackRows.first().find("span:first").is(":visible")) {
-										attackRows.find("span:first").hide().next().show();
-									} else {
-										attackRows.find("span:first").show().next().hide();
-									}
+									var editSpans = $("input.incAt", incomingTable).parent().parent().find("span.quickedit"),
+                                        isInDisplayMode = function (editSpan) {
+                                            return editSpan.find("span:first").is(":visible");
+                                        },
+                                        switchToOpen = isInDisplayMode(editSpans.first());
+
+                                    editSpans.each(function() {
+                                        var editSpan = $(this),
+                                            isDisplayMode = isInDisplayMode(editSpan);
+
+                                        if (switchToOpen && isDisplayMode) {
+                                            // make input form visible
+                                            $("a.rename-icon", editSpan).click();
+                                            setTimeout(function() {
+                                                $("span.quickedit-edit input:first", editSpan).width(user_data.mainTagger.inputBoxWidth);
+                                            }, 1);
+
+                                        } else if (!switchToOpen && !isDisplayMode) {
+                                            // make label display visible
+                                            editSpan.find("span:first").show();
+                                            editSpan.find("span:last").remove();
+                                        }
+                                    });
+
 									return false;
 								});
-							}
-							else row.prepend("<td>&nbsp;</td>");
+							} else {
+                                row.prepend("<td>&nbsp;</td>");
+                            }
 							row.find("td:last").attr("colspan", 5);
 						} else {
 							// normal incoming rows
