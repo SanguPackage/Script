@@ -77,7 +77,18 @@ link.one('click', function () {
                     }
                 }
 
-                $("span.quickedit-label", troopsRow).text(str).show();
+                if (false) {
+                    // don't show rename inputs, just the labels
+                    $("span.quickedit-label", troopsRow).text(str).show();
+                } else {
+                    // show the rename inputboxes on form load
+                    $("span.quickedit-label", troopsRow).text(str);
+                    setTimeout(function() {
+                        $("a.rename-icon", troopsRow).click();
+                        $("#focusPlaceHolder").focus();
+                    }, 1);
+                }
+
                 if (runningTime.totalSeconds > remainingRunningTime.totalSeconds && !plausibleSpeedFound) {
                     plausibleSpeedFound = true;
 
@@ -88,7 +99,7 @@ link.one('click', function () {
                             + " data-command-name='" + str + "'"
                             + ">");
 
-                    $("#focusPlaceHolder").focus().click(function () {
+                    $("#focusPlaceHolder").click(function () {
                         trackClickEvent("TagDefault");
                         $("#command_comment").text($(this).attr("data-command-name"));
                         $("#command_comment+a").click();
