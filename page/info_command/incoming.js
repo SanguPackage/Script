@@ -92,7 +92,9 @@ link.one('click', function () {
                         trackClickEvent("TagDefault");
                         $("#command_comment").text($(this).attr("data-command-name"));
                         $("#command_comment+a").click();
-                        $("#quickedit-rename input:last").click();
+                        setTimeout(function() {
+                            $("#quickedit-rename input:last").click();
+                        }, 1);
                         $(this).val(trans.sp.tagger.tagged).attr("disabled", "disabled");
                     });
 
