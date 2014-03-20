@@ -1,7 +1,7 @@
 (function() {
     try {
         var tables = $('table.vis', content_value),
-            infoTable = tables.first(),
+            infoTable = tables.first().hasClass('modemenu') ? tables.first().next('table') :  tables.first(),
             profile = user_data.profile,
             i;
 
@@ -43,19 +43,21 @@
                 // Extra links and info in table at the left top
                 screen = "player";
                 if (user_data.proStyle) {
-                    $("td:first", content_value).css("width", "40%").next().css("width", "60%");
+                    $("td:first", content_value).closest('table').hasClass('modemenu') ? $(content_value).find('table:has("#villages_list") td:first').css("width", "40%").next().css("width", "60%") : $("td:first", content_value).css("width", "40%").next().css("width", "60%");
                 }
 
                 if (current_page.screen === 'info_player') {
                     // player info page
-                    id = infoTable.find("tr:eq(5) a").attr("href");
+                    id = infoTable.find("a[href*='screen=mail']").attr("href");
+                    
                     if (id == undefined) {
-                        // no premium
-                        id = infoTable.find("tr a:first").attr("href");
-                    }
-                    id = id.substr(id.indexOf("&player=") + 8);
-                    if (id.indexOf("&") > -1) {
-                        id = id.substr(0, id.indexOf("&"));
+                        id = game_data.player.id
+                    } else {
+                        id = id.substr(id.indexOf("&player=") + 8);
+                        //alert(id);
+                        if (id.indexOf("&") > -1) {
+                            id = id.substr(0, id.indexOf("&"));
+                        }
                     }
                 } else {
                     // village info page
@@ -184,11 +186,11 @@
                 if (html.length > 0) {
                     var pictureTable;
                     if (screen == 'player' || (isVillage && user_data.showPlayerProfileOnVillage)) {
-                        pictureTable = tables.eq(2);
+                        pictureTable = $(content_value).find('table:has("th:first:contains(Profiel)")');
                         if (isVillage || pictureTable.html() == null) {
                             // With no info nor personal text
                             pictureTable = $("<table class='vis' width='100%'><tr><th colspan='2'>" + trans.tw.profile.title + "</th></tr></table>");
-                            $("td:first", content_value).next().prepend(pictureTable);
+                            $("td:first", content_value).closest('table').hasClass('modemenu') ? $(content_value).find('table:has("#villages_list") td:first').next().prepend(pictureTable) : $("td:first", content_value).next().prepend(pictureTable);
                         } else if (pictureTable.find("th").text() != trans.tw.profile.title) {
                             // TODO: There is a ; after the IF, is that the intention???
                             if (pictureTable.find("th:first").text() == trans.tw.profile.awardsWon);
@@ -201,7 +203,7 @@
                         }
 
                         if (pictureTable.find("td[colspan=2]").size() > 0) {
-                            pictureTable.find("td:last").attr("colspan", 1).css("width", 240).after("<td>" + html + "</td>");
+                            pictureTable.find("tr:last").before("<tr><td colspan=2>" + html + "</td></tr>");
                         } else {
                             pictureTable.find("tr:last").after("<tr><td colspan=2>" + html + "</td></tr>");
                         }
