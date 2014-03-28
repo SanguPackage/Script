@@ -398,7 +398,7 @@
             $("#filterReturning").attr("disabled", true);
 
             $("#commands_table").find("tr:gt(0)").filter(":visible").each(function () {
-                var target = $("span[id*='labelText']", this).text();
+                var target = $.trim($(".quickedit-label", this).text());
                 var village = getVillageFromCoords(target);
                 if (village.isValid) {
                     amountOfCommandos++;

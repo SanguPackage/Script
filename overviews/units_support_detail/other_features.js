@@ -52,7 +52,7 @@ $("#defTotals").click(function () {
     overviewTable.find("tr.units_away").each(function () {
         var self = $(this);
         var firstCell = self.find("td:first");
-        var villageCoord = getVillageFromCoords(firstCell.find("span[id*='label_']").text());
+        var villageCoord = getVillageFromCoords(firstCell.text());
 
         // ensure row color swapping for each own village
         rowColor++;
