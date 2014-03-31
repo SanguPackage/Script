@@ -101,12 +101,17 @@ if ($("#running_times").size() > 0) {
             unitsCalc.colorIfNotRightAttackType($("h2:first", content_value), !isSupport);
 
             if (user_data.attackAutoRename.active) {
-                var inputBox = $("#editInput");
-                var button = $("input[value='" + trans.tw.command.buttonValue + "']");
-
-                var renamed = buildAttackString(village.coord, unitsSent, player, isSupport, 0, haulDescription);
-                inputBox.val(renamed);
-                button.click();
+                $.each($('.quickedit'), function(){
+		    var renamed = buildAttackString(village.coord, unitsSent, player, isSupport, 0, haulDescription);
+		    var commandID = $(this).attr('data-id');
+		    var temp = $(this);
+		    $.ajax({
+		       url:game_data.link_base_pure+'info_command&ajaxaction=edit_other_comment&id='+commandID+'&h='+game_data.csrf+'&',
+		       method:'post',
+		       data:{text:renamed},
+		       success:function(){temp.find(".quickedit-label:first").text(renamed)}
+		    });
+		})
             }
 
             /*if (server_settings.ajaxAllowed) {
