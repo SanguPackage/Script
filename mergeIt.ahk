@@ -35,8 +35,8 @@ ParseAndSaveFile(sourceLocation . "index_toMerge.php", sourceLocation, "index.ph
 ; Autocopy for chrome WEB STORE
 ParseAndSaveFile("start.user.js", chromeInstallSavePath, saveAs)
 ;FileCopy, %sourceLocation%%saveAs%, %chromeInstallSavePath%, 1
-FileCopy, greasemonkey\manifest.json, %chromeInstallSavePath%, 1
-FileCopy, greasemonkey\favicon.png, %chromeInstallSavePath%, 1
+;FileCopy, greasemonkey\manifest.json, %chromeInstallSavePath%, 1
+;FileCopy, greasemonkey\favicon.png, %chromeInstallSavePath%, 1
 
 UpdateVersion(newVersion, versionFileName)
 
