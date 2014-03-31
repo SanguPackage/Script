@@ -43,7 +43,9 @@
                 // Extra links and info in table at the left top
                 screen = "player";
                 if (user_data.proStyle) {
-                    $("td:first", content_value).closest('table').hasClass('modemenu') ? $(content_value).find('table:has("#villages_list") td:first').css("width", "40%").next().css("width", "60%") : $("td:first", content_value).css("width", "40%").next().css("width", "60%");
+                    $("td:first", content_value).closest('table').hasClass('modemenu')
+                        ? $(content_value).find('table:has("#villages_list") td:first').css("width", "40%").next().css("width", "60%")
+                        : $("td:first", content_value).css("width", "40%").next().css("width", "60%");
                 }
 
                 if (current_page.screen === 'info_player') {
@@ -186,7 +188,7 @@
                 if (html.length > 0) {
                     var pictureTable;
                     if (screen == 'player' || (isVillage && user_data.showPlayerProfileOnVillage)) {
-                        pictureTable = $(content_value).find('table:has("th:first:contains(Profiel)")');
+                        pictureTable = $(content_value).find('table:has("th:first:contains(Profiel)")'); // TODO: untranslated resource Profiel
                         if (isVillage || pictureTable.html() == null) {
                             // With no info nor personal text
                             pictureTable = $("<table class='vis' width='100%'><tr><th colspan='2'>" + trans.tw.profile.title + "</th></tr></table>");

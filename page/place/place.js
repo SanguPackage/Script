@@ -16,15 +16,16 @@
 
                 // ' is an invalid village name character so we don't need to escape
                 var commandRenameInputBox = $('.quickedit-label:contains("' + twInitialCommandName + '")');
-                if (commandRenameInputBox.length > 0) {
-                    var sanguCommandName = sessionStorage.getItem(key);
-                    var temp = commandRenameInputBox.closest('.quickedit');
-                    var commandID = temp.attr('data-id');
+                if (commandRenameInputBox.length > 0 && server_settings.ajaxAllowed) {
+                    var sanguCommandName = sessionStorage.getItem(key),
+                        temp = commandRenameInputBox.closest('.quickedit'),
+                        commandID = temp.attr('data-id');
+
                     $.ajax({
                        url:game_data.link_base_pure+'info_command&ajaxaction=edit_other_comment&id='+commandID+'&h='+game_data.csrf+'&',
                        method:'post',
                        data:{text:sanguCommandName},
-                       success:function(){temp.find(".quickedit-label:first").text(sanguCommandName)}
+                       success:function(){temp.find(".quickedit-label:first").text(sanguCommandName);}
                     });
                     pers.removeSessionItem(key);
 
