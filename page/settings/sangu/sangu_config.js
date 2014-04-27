@@ -1482,7 +1482,7 @@ var user_data_configs = (function() {
                     label: sangu_trans.villageInfo.filter.title
                 };
 
-                addSetting2(properties, captured_index, offDef+"_link", "active", sangu_trans.global.resources.activate, "bool");
+                addSetting2(properties, captured_index, offDef+"_link", "active", sangu_trans.villageInfo.filter.title, "bool");
                 addSetting2(properties, captured_index, offDef+"_link", "unit", sangu_trans.villageInfo.filter.unit, "unit");
                 addSetting2(properties, captured_index, offDef+"_link", "amount", sangu_trans.villageInfo.filter.amount, "number|step=100");
             }
@@ -1529,94 +1529,5 @@ var user_data_configs = (function() {
         }());
     }
 
-
-
-
     return user_data_configs;
 }());
-
-
-
-
-
-
-
-
-//villageInfoTitleDef: {
-//    type: "subtitle",
-//        label: sangu_trans.villageInfo.def_title
-//},
-//villageInfodef_name: {
-//    label: sangu_trans.villageInfo.linkName,
-//        propUI: {
-//        getter: function() { return user_data.villageInfo2.def_link.name; },
-//        setter: function(value) { user_data.villageInfo2.def_link.name = value; },
-//        editor: "text"
-//    }
-//},
-//villageInfodef_sort: {
-//    label: sangu_trans.villageInfo.sort,
-//        propUI: {
-//        getter: function() { return user_data.villageInfo2.def_link.sort; },
-//        setter: function(value) { user_data.villageInfo2.def_link.sort = value; },
-//        editor: "bool"
-//    }
-//},
-//villageInfodef_changeSpeed: {
-//    label: sangu_trans.villageInfo.changeSpeed,
-//        propUI: {
-//        getter: function() { return user_data.villageInfo2.def_link.changeSpeed; },
-//        setter: function(value) { user_data.villageInfo2.def_link.changeSpeed = value; },
-//        editor: "unit"
-//    }
-//},
-//villageInfodef_group: {
-//    label: sangu_trans.villageInfo.group,
-//        propUI: {
-//        getter: function() { return user_data.villageInfo2.def_link.group; },
-//        setter: function(value) { user_data.villageInfo2.def_link.group = value; },
-//        editor: "number"
-//    }
-//},
-//villageInfoTitledef_linkFilter: {
-//    type: "subtitle",
-//        label: sangu_trans.villageInfo.filter.title
-//},
-//villageInfodef_linkFilter: {
-//    label: sangu_trans.global.resources.activate,
-//        propUI: {
-//        getter: function() { return user_data.villageInfo2.def_link.filter.active; },
-//        setter: function(value) { user_data.villageInfo2.def_link.filter.active = value; },
-//        editor: "bool"
-//    }
-//},
-//villageInfodef_linkUnit: {
-//    label: sangu_trans.villageInfo.filter.unit,
-//        propUI: {
-//        getter: function() { return user_data.villageInfo2.def_link.filter.unit; },
-//        setter: function(value) { user_data.villageInfo2.def_link.filter.unit = value; },
-//        editor: "unit"
-//    }
-//},
-//villageInfodef_linkAmount: {
-//    label: sangu_trans.villageInfo.filter.amount,
-//        propUI: {
-//        getter: function() { return user_data.villageInfo2.def_link.filter.amount; },
-//        setter: function(value) { user_data.villageInfo2.def_link.filter.amount = value; },
-//        editor: "number|step=100"
-//    }
-//}
-//
-//
-//
-//
-//
-////sangu_trans.global.resources.activate
-///*
-//scoutTitle: {
-//    type: "subtitle",
-//        label: sangu_trans.place.scoutTitle
-//}
-//*/
-//
-//
