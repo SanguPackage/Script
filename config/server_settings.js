@@ -22,6 +22,10 @@ server_settings = {
      * Are ajax calls allowed on this server
      */
     ajaxAllowed: true,
+    /*
+     * async: true on AJAX calls is only allowed when this property is true
+     */
+    asyncAjaxAllowed: false,
     /**
      * True: we add a direct link in the place to fill in coordinates. False: Show coords in an input field
      */

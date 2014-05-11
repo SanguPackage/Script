@@ -62,11 +62,11 @@ function ajax(screen, strategy, opts) {
 		return;
 	}
 	
-	opts = $.extend({}, { villageId: false, contentValue: true, async: true }, opts);
+	opts = $.extend({}, { villageId: false, contentValue: true, async: false }, opts);
 
 	$.ajax({
 		url: getUrlString(screen, opts.villageId),
-		async: opts.async,
+		async: server_settings.asyncAjaxAllowed ? opts.async : false,
 		success: function(text) {
 			text = opts.contentValue ? $("#content_value", text) : text;
 			strategy(text);
