@@ -15,22 +15,24 @@
                 //q("found:" + hasAttackRenamingCookieNeedle + " -> " + twInitialCommandName);
 
                 // ' is an invalid village name character so we don't need to escape
-                var commandRenameInputBox = $('.quickedit-label:contains("' + twInitialCommandName + '")');
-                if (commandRenameInputBox.length > 0 && server_settings.ajaxAllowed) {
-                    var sanguCommandName = sessionStorage.getItem(key),
-                        temp = commandRenameInputBox.closest('.quickedit'),
-                        commandID = temp.attr('data-id');
+                var commandLabel = $('.quickedit-label:contains("' + twInitialCommandName + '")');
+                if (commandLabel.length > 0 && server_settings.ajaxAllowed) {
+                    var sanguCommandName = sessionStorage.getItem(key);
 
-                    $.ajax({
-                       url:game_data.link_base_pure+'info_command&ajaxaction=edit_other_comment&id='+commandID+'&h='+game_data.csrf+'&',
-                       method:'post',
-                       data:{text:sanguCommandName},
-                       success:function(){temp.find(".quickedit-label:first").text(sanguCommandName);}
-                    });
+                    // Open the rename command form:
+                    commandLabel.parent().next().click();
+
+                    // Fill in new command name and click rename button
+                    var commandWrapper = commandLabel.parent().parent().parent(),
+                        commandForm = commandWrapper.find(".quickedit-edit");
+
+                    commandForm.find("input:first").val(sanguCommandName);
+                    commandForm.find("input:last").click();
+
                     pers.removeSessionItem(key);
 
-                    if (commandRenameInputBox.closest("table").find("tr").length > 2) {
-                        commandRenameInputBox.closest("td").addClass("selected");
+                    if (commandLabel.closest("table").find("tr").length > 2) {
+                        commandLabel.closest("td").addClass("selected");
                     }
                 }
             }
