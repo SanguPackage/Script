@@ -12,37 +12,27 @@
             var key = sessionStorage.key(i);
             if (key.indexOf(hasAttackRenamingCookieNeedle) == 0) {
                 var twInitialCommandName = key.substr(hasAttackRenamingCookieNeedle.length);
+                //q("found:" + hasAttackRenamingCookieNeedle + " -> " + twInitialCommandName);
+
                 // ' is an invalid village name character so we don't need to escape
                 var commandLabel = $('.quickedit-label:contains("' + twInitialCommandName + '")');
                 if (commandLabel.length > 0 && server_settings.ajaxAllowed) {
-                    var sanguCommandName = sessionStorage.getItem(key),
-                        renameCommand = function() {
-                            // Open the rename command form:
-                            commandLabel.parent().next().click();
+                    var sanguCommandName = sessionStorage.getItem(key);
 
-                            // Fill in new command name and click rename button
-                            var commandWrapper = commandLabel.parent().parent().parent(),
-                                commandForm = commandWrapper.find(".quickedit-edit");
+                    // Open the rename command form:
+                    commandLabel.parent().next().click();
 
-                            commandForm.find("input:first").val(sanguCommandName);
-                            commandForm.find("input:last").click();
+                    // Fill in new command name and click rename button
+                    var commandWrapper = commandLabel.parent().parent().parent(),
+                        commandForm = commandWrapper.find(".quickedit-edit");
 
-                            pers.removeSessionItem(key);
+                    commandForm.find("input:first").val(sanguCommandName);
+                    commandForm.find("input:last").click();
 
-                            if (commandLabel.closest("table").find("tr").length > 2) {
-                                commandLabel.closest("td").addClass("selected");
-                            }
-                        };
+                    pers.removeSessionItem(key);
 
-                    if (typeof InstallTrigger !== 'undefined') {
-                        // InstallTrigger = Firefox's API to install add-ons
-                        // need to wait a little for FireFox for some reason
-                        setTimeout(function() {
-                            renameCommand();
-                        }, 1000);
-
-                    } else {
-                        renameCommand();
+                    if (commandLabel.closest("table").find("tr").length > 2) {
+                        commandLabel.closest("td").addClass("selected");
                     }
                 }
             }
