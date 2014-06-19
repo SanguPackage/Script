@@ -12,17 +12,6 @@
             $("#units_form").append(htmlStr);
         }
 
-        // tw 'Last' village - change text
-        var existingLastLink = $("#target_attack").parent().prev().find("a:last");
-        if (existingLastLink.size() != 0) {
-            var regXY = existingLastLink.attr("onclick").toString().match(/val\((\d+)\);\$\('#inputy'\)\.val\((\d+)\)/);
-            if (regXY != null) {
-                htmlStr = printCoord({x: regXY[1], y: regXY[2]}, "&raquo; " + regXY[1] + "|" + regXY[2]);
-                existingLastLink.attr("title", existingLastLink.text().substr(2));
-                existingLastLink.html(htmlStr);
-            }
-        }
-
         // Add target village
         var targetVillage = getVillageFromCoords(spTargetVillageCookie());
         if (targetVillage.isValid) {
