@@ -9,12 +9,16 @@ if (location.href.indexOf('changeStatus=') > -1) {
 var activatorImage = isSanguActive ? "green" : 'red';
 var activatorTitle = (!isSanguActive ? trans.sp.sp.activatePackage : trans.sp.sp.deactivatePackage) + " (v" + sangu_version + ")";
 
+function isSanguCompatible() {
+    return sangu_version.indexOf(game_data.majorVersion) === 0;
+}
+
 if (pers.get("forceCompatibility") === '' || pers.get("forceCompatibility") === 'false') {
     if (isSanguActive) {
         // Check compatibility with TW version
-        if (server_settings.tw_version != game_data.majorVersion) {
+        if (!isSanguCompatible()) {
             try {
-                ScriptAPI.register('Sangu Package', server_settings.tw_version, 'Laoujin', server_settings.sanguEmail);
+                ScriptAPI.register('Sangu Package', sangu_version, 'Laoujin', server_settings.sanguEmail);
             } catch (e) {
                 $("#script_list a[href$='mailto:"+server_settings.sanguEmail+"']").after(" &nbsp;<a href='' id='removeScriptWarning'>"+trans.sp.sp.removeScriptWarning+"</a>");
                 $("#removeScriptWarning").click(function() {
@@ -25,7 +29,7 @@ if (pers.get("forceCompatibility") === '' || pers.get("forceCompatibility") === 
     }
 
     // gray icon when tw version doesn't match
-    if (server_settings.tw_version != game_data.majorVersion) {
+    if (!isSanguCompatible()) {
         activatorImage = "grey";
         activatorTitle = trans.sp.sp.activatePackageWithCompatibility.replace("{version}", sangu_version);
     }

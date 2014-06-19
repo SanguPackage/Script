@@ -6,7 +6,10 @@
 //<!--@@INCLUDE "greasemonkey/sangu_readyStart.txt" INDENT=0 //-->
 	//var start_time = new Date();
 	//console.time("SanguPackage");
-    var sangu_version = '//<!--@@INCLUDE "version.txt" INDENT=0 //-->',
+    var /**
+         * When game_data.majorVersion is different from Sangu version then activate sangu 'compatibility' mode (gray icon)
+         */
+        sangu_version = '//<!--@@INCLUDE "version.txt" INDENT=0 //-->',
         /**
          * true: popup with crash dump, false: don't show the popup
          */
@@ -16,7 +19,7 @@
          */
         content_value = $("#content_value"),
         /**
-         * config/ Configuration per server (nl, de). Contains stuff like the tw_version, ajaxAllowed, etc
+         * config/ Configuration per server (nl, de). Contains stuff like ajaxAllowed, etc
          */
             server_settings = {},
         /**
