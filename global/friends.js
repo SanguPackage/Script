@@ -27,8 +27,7 @@ if (server_settings.ajaxAllowed && user_data.global.visualizeFriends) {
                 if (friends.online.amount > 0) {
                     friendsLink.attr("title", trans.sp.rest.friendsOnlineTitle.replace("{playerNames}", friends.online.names.substr(1)));
                 }
-                $("#linkContainer").append(" - ");
-                $("#linkContainer").append(friendsLink);
+                $("#sanguPackageEditSettingsLink").before(friendsLink).before(" - ");
             }
 
             /**

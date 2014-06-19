@@ -217,9 +217,9 @@
 			//<!--@@INCLUDE "overviews\allpages.js" INDENT=3 //-->
         }
 
-		$("#linkContainer")
-            .append(" - <a target='_top' id='sanguPackageEditSettingsLink' href='"+getUrlString("screen=settings&mode=sangu")+"' title='" + trans.sp.sp.sanguLinkTitle + "'>Sangu Package</a>")
-            .append(" - <a target='_blank' title='"+trans.sp.sp.moreScriptsTooltip+"' href='"+server_settings.scriptsDatabaseUrl+"'>"+trans.sp.sp.moreScripts+"</a>");
+		$("#linkContainer a:last")
+            .before("<a target='_blank' title='"+trans.sp.sp.moreScriptsTooltip+"' href='"+server_settings.scriptsDatabaseUrl+"'>"+trans.sp.sp.moreScripts+"</a>")
+            .before(" - <a target='_top' id='sanguPackageEditSettingsLink' href='"+getUrlString("screen=settings&mode=sangu")+"' title='" + trans.sp.sp.sanguLinkTitle + "'>Sangu Package</a> - ");
 
         (function() {
             var position = $("#sanguPackageEditSettingsLink").position(),
