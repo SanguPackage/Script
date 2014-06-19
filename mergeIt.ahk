@@ -83,7 +83,10 @@ UpdateVersion(newVersion, versionFileName)
 ParseFile(fileName, indentCount)
 {
 	if not FileExist(fileName)
-		MsgBox Couldn't find: %fileName%
+	{
+		MsgBox Couldn't find: %fileName% - exitting
+		ExitApp
+	}
 
 	replacedFile =
 	Loop, Read, %fileName%
