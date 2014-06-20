@@ -11,13 +11,12 @@
         resultBox.css("height", 30);
         resultBox.css("text-align", "center");
 
-        if (lastVersion.text() === '//<!--@@INCLUDE "version.txt" INDENT=0 //-->') {
+        if ('//<!--@@INCLUDE "version.txt" INDENT=0 //-->'.indexOf(lastVersion.text()) === 0) {
             resultBox.css("background-color", "green");
             resultBox.text("Je hebt de laatste versie!");
         } else {
             resultBox.css("background-color", "red");
             resultBox.text("Er is een nieuwe versie beschikbaar!");
         }
-
     }
 }());
