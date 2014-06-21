@@ -36,6 +36,7 @@ var sangu_trans = (function() {
             incomingsLastTimeCheckWarningLess: "Tijdchecker tooltip (minder)",
             otherSettingsTitle: "Overige configuratie",
             visualizeFriends: "Aangeven welke vrienden momenteel online zijn",
+            duplicateLogoffLink: "Voeg links onderaan een extra 'Afmelden' link toe.",
             colorsTitle: "Sangu achtergrondkleuren",
             colorsError: "Waarschuwingen",
             colorsNeutral: "Neutrale indicaties",

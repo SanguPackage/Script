@@ -178,6 +178,14 @@ var user_data_configs = (function() {
                         setter: function(value) { user_data.global.visualizeFriends = value; },
                         editor: "bool"
                     }
+                },
+                duplicateLogoffLink: {
+                    label: sangu_trans.global.duplicateLogoffLink,
+                    propUI: {
+                        getter: function() { return user_data.global.duplicateLogoffLink; },
+                        setter: function(value) { user_data.global.duplicateLogoffLink = value; },
+                        editor: "bool"
+                    }
                 }
             }
         });
