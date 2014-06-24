@@ -94,20 +94,12 @@ var user_data_configs = (function() {
                         editor: "text"
                     }
                 },
-                lastTimeCheckWarningMore: {
-                    label: sangu_trans.global.incomingsLastTimeCheckWarningMore,
-                    tooltip: sangu_trans.global.incomingsLastTimeCheckWarningMoreTooltip,
+                lastTimeCheckWarning: {
+                    label: sangu_trans.global.incomingsLastTimeCheckWarning,
+                    tooltip: sangu_trans.global.incomingsLastTimeCheckWarningTooltip,
                     propUI: {
-                        getter: function() { return user_data.global.incomings.lastTimeCheckWarningMore; },
-                        setter: function(value) { user_data.global.incomings.lastTimeCheckWarningMore = value; },
-                        editor: "text"
-                    }
-                },
-                lastTimeCheckWarningLess: {
-                    label: sangu_trans.global.incomingsLastTimeCheckWarningLess,
-                    propUI: {
-                        getter: function() { return user_data.global.incomings.lastTimeCheckWarningLess; },
-                        setter: function(value) { user_data.global.incomings.lastTimeCheckWarningLess = value; },
+                        getter: function() { return user_data.global.incomings.lastTimeCheckWarning; },
+                        setter: function(value) { user_data.global.incomings.lastTimeCheckWarning = value; },
                         editor: "text"
                     }
                 },

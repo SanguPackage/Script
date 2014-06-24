@@ -29,8 +29,7 @@ if (user_data !== '') {
                 track: true,
                 indicator: "({current} <small>{difference}</small>)",
                 indicatorTooltip: "Laatste tijdcheck: {elapsed} geleden",
-                lastTimeCheckWarningMore: "{difference} nieuwe aanvallen. Laatste tijdcheck: {elapsed} geleden",
-                lastTimeCheckWarningLess: "{difference} aanvallen minder. Laatste tijdcheck: {elapsed} geleden"
+                lastTimeCheckWarning: "Aanvallen: {difference}. Laatste tijdcheck: {elapsed} geleden"
             },
             visualizeFriends: true,
             duplicateLogoffLink: false

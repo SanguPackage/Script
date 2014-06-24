@@ -31,9 +31,8 @@ var sangu_trans = (function() {
                 + "{difference} voor het aantal nieuwe aanvallen. "
                 + "{saved} voor het laatst opgeslaan aantal aanvallen.",
             incomingsIndicatorTooltip2: "Tijdchecker tooltip",
-            incomingsLastTimeCheckWarningMore: "Tijdchecker tooltip (meer)",
-            incomingsLastTimeCheckWarningMoreTooltip: "Gebruik {elapsed} voor de verstreken tijd. Gebruik {time} voor de laatste tijdcheck.",
-            incomingsLastTimeCheckWarningLess: "Tijdchecker tooltip (minder)",
+            incomingsLastTimeCheckWarning: "Tijdchecker tooltip",
+            incomingsLastTimeCheckWarningTooltip: "Gebruik {elapsed} voor de verstreken tijd. Gebruik {time} voor de laatste tijdcheck.",
             otherSettingsTitle: "Overige configuratie",
             visualizeFriends: "Aangeven welke vrienden momenteel online zijn",
             duplicateLogoffLink: "Voeg links onderaan een extra 'Afmelden' link toe.",
