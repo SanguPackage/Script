@@ -42,7 +42,7 @@ function sangu_alert(e, title) {
                 majorVersion: game_data.majorVersion,
                 market: game_data.market,
                 world: game_data.world,
-                sitter_id: game_data.player.sitter_id,
+                sitter: game_data.player.sitter,
                 village_id: game_data.village.id,
                 player_id: game_data.player.id,
                 player_name: game_data.player.name,

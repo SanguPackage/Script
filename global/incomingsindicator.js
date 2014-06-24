@@ -24,9 +24,9 @@ if (user_data.global.incomings.editLinks || user_data.global.incomings.track) {
                     // Split current and new attacks in incomings link
                     var incomingAttacksAmountLink = incomingAttacksLinks.last();
                     var currentAmountOfIncomings = incomingAttacksAmountLink.text().match(/\d+/)[0];
-                    var lastKnownAmountOfIncomings = pers.get("lastKnownAmountOfIncomings" + game_data.player.sitter_id) || 0;
+                    var lastKnownAmountOfIncomings = pers.get("lastKnownAmountOfIncomings" + game_data.player.sitter) || 0;
 
-                    var lastCheckTime = pers.get("lastKnownAmountOfIncomingsTime" + game_data.player.sitter_id);
+                    var lastCheckTime = pers.get("lastKnownAmountOfIncomingsTime" + game_data.player.sitter);
                     var lastCheckTimeElapsed;
                     if (!lastCheckTime) {
                         lastCheckTime = trans.sp.incomings.indicator.lastTimeCheckNotYetSet;
@@ -72,8 +72,8 @@ if (user_data.global.incomings.editLinks || user_data.global.incomings.track) {
 
                         $("#changeLastCheckTime").click(function() {
                             var newCheckTime = new Date();
-                            pers.set("lastKnownAmountOfIncomingsTime" + game_data.player.sitter_id, newCheckTime.getTime());
-                            pers.set("lastKnownAmountOfIncomings" + game_data.player.sitter_id, currentAmountOfIncomings);
+                            pers.set("lastKnownAmountOfIncomingsTime" + game_data.player.sitter, newCheckTime.getTime());
+                            pers.set("lastKnownAmountOfIncomings" + game_data.player.sitter, currentAmountOfIncomings);
 
                             pers.setGlobal("fixedToolTip_incomingsIndicatorHelp", 1);
                             $("#changeLastCheckTimeBox").fadeOut();
@@ -83,7 +83,7 @@ if (user_data.global.incomings.editLinks || user_data.global.incomings.track) {
                 }
             } else {
                 if (user_data.global.incomings.track) {
-                    pers.set("lastKnownAmountOfIncomings" + game_data.player.sitter_id, 0);
+                    pers.set("lastKnownAmountOfIncomings" + game_data.player.sitter, 0);
                 }
             }
 
