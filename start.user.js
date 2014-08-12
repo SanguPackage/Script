@@ -172,6 +172,9 @@
 
 			//<!--@@INCLUDE "page\info_villageplayertribe.js" INDENT=3 //-->
         }
+		if (current_page.screen === 'info_village') {
+			//<!--@@INCLUDE "page\info_village.js" INDENT=3 //-->
+		}
 
 		// ALL OVERVIEW PAGES
         if (current_page.screen === 'overview_villages') {
