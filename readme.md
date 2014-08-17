@@ -34,7 +34,7 @@ Code structure:
 Building the script from source
 -------------------------------
 
-An [Autohotkey](http://www.autohotkey.com) script (mergeIt.ahk) can be used to assemble the different js files
+An [Autohotkey](http://ahkscript.org/) script (mergeIt.ahk) can be used to assemble the different js files
 into "sangupackage.user.js".
 To do this: Download and install Autohotkey, then double click mergeIt.ahk when in the same directory as the source files
 and it will create the complete Greasemonkey script. Configure the path for Opera UserScripts and FireFox Greasemonkey in
