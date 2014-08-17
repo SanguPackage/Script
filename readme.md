@@ -25,24 +25,28 @@ Code structure:
  - **greasemonkey\** : Code specific for Greasemonkey/UserScript.
  - **overviews\** : The features for the Tribal Wars overview pages. **Most code is in here**
  - **page\** : The features for specific Tribal Wars pages. **... and in here**.
- - **mergeIt.ahk** : The Autohotkey script that creates `sangupackage.user.js` from `start.user.js`.
- - **mergeIt.ini** : Configuration for `mergeIt.ahk`.
- - **release.user.js** : The release version of the script.
+ - **buildPackage.ahk**: The Autohotkey script that creates `sangupackage.user.js` from `start.user.js`. **Use this during development**
+ - mergeIt.ahk : Other merger script. Used for releasing the package.
+ - mergeIt.ini : Configuration for `mergeIt.ahk`.
+ - release.user.js : The release version of the script.
  - **start.user.js** : The file that is merged by `mergeIt.ahk` to `sangupackage.user.js`.
- - **version.txt** : Current version of Sangu Package.
+ - version.txt : Current version of Sangu Package.
 
 Building the script from source
 -------------------------------
 
-An [Autohotkey](http://ahkscript.org/) script (mergeIt.ahk) can be used to assemble the different js files
-into "sangupackage.user.js".
-To do this: Download and install Autohotkey, then double click mergeIt.ahk when in the same directory as the source files
-and it will create the complete Greasemonkey script. Configure the path for Opera UserScripts and FireFox Greasemonkey in
-`mergeIt.ini`
+An [Autohotkey](http://ahkscript.org/) script (buildPackage.ahk) can be used to assemble the different js files into "sangupackage.user.js".
+To do this: Download and install Autohotkey (make sure you download AutoHotkey_L (v1.1+) and not the basic flavor (v1.0.x)), then double click buildPackage.ahk and it will create the complete Greasemonkey script.  
+
+`mergeIt.ahk` and `mergeIt.ini` can be configured to not only assemble the script but to also copy it to browser Greasemonkey directories and even activate the browser window and refresh the TW page.    
+
+If an error like the one below occurs during assembly:     
+![](http://sangu.be/api/ahk-assembly-error.png)  
+Then you have installed an older version of AutoHotkey, known as AutoHotkey Basic which is not compatible with buildPackage or mergeIt.ahks. 
+
 
 This (Autohotkey) means the script can currently only be assembled on a Windows machine. (This was perhaps not really
-thought through:). If a non Windows person wants to join the project, I'm sure we can come up with a solution that works
-for both environments :)
+thought through:). If a non Windows person wants to join the project, I'm sure we can come up with a solution that works for both environments :)
 
 Contributing
 ------------
@@ -52,4 +56,4 @@ Contributing
 Contact
 -------
 
-You can contact me at package@sangu.be.
+You can contact me at woutervs@hotmail.com.

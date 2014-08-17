@@ -121,9 +121,7 @@ nb-configuration.xml
 
 # Sangu specific files #
 sangupackage.user.js
-mergeIt.ini
 mergeIt.exe
-mergeIt.ahk
 /backup/
 .jshintrc
 releasenotes.txt
