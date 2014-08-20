@@ -21,7 +21,7 @@
             for (i = 0; i < user_data.villageInfo4.length; i++) {
                 var currentPairInfo = user_data.villageInfo4[i];
                 if (currentPairInfo.active) {
-                    var id = infoTable.find("td:eq(1)").text(),
+                    var id = infoTable.find("td:eq(2)").text(),
                         link = getUrlString(
                             "&screen=overview_villages&type=own_home&mode=units&page=-1&targetvillage="
                                 + id.substr(id.lastIndexOf("=") + 1));
