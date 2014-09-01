@@ -117,17 +117,37 @@
 
             // total stack
             (function() {
-                var stackDetails,
+                var cell = $("#order_level_farm"),
+                    isClassicOverview = cell.length !== 0,
+                    percentage,
+                    stackDetails,
                     cellContent;
 
-                stackDetails = stackDisplay(
-                    totalFarm, {
-                        showFarmLimit: true,
-                        percentage: $("#l_farm .building_extra").html()
-                    });
+                if (isClassicOverview) {
+                    cell = cell.parent();
+                    if (game_data.player.premium) {
+                        cell = cell.next();
+                    }
+                    percentage = world_config.farmLimit == 0 ? "" : cell.children().html();
+                    stackDisplay(
+                        totalFarm, {
+                            showFarmLimit: true,
+                            percentage: percentage ? percentage.substr(0, percentage.indexOf('%') + 1) : "",
+                            cell: cell,
+                            appendToCell: !game_data.player.premium
+                        });
 
-                cellContent = ' | <b>' + trans.tw.all.farm + ': ' + stackDetails.desc + '</b>';
-                $("#show_units tbody:first td:last").append(cellContent).css("border-top", "1px solid #85550d").css("background-color", stackDetails.color);
+                } else {
+                    stackDetails = stackDisplay(
+                        totalFarm, {
+                            showFarmLimit: true,
+                            percentage: $("#l_farm .building_extra").html()
+                        });
+
+                    //cellContent = '<tr><td style="border-top: 1px solid #85550d ;background-color: ' + stackDetails.color + '">' + '<b>' + trans.tw.all.farm + ': ' + stackDetails.desc + '</b>' + '</td></tr>';
+                    cellContent = ' | <b>' + trans.tw.all.farm + ': ' + stackDetails.desc + '</b>';
+                    $("#show_units tbody:first td:last").append(cellContent).css("border-top", "1px solid #85550d").css("background-color", stackDetails.color);
+                }
             }());
         }
     }
