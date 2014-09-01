@@ -117,37 +117,17 @@
 
             // total stack
             (function() {
-                var isClassicOverview = $("a:contains('" + trans.tw.main.toGraphicOverview + "')", content_value).size() > 0,
-                    cell,
-                    percentage,
-                    stackDetails,
+                var stackDetails,
                     cellContent;
 
-                if (isClassicOverview) {
-                    cell = $("#order_level_farm").parent();
-                    if (game_data.player.premium) {
-                        cell = cell.next();
-                    }
-                    percentage = world_config.farmLimit == 0 ? "" : cell.children().html();
-                    stackDisplay(
-                        totalFarm, {
-                            showFarmLimit: true,
-                            percentage: percentage ? percentage.substr(0, percentage.indexOf('%') + 1) : "",
-                            cell: cell,
-                            appendToCell: !game_data.player.premium
-                        });
+                stackDetails = stackDisplay(
+                    totalFarm, {
+                        showFarmLimit: true,
+                        percentage: $("#l_farm .building_extra").html()
+                    });
 
-                } else {
-                    stackDetails = stackDisplay(
-                        totalFarm, {
-                            showFarmLimit: true,
-                            percentage: $("#l_farm strong").first().html()
-                        });
-
-                    //cellContent = '<tr><td style="border-top: 1px solid #85550d ;background-color: ' + stackDetails.color + '">' + '<b>' + trans.tw.all.farm + ': ' + stackDetails.desc + '</b>' + '</td></tr>';
-                    cellContent = ' | <b>' + trans.tw.all.farm + ': ' + stackDetails.desc + '</b>';
-                    $("#show_units tbody:first td:last").append(cellContent).css("border-top", "1px solid #85550d").css("background-color", stackDetails.color);
-                }
+                cellContent = ' | <b>' + trans.tw.all.farm + ': ' + stackDetails.desc + '</b>';
+                $("#show_units tbody:first td:last").append(cellContent).css("border-top", "1px solid #85550d").css("background-color", stackDetails.color);
             }());
         }
     }

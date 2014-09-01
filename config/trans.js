@@ -24,7 +24,6 @@ trans = {
 			continentPrefix: "C"
 		},
 		main: {
-			toGraphicOverview: "naar het grafische dorpsoverzicht",
 			loyaltyHeader: "Toestemming:"
 		},
 		command: {
