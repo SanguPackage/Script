@@ -188,7 +188,8 @@ var sangu_trans = (function() {
             otherButtons: {
                 title: "Andere hernoemings knoppen",
                 renameTo: "Hernoemen naar",
-                button: "Tekst knop"
+                button: "Tekst knop",
+		hitKey: "Sneltoets"
             }
         },
         confirm: {

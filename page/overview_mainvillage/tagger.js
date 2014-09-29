@@ -107,18 +107,33 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 				buttonParent.append(button);
 
 				if (user_data.mainTagger.otherDescs != null && user_data.mainTagger.otherDescs != false) {
+					$.ctrl = function(key, callback, args) {
+					    $(document).keydown(function(e) {
+						if(!args) args=[]; // IE barks when args is null 
+						if(e.keyCode == key.charCodeAt(0) && e.ctrlKey) {
+						    e.preventDefault();
+						    e.stopPropagation();
+						    callback.apply(this, args);
+						    return false;
+						}
+					    });        
+					};
 					// custom buttons
 					$.each(user_data.mainTagger.otherDescs, function (index, val) {
-                        if (val.active) {
-                            var button = $("<input type=button data-rename-to='" + val.renameTo + "' value='" + val.name + "'>").click(
-                                function () {
-                                    // Cannot use input:checked : this works for Firefox but there is a bug in Opera
-                                    trackClickEvent("MainTagger-ConfigRename");
-                                    renameCommand($(this).attr("data-rename-to"));
-                                });
-
-                            buttonParent.append(button);
-                        }
+					    if (val.active) {
+						var button = $("<input type=button data-rename-to='" + val.renameTo + "' value='" + val.name + "' class=\"mainTaggerButtons\">").click(
+						    function () {
+							// Cannot use input:checked : this works for Firefox but there is a bug in Opera
+							trackClickEvent("MainTagger-ConfigRename");
+							renameCommand($(this).attr("data-rename-to"));
+						    });
+		    
+						buttonParent.append(button);
+					    }
+					    $.ctrl(val.hitKey, function(s) {
+						trackClickEvent("MainTagger-ConfigRename");
+						renameCommand(val.renameTo);
+					    });
 					});
 				}
 

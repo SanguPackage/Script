@@ -364,6 +364,15 @@ var user_data_configs = (function() {
                             editor: "text|width=10"
                         }
                     }
+                    
+                    properties['otherButtonHitKey'+i] = {
+                        label: sangu_trans.mainTagger.otherButtons.hitKey,
+                        propUI: {
+                            getter: function() { return otherDescription.hitKey; },
+                            setter: function(value) { otherDescription.hitKey = value; },
+                            editor: "text|width=4"
+                        }
+                    }
 
                     properties['otherButtonDesc'+i] = {
                         label: sangu_trans.mainTagger.otherButtons.renameTo,

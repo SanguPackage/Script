@@ -120,15 +120,15 @@ if (user_data !== '') {
             defaultDescription: "OK",
             otherDescs:
                 [
-                    { active: true, name: "Dodgen", renameTo: "----------------------------------------- DODGE THIS" },
-                    { active: true, name: "Nacht", renameTo: "NIGHTBONUS" },
-                    { active: true, name: "Check stack", renameTo: "----------------------------------------- CHECK STACK" },
-                    { active: true, name: "Timen!", renameTo: "***************************************** TIME IT!" },
-                    { active: true, name: "Edelen!", renameTo: "----------------------------------------- NOBLE!!" },
-                    { active: false, name: "Leeg1", renameTo: "It has to be, automatically" },
-                    { active: false, name: "Leeg2", renameTo: "Check it out, you'd better work it out" },
-                    { active: false, name: "Leeg3", renameTo: "Change to another route" },
-                    { active: false, name: "Leeg4", renameTo: "My techniques, strategies, abilities" }
+                    { active: true, name: "Dodgen", hitKey: "D", renameTo: "----------------------------------------- DODGE THIS" },
+		    { active: true, name: "Nacht", hitKey: "N", renameTo: "NIGHTBONUS" },
+		    { active: true, name: "Check stack", hitKey: "P", renameTo: "----------------------------------------- CHECK STACK" },
+		    { active: true, name: "Timen!", hitKey: "T", renameTo: "***************************************** TIME IT!" },
+		    { active: true, name: "Edelen!", hitKey: "E", renameTo: "----------------------------------------- NOBLE!!" },
+		    { active: false, name: "Leeg1", hitKey: "L", renameTo: "It has to be, automatically" },
+		    { active: false, name: "Leeg2", hitKey: "U", renameTo: "Check it out, you'd better work it out" },
+		    { active: false, name: "Leeg3", hitKey: "Y", renameTo: "Change to another route" },
+		    { active: false, name: "Leeg4", hitKey: "O", renameTo: "My techniques, strategies, abilities" }
                 ],
             autoOpenCommands: false,
             minutesDisplayDodgeTimeOnMap: 3,
