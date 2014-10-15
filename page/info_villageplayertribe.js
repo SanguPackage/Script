@@ -1,7 +1,7 @@
 (function() {
     try {
         var tables = $('table.vis', content_value),
-            infoTable = tables.first().hasClass('modemenu') ? tables.first().next('table') :  tables.first(),
+            infoTable = tables.first().next('table'),
             profile = user_data.profile,
             i;
 
@@ -78,7 +78,7 @@
                 // Direct link to TW Stats map
                 if (id > 0 && profile.mapLink.show) {
                     var link = "http://" + game_data.market + ".twstats.com/" + game_data.world + "/index.php?page=map";
-                    var tribeId = infoTable.find("td:eq(7) a");
+                    var tribeId = infoTable.prev('table').find("td:eq(8) a");
                     //assert(tribeId.size() == 1, "tribe id not found"); // Not everyone is in a tribe
                     if (tribeId.size() == 1) {
                         tribeId = tribeId.attr("href").match(/id=(\d+)/)[1];
@@ -118,10 +118,10 @@
                         colWidth.eq(2).css("width", "1%");
                     }
 
-                    var amountOfVillages = tables.eq(1).find("th:first").text();
+                    var amountOfVillages = tables.eq(2).find("th:first").text();
                     amountOfVillages = amountOfVillages.substr(amountOfVillages.indexOf("(") + 1);
                     amountOfVillages = amountOfVillages.substr(0, amountOfVillages.length - 1);
-                    infoTable.find("tr:eq(2)").after("<tr><td>" + trans.sp.profile.villages + "</td><td>" + formatNumber(amountOfVillages) + "</td></tr>");
+                    infoTable.prev('table').find("tr:eq(2)").after("<tr><td>" + trans.sp.profile.villages + "</td><td>" + formatNumber(amountOfVillages) + "</td></tr>");
                 }
             } else {
                 screen = "tribe";
