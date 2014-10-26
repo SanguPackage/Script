@@ -15,7 +15,12 @@
                 + '</form></div>';
         }
 
-        var html = "<h3>"+trans.sp.sp.donate.title+"</h3>";
+        var html = "<h3>Contributors</h3>";
+        html += "Hebben aan het Sangu Package meegewerkt: <br><b>";
+        //<!--@@INCLUDE "contributors.txt" INDENT=2 //-->
+        html += "</b>";
+
+        html += "<h3>"+trans.sp.sp.donate.title+"</h3>";
         html += trans.sp.sp.donate.whyWouldI;
         html += "<br>" + trans.sp.sp.donate.books
             .replace("{abegin}", "<a target='_blank' href='http://www.amazon.com/wishlist/1RFQ21NSF4PAI/ref=cm_wl_prev_ret?_encoding=UTF8&reveal='>")
