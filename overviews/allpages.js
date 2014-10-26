@@ -26,10 +26,13 @@ if (user_data.overviews.addFancyImagesToOverviewLinks) {
 		
 		switch (index) {
 			case 0:
-				overviewLink.parent().css("background-image", 'url("http://cdn.tribalwars.net/graphic/icons/header.png")');
-				overviewLink.parent().css("background-repeat", "no-repeat");
-				overviewLink.parent().css("background-position", "-324px 0px");
-				overviewLink.prepend("&nbsp; &nbsp;");
+//				overviewLink.parent()
+//                    .css("background-image", 'url("http://cdn.tribalwars.net/graphic/icons/header.png")')
+//				    .css("background-repeat", "no-repeat")
+//				    .css("background-position", "-324px 0px")
+//				    .css("background-size", "200px Auto");
+//
+//				overviewLink.prepend("&nbsp; &nbsp;");
 				break;
 			case 1:
 				imageToAdd = "graphic/buildings/storage.png";
