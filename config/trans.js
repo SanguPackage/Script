@@ -178,7 +178,8 @@ trans = {
 			checkAllAttacks: "Aanvinken van alle zichtbare aanvallen",
 			uncheckAllAttacks: "Uitvinken van alle zichtbare aanvallen",
 			activeDodgeTime: "Actieve dodgetijd (wordt op de kaart getoond)",
-			totalAttacksOnVillage: "Aantal aanvallen"
+			totalAttacksOnVillage: "Aantal aanvallen",
+            renameButtonShortcutTooltip: "Shortcut: CTRL + {hitkey}"
 		},
 		place: {
 			distance: "Afstand",

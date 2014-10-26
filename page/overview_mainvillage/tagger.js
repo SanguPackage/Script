@@ -121,18 +121,20 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 					// custom buttons
 					$.each(user_data.mainTagger.otherDescs, function (index, val) {
 					    if (val.active) {
-						var button = $("<input type=button data-rename-to='" + val.renameTo + "' value='" + val.name + "' class=\"mainTaggerButtons\">").click(
+						var button = $("<input type=button title='" + trans.sp.tagger.renameButtonShortcutTooltip.replace("{hitkey}", val.hitKey)
+                            + "' data-rename-to='" + val.renameTo + "' value='" + val.name
+                            + "' class=\"mainTaggerButtons\">").click(
 						    function () {
-							// Cannot use input:checked : this works for Firefox but there is a bug in Opera
-							trackClickEvent("MainTagger-ConfigRename");
-							renameCommand($(this).attr("data-rename-to"));
+                                // Cannot use input:checked : this works for Firefox but there is a bug in Opera
+                                trackClickEvent("MainTagger-ConfigRename");
+                                renameCommand($(this).attr("data-rename-to"));
 						    });
 		    
-						buttonParent.append(button);
+						    buttonParent.append(button);
 					    }
 					    $.ctrl(val.hitKey, function(s) {
-						trackClickEvent("MainTagger-ConfigRename");
-						renameCommand(val.renameTo);
+                            trackClickEvent("MainTagger-ConfigRename");
+                            renameCommand(val.renameTo);
 					    });
 					});
 				}
