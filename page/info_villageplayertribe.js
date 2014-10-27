@@ -125,8 +125,8 @@
                 }
             } else {
                 screen = "tribe";
-                if (current_page.screen === 'ally') {
-                    commandsTable = tables.eq(1);
+                if (current_page.screen === 'info_ally') {
+                    commandsTable = tables.eq(0);
                 }
                 id = commandsTable.find("a");
                 id = id.last().attr("href").match(/id=(\d+)&/)[1];
