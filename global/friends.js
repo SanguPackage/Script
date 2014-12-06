@@ -40,13 +40,15 @@ if (server_settings.ajaxAllowed && user_data.global.visualizeFriends) {
                 if (friendsTable.size() == 1) {
                     var friendRows = friendsTable.find("tr:gt(0)");
                     friendRows.each(function() {
-                        var friendName = $("a:first", this).text();
+                        var friendName = $.trim($("a:first", this).text());
                         var statusIndicatorImage = $("img:first", this);
                         if (/red\.png/.test(statusIndicatorImage.attr("src"))) {
                             friends.offlineAmount++;
                         } else {
-                            friends.online.names += ", " + friendName;
-                            friends.online.amount++;
+                            if (friendName != game_data.player.name) {
+                                friends.online.names += ", " + friendName;
+                                friends.online.amount++;
+                            }
                         }
                     });
 
