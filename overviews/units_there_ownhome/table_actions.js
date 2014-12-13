@@ -54,7 +54,7 @@ $("#units_table").mouseup(function (e) {
 });
 
 // remove row or add border to command cell when middle mouse click (open in new tab)
-$(".attackLinks", tableHandler.overviewTable).bind("mousedown", function(e) {
+$(tableHandler.overviewTable).on("mousedown",".attackLinks", function(e) {
     if (e.which == 2) {
         var cell = $(e.target).parent().parent();
         if (user_data.command.middleMouseClickDeletesRow2) {
