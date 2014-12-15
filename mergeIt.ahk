@@ -25,7 +25,7 @@ ParseAndSaveFile(inputFile, savePath, saveAs)
 
 ; release version does not include build nr
 StringSplit, versionArray, newVersion, .
-newReleaseVersion = %versionArray1%.%versionArray2%
+newReleaseVersion = %versionArray1%.%versionArray2%.%versionArray3%
 UpdateVersion(newReleaseVersion, versionFileName)
 
 ; RELEASE COPIES
@@ -68,8 +68,8 @@ GetNewVersion(versionFileName)
 	currentVersion =
 	FileRead, currentVersion, %versionFileName%
 	StringSplit, versionNumber, currentVersion, .
-	versionNumber3 := versionNumber3 + 1
-	newVersion = %versionNumber1%.%versionNumber2%.%versionNumber3%
+	versionNumber4 := versionNumber4 + 1
+	newVersion = %versionNumber1%.%versionNumber2%.%versionNumber3%.%versionNumber4%
 
 	return %newVersion%
 }
