@@ -53,6 +53,8 @@ Contributing
 
 **The Sangu Package is currently looking for a project maintainer**
 
+Do note that I will make any (legit) pull requests available on sangu.be and on the Google Web Store as soon as possible.
+
 Contact
 -------
 
