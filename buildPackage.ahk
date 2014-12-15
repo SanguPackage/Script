@@ -2,7 +2,7 @@ inputFile := "start.user.js"
 saveAs := "sangupackage.user.js"
 savePath :=
 
-FileEncoding, UTF-8-RAW
+FileEncoding, UTF-8-RAW ; If it crashes here, you've got the wrong version of Autohotkey - see readme
 workingDirectory = %A_WorkingDir%
 SetWorkingDir, %A_ScriptDir%
 

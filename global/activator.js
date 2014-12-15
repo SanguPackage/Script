@@ -13,6 +13,16 @@ function isSanguCompatible() {
     return sangu_version.indexOf(game_data.majorVersion) === 0;
 }
 
+// Check for new version
+//var loginMonitor = pers.get("sanguLogin");
+//if (!isSanguCompatible() && loginMonitor !== '') {
+//    var parts = loginMonitor.match(/(\d+)/g);
+//    if (parseInt(parts[2], 10) != (new Date()).getDate()) {
+//        // TODO: skip this when installed from chrome web store
+//        // TODO: GM_xmlhttpRequest
+//    }
+//}
+
 if (pers.get("forceCompatibility") === '' || pers.get("forceCompatibility") === 'false') {
     if (isSanguActive) {
         // Check compatibility with TW version

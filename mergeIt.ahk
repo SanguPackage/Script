@@ -4,7 +4,7 @@ saveAs := "sangupackage.user.js"
 ; Save current changes
 Send ^s
 
-FileEncoding, UTF-8-RAW
+FileEncoding, UTF-8-RAW ; If it crashes here, you've got the wrong version of Autohotkey - see readme
 workingDirectory = %A_WorkingDir%
 SetWorkingDir, %A_ScriptDir%
 
@@ -31,6 +31,7 @@ UpdateVersion(newReleaseVersion, versionFileName)
 ; RELEASE COPIES
 ParseAndSaveFile("release.user.js", sourceLocation, saveAs)
 ParseAndSaveFile(sourceLocation . "index_toMerge.php", sourceLocation, "index.php")
+; ParseAndSaveFile(sourceLocation . "api\sangupackageversion_toMerge.php", sourceLocation, "api\sangupackageversion.php")
 
 ; Autocopy for chrome WEB STORE
 ParseAndSaveFile("start.user.js", chromeInstallSavePath, saveAs)
