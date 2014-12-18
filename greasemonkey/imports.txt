@@ -8,7 +8,7 @@
 // @include         http://sangu.be/*
 // @include         http://www.sangu.be/*
 // @version         //<!--@@INCLUDE "version.txt" INDENT=0 //-->
-// @grant           none
+// @grant           GM_xmlhttpRequest
 // ==/UserScript==
 
 //We are Sangu. You will be assimilated. Resistance is Futile.

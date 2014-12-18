@@ -31,7 +31,7 @@ UpdateVersion(newReleaseVersion, versionFileName)
 ; RELEASE COPIES
 ParseAndSaveFile("release.user.js", sourceLocation, saveAs)
 ParseAndSaveFile(sourceLocation . "index_toMerge.php", sourceLocation, "index.php")
-; ParseAndSaveFile(sourceLocation . "api\sangupackageversion_toMerge.php", sourceLocation, "api\sangupackageversion.php")
+ParseAndSaveFile(sourceLocation . "api\sangupackageversion_toMerge.php", sourceLocation, "api\sangupackageversion.php")
 
 ; Autocopy for chrome WEB STORE
 ParseAndSaveFile("start.user.js", chromeInstallSavePath, saveAs)
@@ -58,7 +58,7 @@ IfWinExist, ^.* \(\d+\|\d+\) - Tribal Wars - .*$
 	WinActivate
 	Send {F5}
 }
- 
+
 ; Restore system state
 SetWorkingDir, workingDirectory
 
@@ -111,7 +111,7 @@ ParseLine(line, indentCount)
 		StringMid, newIndent, toIncludeFileName, closingQuotePosition + 9 ; Jump to indent
 		StringMid, newIndent, newIndent, 1, 1 ; Get indent
 		StringMid, toIncludeFileName, toIncludeFileName, 1, closingQuotePosition - 1 ; Get filename
-		
+
 		If toIncludeFileName
 		{
 			toIncludeContent := ParseFile(toIncludeFileName, newIndent)
@@ -122,12 +122,12 @@ ParseLine(line, indentCount)
 			StringReplace, line, line, %found%
 		}
 	}
-	else 
+	else
 	{
 		currentDateReplacer := "//<!--@@INCLUDE CURRENTDATE //-->"
 		IfInString, line, %currentDateReplacer%
 		{
-			currentDate = 
+			currentDate =
 			FormatTime, currentDate, , d MMMM yyyy
 			StringReplace, line, line, %currentDateReplacer%, %currentDate%
 		}
@@ -140,7 +140,7 @@ ParseLine(line, indentCount)
 			}
 		}
 	}
-	
+
 	return %line%
 }
 

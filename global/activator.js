@@ -14,14 +14,20 @@ function isSanguCompatible() {
 }
 
 // Check for new version
-//var loginMonitor = pers.get("sanguLogin");
-//if (!isSanguCompatible() && loginMonitor !== '') {
-//    var parts = loginMonitor.match(/(\d+)/g);
-//    if (parseInt(parts[2], 10) != (new Date()).getDate()) {
-//        // TODO: skip this when installed from chrome web store
-//        // TODO: GM_xmlhttpRequest
-//    }
-//}
+var loginMonitor = pers.get("sanguLogin");
+if (typeof GM_xmlhttpRequest !== "undefined" && !isSanguCompatible() && loginMonitor !== '') {
+    var parts = loginMonitor.match(/(\d+)/g);
+    if (parseInt(parts[2], 10) != (new Date()).getDate()) {
+        GM_xmlhttpRequest({
+            method: "GET",
+            url: "http://www.sangu.be/api/sangupackageversion.php",
+            onload: function (response) {
+                console.log(response.status, response.responseText.substring (0, 80));
+            }
+        });
+
+    }
+}
 
 if (pers.get("forceCompatibility") === '' || pers.get("forceCompatibility") === 'false') {
     if (isSanguActive) {
