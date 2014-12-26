@@ -128,7 +128,7 @@ if (user_data.overviews.addFancyImagesToOverviewLinks) {
 				imageToAdd = "graphic/group_left.png";
 				break;
 			case 9:
-				imageToAdd = "graphic/premium/coinbag_15x15.png";
+				imageToAdd = "graphic/premium/coinbag_14x14.png";
 				overviewLink.parent().width(150);
 				break;
 		}
