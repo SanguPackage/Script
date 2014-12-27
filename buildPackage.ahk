@@ -2,7 +2,7 @@ inputFile := "start.user.js"
 saveAs := "sangupackage.user.js"
 savePath :=
 
-FileEncoding, UTF-8-RAW
+FileEncoding, UTF-8-RAW ; If it crashes here, you've got the wrong version of Autohotkey - see readme
 workingDirectory = %A_WorkingDir%
 SetWorkingDir, %A_ScriptDir%
 
@@ -23,8 +23,8 @@ GetNewVersion(versionFileName)
 	currentVersion =
 	FileRead, currentVersion, %versionFileName%
 	StringSplit, versionNumber, currentVersion, .
-	versionNumber3 := versionNumber3 + 1
-	newVersion = %versionNumber1%.%versionNumber2%.%versionNumber3%
+	versionNumber4 := versionNumber4 + 1
+	newVersion = %versionNumber1%.%versionNumber2%.%versionNumber3%.%versionNumber4%
 
 	return %newVersion%
 }

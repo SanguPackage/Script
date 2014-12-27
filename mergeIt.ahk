@@ -4,7 +4,7 @@ saveAs := "sangupackage.user.js"
 ; Save current changes
 Send ^s
 
-FileEncoding, UTF-8-RAW
+FileEncoding, UTF-8-RAW ; If it crashes here, you've got the wrong version of Autohotkey - see readme
 workingDirectory = %A_WorkingDir%
 SetWorkingDir, %A_ScriptDir%
 
@@ -25,12 +25,13 @@ ParseAndSaveFile(inputFile, savePath, saveAs)
 
 ; release version does not include build nr
 StringSplit, versionArray, newVersion, .
-newReleaseVersion = %versionArray1%.%versionArray2%
+newReleaseVersion = %versionArray1%.%versionArray2%.%versionArray3%
 UpdateVersion(newReleaseVersion, versionFileName)
 
 ; RELEASE COPIES
 ParseAndSaveFile("release.user.js", sourceLocation, saveAs)
 ParseAndSaveFile(sourceLocation . "index_toMerge.php", sourceLocation, "index.php")
+ParseAndSaveFile(sourceLocation . "api\sangupackageversion_toMerge.php", sourceLocation, "api\sangupackageversion.php")
 
 ; Autocopy for chrome WEB STORE
 ParseAndSaveFile("start.user.js", chromeInstallSavePath, saveAs)
@@ -57,7 +58,7 @@ IfWinExist, ^.* \(\d+\|\d+\) - Tribal Wars - .*$
 	WinActivate
 	Send {F5}
 }
- 
+
 ; Restore system state
 SetWorkingDir, workingDirectory
 
@@ -68,8 +69,8 @@ GetNewVersion(versionFileName)
 	currentVersion =
 	FileRead, currentVersion, %versionFileName%
 	StringSplit, versionNumber, currentVersion, .
-	versionNumber3 := versionNumber3 + 1
-	newVersion = %versionNumber1%.%versionNumber2%.%versionNumber3%
+	versionNumber4 := versionNumber4 + 1
+	newVersion = %versionNumber1%.%versionNumber2%.%versionNumber3%.%versionNumber4%
 
 	return %newVersion%
 }
@@ -110,7 +111,7 @@ ParseLine(line, indentCount)
 		StringMid, newIndent, toIncludeFileName, closingQuotePosition + 9 ; Jump to indent
 		StringMid, newIndent, newIndent, 1, 1 ; Get indent
 		StringMid, toIncludeFileName, toIncludeFileName, 1, closingQuotePosition - 1 ; Get filename
-		
+
 		If toIncludeFileName
 		{
 			toIncludeContent := ParseFile(toIncludeFileName, newIndent)
@@ -121,12 +122,12 @@ ParseLine(line, indentCount)
 			StringReplace, line, line, %found%
 		}
 	}
-	else 
+	else
 	{
 		currentDateReplacer := "//<!--@@INCLUDE CURRENTDATE //-->"
 		IfInString, line, %currentDateReplacer%
 		{
-			currentDate = 
+			currentDate =
 			FormatTime, currentDate, , d MMMM yyyy
 			StringReplace, line, line, %currentDateReplacer%, %currentDate%
 		}
@@ -139,7 +140,7 @@ ParseLine(line, indentCount)
 			}
 		}
 	}
-	
+
 	return %line%
 }
 

@@ -1,4 +1,6 @@
-(function (func) {
+(function (func, GM_xmlhttpRequest) {
+    //<!--@@INCLUDE "greasemonkey/updatecheck.js" INDENT=0 //-->
+
     var script = document.createElement('script');
     script.setAttribute("type", "application/javascript");
     if (window.mozInnerScreenX !== undefined) {
@@ -14,6 +16,6 @@
 
     document.body.appendChild(script); // run the script
     document.body.removeChild(script); // clean up
-}(sangu_ready));
+}(sangu_ready, (typeof GM_xmlhttpRequest === "undefined" ? undefined : GM_xmlhttpRequest)));
 
 
