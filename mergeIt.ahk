@@ -13,7 +13,7 @@ IniRead, savePath, mergeIt.ini, SavePaths, operaSavePath, C:\CloudDrives\Dropbox
 IniRead, firefoxLocation, mergeIt.ini, SavePaths, firefoxSavePath, C:\Users\Wouter\AppData\Roaming\Mozilla\Firefox\Profiles\xtz5hi2x.default\gm_scripts\Sangu_Package\sangupackage.user.js
 IniRead, sourceLocation, mergeIt.ini, Site, sourceLocation, C:\Users\Wouter\AppData\Roaming\Mozilla\Firefox\Profiles\xtz5hi2x.default\gm_scripts\Sangu_Package\sangupackage.user.js
 IniRead, chromeRunSavePath, mergeIt.ini, SavePaths, chromeRunSavePath, C:\CloudDrives\Dropbox\Personal\!Programming\OperaUserScripts\
-IniRead, chromeInstallSavePath, mergeIt.ini, SavePaths, chromeInstallSavePath, C:\CloudDrives\Dropbox\Personal\!Programming\UnixCode\TribalWars\sangupackage-chrome-store
+IniRead, chromeInstallSavePath, mergeIt.ini, SavePaths, chromeInstallSavePath, C:\CloudDrives\Dropbox\Personal\!Programming\UnixCode\TribalWars\sangupackage-release
 
 ; update version
 versionFileName = version.txt
