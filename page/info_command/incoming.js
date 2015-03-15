@@ -67,7 +67,7 @@ link.one('click', function () {
 
                 var attackId = $("span.quickedit", this).attr("data-id");
                 str = str.replace("{village}", attackerVillageName).replace("{c}", attackerVillage.continent()).replace("{id}", attackId);
-                str = str.replace("{player}", attacker).replace("{xy}", attackerVillage.coord).replace("{unit}", trans.tw.units.shortNames[unit]);
+                str = str.replace("{player}", attacker).replace("{xy}", attackerVillage.coord).replace("{unit}", trans.tw.units.twShortNames[unit]);
                 str = str.replace("{fields}", fields);
                 if (str.indexOf("{night}") != -1) {
                     if (isNightbonus) {
@@ -95,7 +95,7 @@ link.one('click', function () {
                     $("table:first", content_value).prepend(
                         "<input type=submit class='btn' id=focusPlaceHolder value='"
                             + trans.sp.tagger.tagIt
-                            + " (" + trans.tw.units.names[unit] + ")'"
+                            + " (" + trans.tw.units.twShortNames[unit] + ")'"
                             + " data-command-name='" + str + "'"
                             + ">");
 

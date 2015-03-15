@@ -8,6 +8,7 @@ trans = {
 	tw: {
 		units: {
 			names: { "spear": "Speer", "sword": "Zwaard", "archer": "Boog", "axe": "Bijl", "spy": "Verk", "light": "Lc", "marcher": "Bb", "heavy": "Zc", "ram": "Ram", "catapult": "Kata", "knight": "Ridder", "snob": "Edel" },
+			twShortNames: { "spear": "Speer", "sword": "Zwaard", "archer": "Boog", "axe": "Bijl", "spy": "Verk.", "light": "Lcav.", "marcher": "Bboog.", "heavy": "Zcav.", "ram": "Ram", "catapult": "Kata.", "knight": "Ridder", "snob": "Edel." },
 			shortNames: { "spear": "Sp", "sword": "Zw", "archer": "Boog", "axe": "Bijl", "spy": "Ver", "light": "Lc", "marcher": "Bb", "heavy": "Zc", "ram": "Ram", "catapult": "Kata", "knight": "Ridder", "snob": "Edel" },
 			militia: "Militia"
 		},

@@ -102,7 +102,7 @@ if (user_data !== '') {
         incoming: { /* Features for the built in TW tagger */
             autoOpenTagger: true, 		/* Open the tagger automatically if the incoming attack has not yet been renamed */
             forceOpenTagger: true, 	/* Always open the tagger automatically */
-            renameInputTexbox: "{unit} ({xy}) {player} F{fields}{night}", /* Possibilities: {id}:internal tw attack id {unit}: short unitname {xy}: coordinates {player} {village}: full village name {c}: continent. Set to "" to disable. */
+            renameInputTexbox: "{unit} ({xy}) {player} F{fields}{night}", /* Possibilities: {id}:internal tw attack id {unit}: short unitname {xy}: coordinates {player} {village}: full village name {c}: continent {fields} distance between the villages {night} indication when attack arrives during the nightbonus. Set to "" to disable. */
             villageBoxSize: 600, 			/* Adjust the width of the table with the village information (support for 2-click) */
             invertSort: true		/* true=noblemen at the top and scouts at the bottom of the table */
         },
