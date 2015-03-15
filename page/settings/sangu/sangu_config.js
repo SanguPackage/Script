@@ -326,6 +326,7 @@ var user_data_configs = (function() {
                 },
                 defaultDescription: {
                     label: sangu_trans.mainTagger.defaultDescription,
+                    tooltip: sangu_trans.mainTagger.defaultDescriptionTooltip,
                     propUI: {
                         getter: function() { return user_data.mainTagger.defaultDescription; },
                         setter: function(value) { user_data.mainTagger.defaultDescription = value; },

@@ -180,6 +180,7 @@ var sangu_trans = (function() {
             autoOpen: "De tagger automatisch openen bij binnenkomende aanvallen",
             inputBoxWidth: "De breedte van de bevel hernoemings inputvelden",
             defaultDescription: "De naam die standaard in het hernoemings inputveld geplaatst wordt",
+            defaultDescriptionTooltip: "Gebruik {xy} voor de coordinaten van het herkomst dorp",
             autoOpenCommands: "De bevel hernoemings inputvelden direct tonen",
             minutesDisplayDodgeTimeOnMap: "Aantal minuten dat de laatste dodgetijd op de kaart getoond wordt",
             minutesDisplayDodgeTimeOnMapTooltip: "De laatste dodgetijd is de tijd van het laatste bevel, aangeduidt met gewijzigde achtergrondkleur na het herbenoemen van binnenkomende aanvallen.",

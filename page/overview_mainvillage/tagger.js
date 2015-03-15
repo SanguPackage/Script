@@ -66,11 +66,43 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 				});
 
 				var buttonParent = $("#commandInput").parent();
+                var commandIdToCoordCache = []; // No Ajax call on multiple renames with {xy}
 				function renameCommand(commandName) {
-					var dodgeCell = null,
-                        openRenameButton;
+                    var dodgeCell; // capture last cell for dodgeCell coloring
+
+                    function getCommandIdFromDodgeCell(dodgeCell) {
+                        return Number(dodgeCell.find("span.quickedit").first().attr("data-id"));
+                    }
+
+                    function getVillageCoordsFromCommandId(commandId, callback) {
+                        if (server_settings.ajaxAllowed) {
+                            if (commandIdToCoordCache[commandId]) {
+                                callback(commandIdToCoordCache[commandId]);
+
+                            } else {
+                                ajax('screen=info_command&type=other&id='+commandId, function (overview) {
+                                    var originVillageLink = $(".village_anchor:first", overview).find("a[href]"),
+                                        originVillageDesc = originVillageLink.html(),
+                                        originVillage = getVillageFromCoords(originVillageDesc);
+
+                                    commandIdToCoordCache[commandId] = originVillage.coord;
+
+                                    callback(originVillage.coord);
+                                });
+                            }
+                        }
+                        callback('');
+                    }
+
+                    function executeRename(dodgeCell, commandName) {
+                        var button = dodgeCell.find("input[type='button']");
+                        button.prev().val(commandName);
+                        button.click();
+                    }
 
 					$("input.taggerCheckbox", incomingTable).each(function () {
+                        var openRenameButton;
+
 						if ($(this).is(":checked")) {
 							dodgeCell = $(this).parent().next();
 
@@ -79,9 +111,15 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
                                 openRenameButton.click();
                             }
 
-							var button = dodgeCell.find("input[type='button']");
-							button.prev().val(commandName);
-							button.click();
+                            if (commandName.indexOf("{xy}") !== -1) {
+                                getVillageCoordsFromCommandId(getCommandIdFromDodgeCell(dodgeCell), function(vilCoords) {
+                                    var nameWithCoords = commandName.replace("{xy}", vilCoords);
+                                    executeRename(dodgeCell, nameWithCoords);
+                                });
+
+                            } else {
+                                executeRename(dodgeCell, commandName);
+                            }
 						}
 					});
 
