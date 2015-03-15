@@ -270,32 +270,32 @@ var user_data_configs = (function() {
                 activate: {
                     label: sangu_trans.global.resources.activate,
                     propUI: {
-                        getter: function() { return user_data.mainTagger.active; },
-                        setter: function(value) { user_data.mainTagger.active = value; },
+                        getter: function() { return user_data.mainTagger2.active; },
+                        setter: function(value) { user_data.mainTagger2.active = value; },
                         editor: "bool"
                     }
                 },
                 autoOpen: {
                     label: sangu_trans.mainTagger.autoOpen,
                     propUI: {
-                        getter: function() { return user_data.mainTagger.autoOpen; },
-                        setter: function(value) { user_data.mainTagger.autoOpen = value; },
+                        getter: function() { return user_data.mainTagger2.autoOpen; },
+                        setter: function(value) { user_data.mainTagger2.autoOpen = value; },
                         editor: "bool"
                     }
                 },
                 inputBoxWidth: {
                     label: sangu_trans.mainTagger.inputBoxWidth,
                     propUI: {
-                        getter: function() { return user_data.mainTagger.inputBoxWidth; },
-                        setter: function(value) { user_data.mainTagger.inputBoxWidth = value; },
+                        getter: function() { return user_data.mainTagger2.inputBoxWidth; },
+                        setter: function(value) { user_data.mainTagger2.inputBoxWidth = value; },
                         editor: "number|step=5"
                     }
                 },
                 autoOpenCommands: {
                     label: sangu_trans.mainTagger.autoOpenCommands,
                     propUI: {
-                        getter: function() { return user_data.mainTagger.autoOpenCommands; },
-                        setter: function(value) { user_data.mainTagger.autoOpenCommands = value; },
+                        getter: function() { return user_data.mainTagger2.autoOpenCommands; },
+                        setter: function(value) { user_data.mainTagger2.autoOpenCommands = value; },
                         editor: "bool"
                     }
                 },
@@ -303,24 +303,24 @@ var user_data_configs = (function() {
                     label: sangu_trans.mainTagger.minutesDisplayDodgeTimeOnMap,
                     tooltip: sangu_trans.mainTagger.minutesDisplayDodgeTimeOnMapTooltip,
                     propUI: {
-                        getter: function() { return user_data.mainTagger.minutesDisplayDodgeTimeOnMap; },
-                        setter: function(value) { user_data.mainTagger.minutesDisplayDodgeTimeOnMap = value; },
+                        getter: function() { return user_data.mainTagger2.minutesDisplayDodgeTimeOnMap; },
+                        setter: function(value) { user_data.mainTagger2.minutesDisplayDodgeTimeOnMap = value; },
                         editor: "number"
                     }
                 },
                 minutesWithoutAttacksDottedLine: {
                     label: sangu_trans.mainTagger.minutesWithoutAttacksDottedLine,
                     propUI: {
-                        getter: function() { return user_data.mainTagger.minutesWithoutAttacksDottedLine; },
-                        setter: function(value) { user_data.mainTagger.minutesWithoutAttacksDottedLine = value; },
+                        getter: function() { return user_data.mainTagger2.minutesWithoutAttacksDottedLine; },
+                        setter: function(value) { user_data.mainTagger2.minutesWithoutAttacksDottedLine = value; },
                         editor: "number|step=60"
                     }
                 },
                 colorSupport: {
                     label: sangu_trans.mainTagger.colorSupport,
                     propUI: {
-                        getter: function() { return user_data.mainTagger.colorSupport; },
-                        setter: function(value) { user_data.mainTagger.colorSupport = value; },
+                        getter: function() { return user_data.mainTagger2.colorSupport; },
+                        setter: function(value) { user_data.mainTagger2.colorSupport = value; },
                         editor: "color"
                     }
                 },
@@ -328,9 +328,18 @@ var user_data_configs = (function() {
                     label: sangu_trans.mainTagger.defaultDescription,
                     tooltip: sangu_trans.mainTagger.defaultDescriptionTooltip,
                     propUI: {
-                        getter: function() { return user_data.mainTagger.defaultDescription; },
-                        setter: function(value) { user_data.mainTagger.defaultDescription = value; },
+                        getter: function() { return user_data.mainTagger2.defaultDescription; },
+                        setter: function(value) { user_data.mainTagger2.defaultDescription = value; },
                         editor: "text"
+                    }
+                },
+                keepReservedWords: {
+                    label: sangu_trans.mainTagger.keepReservedWords,
+                    tooltip: sangu_trans.mainTagger.keepReservedWordsTooltip,
+                    propUI: {
+                        getter: function() { return user_data.mainTagger2.keepReservedWords; },
+                        setter: function(value) { user_data.mainTagger2.keepReservedWords = value; },
+                        editor: "bool"
                     }
                 },
                 otherButtonsTitle: {
@@ -339,9 +348,9 @@ var user_data_configs = (function() {
                 }
             };
 
-            for (var i = 0; i < user_data.mainTagger.otherDescs.length; i++) {
+            for (var i = 0; i < user_data.mainTagger2.otherDescs.length; i++) {
                 (function() {
-                    var otherDescription = user_data.mainTagger.otherDescs[i];
+                    var otherDescription = user_data.mainTagger2.otherDescs[i];
 
                     properties['otherButton'+i] = {
                         type: "subtitle",

@@ -7,17 +7,17 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 		// tagger - add header
         // inputBoxWidth : clicking the button focusses the newly created inputbox
         //                 solution is to no longer show inputboxes on screen load
-        /*if (user_data.mainTagger.inputBoxWidth != null) {
+        /*if (user_data.mainTagger2.inputBoxWidth != null) {
             $("a.rename-icon", incomingTable).click();
             $("span.quickedit", incomingTable).each(function() {
                 var renameSpan = this;
                 //setTimeout(function() {
-                $("span.quickedit-edit input:first", renameSpan).width(user_data.mainTagger.inputBoxWidth);
+                $("span.quickedit-edit input:first", renameSpan).width(user_data.mainTagger2.inputBoxWidth);
                 //}, 1);
             });
         }*/
 
-		if (user_data.mainTagger.active && incomingTable.has("img[src*='attack']").size() != 0) {
+		if (user_data.mainTagger2.active && incomingTable.has("img[src*='attack']").size() != 0) {
 			$("th:first", incomingTable).append("<input type=button value='" + trans.sp.tagger.openButton + "' id=openTaggerButton>");
 			$("#openTaggerButton").click(function () {
 				$(this).hide();
@@ -46,7 +46,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 				dodgeMenu += "&nbsp;";
 				dodgeMenu += '<img src="graphic/command/return.png" alt="" id="uncheckSupport" title="' + trans.sp.tagger.uncheckAllSupport + '" />';
 				dodgeMenu += "<th colspan=3>";
-				dodgeMenu += trans.sp.tagger.renameTo + "<input type=textbox size=30 id=commandInput value='" + user_data.mainTagger.defaultDescription + "'></th>";
+				dodgeMenu += trans.sp.tagger.renameTo + "<input type=textbox size=30 id=commandInput value='" + user_data.mainTagger2.defaultDescription + "'></th>";
 				dodgeMenu += "<th>" + trans.sp.tagger.slowest + "</th>";
 				dodgeMenu += "</td>";
 				dodgeMenu += "<td colspan=1 id=slowestUnitCell>";
@@ -95,8 +95,26 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
                     }
 
                     function executeRename(dodgeCell, commandName) {
-                        var button = dodgeCell.find("input[type='button']");
-                        button.prev().val(commandName);
+                        function keepTwIcon(dodgeCell, commandName) {
+                            var oldName = $(".quickedit-label", dodgeCell).text().toUpperCase(),
+                                newName = commandName,
+                                i,
+                                unitName;
+
+                            for (i = 0; i < user_data.mainTagger2.reservedWords.length; i++) {
+                                unitName = user_data.mainTagger2.reservedWords[i];
+                                if (oldName.indexOf(unitName.toUpperCase()) !== -1) {
+                                    newName = unitName + ' ' + newName;
+                                    return newName; // Only one icon possible
+                                }
+                            }
+                            return newName;
+                        }
+
+                        var button = dodgeCell.find("input[type='button']"),
+                            newName =  user_data.mainTagger2.keepReservedWords ? keepTwIcon(dodgeCell, commandName) : commandName;
+
+                        button.prev().val(newName);
                         button.click();
                     }
 
@@ -127,7 +145,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 						var unitSpeed = $("#slowestUnitCell img").attr("slowestunit");
 						if (unitSpeed != undefined) {
 							dodgeCell = dodgeCell.parent().find("td").last().prev();
-							pers.setCookie("sanguDodge" + getQueryStringParam("village"), unitSpeed + "~" + dodgeCell.text(), user_data.mainTagger.minutesDisplayDodgeTimeOnMap);
+							pers.setCookie("sanguDodge" + getQueryStringParam("village"), unitSpeed + "~" + dodgeCell.text(), user_data.mainTagger2.minutesDisplayDodgeTimeOnMap);
 
 							$(".dodgers", incomingTable).css("background-color", "").attr("title", "");
 							dodgeCell.css("background-color", user_data.colors.good).attr("title", trans.sp.tagger.activeDodgeTime);
@@ -144,7 +162,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 				});
 				buttonParent.append(button);
 
-				if (user_data.mainTagger.otherDescs != null && user_data.mainTagger.otherDescs != false) {
+				if (user_data.mainTagger2.otherDescs != null && user_data.mainTagger2.otherDescs != false) {
 					$.ctrl = function(key, callback, args) {
 					    $(document).keydown(function(e) {
 						if(!args) args=[]; // IE barks when args is null 
@@ -157,7 +175,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 					    });        
 					};
 					// custom buttons
-					$.each(user_data.mainTagger.otherDescs, function (index, val) {
+					$.each(user_data.mainTagger2.otherDescs, function (index, val) {
 					    if (val.active) {
 						var button = $("<input type=button title='" + trans.sp.tagger.renameButtonShortcutTooltip.replace("{hitkey}", val.hitKey)
                             + "' data-rename-to='" + val.renameTo + "' value='" + val.name
@@ -245,7 +263,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
                                             // make input form visible
                                             $("a.rename-icon", editSpan).click();
                                             //setTimeout(function() {
-                                            $("span.quickedit-edit input:first", editSpan).width(user_data.mainTagger.inputBoxWidth);
+                                            $("span.quickedit-edit input:first", editSpan).width(user_data.mainTagger2.inputBoxWidth);
                                             //}, 1);
 
                                         } else if (!switchToOpen && !isDisplayMode) {
@@ -286,7 +304,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 							}
 
 							// dotted line after x hours no incomings
-							if (prevSendTime == 0 || (currentArrivalTime - prevSendTime) / 1000 / 60 > user_data.mainTagger.minutesWithoutAttacksDottedLine) {
+							if (prevSendTime == 0 || (currentArrivalTime - prevSendTime) / 1000 / 60 > user_data.mainTagger2.minutesWithoutAttacksDottedLine) {
 								if (prevSendTime != 0) {
 									row.find("td").css("border-top", "1px dotted black");
 								}
@@ -337,8 +355,8 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 
 							row.prepend(checkboxCell + "></td>");
 
-							if (user_data.mainTagger.colorSupport != null && incomingType != "incAt") {
-								row.find("td").css("background-color", user_data.mainTagger.colorSupport);
+							if (user_data.mainTagger2.colorSupport != null && incomingType != "incAt") {
+								row.find("td").css("background-color", user_data.mainTagger2.colorSupport);
 							}
 						}
 					}
@@ -348,12 +366,12 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 	}
 
 	// show tagger?
-	if (user_data.mainTagger.autoOpen) {
+	if (user_data.mainTagger2.autoOpen) {
 		$("#openTaggerButton").click();
 	}
 	
 	// Show attack rename inputboxes 
-	if (user_data.mainTagger.autoOpenCommands) {
+	if (user_data.mainTagger2.autoOpenCommands) {
 		$("#switchModus").click();
 	}
 

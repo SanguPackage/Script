@@ -113,7 +113,7 @@ if (user_data !== '') {
             canHideDiv: true
         },
 
-        mainTagger: {
+        mainTagger2: {
             active: true,
             autoOpen: true,
             inputBoxWidth: 300,
@@ -129,6 +129,16 @@ if (user_data !== '') {
 		    { active: false, name: "Leeg2", hitKey: "U", renameTo: "Check it out, you'd better work it out" },
 		    { active: false, name: "Leeg3", hitKey: "Y", renameTo: "Change to another route" },
 		    { active: false, name: "Leeg4", hitKey: "O", renameTo: "My techniques, strategies, abilities" }
+                ],
+            keepReservedWords: true,
+            reservedWords: [
+                "Edel.", "Edelman",
+                "Ram", "Kata.", "Katapult",
+                "Zcav.", "Zware cavalerie",
+                "Lcav.", "Lichte Cavalerie", "Bereden boog", "Bboog.",
+                "Verk.", "Verkenner",
+                "Bijl", "Zwaard", "Speer", "Boog",
+                "Ridder"
                 ],
             autoOpenCommands: false,
             minutesDisplayDodgeTimeOnMap: 3,

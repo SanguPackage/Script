@@ -126,7 +126,7 @@
             var TagNumber = $(this).attr("id").match(/\d+/);
             $(this).val('');
             $(this).val(keyCodeMap[e.which].toUpperCase());
-            user_data.mainTagger.otherDescs[TagNumber]["hitKey"] = $(this).val();
+            user_data.mainTagger2.otherDescs[TagNumber]["hitKey"] = $(this).val();
             pers.set('sangusettings', JSON.stringify(user_data));
             trackEvent("ScriptUsage", "SettingEdit", "1");
         })
