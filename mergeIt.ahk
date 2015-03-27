@@ -30,8 +30,8 @@ UpdateVersion(newReleaseVersion, versionFileName)
 
 ; RELEASE COPIES
 ParseAndSaveFile("release.user.js", sourceLocation, saveAs)
-ParseAndSaveFile(sourceLocation . "index_toMerge.php", sourceLocation, "index.php")
-ParseAndSaveFile(sourceLocation . "api\sangupackageversion_toMerge.php", sourceLocation, "api\sangupackageversion.php")
+ParseAndSaveFile(sourceLocation . "sp-config-dist.json", sourceLocation, "sp-config.json")
+ParseAndSaveFile(sourceLocation . "sangupackageversion_toMerge.php", sourceLocation, "sangupackageversion.php")
 
 ; Autocopy for chrome WEB STORE
 ParseAndSaveFile("start.user.js", chromeInstallSavePath, saveAs)
