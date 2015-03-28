@@ -17,7 +17,7 @@
 
         var html = "<h3>Contributors</h3>";
         html += "Hebben aan het Sangu Package meegewerkt: <br><b>";
-        //<!--@@INCLUDE "contributors.txt" INDENT=2 //-->
+        html += "//<!--@@INCLUDE "contributors.txt" INDENT=0 //-->";
         html += "</b>";
 
         html += "<h3>"+trans.sp.sp.donate.title+"</h3>";
