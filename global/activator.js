@@ -70,4 +70,15 @@ if (!isSanguActive) {
 
         createFixedTooltip("sanguActivatorTooltip", content, options);
     }());
+} else {
+    (function() {
+        var position = $("#storage").position(),
+            options = {
+                left: position.left - 150,
+                top: position.top + 35
+            },
+            content = {body: '<b>Sangu stelt zijn nieuwste tool voor: <a href="http://sangu.be">TW Tactics</a>!</b><br><br>Probeer het zeker eens voordat je vijanden het tegen jou beginnen te gebruiken!'};
+
+        createFixedTooltip("twTacticsTooltip", content, options);
+    }());
 }
