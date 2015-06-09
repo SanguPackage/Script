@@ -15,7 +15,7 @@ if (user_data.other.calculateSnob && !world_config.coins) {
                 canProduce++;
             }
 
-            var sumtable = $("table.main table.vis:last");
+            var sumtable = $("table.main #content_value > table table.vis:last");
             assert(sumtable.length, "no snob sumtable");
             sumtable.append("<tr><th>" + trans.sp.snob.canProduce
                 + "</th><td style='border: 1px solid black'><img src='/graphic/unit/unit_snob.png'><b>"
