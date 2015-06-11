@@ -78,7 +78,7 @@ if ($("#running_times").size() > 0) {
             var haulDescription = "";
 
             if (type.indexOf(trans.tw.command.returnText) == 0) {
-                infoTable = $("table.vis:last", content_value);
+                infoTable = $("> table.vis:last", content_value);
                 if (infoTable.find("td:first").text() == trans.tw.command.haul) {
                     haulDescription = infoTable.find("td:last").text().match(/\s(\d+)\/(\d+)$/);
                     if (haulDescription) {
@@ -90,7 +90,7 @@ if ($("#running_times").size() > 0) {
                 }
                 infoTable = infoTable.find("tr:last");
             } else {
-                infoTable = $("table.vis:last", content_value);
+                infoTable = $("> table.vis:last", content_value);
             }
 
             var unitsSent = {};
