@@ -3,7 +3,7 @@
         // Read troops available
         var units = [];
         units.total = 0;
-        $("#units_form .unitsInput").each(function () {
+        $("#command-data-form .unitsInput").each(function () {
             var amount = $(this).next().text().substr(1);
             units[this.name] = parseInt(amount.replace(")", ""), 10);
             units.total += units[this.name] * world_data.unitsSize['unit_'+this.name];
