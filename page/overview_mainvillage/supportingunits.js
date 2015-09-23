@@ -36,6 +36,9 @@
             unitAmount = $('strong', this);
             unitAmount[0].id = "spAmount" + unit;
             unitAmount = unitAmount[0].innerHTML;
+            if( unit.match("knight") && !unitAmount ) {
+                unitAmount = 1;
+            }
             totalUnits[unit] = unitAmount;
             totalFarm += unitsSize * unitAmount;
 
