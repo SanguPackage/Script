@@ -129,7 +129,7 @@
                     commandsTable = tables.eq(0);
                 }
                 id = commandsTable.find("a");
-                id = id.last().attr("href").match(/id=(\d+)&/)[1];
+                id = id.last().attr("href").match(/&id=(\d+)/)[1];
 
                 var link = "http://" + game_data.market + ".twstats.com/" + game_data.world + "/index.php?page=map";
                 link += "&tribe_0_id=" + id + "&tribe_0_colour=" + mapProfile.tribeColor.substr(1);
