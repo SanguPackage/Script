@@ -15,11 +15,15 @@ function getQueryStringParam(name, url) {
 	name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
 	var regexS = "[\\?&]" + name + "=([^&#]*)";
 	var regex = new RegExp(regexS);
-	var results = regex.exec(url == undefined ? window.location.href : url);
-	if (results == null) {
-		return "";
+	if( url == undefined && name == "village" ) {
+		return game_data.village.id;
 	} else {
-		return results[1];
+		var results = regex.exec(url == undefined ? window.location.href : url);
+		if (results == null) {
+			return "";
+		} else {
+			return results[1];
+		}
 	}
 }
 
