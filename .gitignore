@@ -2,6 +2,7 @@
 /build/
 /bin/
 target/
+.vs/
  
 # OS Files #
 .DS_Store
