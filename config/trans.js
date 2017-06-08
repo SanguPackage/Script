@@ -405,7 +405,8 @@ trans = {
 			graphVillages: "Dorpen",
 			graphOD: "OD Totaal",
 			graphODD: "OD Verdediging",
-			graphODA: "OD Aanval",
+            graphODA: "OD Aanval",
+            graphODS: "OD Ondersteuning",
 			graphRank: "Rang",
 			graphMembers: "Leden",
 			graphTWMap: "TribalWarsMap.com"
