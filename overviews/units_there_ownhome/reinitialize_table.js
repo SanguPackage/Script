@@ -120,7 +120,7 @@ tableHandler.init("units_table", {
                 //q(index + "==" + rowSize);
                 newRow += "<td>";
                 newRow += "<img src='/graphic/dots/red.png' title='" + trans.sp.troopOverview.removeVillage + "' style='margin-bottom: 2px' /> ";
-                //newRow += "<img src='https://cdn.tribalwars.net/graphic/delete_small.png' style='margin-bottom: 3px; position: relative' title='" + trans.sp.troopOverview.removeVillage + "' /> ";
+                //newRow += "<img src='https://www.tribalwars.vodka/graphic/delete_small.png' style='margin-bottom: 3px; position: relative' title='" + trans.sp.troopOverview.removeVillage + "' /> ";
                 newRow += "<a href='" + $("a", element).attr('href').replace("mode=units", "") + "&sanguX=0&sanguY=0' class='attackLinks'>";
                 newRow += "<img src='/graphic/command/attack.png' title='" + trans.sp.troopOverview.toThePlace + "' style='margin-bottom: 1px' />";
                 // Works only with leftclick onclick='this.src=\"/graphic/command/return.png\";'
