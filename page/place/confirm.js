@@ -34,7 +34,7 @@
             var buildingImages = "";
 
             dropdown.find("option").each(function(index, value) {
-                buildingImages += "<img class='catapultSwitcher' title='"+trans.sp.command.catapultImageTitle+"' building='"+$(value).val()+"' src='http://cdn.tribalwars.net/graphic/buildings/" + $(value).val() + ".png'> ";
+                buildingImages += "<img class='catapultSwitcher' title='" + trans.sp.command.catapultImageTitle + "' building='" + $(value).val() +"' src='https://www.tribalwars.vodka/graphic/buildings/" + $(value).val() + ".png'> ";
             });
 
             dropdown.parent().parent().before("<tr><td colspan=4>"+buildingImages+"</td></tr>");

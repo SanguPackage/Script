@@ -27,7 +27,7 @@ if (user_data.overviews.addFancyImagesToOverviewLinks) {
 		switch (index) {
 			case 0:
 //				overviewLink.parent()
-//                    .css("background-image", 'url("http://cdn.tribalwars.net/graphic/icons/header.png")')
+//                    .css("background-image", 'url("https://www.tribalwars.vodka/graphic/icons/header.png")')
 //				    .css("background-repeat", "no-repeat")
 //				    .css("background-position", "-324px 0px")
 //				    .css("background-size", "200px Auto");
@@ -64,7 +64,7 @@ if (user_data.overviews.addFancyImagesToOverviewLinks) {
 						}
 						
 						if (imageToAdd !== "") {
-							$(this).prepend("<img src='http://cdn.tribalwars.net/"+imageToAdd+"' title='"+overviewLink.text() + " &gt; " + $(this).text()+"' /> &nbsp;");
+                            $(this).prepend("<img src='https://www.tribalwars.vodka/"+imageToAdd+"' title='"+overviewLink.text() + " &gt; " + $(this).text()+"' /> &nbsp;");
 						}
 					});
 				}
@@ -88,7 +88,7 @@ if (user_data.overviews.addFancyImagesToOverviewLinks) {
 						}
 						
 						if (imageToAdd !== "") {
-							$(this).prepend("<img src='http://cdn.tribalwars.net/"+imageToAdd+"' title='"+overviewLink.text() + " &gt; " + $(this).text()+"' /> &nbsp;");
+                            $(this).prepend("<img src='https://www.tribalwars.vodka/"+imageToAdd+"' title='"+overviewLink.text() + " &gt; " + $(this).text()+"' /> &nbsp;");
 						}
 					});
 				}
@@ -109,7 +109,7 @@ if (user_data.overviews.addFancyImagesToOverviewLinks) {
 						}
 						
 						if (imageToAdd !== "") {
-							$(this).prepend("<img src='http://cdn.tribalwars.net/"+imageToAdd+"' title='"+overviewLink.text() + " &gt; " + $(this).text()+"' /> &nbsp;");
+                            $(this).prepend("<img src='https://www.tribalwars.vodka/"+imageToAdd+"' title='"+overviewLink.text() + " &gt; " + $(this).text()+"' /> &nbsp;");
 						}
 					});
 				}
@@ -124,7 +124,7 @@ if (user_data.overviews.addFancyImagesToOverviewLinks) {
 				break;
 			case 8:
 				imageToAdd = "graphic/group_right.png";
-				overviewLink.prepend("<img src='http://cdn.tribalwars.net/"+imageToAdd+"' title='"+overviewLink.text()+"' /> &nbsp;");
+                overviewLink.prepend("<img src='https://www.tribalwars.vodka/"+imageToAdd+"' title='"+overviewLink.text()+"' /> &nbsp;");
 				imageToAdd = "graphic/group_left.png";
 				break;
 			case 9:
@@ -133,7 +133,7 @@ if (user_data.overviews.addFancyImagesToOverviewLinks) {
 				break;
 		}
 		if (imageToAdd !== "") {
-			overviewLink.prepend("<img src='http://cdn.tribalwars.net/"+imageToAdd+"' title='"+overviewLink.text()+"' />&nbsp;&nbsp;");
+            overviewLink.prepend("<img src='https://www.tribalwars.vodka/"+imageToAdd+"' title='"+overviewLink.text()+"' />&nbsp;&nbsp;");
 		}
 	});
 }
