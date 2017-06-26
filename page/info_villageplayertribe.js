@@ -77,7 +77,7 @@
 
                 // Direct link to TW Stats map
                 if (id > 0 && profile.mapLink.show) {
-                    var link = "http://" + game_data.market + ".twstats.com/" + game_data.world + "/index.php?page=map";
+                    var link = "https://" + game_data.market + ".twstats.com/" + game_data.world + "/index.php?page=map";
                     var tribeId = commandsTable.prev('table').find("td:eq(8) a");
                     //assert(tribeId.size() == 1, "tribe id not found"); // Not everyone is in a tribe
                     if (tribeId.size() == 1) {
@@ -131,7 +131,7 @@
                 id = commandsTable.find("a");
                 id = id.last().attr("href").match(/&id=(\d+)/)[1];
 
-                var link = "http://" + game_data.market + ".twstats.com/" + game_data.world + "/index.php?page=map";
+                var link = "https://" + game_data.market + ".twstats.com/" + game_data.world + "/index.php?page=map";
                 link += "&tribe_0_id=" + id + "&tribe_0_colour=" + mapProfile.tribeColor.substr(1);
                 link += "&centrex=" + mapProfile.centreX + "&centrey=" + mapProfile.centreY;
                 if (mapProfile.yourTribeColor != null && game_data.player.ally_id != id) {
@@ -180,7 +180,7 @@
                 for (var i = 0; i < graphs.length; i++) {
                     if (toShow[i][1]) {
                         var graphType = toShow[i][1] == 'big' ? 'ss' : '';
-                        html += createSpoiler(graphs[i][1], '<img src="http://' + game_data.market + '.twstats.com/image.php?type=' + screen + graphType + 'graph&id=' + id + '&s=' + game_data.world + '&graph=' + graphs[i][0] + '">', toShow[i][2] != undefined);
+                        html += createSpoiler(graphs[i][1], '<img src="https://' + game_data.market + '.twstats.com/image.php?type=' + screen + graphType + 'graph&id=' + id + '&s=' + game_data.world + '&graph=' + graphs[i][0] + '">', toShow[i][2] != undefined);
                     }
                 }
 
@@ -217,7 +217,7 @@
 
             // Conquers (intern)
             if (id > 0 && profile.popup.show) {
-                var twLink = 'http://' + game_data.market + '.twstats.com/' + game_data.world + '/index.php?page=' + screen + '&mode=conquers&id=' + id + '&pn=1&type=1&enemy=-1&enemyt=-1&min=&max=';
+                var twLink = 'https://' + game_data.market + '.twstats.com/' + game_data.world + '/index.php?page=' + screen + '&mode=conquers&id=' + id + '&pn=1&type=1&enemy=-1&enemyt=-1&min=&max=';
                 var conquers = "<tr><td colspan=2><a href=\"\" id='conquers'>&raquo; " + trans.sp.profile.conquers + "</a> " + trans.sp.profile.internalPage + "</td></tr>";
                 if (screen == 'tribe') {
                     commandsTable.find("tr:last").before(conquers);
