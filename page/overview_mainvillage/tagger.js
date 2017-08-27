@@ -132,11 +132,11 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
                             if (commandName.indexOf("{xy}") !== -1) {
                                 getVillageCoordsFromCommandId(getCommandIdFromDodgeCell(dodgeCell), function(vilCoords) {
                                     var nameWithCoords = commandName.replace("{xy}", vilCoords);
-                                    executeRename(dodgeCell, nameWithCoords);
+                                    setTimeout(executeRename(dodgeCell, nameWithCoords),200);
                                 });
 
                             } else {
-                                executeRename(dodgeCell, commandName);
+                                setTimeout(executeRename(dodgeCell, commandName),200);
                             }
 						}
 					});
