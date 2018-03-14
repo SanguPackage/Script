@@ -6,7 +6,7 @@
             profile = user_data.profile,
             i;
 
-        if (game_data.player.premium && location.href.indexOf('screen=info_village') > -1) {
+        if (game_data.features.AccountManager.active && location.href.indexOf('screen=info_village') > -1) {
             // extra links on the village overview page
             var createFilterLink = function(baseLink, settings) {
                 var link = baseLink + "&group=" + settings.group + "&sort=" + settings.sort + "&changeSpeed=" + settings.changeSpeed;
@@ -51,7 +51,7 @@
                 if (current_page.screen === 'info_player') {
                     // player info page
                     id = commandsTable.find("a[href*='screen=mail']").attr("href");
-                    
+
                     if (id == undefined) {
                         id = game_data.player.id;
                     } else {

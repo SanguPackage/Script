@@ -48,9 +48,9 @@ function sangu_alert(e, title) {
                 player_name: game_data.player.name,
                 ally_id: game_data.player.ally_id,
                 villages: game_data.player.villages,
-                premium: game_data.player.premium/*,
-                 account_manager: game_data.player.account_manager,
-                 farm_manager: game_data.player.farm_manager*/
+                premium: game_data.features.Premium.active/*,
+                 account_manager: game_data.features.AccountManager.active,
+                 farm_manager: game_data.features.FarmAssistent.active*/
             },
             content = {
                 title: trans.sp.sp.packageCrashTitle,
