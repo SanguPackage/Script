@@ -9,7 +9,7 @@ server_settings = {
      * when in 'compatibility' mode (gray sangu icon). Also used in the crash report.
      */
     sangu: "sangu.be",
-    sanguEmail: "package@sangu.be",
+    sanguEmail: "sangu@pongit.be",
     /**
      * More then 500 [ cannot be sent in messages or pasted in the noteblock
      */
