@@ -128,7 +128,7 @@
 
                 if (isClassicOverview) {
                     cell = cell.parent();
-                    if (game_data.features.AccountManager.active) {
+                    if (game_data.features.Premium.active) {
                         cell = cell.next();
                     }
                     percentage = world_config.farmLimit == 0 ? "" : cell.children().html();
@@ -137,7 +137,7 @@
                             showFarmLimit: true,
                             percentage: percentage ? percentage.substr(0, percentage.indexOf('%') + 1) : "",
                             cell: cell,
-                            appendToCell: !game_data.features.AccountManager.active
+                            appendToCell: !game_data.features.Premium.active
                         });
 
                 } else {
