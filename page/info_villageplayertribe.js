@@ -6,7 +6,7 @@
             profile = user_data.profile,
             i;
 
-        if (game_data.features.AccountManager.active && location.href.indexOf('screen=info_village') > -1) {
+        if (game_data.features.Premium.active && location.href.indexOf('screen=info_village') > -1) {
             // extra links on the village overview page
             var createFilterLink = function(baseLink, settings) {
                 var link = baseLink + "&group=" + settings.group + "&sort=" + settings.sort + "&changeSpeed=" + settings.changeSpeed;
