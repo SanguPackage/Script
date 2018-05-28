@@ -65,7 +65,7 @@ function ajax(screen, strategy, opts) {
 		alert("Ajax is not allowed on this server.");
 		return;
 	}
-	
+
 	opts = $.extend({}, { villageId: false, contentValue: true, async: false }, opts);
 
 	$.ajax({
@@ -130,7 +130,7 @@ function getDistance(x1, x2, y1, y2, speed) {
 	return dist;
 }
 
-_gaq.push(['b._setAccount', 'UA-30075487-3']);
+// _gaq.push(['b._setAccount', 'UA-30075487-3']);
 
 /**
  * Send click to google analytics
@@ -151,17 +151,17 @@ function trackEvent(category, action, label) {
 		var mode = getQueryStringParam("mode");
 		if (mode) label += "-" + mode;
 	}
-	
+
 	//_gaq.push(['b._setAccount', 'UA-30075487-3']);
 	//_gaq.push(['b._trackPageview']);
 	// _gat._getTrackerByName('b')._trackEvent("SanguPackage", "Loaded", "withGetB");
-    try
-    {
-        _gat._getTrackerByName('b')._trackEvent(category, action, label);
-    }
-	catch (e) {
-        // no crash report for this
-    }
+ //    try
+ //    {
+ //        _gat._getTrackerByName('b')._trackEvent(category, action, label);
+ //    }
+	// catch (e) {
+ //        // no crash report for this
+ //    }
 }
 
 function fillRallyPoint(units) {
@@ -209,7 +209,7 @@ function buildAttackString(villageCoord, unitsSent, player, isSupport, minimum, 
 	if (minimum == undefined) {
 		minimum = 0;
 	}
-	
+
 	var totalPop = 0;
 	var renamed = villageCoord == null ? "" : villageCoord + seperator;
 	var sent = "";
@@ -222,7 +222,7 @@ function buildAttackString(villageCoord, unitsSent, player, isSupport, minimum, 
 			else if (amount >= minimum) {
 				sent += ", " + trans.tw.units.shortNames[val] + "=" + amount;
 			}
-			
+
 			totalPop += amount * world_data.unitsPositionSize[i];
 		}
 	});
@@ -237,7 +237,7 @@ function buildAttackString(villageCoord, unitsSent, player, isSupport, minimum, 
 	if (isSupport) {
 		sent += seperator + "(" + trans.sp.all.populationShort + ": " + formatNumber(totalPop) + ")";
 	}
-	
+
 	if (user_data.attackAutoRename.addHaul && typeof haulDescription !== 'undefined') {
 		sent += " (" + trans.tw.command.haul + " " + haulDescription + ")";
 	}
@@ -267,7 +267,7 @@ function calcTroops(units) {
 	x.isScout = units.spy * world_data.unitsSize.unit_spy > x.totalDef + x.totalOff;
 	x.isMatch = function (type) { return (type == 'all' || (type == 'def' && this.isDef) || (type == 'off' && !this.isDef)); };
 
-	x.getSlowest = 
+	x.getSlowest =
 		function () {
 			var slowest_unit = null;
 			$.each(world_data.units, function (i, v) {
@@ -312,7 +312,7 @@ function calcTroops(units) {
 			}
 			cell.css("background-color", user_data.colors.error);
 		};
-		
+
 	return x;
 }
 
