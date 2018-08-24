@@ -2,9 +2,12 @@
 =============
 
 The Sangu Package is a Greasemonkey script for Firefox, 
-Opera and Chrome (Tampermonkey) that improves [Tribal Wars](http://www.tribalwars.nl) gameplay speed 
+Opera and Chrome that improves [Tribal Wars](http://www.tribalwars.nl) gameplay speed 
 and optimizes gameplay flow by
 adding extra features on pretty much every page, most notably the village overview pages.
+
+Available in the [Chrome Web Store](https://chrome.google.com/webstore/detail/sangu-package/fhmbjphafbpdphffjihgekljkcchcdem?hl=en)
+or install with [Tampermonkey](https://tampermonkey.net).
 
 Support
 -------
