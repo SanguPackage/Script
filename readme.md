@@ -1,14 +1,6 @@
 [Sangu Package](http://www.sangu.be) - Warlord TW extension
 =============
 
-TODO: Dockerfile for TWTactics?
-
-
-A new release: needs to do an automatic release on GitHub aswell (tag, pot, releasenotes? ..)
---> add a release-notes.txt that is pushed to github
---> title === "Update for TW majorVersion 8.96"
---> Automatically add the sangupackage.user.js to the release
-
 The Sangu Package is a Greasemonkey script for Firefox, 
 Opera and Chrome (Tampermonkey) that improves [Tribal Wars](http://www.tribalwars.nl) gameplay speed 
 and optimizes gameplay flow by
