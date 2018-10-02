@@ -4,7 +4,8 @@
 // @namespace       sangu.be
 // @description     Package for Tribal Wars bullies
 // @icon            http://www.sangu.be/images/favicon.png
-// @include         https://*.tribalwars.nl/game.php?*
+// @include         https://*.tribalwars.*/game.php?*
+// @include         https://www.fyletikesmaxes.gr/game.php*
 // @include         http://sangu.be/*
 // @include         http://www.sangu.be/*
 // @version         //<!--@@INCLUDE "version.txt" INDENT=0 //-->
