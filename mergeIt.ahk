@@ -68,6 +68,7 @@ GetNewVersion(versionFileName)
 {
 	currentVersion =
 	FileRead, currentVersion, %versionFileName%
+	StringReplace, currentVersion, currentVersion,`r`n,,A
 	StringSplit, versionNumber, currentVersion, .
 	versionNumber4 := versionNumber4 + 1
 	newVersion = %versionNumber1%.%versionNumber2%.%versionNumber3%.%versionNumber4%
