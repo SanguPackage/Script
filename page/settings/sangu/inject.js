@@ -119,7 +119,7 @@
                 $(this).show();
             }
         });
-        
+
         $('input[id*="mainTagger_otherButtonHitKey"]').on('keydown', function(e){
             e.preventDefault();
             e.stopPropagation();
@@ -130,7 +130,7 @@
             pers.set('sangusettings', JSON.stringify(user_data));
             trackEvent("ScriptUsage", "SettingEdit", "1");
         })
-        
+
     })();
 
     // notable contributors
@@ -138,7 +138,7 @@
         var notableHtml = "<u>" + trans.sp.sp.donate.notable + "</u>";
         notableHtml += "<br><br><b>sakeb</b>: Nogmaals bedankt voor 'JavaScript: The Good Parts'! :)";
         notableHtml += "<br><b>Daniel Ivanov</b>";
-        notableHtml += "<br><br>";
+        notableHtml += "<br><b>Pascal Gorel</b><br>";
 
         $("#sanguSettingsForm").append(notableHtml);
     })();
