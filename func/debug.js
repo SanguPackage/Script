@@ -95,5 +95,7 @@ function assert(shouldBeTruthy, message) {
  * Show crash report
  */
 function handleException(e, title) {
+    console.error('oepsie', title);
+    console.error(e);
     sangu_alert(e, title);
 }
