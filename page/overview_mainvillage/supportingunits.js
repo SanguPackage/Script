@@ -26,6 +26,11 @@
 
         // calculate current stack
         $("table:first td", unitTable).not(":last").each(function () {
+            if (!$('img', this)[0]) {
+                // Cell containing: "< Eigen/Ander/Alle >" toggles
+                return;
+            }
+
             var unit = $('img', this)[0].src,
                 unitsSize,
                 unitAmount;
