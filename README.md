@@ -1,8 +1,8 @@
 [Sangu Package](http://www.sangu.be) - Warlord TW extension
 =============
 
-The Sangu Package is a Greasemonkey script for Firefox, 
-Opera and Chrome that improves [Tribal Wars](http://www.tribalwars.nl) gameplay speed 
+The Sangu Package is a Greasemonkey script for Firefox,
+Opera and Chrome that improves [Tribal Wars](http://www.tribalwars.nl) gameplay speed
 and optimizes gameplay flow by
 adding extra features on pretty much every page, most notably the village overview pages.
 
