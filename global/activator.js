@@ -9,23 +9,43 @@ if (location.href.indexOf('changeStatus=') > -1) {
 var activatorImage = isSanguActive ? "green" : 'red';
 var activatorTitle = (!isSanguActive ? trans.sp.sp.activatePackage : trans.sp.sp.deactivatePackage) + " (v" + sangu_version + ")";
 
+function isSanguCompatible() {
+    return sangu_version.indexOf(game_data.majorVersion) === 0;
+}
+
+// Check for new version
+var loginMonitor = pers.get("sanguLogin");
+if (typeof GM_xmlhttpRequest !== "undefined" && !isSanguCompatible() && loginMonitor !== '') {
+    var parts = loginMonitor.match(/(\d+)/g);
+    if (parseInt(parts[2], 10) != (new Date()).getDate()) {
+        GM_xmlhttpRequest({
+            method: "GET",
+            url: "http://www.sangu.be/api/sangupackageversion.php",
+            onload: function (response) {
+                console.log(response.status, response.responseText.substring (0, 80));
+            }
+        });
+
+    }
+}
+
 if (pers.get("forceCompatibility") === '' || pers.get("forceCompatibility") === 'false') {
     if (isSanguActive) {
         // Check compatibility with TW version
-        if (/*pers.getGlobal("scriptWarningVersion") != server_settings.tw_version &&*/ server_settings.tw_version != game_data.majorVersion) {
+        if (!isSanguCompatible()) {
             try {
-                ScriptAPI.register('Sangu Package', server_settings.tw_version, 'Laoujin', server_settings.sanguEmail);
+                ScriptAPI.register('Sangu Package', sangu_version, 'Laoujin', server_settings.sanguEmail);
             } catch (e) {
-                //$("#script_list a[href$='mailto:"+server_settings.sangu+"']").after(" &nbsp;<a href='' id='removeScriptWarning'>"+trans.sp.sp.removeScriptWarning+"</a>");
-                //$("#removeScriptWarning").click(function() {
-                //    pers.setGlobal("scriptWarningVersion", server_settings.tw_version);
-                //});
+                $("#script_list a[href$='mailto:"+server_settings.sanguEmail+"']").after(" &nbsp;<a href='' id='removeScriptWarning'>"+trans.sp.sp.removeScriptWarning+"</a>");
+                $("#removeScriptWarning").click(function() {
+                    pers.set("forceCompatibility", "true");
+                });
             }
         }
     }
 
     // gray icon when tw version doesn't match
-    if (/*pers.getGlobal("scriptWarningVersion") != server_settings.tw_version &&*/ server_settings.tw_version != game_data.majorVersion) {
+    if (!isSanguCompatible()) {
         activatorImage = "grey";
         activatorTitle = trans.sp.sp.activatePackageWithCompatibility.replace("{version}", sangu_version);
     }
@@ -49,5 +69,16 @@ if (!isSanguActive) {
             content = {body: trans.sp.sp.firstTimeRun.replace("{img}", "<img src='graphic/dots/red.png' />")};
 
         createFixedTooltip("sanguActivatorTooltip", content, options);
+    }());
+} else {
+    (function() {
+        var position = $("#storage").position(),
+            options = {
+                left: position.left - 150,
+                top: position.top + 35
+            },
+            content = {body: '<b>Sangu stelt zijn nieuwste tool voor: <a href="http://sangu.be">TW Tactics</a>!</b><br><br>Probeer het zeker eens voordat je vijanden het tegen jou beginnen te gebruiken!'};
+
+        createFixedTooltip("twTacticsTooltip", content, options);
     }());
 }

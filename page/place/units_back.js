@@ -96,7 +96,7 @@
                 var row = $(this);
                 var villageUrl = $("a:first", this).attr("href");
                 ajax(villageUrl, function (villageDetails) {
-                    var villageOwner = $("table.vis:first tr:eq(3) a", villageDetails);
+                    var villageOwner = $("table.vis:first tr:eq(4) a", villageDetails);
                     if (villageOwner.text() != game_data.player.name) {
                         $("td:first a", row).after(" [" + villageOwner.outerHTML() + "]");
                     } else {

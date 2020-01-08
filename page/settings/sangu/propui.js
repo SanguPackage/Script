@@ -410,7 +410,11 @@ function buildConfigForm(contentPage, propertyFormConfig) {
             formRow += "</td>";
 
             //editor
-            formRow += "<td width='75%'>";
+            if(propUI.label == sangu_trans.mainTagger.otherButtons.hitKey) {
+		formRow += "<td width='75%'>ctrl + ";
+	    } else {
+		formRow += "<td width='75%'>";
+	    }
             formRow += propUI.propUI.build(propertyFormConfig.id+"_"+propUI.ownName);
             formRow += "</td>";
 

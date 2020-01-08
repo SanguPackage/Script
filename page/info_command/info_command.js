@@ -78,7 +78,7 @@ if ($("#running_times").size() > 0) {
             var haulDescription = "";
 
             if (type.indexOf(trans.tw.command.returnText) == 0) {
-                infoTable = $("table.vis:last", content_value);
+                infoTable = $("> table.vis:last", content_value);
                 if (infoTable.find("td:first").text() == trans.tw.command.haul) {
                     haulDescription = infoTable.find("td:last").text().match(/\s(\d+)\/(\d+)$/);
                     if (haulDescription) {
@@ -90,7 +90,7 @@ if ($("#running_times").size() > 0) {
                 }
                 infoTable = infoTable.find("tr:last");
             } else {
-                infoTable = $("table.vis:last", content_value);
+                infoTable = $("> table.vis:last", content_value);
             }
 
             var unitsSent = {};
@@ -102,16 +102,21 @@ if ($("#running_times").size() > 0) {
 
             if (user_data.attackAutoRename.active) {
                 $.each($('.quickedit'), function(){
-		    var renamed = buildAttackString(village.coord, unitsSent, player, isSupport, 0, haulDescription);
-		    var commandID = $(this).attr('data-id');
-		    var temp = $(this);
-		    $.ajax({
-		       url:game_data.link_base_pure+'info_command&ajaxaction=edit_other_comment&id='+commandID+'&h='+game_data.csrf+'&',
-		       method:'post',
-		       data:{text:renamed},
-		       success:function(){temp.find(".quickedit-label:first").text(renamed)}
-		    });
-		})
+                    var renamed = buildAttackString(village.coord, unitsSent, player, isSupport, 0, haulDescription),
+                        commandID = $(this).attr('data-id'),
+                        $this = $(this);
+
+                    if (server_settings.ajaxAllowed) {
+                        $.ajax({
+                           url: game_data.link_base_pure+'info_command&ajaxaction=edit_other_comment&id='+commandID+'&h='+game_data.csrf+'&',
+                           method: 'post',
+                           data: { text: renamed },
+                           success:function() {
+                               $this.find(".quickedit-label:first").text(renamed);
+                           }
+                        });
+                    }
+                });
             }
 
             /*if (server_settings.ajaxAllowed) {

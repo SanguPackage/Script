@@ -8,7 +8,7 @@
             // Merge nightbonus & tribe claim statements (for OK button placement)
             if (user_data.proStyle && (user_data.confirm.replaceTribeClaim || user_data.confirm.replaceNightBonus)) {
                 var header = $("h2:first", content_value);
-                var claim = $("h3.error");
+                var claim = $("h3.error:visible");
                 if (claim.size() != 0) {
                     claim.each(function() {
                         var $this = $(this);
@@ -34,7 +34,7 @@
             var buildingImages = "";
 
             dropdown.find("option").each(function(index, value) {
-                buildingImages += "<img class='catapultSwitcher' title='"+trans.sp.command.catapultImageTitle+"' building='"+$(value).val()+"' src='http://cdn.tribalwars.net/graphic/buildings/" + $(value).val() + ".png'> ";
+                buildingImages += "<img class='catapultSwitcher' title='" + trans.sp.command.catapultImageTitle + "' building='" + $(value).val() +"' src='https://www.tribalwars.vodka/graphic/buildings/" + $(value).val() + ".png'> ";
             });
 
             dropdown.parent().parent().before("<tr><td colspan=4>"+buildingImages+"</td></tr>");

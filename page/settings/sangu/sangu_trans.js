@@ -31,11 +31,11 @@ var sangu_trans = (function() {
                 + "{difference} voor het aantal nieuwe aanvallen. "
                 + "{saved} voor het laatst opgeslaan aantal aanvallen.",
             incomingsIndicatorTooltip2: "Tijdchecker tooltip",
-            incomingsLastTimeCheckWarningMore: "Tijdchecker tooltip (meer)",
-            incomingsLastTimeCheckWarningMoreTooltip: "Gebruik {elapsed} voor de verstreken tijd. Gebruik {time} voor de laatste tijdcheck.",
-            incomingsLastTimeCheckWarningLess: "Tijdchecker tooltip (minder)",
+            incomingsLastTimeCheckWarning: "Tijdchecker tooltip",
+            incomingsLastTimeCheckWarningTooltip: "Gebruik {elapsed} voor de verstreken tijd. Gebruik {time} voor de laatste tijdcheck.",
             otherSettingsTitle: "Overige configuratie",
             visualizeFriends: "Aangeven welke vrienden momenteel online zijn",
+            duplicateLogoffLink: "Voeg links onderaan een extra 'Afmelden' link toe.",
             colorsTitle: "Sangu achtergrondkleuren",
             colorsError: "Waarschuwingen",
             colorsNeutral: "Neutrale indicaties",
@@ -180,15 +180,19 @@ var sangu_trans = (function() {
             autoOpen: "De tagger automatisch openen bij binnenkomende aanvallen",
             inputBoxWidth: "De breedte van de bevel hernoemings inputvelden",
             defaultDescription: "De naam die standaard in het hernoemings inputveld geplaatst wordt",
+            defaultDescriptionTooltip: "Gebruik {xy} voor de coordinaten van het herkomst dorp",
             autoOpenCommands: "De bevel hernoemings inputvelden direct tonen",
             minutesDisplayDodgeTimeOnMap: "Aantal minuten dat de laatste dodgetijd op de kaart getoond wordt",
             minutesDisplayDodgeTimeOnMapTooltip: "De laatste dodgetijd is de tijd van het laatste bevel, aangeduidt met gewijzigde achtergrondkleur na het herbenoemen van binnenkomende aanvallen.",
             minutesWithoutAttacksDottedLine: "Elke zoveel minuten zonder een tussenliggende binnenkomende aanval aanduiden met een stippelijn (180 = 3 uur)",
             colorSupport: "Binnenkomende ondersteuning een andere achtergrondkleur geven",
+            keepReservedWords: "Tekst die vervangen wordt door een eenheid icon behouden bij hernoemen binnenkomende aanval",
+            keepReservedWordsTooltip: "Bijvoorbeeld \"Verk.\" wordt vervangen door een verkenners icon",
             otherButtons: {
                 title: "Andere hernoemings knoppen",
                 renameTo: "Hernoemen naar",
-                button: "Tekst knop"
+                button: "Tekst knop",
+		        hitKey: "Sneltoets"
             }
         },
         confirm: {

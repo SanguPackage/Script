@@ -74,6 +74,7 @@
          * @param {function} [keepRowStrategy]
          * @param {*} [tag] passed as second param to filterStrategy and keepRowStrategy
          */
+
         function filterGroupRows(filterStrategy, reverseFilter, keepRowStrategy, tag) {
             if (typeof reverseFilter === "undefined") {
                 reverseFilter = !$("#defReverseFilter").is(":checked");
@@ -83,13 +84,15 @@
             var totalVisible = 0;
             $("#group_assign_table tr:gt(0)").each(function () {
                 var row = $(this);
-                if (!reverseFilter != !filterStrategy(row, tag)) {
-                    goners = goners.add(row);
-                    //$("input:eq(1)", row).val("");
-                } else {
-                    totalVisible++;
-                    if (keepRowStrategy != null) {
-                        keepRowStrategy(row, tag);
+                if (row.is(":visible")) {
+                    if (!reverseFilter != !filterStrategy(row, tag)) {
+                        goners = goners.add(row);
+                        //$("input:eq(1)", row).val("");
+                    } else {
+                        totalVisible++;
+                        if (keepRowStrategy != null) {
+                            keepRowStrategy(row, tag);
+                        }
                     }
                 }
             });
@@ -187,9 +190,12 @@
             trackClickEvent("FilterContinent");
             var compareTo = parseInt($("#defFilterContinentText").val(), 10);
             if (compareTo >= 0) {
+                compareTo = compareTo.toString();
                 filterGroupRows(function (row) {
-                    var village = getVillageFromCoords(row.find("td:eq(0)").text());
-                    return village.continent() == compareTo;
+                    var villageContinent = $.trim(row.find("td:first").text()),
+                        continentStart = villageContinent.lastIndexOf(trans.tw.all.continentPrefix);
+
+                    return villageContinent.substr(continentStart + 1) === compareTo;
                 });
             }
         });

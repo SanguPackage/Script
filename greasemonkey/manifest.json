@@ -4,7 +4,8 @@
         "exclude_globs":    [  ],
         "include_globs":    [ "*" ],
         "js":               [ "sangupackage.user.js" ],
-        "matches":          [   "http://*.tribalwars.nl/game.php?*",
+        "matches":          [   "http://*.tribalwars.*/game.php?*",
+                                "https://www.fyletikesmaxes.gr/game.php?*",
                                 "http://sangu.be/*",
                                 "http://www.sangu.be/*"
                             ],

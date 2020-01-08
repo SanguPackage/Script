@@ -27,8 +27,7 @@ if (server_settings.ajaxAllowed && user_data.global.visualizeFriends) {
                 if (friends.online.amount > 0) {
                     friendsLink.attr("title", trans.sp.rest.friendsOnlineTitle.replace("{playerNames}", friends.online.names.substr(1)));
                 }
-                $("#linkContainer").append(" - ");
-                $("#linkContainer").append(friendsLink);
+                $("#sanguPackageEditSettingsLink").before(friendsLink).before(" - ");
             }
 
             /**
@@ -41,13 +40,17 @@ if (server_settings.ajaxAllowed && user_data.global.visualizeFriends) {
                 if (friendsTable.size() == 1) {
                     var friendRows = friendsTable.find("tr:gt(0)");
                     friendRows.each(function() {
-                        var friendName = $("a:first", this).text();
+                        var friendName = $.trim($("a:first", this).text());
                         var statusIndicatorImage = $("img:first", this);
-                        if (/red\.png/.test(statusIndicatorImage.attr("src"))) {
-                            friends.offlineAmount++;
-                        } else {
-                            friends.online.names += ", " + friendName;
-                            friends.online.amount++;
+                        if( statusIndicatorImage.length > 0 ) {
+                            if (/red\.png/.test(statusIndicatorImage.attr("src"))) {
+                                friends.offlineAmount++;
+                            } else {
+                                if (friendName != game_data.player.name) {
+                                    friends.online.names += ", " + friendName;
+                                    friends.online.amount++;
+                                }
+                            }
                         }
                     });
 

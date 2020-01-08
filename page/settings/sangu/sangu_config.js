@@ -94,20 +94,12 @@ var user_data_configs = (function() {
                         editor: "text"
                     }
                 },
-                lastTimeCheckWarningMore: {
-                    label: sangu_trans.global.incomingsLastTimeCheckWarningMore,
-                    tooltip: sangu_trans.global.incomingsLastTimeCheckWarningMoreTooltip,
+                lastTimeCheckWarning: {
+                    label: sangu_trans.global.incomingsLastTimeCheckWarning,
+                    tooltip: sangu_trans.global.incomingsLastTimeCheckWarningTooltip,
                     propUI: {
-                        getter: function() { return user_data.global.incomings.lastTimeCheckWarningMore; },
-                        setter: function(value) { user_data.global.incomings.lastTimeCheckWarningMore = value; },
-                        editor: "text"
-                    }
-                },
-                lastTimeCheckWarningLess: {
-                    label: sangu_trans.global.incomingsLastTimeCheckWarningLess,
-                    propUI: {
-                        getter: function() { return user_data.global.incomings.lastTimeCheckWarningLess; },
-                        setter: function(value) { user_data.global.incomings.lastTimeCheckWarningLess = value; },
+                        getter: function() { return user_data.global.incomings.lastTimeCheckWarning; },
+                        setter: function(value) { user_data.global.incomings.lastTimeCheckWarning = value; },
                         editor: "text"
                     }
                 },
@@ -176,6 +168,14 @@ var user_data_configs = (function() {
                     propUI: {
                         getter: function() { return user_data.global.visualizeFriends; },
                         setter: function(value) { user_data.global.visualizeFriends = value; },
+                        editor: "bool"
+                    }
+                },
+                duplicateLogoffLink: {
+                    label: sangu_trans.global.duplicateLogoffLink,
+                    propUI: {
+                        getter: function() { return user_data.global.duplicateLogoffLink; },
+                        setter: function(value) { user_data.global.duplicateLogoffLink = value; },
                         editor: "bool"
                     }
                 }
@@ -270,32 +270,32 @@ var user_data_configs = (function() {
                 activate: {
                     label: sangu_trans.global.resources.activate,
                     propUI: {
-                        getter: function() { return user_data.mainTagger.active; },
-                        setter: function(value) { user_data.mainTagger.active = value; },
+                        getter: function() { return user_data.mainTagger2.active; },
+                        setter: function(value) { user_data.mainTagger2.active = value; },
                         editor: "bool"
                     }
                 },
                 autoOpen: {
                     label: sangu_trans.mainTagger.autoOpen,
                     propUI: {
-                        getter: function() { return user_data.mainTagger.autoOpen; },
-                        setter: function(value) { user_data.mainTagger.autoOpen = value; },
+                        getter: function() { return user_data.mainTagger2.autoOpen; },
+                        setter: function(value) { user_data.mainTagger2.autoOpen = value; },
                         editor: "bool"
                     }
                 },
                 inputBoxWidth: {
                     label: sangu_trans.mainTagger.inputBoxWidth,
                     propUI: {
-                        getter: function() { return user_data.mainTagger.inputBoxWidth; },
-                        setter: function(value) { user_data.mainTagger.inputBoxWidth = value; },
+                        getter: function() { return user_data.mainTagger2.inputBoxWidth; },
+                        setter: function(value) { user_data.mainTagger2.inputBoxWidth = value; },
                         editor: "number|step=5"
                     }
                 },
                 autoOpenCommands: {
                     label: sangu_trans.mainTagger.autoOpenCommands,
                     propUI: {
-                        getter: function() { return user_data.mainTagger.autoOpenCommands; },
-                        setter: function(value) { user_data.mainTagger.autoOpenCommands = value; },
+                        getter: function() { return user_data.mainTagger2.autoOpenCommands; },
+                        setter: function(value) { user_data.mainTagger2.autoOpenCommands = value; },
                         editor: "bool"
                     }
                 },
@@ -303,33 +303,43 @@ var user_data_configs = (function() {
                     label: sangu_trans.mainTagger.minutesDisplayDodgeTimeOnMap,
                     tooltip: sangu_trans.mainTagger.minutesDisplayDodgeTimeOnMapTooltip,
                     propUI: {
-                        getter: function() { return user_data.mainTagger.minutesDisplayDodgeTimeOnMap; },
-                        setter: function(value) { user_data.mainTagger.minutesDisplayDodgeTimeOnMap = value; },
+                        getter: function() { return user_data.mainTagger2.minutesDisplayDodgeTimeOnMap; },
+                        setter: function(value) { user_data.mainTagger2.minutesDisplayDodgeTimeOnMap = value; },
                         editor: "number"
                     }
                 },
                 minutesWithoutAttacksDottedLine: {
                     label: sangu_trans.mainTagger.minutesWithoutAttacksDottedLine,
                     propUI: {
-                        getter: function() { return user_data.mainTagger.minutesWithoutAttacksDottedLine; },
-                        setter: function(value) { user_data.mainTagger.minutesWithoutAttacksDottedLine = value; },
+                        getter: function() { return user_data.mainTagger2.minutesWithoutAttacksDottedLine; },
+                        setter: function(value) { user_data.mainTagger2.minutesWithoutAttacksDottedLine = value; },
                         editor: "number|step=60"
                     }
                 },
                 colorSupport: {
                     label: sangu_trans.mainTagger.colorSupport,
                     propUI: {
-                        getter: function() { return user_data.mainTagger.colorSupport; },
-                        setter: function(value) { user_data.mainTagger.colorSupport = value; },
+                        getter: function() { return user_data.mainTagger2.colorSupport; },
+                        setter: function(value) { user_data.mainTagger2.colorSupport = value; },
                         editor: "color"
                     }
                 },
                 defaultDescription: {
                     label: sangu_trans.mainTagger.defaultDescription,
+                    tooltip: sangu_trans.mainTagger.defaultDescriptionTooltip,
                     propUI: {
-                        getter: function() { return user_data.mainTagger.defaultDescription; },
-                        setter: function(value) { user_data.mainTagger.defaultDescription = value; },
+                        getter: function() { return user_data.mainTagger2.defaultDescription; },
+                        setter: function(value) { user_data.mainTagger2.defaultDescription = value; },
                         editor: "text"
+                    }
+                },
+                keepReservedWords: {
+                    label: sangu_trans.mainTagger.keepReservedWords,
+                    tooltip: sangu_trans.mainTagger.keepReservedWordsTooltip,
+                    propUI: {
+                        getter: function() { return user_data.mainTagger2.keepReservedWords; },
+                        setter: function(value) { user_data.mainTagger2.keepReservedWords = value; },
+                        editor: "bool"
                     }
                 },
                 otherButtonsTitle: {
@@ -338,9 +348,9 @@ var user_data_configs = (function() {
                 }
             };
 
-            for (var i = 0; i < user_data.mainTagger.otherDescs.length; i++) {
+            for (var i = 0; i < user_data.mainTagger2.otherDescs.length; i++) {
                 (function() {
-                    var otherDescription = user_data.mainTagger.otherDescs[i];
+                    var otherDescription = user_data.mainTagger2.otherDescs[i];
 
                     properties['otherButton'+i] = {
                         type: "subtitle",
@@ -362,6 +372,15 @@ var user_data_configs = (function() {
                             getter: function() { return otherDescription.name; },
                             setter: function(value) { otherDescription.name = value; },
                             editor: "text|width=10"
+                        }
+                    }
+                    
+                    properties['otherButtonHitKey'+i] = {
+                        label: sangu_trans.mainTagger.otherButtons.hitKey,
+                        propUI: {
+                            getter: function() { return otherDescription.hitKey; },
+                            setter: function(value) { otherDescription.hitKey = value; },
+                            editor: "text|width=4"
                         }
                     }
 
@@ -1482,7 +1501,7 @@ var user_data_configs = (function() {
                     label: sangu_trans.villageInfo.filter.title
                 };
 
-                addSetting2(properties, captured_index, offDef+"_link", "active", sangu_trans.global.resources.activate, "bool");
+                addSetting2(properties, captured_index, offDef+"_link", "active", sangu_trans.villageInfo.filter.title, "bool");
                 addSetting2(properties, captured_index, offDef+"_link", "unit", sangu_trans.villageInfo.filter.unit, "unit");
                 addSetting2(properties, captured_index, offDef+"_link", "amount", sangu_trans.villageInfo.filter.amount, "number|step=100");
             }
@@ -1529,94 +1548,5 @@ var user_data_configs = (function() {
         }());
     }
 
-
-
-
     return user_data_configs;
 }());
-
-
-
-
-
-
-
-
-//villageInfoTitleDef: {
-//    type: "subtitle",
-//        label: sangu_trans.villageInfo.def_title
-//},
-//villageInfodef_name: {
-//    label: sangu_trans.villageInfo.linkName,
-//        propUI: {
-//        getter: function() { return user_data.villageInfo2.def_link.name; },
-//        setter: function(value) { user_data.villageInfo2.def_link.name = value; },
-//        editor: "text"
-//    }
-//},
-//villageInfodef_sort: {
-//    label: sangu_trans.villageInfo.sort,
-//        propUI: {
-//        getter: function() { return user_data.villageInfo2.def_link.sort; },
-//        setter: function(value) { user_data.villageInfo2.def_link.sort = value; },
-//        editor: "bool"
-//    }
-//},
-//villageInfodef_changeSpeed: {
-//    label: sangu_trans.villageInfo.changeSpeed,
-//        propUI: {
-//        getter: function() { return user_data.villageInfo2.def_link.changeSpeed; },
-//        setter: function(value) { user_data.villageInfo2.def_link.changeSpeed = value; },
-//        editor: "unit"
-//    }
-//},
-//villageInfodef_group: {
-//    label: sangu_trans.villageInfo.group,
-//        propUI: {
-//        getter: function() { return user_data.villageInfo2.def_link.group; },
-//        setter: function(value) { user_data.villageInfo2.def_link.group = value; },
-//        editor: "number"
-//    }
-//},
-//villageInfoTitledef_linkFilter: {
-//    type: "subtitle",
-//        label: sangu_trans.villageInfo.filter.title
-//},
-//villageInfodef_linkFilter: {
-//    label: sangu_trans.global.resources.activate,
-//        propUI: {
-//        getter: function() { return user_data.villageInfo2.def_link.filter.active; },
-//        setter: function(value) { user_data.villageInfo2.def_link.filter.active = value; },
-//        editor: "bool"
-//    }
-//},
-//villageInfodef_linkUnit: {
-//    label: sangu_trans.villageInfo.filter.unit,
-//        propUI: {
-//        getter: function() { return user_data.villageInfo2.def_link.filter.unit; },
-//        setter: function(value) { user_data.villageInfo2.def_link.filter.unit = value; },
-//        editor: "unit"
-//    }
-//},
-//villageInfodef_linkAmount: {
-//    label: sangu_trans.villageInfo.filter.amount,
-//        propUI: {
-//        getter: function() { return user_data.villageInfo2.def_link.filter.amount; },
-//        setter: function(value) { user_data.villageInfo2.def_link.filter.amount = value; },
-//        editor: "number|step=100"
-//    }
-//}
-//
-//
-//
-//
-//
-////sangu_trans.global.resources.activate
-///*
-//scoutTitle: {
-//    type: "subtitle",
-//        label: sangu_trans.place.scoutTitle
-//}
-//*/
-//
-//

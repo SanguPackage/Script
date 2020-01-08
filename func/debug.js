@@ -42,15 +42,15 @@ function sangu_alert(e, title) {
                 majorVersion: game_data.majorVersion,
                 market: game_data.market,
                 world: game_data.world,
-                sitter_id: game_data.player.sitter_id,
+                sitter: game_data.player.sitter,
                 village_id: game_data.village.id,
                 player_id: game_data.player.id,
                 player_name: game_data.player.name,
                 ally_id: game_data.player.ally_id,
                 villages: game_data.player.villages,
-                premium: game_data.player.premium/*,
-                 account_manager: game_data.player.account_manager,
-                 farm_manager: game_data.player.farm_manager*/
+                premium: game_data.features.Premium.active/*,
+                 account_manager: game_data.features.AccountManager.active,
+                 farm_manager: game_data.features.FarmAssistent.active*/
             },
             content = {
                 title: trans.sp.sp.packageCrashTitle,
@@ -95,5 +95,7 @@ function assert(shouldBeTruthy, message) {
  * Show crash report
  */
 function handleException(e, title) {
+    console.error('oepsie', title);
+    console.error(e);
     sangu_alert(e, title);
 }

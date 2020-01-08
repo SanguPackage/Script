@@ -8,7 +8,9 @@ if (location.href.indexOf('type=there') > -1) {
         $("#units_table").find(overviewMenuRowFilter).each(function () {
             var total = parseInt($("td:eq(1)", $(this)).text().replace(/\./, ''), 10);
             if (user_data.restack.to - total > user_data.restack.requiredDifference) {
-                var villageCoord = getVillageFromCoords($(this).find("td:first span[id*='label_']").text());
+                var villageDesc = $(this).find("td:first span[data-text]").text(),
+                    villageCoord = getVillageFromCoords(villageDesc);
+
                 request += "[village]" + villageCoord.coord + "[/village] (" + parseInt((user_data.restack.to - total) / 1000, 10) + "k)\n";
             }
         });

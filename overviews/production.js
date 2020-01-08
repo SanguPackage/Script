@@ -116,7 +116,7 @@
                     for (var i = 0; i < 3; i++) {
                         if ((!reverse && resources[i] - minDif > minAmount) || (reverse && parseInt(resources[i], 10) + parseInt(minDif, 10) < minAmount)) {
                             if (bbCodeImages) {
-                                villageBBCode += "[img]http://www.tribalwars.nl/graphic/" + world_data.resources[i] + ".png[/img] ";
+                                villageBBCode += "[img]https://www.tribalwars.nl/graphic/" + world_data.resources[i] + ".png[/img] ";
                             } else {
                                 villageBBCode += resCode[i] + " ";
                             }

@@ -8,6 +8,7 @@ trans = {
 	tw: {
 		units: {
 			names: { "spear": "Speer", "sword": "Zwaard", "archer": "Boog", "axe": "Bijl", "spy": "Verk", "light": "Lc", "marcher": "Bb", "heavy": "Zc", "ram": "Ram", "catapult": "Kata", "knight": "Ridder", "snob": "Edel" },
+			twShortNames: { "spear": "Speer", "sword": "Zwaard", "archer": "Boog", "axe": "Bijl", "spy": "Verk.", "light": "Lcav.", "marcher": "Bboog.", "heavy": "Zcav.", "ram": "Ram", "catapult": "Kata.", "knight": "Ridder", "snob": "Edel." },
 			shortNames: { "spear": "Sp", "sword": "Zw", "archer": "Boog", "axe": "Bijl", "spy": "Ver", "light": "Lc", "marcher": "Bb", "heavy": "Zc", "ram": "Ram", "catapult": "Kata", "knight": "Ridder", "snob": "Edel" },
 			militia: "Militia"
 		},
@@ -24,7 +25,6 @@ trans = {
 			continentPrefix: "C"
 		},
 		main: {
-			toGraphicOverview: "naar het grafische dorpsoverzicht",
 			loyaltyHeader: "Toestemming:"
 		},
 		command: {
@@ -179,7 +179,8 @@ trans = {
 			checkAllAttacks: "Aanvinken van alle zichtbare aanvallen",
 			uncheckAllAttacks: "Uitvinken van alle zichtbare aanvallen",
 			activeDodgeTime: "Actieve dodgetijd (wordt op de kaart getoond)",
-			totalAttacksOnVillage: "Aantal aanvallen"
+			totalAttacksOnVillage: "Aantal aanvallen",
+            renameButtonShortcutTooltip: "Shortcut: CTRL + {hitkey}"
 		},
 		place: {
 			distance: "Afstand",
@@ -404,7 +405,8 @@ trans = {
 			graphVillages: "Dorpen",
 			graphOD: "OD Totaal",
 			graphODD: "OD Verdediging",
-			graphODA: "OD Aanval",
+            graphODA: "OD Aanval",
+            graphODS: "OD Ondersteuning",
 			graphRank: "Rang",
 			graphMembers: "Leden",
 			graphTWMap: "TribalWarsMap.com"

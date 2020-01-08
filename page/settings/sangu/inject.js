@@ -15,7 +15,12 @@
                 + '</form></div>';
         }
 
-        var html = "<h3>"+trans.sp.sp.donate.title+"</h3>";
+        var html = "<h3>Contributors</h3>";
+        html += "Hebben aan het Sangu Package meegewerkt: <br><b>";
+        html += "//<!--@@INCLUDE "contributors.txt" INDENT=0 //-->";
+        html += "</b>";
+
+        html += "<h3>"+trans.sp.sp.donate.title+"</h3>";
         html += trans.sp.sp.donate.whyWouldI;
         html += "<br>" + trans.sp.sp.donate.books
             .replace("{abegin}", "<a target='_blank' href='http://www.amazon.com/wishlist/1RFQ21NSF4PAI/ref=cm_wl_prev_ret?_encoding=UTF8&reveal='>")
@@ -114,6 +119,18 @@
                 $(this).show();
             }
         });
+
+        $('input[id*="mainTagger_otherButtonHitKey"]').on('keydown', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            var TagNumber = $(this).attr("id").match(/\d+/);
+            $(this).val('');
+            $(this).val(keyCodeMap[e.which].toUpperCase());
+            user_data.mainTagger2.otherDescs[TagNumber]["hitKey"] = $(this).val();
+            pers.set('sangusettings', JSON.stringify(user_data));
+            trackEvent("ScriptUsage", "SettingEdit", "1");
+        })
+
     })();
 
     // notable contributors
@@ -121,7 +138,7 @@
         var notableHtml = "<u>" + trans.sp.sp.donate.notable + "</u>";
         notableHtml += "<br><br><b>sakeb</b>: Nogmaals bedankt voor 'JavaScript: The Good Parts'! :)";
         notableHtml += "<br><b>Daniel Ivanov</b>";
-        notableHtml += "<br><br>";
+        notableHtml += "<br><b>Pascal Gorel</b><br>";
 
         $("#sanguSettingsForm").append(notableHtml);
     })();

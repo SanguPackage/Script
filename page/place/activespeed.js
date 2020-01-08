@@ -6,12 +6,12 @@
             $(this).attr("title", trans.sp.place.changeSpeedImageTooltips.replace("{originalTitle}", $(this).attr("title")));
         });
 
-        $("#units_form a img").click(function () {
+        $("#command-data-form a img").click(function () {
             var unit = this.src;
             unit = unit.substr(unit.lastIndexOf('/') + 1);
             unit = unit.substr(0, unit.lastIndexOf('.'));
             speedCookie = spSpeedCookie(unit);
-            $("#units_form a img").css("border", "0px").filter("img[src*='" + unit + "']").css("border", "3px red solid");
+            $("#command-data-form a img").css("border", "0px").filter("img[src*='" + unit + "']").css("border", "3px red solid");
 
             // lastvil
             var coord = getVillageFromCoords(pers.get("lastVil"));

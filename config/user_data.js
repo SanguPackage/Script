@@ -29,10 +29,10 @@ if (user_data !== '') {
                 track: true,
                 indicator: "({current} <small>{difference}</small>)",
                 indicatorTooltip: "Laatste tijdcheck: {elapsed} geleden",
-                lastTimeCheckWarningMore: "{difference} nieuwe aanvallen. Laatste tijdcheck: {elapsed} geleden",
-                lastTimeCheckWarningLess: "{difference} aanvallen minder. Laatste tijdcheck: {elapsed} geleden"
+                lastTimeCheckWarning: "Aanvallen: {difference}. Laatste tijdcheck: {elapsed} geleden"
             },
-            visualizeFriends: true
+            visualizeFriends: true,
+            duplicateLogoffLink: false
         },
 
         scriptbar: {
@@ -102,7 +102,7 @@ if (user_data !== '') {
         incoming: { /* Features for the built in TW tagger */
             autoOpenTagger: true, 		/* Open the tagger automatically if the incoming attack has not yet been renamed */
             forceOpenTagger: true, 	/* Always open the tagger automatically */
-            renameInputTexbox: "{unit} ({xy}) {player} F{fields}{night}", /* Possibilities: {id}:internal tw attack id {unit}: short unitname {xy}: coordinates {player} {village}: full village name {c}: continent. Set to "" to disable. */
+            renameInputTexbox: "{unit} ({xy}) {player} F{fields}{night}", /* Possibilities: {id}:internal tw attack id {unit}: short unitname {xy}: coordinates {player} {village}: full village name {c}: continent {fields} distance between the villages {night} indication when attack arrives during the nightbonus. Set to "" to disable. */
             villageBoxSize: 600, 			/* Adjust the width of the table with the village information (support for 2-click) */
             invertSort: true		/* true=noblemen at the top and scouts at the bottom of the table */
         },
@@ -113,22 +113,32 @@ if (user_data !== '') {
             canHideDiv: true
         },
 
-        mainTagger: {
+        mainTagger2: {
             active: true,
             autoOpen: true,
             inputBoxWidth: 300,
-            defaultDescription: "OK",
+            defaultDescription: "{xy} OK",
             otherDescs:
                 [
-                    { active: true, name: "Dodgen", renameTo: "----------------------------------------- DODGE THIS" },
-                    { active: true, name: "Nacht", renameTo: "NIGHTBONUS" },
-                    { active: true, name: "Check stack", renameTo: "----------------------------------------- CHECK STACK" },
-                    { active: true, name: "Timen!", renameTo: "***************************************** TIME IT!" },
-                    { active: true, name: "Edelen!", renameTo: "----------------------------------------- NOBLE!!" },
-                    { active: false, name: "Leeg1", renameTo: "It has to be, automatically" },
-                    { active: false, name: "Leeg2", renameTo: "Check it out, you'd better work it out" },
-                    { active: false, name: "Leeg3", renameTo: "Change to another route" },
-                    { active: false, name: "Leeg4", renameTo: "My techniques, strategies, abilities" }
+                    { active: true, name: "Dodgen", hitKey: "D", renameTo: "{xy}----------------------------------------- DODGE THIS" },
+		    { active: true, name: "Nacht", hitKey: "N", renameTo: "{xy} NIGHTBONUS" },
+		    { active: true, name: "Check stack", hitKey: "P", renameTo: "{xy}----------------------------------------- CHECK STACK" },
+		    { active: true, name: "Timen!", hitKey: "T", renameTo: "{xy}***************************************** TIME IT!" },
+		    { active: true, name: "Edelen!", hitKey: "E", renameTo: "{xy}----------------------------------------- NOBLE!!" },
+		    { active: false, name: "Leeg1", hitKey: "L", renameTo: "It has to be, automatically" },
+		    { active: false, name: "Leeg2", hitKey: "U", renameTo: "Check it out, you'd better work it out" },
+		    { active: false, name: "Leeg3", hitKey: "Y", renameTo: "Change to another route" },
+		    { active: false, name: "Leeg4", hitKey: "O", renameTo: "My techniques, strategies, abilities" }
+                ],
+            keepReservedWords: true,
+            reservedWords: [
+                "Edel.", "Edelman",
+                "Ram", "Kata.", "Katapult",
+                "Zcav.", "Zware cavalerie",
+                "Lcav.", "Lichte Cavalerie", "Bereden boog", "Bboog.",
+                "Verk.", "Verkenner",
+                "Bijl", "Zwaard", "Speer", "Boog",
+                "Ridder"
                 ],
             autoOpenCommands: false,
             minutesDisplayDodgeTimeOnMap: 3,
@@ -294,7 +304,7 @@ if (user_data !== '') {
 			},
             playerGraph: [["points", false], ["villages", false], ["od", false], ["oda", false], ["odd", false], ["rank", false]], // small / big / false
             tribeGraph: [["points", false], ["villages", false], ["od", false], ["oda", false], ["odd", false], ["rank", false], ["members", 'big', true]],
-            twMapPlayerGraph: { player: [true, true], p_player: [false, false], oda_player: [true, false], odd_player: [true, false] },
+            twMapPlayerGraph: { player: [true, true], p_player: [false, false], oda_player: [true, false], odd_player: [true, false], ods_player: [true, false] },
             twMapTribeGraph: { tribe: [true, true], p_tribe: [false, false], oda_tribe: [true, false], odd_tribe: [true, false] },
 
             popup: { 

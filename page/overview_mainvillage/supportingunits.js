@@ -26,6 +26,11 @@
 
         // calculate current stack
         $("table:first td", unitTable).not(":last").each(function () {
+            if (!$('img', this)[0]) {
+                // Cell containing: "< Eigen/Ander/Alle >" toggles
+                return;
+            }
+
             var unit = $('img', this)[0].src,
                 unitsSize,
                 unitAmount;
@@ -36,6 +41,9 @@
             unitAmount = $('strong', this);
             unitAmount[0].id = "spAmount" + unit;
             unitAmount = unitAmount[0].innerHTML;
+            if( unit.match("knight") && !unitAmount ) {
+                unitAmount = 1;
+            }
             totalUnits[unit] = unitAmount;
             totalFarm += unitsSize * unitAmount;
 
@@ -117,15 +125,15 @@
 
             // total stack
             (function() {
-                var isClassicOverview = $("a:contains('" + trans.tw.main.toGraphicOverview + "')", content_value).size() > 0,
-                    cell,
+                var cell = $("#order_level_farm"),
+                    isClassicOverview = cell.length !== 0,
                     percentage,
                     stackDetails,
                     cellContent;
 
                 if (isClassicOverview) {
-                    cell = $("#order_level_farm").parent();
-                    if (game_data.player.premium) {
+                    cell = cell.parent();
+                    if (game_data.features.Premium.active) {
                         cell = cell.next();
                     }
                     percentage = world_config.farmLimit == 0 ? "" : cell.children().html();
@@ -134,14 +142,14 @@
                             showFarmLimit: true,
                             percentage: percentage ? percentage.substr(0, percentage.indexOf('%') + 1) : "",
                             cell: cell,
-                            appendToCell: !game_data.player.premium
+                            appendToCell: !game_data.features.Premium.active
                         });
 
                 } else {
                     stackDetails = stackDisplay(
                         totalFarm, {
                             showFarmLimit: true,
-                            percentage: $("#l_farm strong").first().html()
+                            percentage: $("#l_farm .building_extra").html()
                         });
 
                     //cellContent = '<tr><td style="border-top: 1px solid #85550d ;background-color: ' + stackDetails.color + '">' + '<b>' + trans.tw.all.farm + ': ' + stackDetails.desc + '</b>' + '</td></tr>';

@@ -1,11 +1,12 @@
 (function() {
     try {
         var tables = $('table.vis', content_value),
-            infoTable = tables.first().hasClass('modemenu') ? tables.first().next('table') :  tables.first(),
+            villageInfoTable = tables.first(),
+            commandsTable = villageInfoTable.next('table'),
             profile = user_data.profile,
             i;
 
-        if (game_data.player.premium && location.href.indexOf('screen=info_village') > -1) {
+        if (game_data.features.Premium.active && location.href.indexOf('screen=info_village') > -1) {
             // extra links on the village overview page
             var createFilterLink = function(baseLink, settings) {
                 var link = baseLink + "&group=" + settings.group + "&sort=" + settings.sort + "&changeSpeed=" + settings.changeSpeed;
@@ -21,12 +22,12 @@
             for (i = 0; i < user_data.villageInfo4.length; i++) {
                 var currentPairInfo = user_data.villageInfo4[i];
                 if (currentPairInfo.active) {
-                    var id = infoTable.find("td:eq(1)").text(),
+                    var id = villageInfoTable.find("td:eq(2)").text(),
                         link = getUrlString(
                             "&screen=overview_villages&type=own_home&mode=units&page=-1&targetvillage="
                                 + id.substr(id.lastIndexOf("=") + 1));
 
-                    infoTable.find("tbody:first").append(
+                    commandsTable.find("tbody:first").append(
                         "<tr><td>" + createFilterLink(link, currentPairInfo.off_link) + "</td>"
                             + "<td>" + createFilterLink(link, currentPairInfo.def_link) + "</td><tr>");
                 }
@@ -35,7 +36,6 @@
 
         if (user_data.profile.show && (location.href.indexOf('screen=info_village') == -1 || user_data.showPlayerProfileOnVillage)) {
             var screen;
-            var id;
             var mapProfile = user_data.profile.mapLink;
             var isVillage = false;
             if (current_page.screen !== 'info_ally' && current_page.screen !== "ally") {
@@ -43,15 +43,17 @@
                 // Extra links and info in table at the left top
                 screen = "player";
                 if (user_data.proStyle) {
-                    $("td:first", content_value).closest('table').hasClass('modemenu') ? $(content_value).find('table:has("#villages_list") td:first').css("width", "40%").next().css("width", "60%") : $("td:first", content_value).css("width", "40%").next().css("width", "60%");
+                    $("td:first", content_value).closest('table').hasClass('modemenu')
+                        ? $(content_value).find('table:has("#villages_list") td:first').css("width", "40%").next().css("width", "60%")
+                        : $("td:first", content_value).css("width", "40%").next().css("width", "60%");
                 }
 
                 if (current_page.screen === 'info_player') {
                     // player info page
-                    id = infoTable.find("a[href*='screen=mail']").attr("href");
-                    
+                    id = commandsTable.find("a[href*='screen=mail']").attr("href");
+
                     if (id == undefined) {
-                        id = game_data.player.id
+                        id = game_data.player.id;
                     } else {
                         id = id.substr(id.indexOf("&player=") + 8);
                         //alert(id);
@@ -62,8 +64,8 @@
                 } else {
                     // village info page
                     isVillage = true;
-                    infoTable = $("table.vis:first", content_value);
-                    id = infoTable.find("tr:eq(3) a");
+                    commandsTable = $("table.vis:first", content_value);
+                    id = commandsTable.find("tr:eq(3) a");
                     //assert(id.size() == 1, "player id not found on info_village page");
                     if (id.size() > 0) {
                         id = id.attr("href").match(/id=(\d+)/)[1];
@@ -75,8 +77,8 @@
 
                 // Direct link to TW Stats map
                 if (id > 0 && profile.mapLink.show) {
-                    var link = "http://" + game_data.market + ".twstats.com/" + game_data.world + "/index.php?page=map";
-                    var tribeId = infoTable.find("td:eq(7) a");
+                    var link = "https://" + game_data.market + ".twstats.com/" + game_data.world + "/index.php?page=map";
+                    var tribeId = commandsTable.prev('table').find("td:eq(8) a");
                     //assert(tribeId.size() == 1, "tribe id not found"); // Not everyone is in a tribe
                     if (tribeId.size() == 1) {
                         tribeId = tribeId.attr("href").match(/id=(\d+)/)[1];
@@ -103,7 +105,7 @@
                     if (mapProfile.ownColor != null && game_data.player.id != id) {
                         link += "&player_1_id=" + game_data.player.id + "&player_1_colour=" + mapProfile.ownColor.substr(1);
                     }
-                    infoTable.find("tr:last").after("<tr><td colspan=2><a href='" + link + "' target='_blank'>&raquo; " + trans.sp.profile.twStatsMap + "</a> " + trans.sp.profile.externalPage + "</td></tr>");
+                    commandsTable.find("tr:last").after("<tr><td colspan=2><a href='" + link + "' target='_blank'>&raquo; " + trans.sp.profile.twStatsMap + "</a> " + trans.sp.profile.externalPage + "</td></tr>");
                 }
 
                 if (!isVillage) {
@@ -116,20 +118,19 @@
                         colWidth.eq(2).css("width", "1%");
                     }
 
-                    var amountOfVillages = tables.eq(1).find("th:first").text();
+                    var amountOfVillages = tables.eq(2).find("th:first").text();
                     amountOfVillages = amountOfVillages.substr(amountOfVillages.indexOf("(") + 1);
                     amountOfVillages = amountOfVillages.substr(0, amountOfVillages.length - 1);
-                    infoTable.find("tr:eq(2)").after("<tr><td>" + trans.sp.profile.villages + "</td><td>" + formatNumber(amountOfVillages) + "</td></tr>");
+                    commandsTable.prev('table').find("tr:eq(2)").after("<tr><td>" + trans.sp.profile.villages + "</td><td>" + formatNumber(amountOfVillages) + "</td></tr>");
                 }
             } else {
                 screen = "tribe";
-                if (current_page.screen === 'ally') {
-                    infoTable = tables.eq(1);
+                if (current_page.screen === 'info_ally') {
+                    commandsTable = tables.eq(0);
                 }
-                id = infoTable.find("a");
                 id = location.href.match(/&id=(\d+)/)[1];
 
-                var link = "http://" + game_data.market + ".twstats.com/" + game_data.world + "/index.php?page=map";
+                var link = "https://" + game_data.market + ".twstats.com/" + game_data.world + "/index.php?page=map";
                 link += "&tribe_0_id=" + id + "&tribe_0_colour=" + mapProfile.tribeColor.substr(1);
                 link += "&centrex=" + mapProfile.centreX + "&centrey=" + mapProfile.centreY;
                 if (mapProfile.yourTribeColor != null && game_data.player.ally_id != id) {
@@ -148,7 +149,7 @@
                 if (mapProfile.ownColor != null) {
                     link += "&player_0_id=" + game_data.player.id + "&player_0_colour=" + mapProfile.ownColor.substr(1);
                 }
-                infoTable.find("tr:last").before("<tr><td colspan=2><a href='" + link + "' target='_blank'>&raquo; " + trans.sp.profile.twStatsMap + "</a> " + trans.sp.profile.externalPage + "</td></tr>");
+                commandsTable.find("tr:last").before("<tr><td colspan=2><a href='" + link + "' target='_blank'>&raquo; " + trans.sp.profile.twStatsMap + "</a> " + trans.sp.profile.externalPage + "</td></tr>");
             }
 
             // Build graphs
@@ -160,7 +161,7 @@
                 if (screen == "tribe") {
                     twMapGraphs = [["tribe", trans.sp.profile.graphTWMap], ["p_tribe", trans.sp.profile.graphPoints], ["oda_tribe", trans.sp.profile.graphODA], ["odd_tribe", trans.sp.profile.graphODD]];
                 } else {
-                    twMapGraphs = [["player", trans.sp.profile.graphTWMap], ["p_player", trans.sp.profile.graphPoints], ["oda_player", trans.sp.profile.graphODA], ["odd_player", trans.sp.profile.graphODD]];
+                    twMapGraphs = [["player", trans.sp.profile.graphTWMap], ["p_player", trans.sp.profile.graphPoints], ["oda_player", trans.sp.profile.graphODA], ["odd_player", trans.sp.profile.graphODD], ["ods_player", trans.sp.profile.graphODS]];
                 }
                 for (var i = 0; i < twMapGraphs.length; i++) {
                     var graphDetails = screen == "tribe" ? profile.twMapTribeGraph[twMapGraphs[i][0]] : profile.twMapPlayerGraph[twMapGraphs[i][0]];
@@ -178,7 +179,7 @@
                 for (var i = 0; i < graphs.length; i++) {
                     if (toShow[i][1]) {
                         var graphType = toShow[i][1] == 'big' ? 'ss' : '';
-                        html += createSpoiler(graphs[i][1], '<img src="http://' + game_data.market + '.twstats.com/image.php?type=' + screen + graphType + 'graph&id=' + id + '&s=' + game_data.world + '&graph=' + graphs[i][0] + '">', toShow[i][2] != undefined);
+                        html += createSpoiler(graphs[i][1], '<img src="https://' + game_data.market + '.twstats.com/image.php?type=' + screen + graphType + 'graph&id=' + id + '&s=' + game_data.world + '&graph=' + graphs[i][0] + '">', toShow[i][2] != undefined);
                     }
                 }
 
@@ -186,7 +187,7 @@
                 if (html.length > 0) {
                     var pictureTable;
                     if (screen == 'player' || (isVillage && user_data.showPlayerProfileOnVillage)) {
-                        pictureTable = $(content_value).find('table:has("th:first:contains(Profiel)")');
+                        pictureTable = $(content_value).find('table:has("th:first:contains(Profiel)")'); // TODO: untranslated resource Profiel
                         if (isVillage || pictureTable.html() == null) {
                             // With no info nor personal text
                             pictureTable = $("<table class='vis' width='100%'><tr><th colspan='2'>" + trans.tw.profile.title + "</th></tr></table>");
@@ -208,23 +209,23 @@
                             pictureTable.find("tr:last").after("<tr><td colspan=2>" + html + "</td></tr>");
                         }
                     } else {
-                        infoTable.after("<table class=vis width='100%'><tr><th>" + trans.tw.profile.title + "</th></tr><tr><td>" + html + "</td></tr></table>");
+                        commandsTable.after("<table class=vis width='100%'><tr><th>" + trans.tw.profile.title + "</th></tr><tr><td>" + html + "</td></tr></table>");
                     }
                 }
             }
 
             // Conquers (intern)
             if (id > 0 && profile.popup.show) {
-                var twLink = 'http://' + game_data.market + '.twstats.com/' + game_data.world + '/index.php?page=' + screen + '&mode=conquers&id=' + id + '&pn=1&type=1&enemy=-1&enemyt=-1&min=&max=';
+                var twLink = 'https://' + game_data.market + '.twstats.com/' + game_data.world + '/index.php?page=' + screen + '&mode=conquers&id=' + id + '&pn=1&type=1&enemy=-1&enemyt=-1&min=&max=';
                 var conquers = "<tr><td colspan=2><a href=\"\" id='conquers'>&raquo; " + trans.sp.profile.conquers + "</a> " + trans.sp.profile.internalPage + "</td></tr>";
                 if (screen == 'tribe') {
-                    infoTable.find("tr:last").before(conquers);
+                    commandsTable.find("tr:last").before(conquers);
                 } else {
-                    infoTable.find("tr:last").after(conquers);
+                    commandsTable.find("tr:last").after(conquers);
                 }
                 var popupWidth = profile.popup.width;
                 var popupHeight = profile.popup.height;
-                infoTable.after('<div class="messagepop pop" id="popup" style="display: none"><iframe src=' + twLink + ' width=' + popupWidth + ' height=' + popupHeight + '></div>');
+                commandsTable.after('<div class="messagepop pop" id="popup" style="display: none"><iframe src=' + twLink + ' width=' + popupWidth + ' height=' + popupHeight + '></div>');
                 $("#popup").css({ "left": profile.popup.left, "top": profile.popup.top, "background-color": "#FFFFFF", "border": "1px solid #999999", "position": "absolute", "width": popupWidth, "height": popupHeight, "z-index": 50, "padding": "25px 25px 20px" });
 
                 $(function () {
@@ -249,8 +250,8 @@
 
         if (current_page.screen === 'info_village' && user_data.proStyle && profile.moveClaim) {
             // move claim to a position that does not interfere with more important links (2-click behavior)
-            if ($("td:eq(8)", infoTable).text() == trans.tw.profile.claimedBy) {
-                infoTable.append($("tr:eq(5),tr:eq(6)", infoTable));
+            if ($("td:eq(8)", commandsTable).text() == trans.tw.profile.claimedBy) {
+                commandsTable.append($("tr:eq(5),tr:eq(6)", commandsTable));
             }
         }
     } catch (e) { handleException(e, "info_villageplayertribe"); }
