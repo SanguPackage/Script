@@ -25,7 +25,7 @@
         $("#show_units > h4").prepend(trans.sp.main.unitsReplacement);
 
         // calculate current stack
-        $("table:first td", unitTable).not(":last").each(function () {
+        $("table:first tr.all_unit td", unitTable).each(function () {
             if (!$('img', this)[0]) {
                 // Cell containing: "< Eigen/Ander/Alle >" toggles
                 return;
@@ -104,7 +104,7 @@
 
             if (ownFarmTotal > 0 && user_data.overview.ajaxSeperateSupportStacks) {
                 // stack in the village
-                unitTable.find("table:first").append("<tr><td><span class='icon header population' title='" + trans.sp.main.ownStackTitle + "'></span>" + stackDisplay(ownFarmTotal).desc + "</td></tr>");
+                unitTable.find("table tfoot").append("<tr><td><span class='icon header population' title='" + trans.sp.main.ownStackTitle + "'></span>" + stackDisplay(ownFarmTotal).desc + "</td></tr>");
             }
             if (totalFarm - ownFarmTotal > 0) {
                 // stack from other villages
@@ -154,7 +154,7 @@
 
                     //cellContent = '<tr><td style="border-top: 1px solid #85550d ;background-color: ' + stackDetails.color + '">' + '<b>' + trans.tw.all.farm + ': ' + stackDetails.desc + '</b>' + '</td></tr>';
                     cellContent = ' | <b>' + trans.tw.all.farm + ': ' + stackDetails.desc + '</b>';
-                    $("#show_units tbody:first td:last").append(cellContent).css("border-top", "1px solid #85550d").css("background-color", stackDetails.color);
+                    $("#show_units tfoot:first td:last").append(cellContent).css("border-top", "1px solid #85550d").css("background-color", stackDetails.color);
                 }
             }());
         }
