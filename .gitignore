@@ -3,12 +3,12 @@
 /bin/
 target/
 .vs/
- 
+
 # OS Files #
 .DS_Store
- 
+
 *.class
- 
+
 # Package Files #
 *.jar
 *.war
@@ -19,32 +19,32 @@ fonts.zip
 ######################
 # Windows
 ######################
- 
+
 # Windows image file caches
-Thumbs.db 
- 
+Thumbs.db
+
 # Folder config file
 Desktop.ini
- 
+
 ######################
 # OSX
 ######################
- 
+
 .DS_Store
 .svn
- 
+
 # Thumbnails
 ._*
- 
+
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
- 
- 
+
+
 ######################
 # Eclipse
 ######################
- 
+
 *.pydevproject
 .project
 .metadata
@@ -62,13 +62,13 @@ local.properties
 /src/main/resources/rebel.xml
 # External tool builders
 .externalToolBuilders/
- 
+
 # Locally stored "Eclipse launch configurations"
 *.launch
- 
+
 # CDT-specific
 .cproject
- 
+
 # PDT-specific
 .buildpath
 
@@ -420,5 +420,3 @@ __pycache__/
 sangupackage.user.js
 mergeIt.exe
 /backup/
-.jshintrc
-releasenotes.txt
