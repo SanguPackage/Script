@@ -235,7 +235,7 @@
             $("#linkContainer a:first").after(" - ").after(logoffLink.clone());
         }
 
-        logoffLink.before("<a target='_blank' title='"+trans.sp.sp.moreScriptsTooltip+"' href='"+server_settings.scriptsDatabaseUrl+"'>"+trans.sp.sp.moreScripts+"</a>")
+        logoffLink.before(" - <a target='_blank' title='"+trans.sp.sp.moreScriptsTooltip+"' href='"+server_settings.scriptsDatabaseUrl+"'>"+trans.sp.sp.moreScripts+"</a>")
             .before(" - <a target='_top' id='sanguPackageEditSettingsLink' href='"+getUrlString("screen=settings&mode=sangu")+"' title='" + trans.sp.sp.sanguLinkTitle + "'>Sangu Package</a> - ");
 
         (function() {
