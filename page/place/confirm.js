@@ -9,7 +9,7 @@
             if (user_data.proStyle && (user_data.confirm.replaceTribeClaim || user_data.confirm.replaceNightBonus)) {
                 var header = $("h2:first", content_value);
                 var claim = $("h3.error:visible");
-                if (claim.size() != 0) {
+                if (claim.length != 0) {
                     claim.each(function() {
                         var $this = $(this);
                         $this.hide();

@@ -78,10 +78,10 @@
         //<!--@@INCLUDE "func\number.js" INDENT=2 //-->
         //<!--@@INCLUDE "func\datetime.js" INDENT=2 //-->
 		//<!--@@INCLUDE "func\tw_buildings.js" INDENT=2 //-->
-		
+
 		//<!--@@INCLUDE "global\jumper.js" INDENT=2 //-->
 		//<!--@@INCLUDE "global\ga.js" INDENT=2 //-->
-		
+
 		q("-------------------------------------------------------------------- Start: "+sangu_version);
 
         // BEGIN PAGE PROCESSING
@@ -158,7 +158,7 @@
                  * {spVillage} The current village
                  */
                 var vilHome = getVillageFromCoords(game_data.village.coord);
-                if ($("#attack_name").size() > 0) {
+                if ($("#attack_name").length > 0) {
                     // RALLYPOINT CONFIRM
                     //<!--@@INCLUDE "page\place\confirm.js" INDENT=3 //-->
                 }
@@ -226,7 +226,7 @@
             else if (location.href.indexOf('mode=incomings') > -1) {
                 //<!--@@INCLUDE "overviews\incomings\loader.js" INDENT=4 //-->
             }
-			
+
 			//<!--@@INCLUDE "overviews\allpages.js" INDENT=3 //-->
         }
 
@@ -250,11 +250,11 @@
 
             createFixedTooltip("sanguActivatorSettingsTooltip", content, options);
         }());
-		
+
         //<!--@@INCLUDE "global\resourcecoloring.js" INDENT=2 //-->
 		//<!--@@INCLUDE "global\incomingsindicator.js" INDENT=2 //-->
 		//<!--@@INCLUDE "global\friends.js" INDENT=2 //-->
-		
+
 		//var end_time = new Date();
 		//console.timeEnd("SanguPackage");
 		//q("" + pad(Math.abs(start_time.getTime() - end_time.getTime()), 3) + " -> " + location.search);

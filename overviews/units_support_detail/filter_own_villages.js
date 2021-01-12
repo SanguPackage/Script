@@ -7,7 +7,7 @@ $("#attackFilter").click(function () {
 
     var filterStrategy =
         function (row) {
-            return $('td:first:not(:has(img[title=\'' + trans.tw.command.attack + '\']))', row).size() == 0;
+            return $('td:first:not(:has(img[title=\'' + trans.tw.command.attack + '\']))', row).length == 0;
         };
 
     var lastRow = $("tr:last", overviewTable).get(0);

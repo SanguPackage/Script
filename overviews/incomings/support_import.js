@@ -1,6 +1,6 @@
 // IMPORT os exported by other player
 $("#commandsImport").click(function() {
-    if ($("#textsArea").size() == 0) {
+    if ($("#textsArea").length == 0) {
         $(this).parent().parent().parent().append("<tr><td id=textsArea colspan=5></td></tr>");
         $("#textsArea").append(
             "<textarea cols=80 rows=10 id=commandImportText></textarea>"

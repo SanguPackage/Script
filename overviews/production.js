@@ -53,7 +53,7 @@
                 .replace("{diff}", parseInt(user_data.resources.bbcodeMinimumDiff / 1000, 10))
                 .replace("{min}", parseInt(parseInt($("#resAmount").val(), 10) / 1000, 10));
 
-            if ($("#textsArea").size() == 0) {
+            if ($("#textsArea").length == 0) {
                 $(this).parent().parent().parent().append("<tr><td colspan=2 id=textsArea></td></tr>");
             } else {
                 $("#textsArea").html("");
@@ -129,7 +129,7 @@
                     }
                 } else if (resourceIndex == 'full') {
                     // full storage rooms
-                    if ($(".warn", this).size() > 0) {
+                    if ($(".warn", this).length > 0) {
                         resCell.css("background-color", user_data.resources.highlightColor);
                         isOk = false;
                     }
@@ -182,7 +182,7 @@
             if (hideRows) {
                 goners.remove();
                 var amountOfVillagesCell = $("tr:first th", resTable).eq(hasNotes ? 1 : 0);
-                amountOfVillagesCell.text(amountOfVillagesCell.text().replace(/\d+/, $("tr", resTable).size() - 1));
+                amountOfVillagesCell.text(amountOfVillagesCell.text().replace(/\d+/, $("tr", resTable).length - 1));
             } else {
                 stayers.show();
                 goners.hide();

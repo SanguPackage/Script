@@ -114,7 +114,7 @@
             var reverseFilter = !($("#defFilterDistType").val() != "-1");
             var maxDistance = parseInt($("#defFilterDistFields").val(), 10);
 
-            var isAlreadyVisible = $("#filterContext").size() == 1;
+            var isAlreadyVisible = $("#filterContext").length == 1;
             var distanceHeader =
                 trans.sp.defOverview.distanceToVillage.replace(
                     "{0}",
@@ -160,7 +160,7 @@
         $("#attackFilter").click(function () {
             trackClickEvent("FilterUnderAttack");
             filterGroupRows(function (row) {
-                return $('td:first:not(:has(img[title=\'' + trans.tw.command.attack + '\']))', row).size() == 0;
+                return $('td:first:not(:has(img[title=\'' + trans.tw.command.attack + '\']))', row).length == 0;
             });
         });
 

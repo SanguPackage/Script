@@ -15,7 +15,7 @@ if (location.href.indexOf('type=there') > -1) {
             }
         });
 
-        if ($("#textsArea").size() == 0) {
+        if ($("#textsArea").length == 0) {
             $(this).parent().parent().parent().append("<tr><td id=textsArea colspan=5></td></tr>");
         } else {
             $("#textsArea").html("");

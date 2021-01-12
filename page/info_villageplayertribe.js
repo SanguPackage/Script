@@ -67,7 +67,7 @@
                     commandsTable = $("table.vis:first", content_value);
                     id = commandsTable.find("tr:eq(3) a");
                     //assert(id.size() == 1, "player id not found on info_village page");
-                    if (id.size() > 0) {
+                    if (id.length > 0) {
                         id = id.attr("href").match(/id=(\d+)/)[1];
                         assert(!!id, "player id href is not set");
                     } else {
@@ -80,7 +80,7 @@
                     var link = "https://" + game_data.market + ".twstats.com/" + game_data.world + "/index.php?page=map";
                     var tribeId = commandsTable.prev('table').find("td:eq(8) a");
                     //assert(tribeId.size() == 1, "tribe id not found"); // Not everyone is in a tribe
-                    if (tribeId.size() == 1) {
+                    if (tribeId.length == 1) {
                         tribeId = tribeId.attr("href").match(/id=(\d+)/)[1];
                         assert(!isNaN(tribeId), "tribe id is not a number");
                     } else tribeId = 0;
@@ -203,7 +203,7 @@
                             pictureTable = temp;
                         }
 
-                        if (pictureTable.find("td[colspan=2]").size() > 0) {
+                        if (pictureTable.find("td[colspan=2]").length > 0) {
                             pictureTable.find("tr:last").before("<tr><td colspan=2>" + html + "</td></tr>");
                         } else {
                             pictureTable.find("tr:last").after("<tr><td colspan=2>" + html + "</td></tr>");

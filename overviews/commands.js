@@ -119,7 +119,7 @@
                         else if (commandListType == "attack") {
                             isSupport = false;
                         } else {
-                            isSupport = cells.first().has("img[src*='command/support.png']").size() == 1;
+                            isSupport = cells.first().has("img[src*='command/support.png']").length == 1;
                         }
 
                         request[village.coord].hasSupport = isSupport;
@@ -249,7 +249,7 @@
             }
 
             if (exportWidgets.length > 0) {
-                if ($("#textsArea").size() == 0) {
+                if ($("#textsArea").length == 0) {
                     $(this).parent().parent().parent().append("<tr><td id=textsArea colspan=3></td></tr>");
                 } else {
                     $("#textsArea").html("");
@@ -270,7 +270,7 @@
             var goners = $();
             var filter = hasGrouped ? "tr.command" : "tr:gt(0)";
             $("#commands_table " + filter).filter(":visible").each(function () {
-                if ($("th", this).size() != 0) {
+                if ($("th", this).length != 0) {
                     // don't do anything anymore when on the total row
                     return;
                 }
@@ -282,7 +282,7 @@
             goners.remove();
 
             // Show totals
-            var amountOfCommandos = $("#commands_table " + filter).size();
+            var amountOfCommandos = $("#commands_table " + filter).length;
             if (hasGrouped) {
                 $("#commands_table tr.sumLine").hide();
             } else {
@@ -291,7 +291,7 @@
 
             $("#commands_table th:first").text(trans.sp.commands.tableTotal.replace("{0}", amountOfCommandos));
             $("#amountOfAttacks").text(amountOfCommandos);
-            if ($("#amountOfAttacks").size() == 1) {
+            if ($("#amountOfAttacks").length == 1) {
                 $("#amountOfTargets").val("???");
             }
 
@@ -489,11 +489,11 @@
             $("#selectAll").change(selectAllCheckboxes);
 
             // total number of attacks
-            if ($("#amountOfAttacks").size() == 0) {
+            if ($("#amountOfAttacks").length == 0) {
                 var totalDesc = (isSupport ? trans.sp.commands.totalSupport : trans.sp.commands.totalAttack);
                 var totalVillagesDesc = isSupport ? trans.sp.commands.totalVillagesSupport : trans.sp.commands.totalVillagesAttack;
                 var pageSize = $("input[name='page_size']");
-                if (pageSize.size() == 0) {
+                if (pageSize.length == 0) {
                     pageSize = $("input[type='submit']:last");
                     pageSize.after("<table class=vis><tr class='row_a'><th>" + totalVillagesDesc + "</th><td><input type=text size=5 value=" + targets.length + " id=amountOfTargets></td></tr><tr class='row_a'><th>" + totalDesc + ":</th><td id='amountOfAttacks'>" + amountOfCommandos + "</td></tr></table>");
                 } else {

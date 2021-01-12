@@ -20,7 +20,7 @@ $("#defRestack").click(function () {
         }
     });
 
-    if ($("#textsArea").size() == 0) {
+    if ($("#textsArea").length == 0) {
         $(this).parent().parent().parent().parent().after(
             "<table class='vis' width='100%'><tr>"
                 + "<td id=textsArea width='50%' valign='top'></td>"

@@ -57,7 +57,7 @@
             if (server_settings.ajaxAllowed) {
                 ajax("place",
                     function (placeText) {
-                        if (placeText.find(".unitsInput").size() > 0) {
+                        if (placeText.find(".unitsInput").length > 0) {
                             slowest_unit = null;
                             placeText.find(".unitsInput").each(function () {
                                 // separate own / supporting troops

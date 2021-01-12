@@ -2,7 +2,7 @@
     //console.time("units_back");
     try {
         var units_awayTable = $("#units_away").width("100%");
-        if (units_awayTable.size() != 0) {
+        if (units_awayTable.length != 0) {
             // Troops in other villages
             $("tr:first", units_awayTable).append(
                 "<th>" + trans.sp.place.distance + "</th>"
@@ -80,7 +80,7 @@
         });
 
         var checkboxAmount = $("input[type='checkbox']", unitsTable);
-        if (checkboxAmount.size() == 1) {
+        if (checkboxAmount.length == 1) {
             // village has just been taken over? auto check checkbox
             checkboxAmount.attr("checked", true);
         }
@@ -101,10 +101,10 @@
                         $("td:first a", row).after(" [" + villageOwner.outerHTML() + "]");
                     } else {
                         var incomingTable = $("table th:contains('" + trans.tw.overview.incomingTroops + "')", villageDetails);
-                        if (incomingTable.size() > 0) {
+                        if (incomingTable.length > 0) {
                             incomingTable = incomingTable.parent().parent();
                             var incomingRows = $("tr:has(img[src*='attack'])", incomingTable);
-                            if (incomingRows.size() > 0) {
+                            if (incomingRows.length > 0) {
                                 var firstAttack = incomingRows.eq(0);
                                 var timeLeft = $("td:eq(2)", firstAttack).text();
                                 var arrivalDate = $("td:eq(1)", firstAttack).text();
@@ -113,7 +113,7 @@
                                 var timeLeftLast = $("td:eq(2)", lastAttack).text();
                                 var arrivalDateLast = $("td:eq(1)", lastAttack).text();
 
-                                var amount = incomingRows.size();
+                                var amount = incomingRows.length;
 
                                 var attacksDesc;
                                 if (amount == 1) {

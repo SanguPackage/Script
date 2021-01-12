@@ -2,8 +2,8 @@
 var mainTable = $("#overviewtable");
 var incomingTable = $("#show_incoming_units table.vis:first");
 var outgoingTable = $("#show_outgoing_units");
-if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
-	if (incomingTable.size() == 1) {
+if (incomingTable.length == 1 || outgoingTable.length == 1) {
+	if (incomingTable.length == 1) {
 		// tagger - add header
         // inputBoxWidth : clicking the button focusses the newly created inputbox
         //                 solution is to no longer show inputboxes on screen load
@@ -17,7 +17,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
             });
         }*/
 
-		if (user_data.mainTagger2.active && incomingTable.has("img[src*='attack']").size() != 0) {
+		if (user_data.mainTagger2.active && incomingTable.has("img[src*='attack']").length != 0) {
 			$("th:first", incomingTable).append("<input type=button value='" + trans.sp.tagger.openButton + "' id=openTaggerButton>");
 			$("#openTaggerButton").click(function () {
 				$(this).hide();
@@ -165,14 +165,14 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 				if (user_data.mainTagger2.otherDescs != null && user_data.mainTagger2.otherDescs != false) {
 					$.ctrl = function(key, callback, args) {
 					    $(document).keydown(function(e) {
-						if(!args) args=[]; // IE barks when args is null 
+						if(!args) args=[]; // IE barks when args is null
 						if(e.keyCode == key.charCodeAt(0) && e.ctrlKey) {
 						    e.preventDefault();
 						    e.stopPropagation();
 						    callback.apply(this, args);
 						    return false;
 						}
-					    });        
+					    });
 					};
 					// custom buttons
 					$.each(user_data.mainTagger2.otherDescs, function (index, val) {
@@ -185,7 +185,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
                                 trackClickEvent("MainTagger-ConfigRename");
                                 renameCommand($(this).attr("data-rename-to"));
 						    });
-		    
+
 						    buttonParent.append(button);
 					    }
 					    $.ctrl(val.hitKey, function(s) {
@@ -196,7 +196,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 				}
 
 				// add checkboxes
-				var lastRowIndex = rows.size(),
+				var lastRowIndex = rows.length,
                     lastSend = 0,
                     prevSendTime = 0,
 				    firstNight = true,
@@ -219,10 +219,10 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 						$("#uncheckAll").click( function () {
 							$("input.incAt", incomingTable).prop("checked", false);
 						});
-						
+
 					} else {
 						// non header row types
-						if (row.find("th").size() != 0) {
+						if (row.find("th").length != 0) {
 							// this part is only executed when attacks can be ignored
 							// select all checkbox row (right above link rows)
 							$("th:first", row).replaceWith("<th><input type=checkbox id=selectAllIgnore> " + $("th:first", row).text() + "</th>");
@@ -235,11 +235,11 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 							});
 
 							row.prepend("<td title='" + trans.sp.tagger.totalAttacksOnVillage + "' align=center><b># " + amountOfAttacks + "</b></td>").find("td:last").attr("colspan", 4);
-							
-						} else if (row.find("td").size() == 1) {
+
+						} else if (row.find("td").length == 1) {
 							// link-rows (bottom)
-							if ($("#switchModus").size() == 0) {
-								if ($("#selectAllIgnore").size() == 0) {
+							if ($("#switchModus").length == 0) {
+								if ($("#selectAllIgnore").length == 0) {
 									// attack hiding disabled in tw settings -> there is not yet a totalrow
 									row.prepend("<td title='" + trans.sp.tagger.totalAttacksOnVillage + "' align=center><b># " + amountOfAttacks + "</b></td>");
 								} else {
@@ -282,7 +282,7 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 						} else {
 							// normal incoming rows
 							var checkboxCell = "<td><input type=checkbox rowIndex=" + rowIndex + " class='taggerCheckbox ";
-							var incomingType = $("img[src*='graphic/command/support.png']", this).size() == 1 ? 'incSupport' : "incAt";
+							var incomingType = $("img[src*='graphic/command/support.png']", this).length == 1 ? 'incSupport' : "incAt";
 							checkboxCell += incomingType + "'";
 							if (rowIndex == 1) {
 								checkboxCell += " id=checkFirst";
@@ -308,10 +308,10 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 								if (prevSendTime != 0) {
 									row.find("td").css("border-top", "1px dotted black");
 								}
-								
+
 								prevSendTime = currentArrivalTime;
 							}
-							
+
 							// black line after each nightbonus
 							if (lastSend == 0 || currentArrivalTime > lastSend) {
 								if (lastSend != 0) {
@@ -369,8 +369,8 @@ if (incomingTable.size() == 1 || outgoingTable.size() == 1) {
 	if (user_data.mainTagger2.autoOpen) {
 		$("#openTaggerButton").click();
 	}
-	
-	// Show attack rename inputboxes 
+
+	// Show attack rename inputboxes
 	if (user_data.mainTagger2.autoOpenCommands) {
 		$("#switchModus").click();
 	}
