@@ -37,7 +37,7 @@ if (server_settings.ajaxAllowed && user_data.global.visualizeFriends) {
              */
             function parseFriendsTable(overview) {
                 var friendsTable = $("h3+table.vis:first", overview);
-                if (friendsTable.size() == 1) {
+                if (friendsTable.length == 1) {
                     var friendRows = friendsTable.find("tr:gt(0)");
                     friendRows.each(function() {
                         var friendName = $.trim($("a:first", this).text());

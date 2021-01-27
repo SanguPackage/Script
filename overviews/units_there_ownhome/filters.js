@@ -127,7 +127,7 @@ $("#attackFilter").click(function () {
     $("#units_table").find(overviewMenuRowFilter).each(function () {
         //q("'" + $(this).html() + "'");
         //q("---------------------------------------------------");
-        if ($('td:first:not(:has(img[title=\'' + trans.tw.command.attack + '\']))', this).size() != 0) {
+        if ($('td:first:not(:has(img[title=\'' + trans.tw.command.attack + '\']))', this).length != 0) {
             goners = goners.add($(this));
             $("input:first", $(this)).val("");
         } else {

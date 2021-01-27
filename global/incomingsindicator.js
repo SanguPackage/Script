@@ -25,7 +25,7 @@ if (user_data.global.incomings.editLinks || user_data.global.incomings.track) {
                         .replace("{saved}", lastKnownAmountOfIncomings));
                 };
 
-            if (incomingAttacksLinks.size() > 0) {
+            if (incomingAttacksLinks.length > 0) {
                 if (user_data.global.incomings.editLinks) {
                     incomingAttacksLinks.attr("href", incomingAttacksLinks.attr("href") + "&page=-1&group=0");
                 }
@@ -115,7 +115,7 @@ if (user_data.global.incomings.editLinks || user_data.global.incomings.track) {
             // change incoming support link
             if (user_data.global.incomings.editLinks) {
                 var incomingSupport = $("a[href*='subtype=supports']", incoming);
-                if (incomingSupport.size() > 0) {
+                if (incomingSupport.length > 0) {
                     if (user_data.global.incomings.editLinks) {
                         incomingSupport.attr("href", incomingSupport.attr("href") + "&page=-1&group=0");
                     }

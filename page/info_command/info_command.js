@@ -1,4 +1,4 @@
-if ($("#running_times").size() > 0) {
+if ($("#running_times").length > 0) {
 	// ---------------------------------------INCOMING ATTACK
     (function() {
         //console.time("info_command-incoming");
@@ -18,7 +18,7 @@ if ($("#running_times").size() > 0) {
         } catch (e) { handleException(e, "info_command-incoming"); }
         //console.timeEnd("info_command-incoming");
     }());
-	
+
 } else {
     (function() {
         //console.time("info_command-command");

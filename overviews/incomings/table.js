@@ -47,7 +47,7 @@ var table = {
         amountOfCommandsHeaderCell.html(amountOfCommandsHeaderCell.html().replace(/\(\d+\)/, "(" + rowCount + ")"));
 
         if (typeof villagesTargeted !== "undefined") {
-            if (amountOfRows.size() === 0) {
+            if (amountOfRows.length === 0) {
                 var pageSize = $("input[name='page_size']");
                 pageSize.parent().prev().text(trans.sp.commands.totalVillagesAttack);
                 pageSize = pageSize.attr("id", "villagesTargeted").parent().parent().parent();

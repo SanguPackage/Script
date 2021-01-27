@@ -128,5 +128,5 @@ $("#sortIt").click(function () {
         this.className = "nowrap " + type + (villageId == game_data.village.id ? " selected" : "");
     });
 
-    table.setTotals(rows.size(), amountOfVillages);
+    table.setTotals(rows.length, amountOfVillages);
 });
