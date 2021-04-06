@@ -234,21 +234,26 @@ if (user_data !== '') {
                 scoutVillage: 100,
                 scoutPlaceLinks: [5, 100, 500],
 				scoutPlaceLinksName: "Scout{amount}",
-				
+
                 fakePlaceLink: true,
                 fakePlaceExcludeTroops: [],
 				fakePlaceLinkName: "Fake",
-				
+
                 noblePlaceLink: true, /* (de)Activate all noble links */
 				noblePlaceLinkFirstName: "NobleFirst", /* Name for the first noble which has most troops */
-				
+
 				noblePlaceLinkSupportName: "NobleMin", /* snob with only minimal support */
 				noblePlaceLinksForceShow: true, /* Show NobleMin also where is only one 1 snob in the village */
 				nobleSupport: [
-					{ amount: 50, unit: 'light', villageType: 'off' }, 
-					{ amount: 50, unit: 'heavy', villageType: 'def'}
-				],
-				
+          {unit: 'light', villageType: 'off'},
+          {unit: 'axe', villageType: 'off'},
+          {unit: 'marcher', villageType: 'off'},
+          {unit: 'heavy', villageType: 'def'},
+          {unit: 'spear', villageType: 'def'},
+          {unit: 'sword', villageType: 'def'},
+          {unit: 'archer', villageType: 'def'},
+        ],
+
 				noblePlaceLinkDivideName: "NobleDivide",
                 noblePlaceLinkDivideAddRam: false /* false: Rams are not sent along with NobleDivide */
             },
@@ -289,17 +294,17 @@ if (user_data !== '') {
         profile: {
             show: true,
             moveClaim: true,
-            mapLink: { 
-				show: true, 
-				fill: '#000000', 
-				zoom: '200', 
-				grid: true, 
-				playerColor: '#ffff00', 
-				tribeColor: '#0000FF', 
-				centreX: 500, 
-				centreY: 500, 
-				ownColor: '#FFFFFF', 
-				markedOnly: true, 
+            mapLink: {
+				show: true,
+				fill: '#000000',
+				zoom: '200',
+				grid: true,
+				playerColor: '#ffff00',
+				tribeColor: '#0000FF',
+				centreX: 500,
+				centreY: 500,
+				ownColor: '#FFFFFF',
+				markedOnly: true,
 				yourTribeColor: "#FF0000"
 			},
             playerGraph: [["points", false], ["villages", false], ["od", false], ["oda", false], ["odd", false], ["rank", false]], // small / big / false
@@ -307,9 +312,9 @@ if (user_data !== '') {
             twMapPlayerGraph: { player: [true, true], p_player: [false, false], oda_player: [true, false], odd_player: [true, false], ods_player: [true, false] },
             twMapTribeGraph: { tribe: [true, true], p_tribe: [false, false], oda_tribe: [true, false], odd_tribe: [true, false] },
 
-            popup: { 
-				show: true, 
-				width: 900, 
+            popup: {
+				show: true,
+				width: 900,
 				height: 865,
 				left: 50,
 				top: 50
