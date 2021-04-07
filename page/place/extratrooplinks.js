@@ -146,12 +146,14 @@
             }
             if (tag > 0) {
               var returned = null;
-              $.each(user_data.place.attackLinks.nobleSupport, function (i, val) {
-                let unitsNeeded = Math.ceil(game_data.village.points * world_config.minFake - 100)
+              let unitsNeeded = Math.ceil(game_data.village.points * world_config.minFake - 100)
 
-                if (v == val.unit && villageType.isMatch(val.villageType) && minimalTroopsReached < unitsNeeded * (tag - 1) && amount > 0) {
+              $.each(user_data.place.attackLinks.nobleSupport, function (i, val) {
+
+                if (v == val.unit && minimalTroopsReached < unitsNeeded * (tag - 1) && amount > 0) {
                   let snobsPossible = Math.floor(amount * world_data.unitsSize["unit_" + val.unit] / unitsNeeded);
                   let snobsToUse = snobsPossible < (tag - 1) ? snobsPossible : (tag - snobsUsed)
+
                   returned = amount - snobsToUse * (minimalTroops(val.unit, '100'));
                   minimalTroopsReached += (amount - returned) * world_data.unitsSize["unit_" + val.unit];
                   snobsUsed += snobsToUse;
@@ -176,7 +178,7 @@
             var returned = 0;
             $.each(user_data.place.attackLinks.nobleSupport, function (i, val) {
               let unitsNeeded = Math.ceil(game_data.village.points * world_config.minFake - 100)
-              if (v == val.unit && villageType.isMatch(val.villageType) && minimalTroopsReached < unitsNeeded && amount >= unitsNeeded / world_data.unitsSize["unit_" + val.unit]) {
+              if (v == val.unit && minimalTroopsReached < unitsNeeded && amount >= unitsNeeded / world_data.unitsSize["unit_" + val.unit]) {
                 returned = minimalTroops(val.unit, "100");
                 minimalTroopsReached += returned * world_data.unitsSize["unit_" + val.unit];
               }
@@ -185,20 +187,20 @@
           });
         }
 
-            if (units.snob > 0 && user_data.place.attackLinks.noblePlaceLinkDivideName) {
-                createRallyPointScript(linksContainer, world_data.units, user_data.place.attackLinks.noblePlaceLinkDivideName, 0, function (amount, v, tag) {
-                    if (v == 'snob') {
-                        return 1;
-                    }
-                    if (v == 'catapult') {
-                        return 0;
-                    }
-                    if (v == 'ram' && !user_data.place.attackLinks.noblePlaceLinkDivideAddRam) {
-                        return 0;
-                    }
-                    return Math.floor(amount / units.snob);
-                });
+        if (units.snob > 0 && user_data.place.attackLinks.noblePlaceLinkDivideName) {
+          createRallyPointScript(linksContainer, world_data.units, user_data.place.attackLinks.noblePlaceLinkDivideName, 0, function (amount, v, tag) {
+            if (v == 'snob') {
+              return 1;
             }
+            if (v == 'catapult') {
+              return 0;
+            }
+            if (v == 'ram' && !user_data.place.attackLinks.noblePlaceLinkDivideAddRam) {
+              return 0;
+            }
+            return Math.floor(amount / units.snob);
+          });
         }
+      }
     } catch (e) { handleException(e, "place-extratrooplinks"); }
 }());
