@@ -55,8 +55,8 @@ if (world_config.hasKnight) {
 	world_data.buildings.push("statue");
 }
 world_data.buildings = world_data.buildings.concat(["market", "wood", "stone", "iron", "farm", "storage", "hide", "wall"]);
-	
-	
+
+
 // UNITS
 world_data.unitsSize = { "unit_spear": 1, "unit_sword": 1, "unit_axe": 1, "unit_spy": 2, "unit_light": 4, "unit_heavy": 6, "unit_ram": 5, "unit_catapult": 8, "unit_snob": 100 };
 world_data.unitsSpeed = { "unit_spear": 18, "unit_sword": 22, "unit_axe": 18, "unit_spy": 9, "unit_light": 10, "unit_heavy": 11, "unit_ram": 30, "unit_catapult": 30, "unit_snob": 35, "unit_merchant": 6 };
@@ -64,29 +64,29 @@ world_data.unitsSpeed = { "unit_spear": 18, "unit_sword": 22, "unit_axe": 18, "u
 world_data.units_def = ["spear", "sword", "heavy"];
 world_data.units_off = ["axe", "light", "heavy"];
 if (!world_config.hasArchers && !world_config.hasKnight) {
-	world_data.unitsPositionSize = [1, 1, 1, 2, 4, 6, 5, 8, 100];
-	world_data.units = ["spear", "sword", "axe", "spy", "light", "heavy", "ram", "catapult", "snob"];
+  world_data.unitsPositionSize = [4, 6, 1, 1, 1, 2, 5, 8, 100];
+  world_data.units = ["light", "heavy", "axe", "spear", "sword", "spy", "ram", "catapult", "snob"];
 } else {
-	world_data.units = ["spear", "sword", "axe"];
-	world_data.unitsPositionSize = [1, 1, 1];
-	if (world_config.hasArchers) {
-		world_data.units_off.push("marcher");
-		world_data.units_def.push("archer");
-		$.extend(world_data.unitsSize, { "unit_archer": 1 }, { "unit_marcher": 5 });
-		$.extend(world_data.unitsSpeed, { "unit_archer": 18 }, { "unit_marcher": 10 });
-		world_data.units.push("archer");
-		world_data.unitsPositionSize.push(1);
-	}
-	world_data.units.push("spy");
-	world_data.unitsPositionSize.push(2);
-	world_data.units.push("light");
-	world_data.unitsPositionSize.push(4);
-	if (world_config.hasArchers) {
-		world_data.units.push("marcher");
-		world_data.unitsPositionSize.push(5);
-	}
-	world_data.units.push("heavy");
-	world_data.unitsPositionSize.push(6);
+  world_data.units = ["light", "heavy", "axe"];
+  world_data.unitsPositionSize = [4, 6, 1];
+  if (world_config.hasArchers) {
+    world_data.units_off.push("marcher");
+    world_data.units_def.push("archer");
+    $.extend(world_data.unitsSize, {"unit_archer": 1}, {"unit_marcher": 5});
+    $.extend(world_data.unitsSpeed, {"unit_archer": 18}, {"unit_marcher": 10});
+    world_data.units.push("marcher");
+    world_data.unitsPositionSize.push(5);
+  }
+  world_data.units.push("spy");
+  world_data.unitsPositionSize.push(2);
+  world_data.units.push("spear");
+  world_data.unitsPositionSize.push(1);
+  world_data.units.push("sword");
+  world_data.unitsPositionSize.push(1);
+  if (world_config.hasArchers) {
+    world_data.units.push("archer");
+    world_data.unitsPositionSize.push(1);
+  }
 	world_data.units.push("ram");
 	world_data.unitsPositionSize.push(5);
 	world_data.units.push("catapult");
