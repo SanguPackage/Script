@@ -246,9 +246,9 @@ if (user_data !== '') {
 				noblePlaceLinksForceShow: true, /* Show NobleMin also where is only one 1 snob in the village */
 				nobleSupport: [
           {unit: 'light', villageType: 'off'},
-          {unit: 'heavy', villageType: 'def'},
           {unit: 'axe', villageType: 'off'},
           {unit: 'marcher', villageType: 'off'},
+          {unit: 'heavy', villageType: 'def'},
           {unit: 'spear', villageType: 'def'},
           {unit: 'sword', villageType: 'def'},
           {unit: 'archer', villageType: 'def'},

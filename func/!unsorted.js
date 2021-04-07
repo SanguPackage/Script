@@ -317,7 +317,7 @@ function calcTroops(units) {
 }
 
 function minimalTroops(unit, nobleValue) {
-  return Math.ceil((game_data.village.points * world_config.minFake  - nobleValue) / world_data.unitsSize["unit_" + unit])
+  return Math.ceil((game_data.village.points * world_config.minFake - 100) / world_data.unitsSize["unit_" + unit]) - nobleValue
 }
 
 function stackDisplay(totalFarm, stackOptions) {
