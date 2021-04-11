@@ -1,13 +1,25 @@
 (function() {
     try {
+        // Values for minimal noble values
+        let nobleUnitsToBalance = ["light", "heavy", "axe", "marcher", "spear", "sword", "archer", "spy", "ram", "catapult", "snob"];
+        let nobleSupport = [{unit: 'light'},{unit: 'axe'},{unit: 'marcher'},{unit: 'heavy'},{unit: 'spear'},{unit: 'sword'},{unit: 'archer'}];
+        if (!world_config.hasArchers){
+          nobleSupport = [{unit: 'light'},{unit: 'axe'},{unit: 'heavy'},{unit: 'spear'},{unit: 'sword'}];;
+        }
+        let unitsNeeded = Math.ceil(game_data.village.points * world_config.minFake - 100);
+
         // Read troops available
         var units = [];
         units.total = 0;
+        units.needed = 0;
         $("#command-data-form .unitsInput").each(function () {
             var amount = $(this).next().text().substr(1);
             units[this.name] = parseInt(amount.replace(")", ""), 10);
             units.total += units[this.name] * world_data.unitsSize['unit_'+this.name];
         });
+
+        nobleSupport.forEach((el)=>
+          units.needed += units[el.unit] * world_data.unitsSize['unit_'+el.unit]);
 
         // Add extra links next to "All troops"
         function createRallyPointScript(linksContainer, unitLoop, name, min, checkFunction, tag) {
@@ -64,6 +76,7 @@
 
         if (units['total'] > 0)
             $.each(user_data.place.customPlaceLinks, function (i, v) {
+              let snobsAvailable = units.snob
                 if (v.active && villageType.isMatch(v.type)) {
                     // villageType: off, def, all
                     if (v.required == undefined || units[v.required[0]] >= v.required[1]) {
@@ -85,9 +98,11 @@
                                         send = amount;
                                     }
                                     if (send > 0 && !tag.ignoreNobles) {
-                                        $.each(user_data.place.attackLinks.nobleSupport, function (i, val) {
-                                            if (unitVal == val.unit && villageType.isMatch(val.villageType)) {
-                                                send -= Math.ceil(units.snob * val.amount);
+                                        $.each(nobleSupport, function (i, val) {
+                                          let snobsPossible = Math.floor(send / unitsNeeded)
+                                            if (unitVal == val.unit && snobsPossible <= snobsAvailable && send >= unitsNeeded) {
+                                              send -= Math.ceil(snobsAvailable * (unitsNeeded / world_data.unitsSize["unit_" + unitVal]));
+                                              snobsAvailable -= snobsPossible
                                             }
                                         });
                                     }
@@ -140,27 +155,31 @@
         if (user_data.place.attackLinks.noblePlaceLinkFirstName) {
           let minimalTroopsReached = 0;
           let snobsUsed = 1
-          createRallyPointScript(linksContainer, world_data.units, user_data.place.attackLinks.noblePlaceLinkFirstName, 0, function (amount, v, tag) {
+          createRallyPointScript(linksContainer, nobleUnitsToBalance, user_data.place.attackLinks.noblePlaceLinkFirstName, 0, function (amount, v, tag) {
             if (v == 'snob') {
               return 1;
             }
             if (tag > 0) {
               var returned = null;
-              $.each(user_data.place.attackLinks.nobleSupport, function (i, val) {
-                let unitsNeeded = Math.ceil(game_data.village.points * world_config.minFake - 100)
+              $.each(nobleSupport, function (i, val) {
+                let totalSnobsPossible = Math.floor((units.needed - unitsNeeded) / unitsNeeded)
 
                 if (v == val.unit && minimalTroopsReached < unitsNeeded * (tag - 1) && amount > 0) {
                   let snobsPossible = Math.floor(amount * world_data.unitsSize["unit_" + val.unit] / unitsNeeded);
-                  let snobsToUse = snobsPossible < (tag - 1) ? snobsPossible : (tag - snobsUsed)
+                  let snobsToUse = totalSnobsPossible > snobsPossible? snobsPossible < (tag - 1) ? snobsPossible : (tag - snobsUsed) : totalSnobsPossible;
+
                   returned = amount - snobsToUse * (minimalTroops(val.unit, '100'));
                   minimalTroopsReached += (amount - returned) * world_data.unitsSize["unit_" + val.unit];
+                  units.needed -= (amount - returned) * world_data.unitsSize["unit_" + val.unit];
                   snobsUsed += snobsToUse;
+
                 }
               });
               if (returned != null) {
                 return returned;
               }
             }
+
 
             return amount;
           }, units.snob);
@@ -169,13 +188,12 @@
 
         if (user_data.place.attackLinks.noblePlaceLinkSupportName && (units.snob > 1 || user_data.place.attackLinks.noblePlaceLinksForceShow)) {
           let minimalTroopsReached = 0;
-          createRallyPointScript(linksContainer, world_data.units, user_data.place.attackLinks.noblePlaceLinkSupportName, 0, function (amount, v, tag) {
+          createRallyPointScript(linksContainer, nobleUnitsToBalance, user_data.place.attackLinks.noblePlaceLinkSupportName, 0, function (amount, v, tag) {
             if (v == 'snob') {
               return 1;
             }
             var returned = 0;
-            $.each(user_data.place.attackLinks.nobleSupport, function (i, val) {
-              let unitsNeeded = Math.ceil(game_data.village.points * world_config.minFake - 100)
+            $.each(nobleSupport, function (i, val) {
               if (v == val.unit && minimalTroopsReached < unitsNeeded && amount >= unitsNeeded / world_data.unitsSize["unit_" + val.unit]) {
                 returned = minimalTroops(val.unit, "100");
                 minimalTroopsReached += returned * world_data.unitsSize["unit_" + val.unit];
