@@ -244,15 +244,6 @@ if (user_data !== '') {
 
 				noblePlaceLinkSupportName: "NobleMin", /* snob with only minimal support */
 				noblePlaceLinksForceShow: true, /* Show NobleMin also where is only one 1 snob in the village */
-				nobleSupport: [
-					{ unit: 'light', villageType: 'off' },
-					{ unit: 'heavy', villageType: 'def'},
-					{ unit: 'axe', villageType: 'off'},
-					{ unit: 'marcher', villageType: 'off'},
-					{ unit: 'spear', villageType: 'def'},
-					{ unit: 'sword', villageType: 'def'},
-					{ unit: 'archer', villageType: 'def'}
-				],
 
 				noblePlaceLinkDivideName: "NobleDivide",
                 noblePlaceLinkDivideAddRam: false /* false: Rams are not sent along with NobleDivide */
