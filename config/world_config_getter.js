@@ -25,9 +25,9 @@ function world_config_getter(world) {
 	// world nl: http://nl16.tribalwars.nl/
 	// world de: http://de90.die-staemme.de/
 	if (typeof world === 'undefined') world = '';
-	
+
 	var world_config = {};
-	$.ajax({
+  twLib.ajax({
 		url: world + "interface.php?func=get_unit_info",
 		async: false,
 		success: function(xml) {
@@ -35,7 +35,7 @@ function world_config_getter(world) {
 		}
 	});
 
-	$.ajax({
+  twLib.ajax({
 		url: world + "interface.php?func=get_config",
 		async: false,
 		success: function(xml) {

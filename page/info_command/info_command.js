@@ -103,18 +103,10 @@ if ($("#running_times").length > 0) {
             if (user_data.attackAutoRename.active) {
                 $.each($('.quickedit'), function(){
                     var renamed = buildAttackString(village.coord, unitsSent, player, isSupport, 0, haulDescription),
-                        commandID = $(this).attr('data-id'),
-                        $this = $(this);
+                        commandID = $(this).attr('data-id');
 
-                    if (server_settings.ajaxAllowed) {
-                        $.ajax({
-                           url: game_data.link_base_pure+'info_command&ajaxaction=edit_other_comment&id='+commandID+'&h='+game_data.csrf+'&',
-                           method: 'post',
-                           data: { text: renamed },
-                           success:function() {
-                               $this.find(".quickedit-label:first").text(renamed);
-                           }
-                        });
+                  if (server_settings.ajaxAllowed) {
+                      executeRename(commandID, renamed);
                     }
                 });
             }

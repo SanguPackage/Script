@@ -66,7 +66,6 @@ if (incomingTable.length == 1 || outgoingTable.length == 1) {
 				});
 
 				var buttonParent = $("#commandInput").parent();
-                var commandIdToCoordCache = []; // No Ajax call on multiple renames with {xy}
 				function renameCommand(commandName) {
                     var dodgeCell; // capture last cell for dodgeCell coloring
 
@@ -74,71 +73,32 @@ if (incomingTable.length == 1 || outgoingTable.length == 1) {
                         return Number(dodgeCell.find("span.quickedit").first().attr("data-id"));
                     }
 
-                    function getVillageCoordsFromCommandId(commandId, callback) {
-                        if (server_settings.ajaxAllowed) {
-                            if (commandIdToCoordCache[commandId]) {
-                                callback(commandIdToCoordCache[commandId]);
-
-                            } else {
-                                ajax('screen=info_command&type=other&id='+commandId, function (overview) {
-                                    var originVillageLink = $(".village_anchor:first", overview).find("a[href]"),
-                                        originVillageDesc = originVillageLink.html(),
-                                        originVillage = getVillageFromCoords(originVillageDesc);
-
-                                    commandIdToCoordCache[commandId] = originVillage.coord;
-
-                                    callback(originVillage.coord);
-                                });
-                            }
-                        }
-                        callback('');
-                    }
-
-                    function executeRename(dodgeCell, commandName) {
-                        function keepTwIcon(dodgeCell, commandName) {
-                            var oldName = $(".quickedit-label", dodgeCell).text().toUpperCase(),
-                                newName = commandName,
-                                i,
-                                unitName;
-
-                            for (i = 0; i < user_data.mainTagger2.reservedWords.length; i++) {
-                                unitName = user_data.mainTagger2.reservedWords[i];
-                                if (oldName.indexOf(unitName.toUpperCase()) !== -1) {
-                                    newName = unitName + ' ' + newName;
-                                    return newName; // Only one icon possible
-                                }
-                            }
-                            return newName;
-                        }
-
-                        var button = dodgeCell.find("input[type='button']"),
-                            newName =  user_data.mainTagger2.keepReservedWords ? keepTwIcon(dodgeCell, commandName) : commandName;
-
-                        button.prev().val(newName);
-                        button.click();
+                    function getVillageCoordsFromCommandId(commandId) {
+                      let villageCoord;
+                      if (server_settings.ajaxAllowed) {
+                        ajax('screen=info_command&type=other&id='+commandId, function (overview) {
+                          var originVillageLink = $(".village_anchor:first", overview).find("a[href]"),
+                            originVillageDesc = originVillageLink.html(),
+                            originVillage = getVillageFromCoords(originVillageDesc);
+                            villageCoord = originVillage.coord
+                        });
+                      }
+                      return villageCoord
                     }
 
 					$("input.taggerCheckbox", incomingTable).each(function () {
-                        var openRenameButton;
+            if ($(this).is(":checked")) {
+              dodgeCell = $(this).parent().next();
+              let commandId = getCommandIdFromDodgeCell(dodgeCell)
 
-						if ($(this).is(":checked")) {
-							dodgeCell = $(this).parent().next();
-
-                            openRenameButton = $("a.rename-icon", dodgeCell);
-                            if (openRenameButton.is(":visible")) {
-                                openRenameButton.click();
-                            }
-
-                            if (commandName.indexOf("{xy}") !== -1) {
-                                getVillageCoordsFromCommandId(getCommandIdFromDodgeCell(dodgeCell), function(vilCoords) {
-                                    var nameWithCoords = commandName.replace("{xy}", vilCoords);
-                                    setTimeout(executeRename(dodgeCell, nameWithCoords),200);
-                                });
-
-                            } else {
-                                setTimeout(executeRename(dodgeCell, commandName),200);
-                            }
-						}
+              if (commandName.indexOf("{xy}") !== -1) {
+                let coords = getVillageCoordsFromCommandId(commandId);
+                var nameWithCoords = commandName.replace("{xy}", coords);
+                executeRename(commandId, nameWithCoords);
+              } else {
+                executeRename(commandId, commandName);
+              }
+            }
 					});
 
 					if (dodgeCell != null) {
