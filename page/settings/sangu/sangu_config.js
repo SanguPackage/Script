@@ -626,6 +626,143 @@ var user_data_configs = (function() {
         });
     }
 
+    if (showConfigs) {
+      user_data_configs.push({
+        id: "placeLinks",
+        title: sangu_trans.place.title,
+        save: sangu_saver,
+        properties: {
+          scoutTitle: {
+            type: "subtitle",
+            label: sangu_trans.place.scoutTitle
+          },
+          scoutPlaceLinksName: {
+            label: sangu_trans.place.linkText,
+            propUI: {
+              getter: function() { return user_data.place.attackLinks.scoutPlaceLinksName; },
+              setter: function(value) { user_data.place.attackLinks.scoutPlaceLinksName = value; },
+              editor: "text|width=23"
+            }
+          },
+          scoutVillage: {
+            label: sangu_trans.place.scoutVillage,
+            propUI: {
+              getter: function() { return user_data.place.attackLinks.scoutVillage; },
+              setter: function(value) { user_data.place.attackLinks.scoutVillage = value; },
+              editor: "number|step=10"
+            }
+          },
+          scoutPlaceLinks: {
+            label: sangu_trans.place.scoutPlaceLinks,
+            propUI: {
+              getter: function() { return user_data.place.attackLinks.scoutPlaceLinks; },
+              setter: function(value) { user_data.place.attackLinks.scoutPlaceLinks = value; },
+              editor: "array|addNew:number|step=10|delete"
+            }
+          },
+
+
+
+
+
+          fakePlaceLinkTitle: {
+            type: "subtitle",
+            label: sangu_trans.place.fakePlaceLinkTitle
+          },
+          fakePlaceLinkName: {
+            label: sangu_trans.place.linkText,
+            propUI: {
+              getter: function() { return user_data.place.attackLinks.fakePlaceLinkName; },
+              setter: function(value) { user_data.place.attackLinks.fakePlaceLinkName = value; },
+              editor: "text|width=23"
+            }
+          },
+          fakePlaceLink: {
+            label: sangu_trans.global.resources.activate,
+            propUI: {
+              getter: function() { return user_data.place.attackLinks.fakePlaceLink; },
+              setter: function(value) { user_data.place.attackLinks.fakePlaceLink = value; },
+              editor: "bool"
+            }
+          },
+          fakePlaceExcludeTroops: {
+            label: sangu_trans.place.fakePlaceExcludeTroops,
+            tooltip: sangu_trans.place.fakePlaceExcludeTroopsTooltip,
+            propUI: {
+              getter: function() { return user_data.place.attackLinks.fakePlaceExcludeTroops; },
+              setter: function(value) { user_data.place.attackLinks.fakePlaceExcludeTroops = value; },
+              editor: "array|addNew:text|delete|width=7"
+            }
+          },
+
+
+
+
+          noblePlaceLinkDivideTitle: {
+            type: "subtitle",
+            label: sangu_trans.place.noblePlaceLinkDivideTitle
+          },
+          noblePlaceLinkDivideName: {
+            label: sangu_trans.place.linkText,
+            propUI: {
+              getter: function() { return user_data.place.attackLinks.noblePlaceLinkDivideName; },
+              setter: function(value) { user_data.place.attackLinks.noblePlaceLinkDivideName = value; },
+              editor: "text|width=23"
+            }
+          },
+          noblePlaceLink: {
+            label: sangu_trans.global.resources.activate,
+            propUI: {
+              getter: function() { return user_data.place.attackLinks.noblePlaceLink; },
+              setter: function(value) { user_data.place.attackLinks.noblePlaceLink = value; },
+              editor: "bool"
+            }
+          },
+          noblePlaceLinkDivideAddRam: {
+            label: sangu_trans.place.noblePlaceLinkDivideAddRam,
+            propUI: {
+              getter: function() { return user_data.place.attackLinks.noblePlaceLinkDivideAddRam; },
+              setter: function(value) { user_data.place.attackLinks.noblePlaceLinkDivideAddRam = value; },
+              editor: "bool"
+            }
+          },
+          noblePlaceLinkFirstTitle: {
+            type: "subtitle",
+            label: sangu_trans.place.noblePlaceLinkFirstTitle
+          },
+          noblePlaceLinkFirstName: {
+            label: sangu_trans.place.linkText,
+            tooltip: sangu_trans.place.noblePlaceLinkFirstNameTooltip,
+            propUI: {
+              getter: function() { return user_data.place.attackLinks.noblePlaceLinkFirstName; },
+              setter: function(value) { user_data.place.attackLinks.noblePlaceLinkFirstName = value; },
+              editor: "text|width=23"
+            }
+          },
+          noblePlaceLinkSupportTitle: {
+            type: "subtitle",
+            label: sangu_trans.place.noblePlaceLinkSupportTitle
+          },
+          noblePlaceLinkSupportName: {
+            label: sangu_trans.place.linkText,
+            propUI: {
+              getter: function() { return user_data.place.attackLinks.noblePlaceLinkSupportName; },
+              setter: function(value) { user_data.place.attackLinks.noblePlaceLinkSupportName = value; },
+              editor: "text|width=23"
+            }
+          },
+          noblePlaceLinksForceShow: {
+            label: sangu_trans.place.noblePlaceLinksForceShow,
+            propUI: {
+              getter: function() { return user_data.place.attackLinks.noblePlaceLinksForceShow; },
+              setter: function(value) { user_data.place.attackLinks.noblePlaceLinksForceShow = value; },
+              editor: "bool"
+            }
+          }
+        }
+      });
+    }
+
   if (showConfigs) {
     (function() {
       var i,
