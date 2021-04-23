@@ -374,7 +374,7 @@ var user_data_configs = (function() {
                             editor: "text|width=10"
                         }
                     }
-                    
+
                     properties['otherButtonHitKey'+i] = {
                         label: sangu_trans.mainTagger.otherButtons.hitKey,
                         propUI: {
@@ -627,187 +627,214 @@ var user_data_configs = (function() {
     }
 
     if (showConfigs) {
-        user_data_configs.push({
-            id: "placeLinks",
-            title: sangu_trans.place.title,
-            save: sangu_saver,
-            properties: {
-                scoutTitle: {
-                    type: "subtitle",
-                    label: sangu_trans.place.scoutTitle
-                },
-                scoutPlaceLinksName: {
-                    label: sangu_trans.place.linkText,
-                    propUI: {
-                        getter: function() { return user_data.place.attackLinks.scoutPlaceLinksName; },
-                        setter: function(value) { user_data.place.attackLinks.scoutPlaceLinksName = value; },
-                        editor: "text|width=23"
-                    }
-                },
-                scoutVillage: {
-                    label: sangu_trans.place.scoutVillage,
-                    propUI: {
-                        getter: function() { return user_data.place.attackLinks.scoutVillage; },
-                        setter: function(value) { user_data.place.attackLinks.scoutVillage = value; },
-                        editor: "number|step=10"
-                    }
-                },
-                scoutPlaceLinks: {
-                    label: sangu_trans.place.scoutPlaceLinks,
-                    propUI: {
-                        getter: function() { return user_data.place.attackLinks.scoutPlaceLinks; },
-                        setter: function(value) { user_data.place.attackLinks.scoutPlaceLinks = value; },
-                        editor: "array|addNew:number|step=10|delete"
-                    }
-                },
-
-
-
-
-
-                fakePlaceLinkTitle: {
-                    type: "subtitle",
-                    label: sangu_trans.place.fakePlaceLinkTitle
-                },
-                fakePlaceLinkName: {
-                    label: sangu_trans.place.linkText,
-                    propUI: {
-                        getter: function() { return user_data.place.attackLinks.fakePlaceLinkName; },
-                        setter: function(value) { user_data.place.attackLinks.fakePlaceLinkName = value; },
-                        editor: "text|width=23"
-                    }
-                },
-                fakePlaceLink: {
-                    label: sangu_trans.global.resources.activate,
-                    propUI: {
-                        getter: function() { return user_data.place.attackLinks.fakePlaceLink; },
-                        setter: function(value) { user_data.place.attackLinks.fakePlaceLink = value; },
-                        editor: "bool"
-                    }
-                },
-                fakePlaceExcludeTroops: {
-                    label: sangu_trans.place.fakePlaceExcludeTroops,
-                    tooltip: sangu_trans.place.fakePlaceExcludeTroopsTooltip,
-                    propUI: {
-                        getter: function() { return user_data.place.attackLinks.fakePlaceExcludeTroops; },
-                        setter: function(value) { user_data.place.attackLinks.fakePlaceExcludeTroops = value; },
-                        editor: "array|addNew:text|delete|width=7"
-                    }
-                },
-
-
-
-
-
-
-                noblePlaceLinkTitle: {
-                    type: "subtitle",
-                    label: sangu_trans.place.noblePlaceLinkTitle
-                },
-                noblePlaceLinkDivideTitle: {
-                    type: "subtitle",
-                    label: sangu_trans.place.noblePlaceLinkDivideTitle
-                },
-                noblePlaceLinkDivideName: {
-                    label: sangu_trans.place.linkText,
-                    propUI: {
-                        getter: function() { return user_data.place.attackLinks.noblePlaceLinkDivideName; },
-                        setter: function(value) { user_data.place.attackLinks.noblePlaceLinkDivideName = value; },
-                        editor: "text|width=23"
-                    }
-                },
-                noblePlaceLink: {
-                    label: sangu_trans.global.resources.activate,
-                    propUI: {
-                        getter: function() { return user_data.place.attackLinks.noblePlaceLink; },
-                        setter: function(value) { user_data.place.attackLinks.noblePlaceLink = value; },
-                        editor: "bool"
-                    }
-                },
-                noblePlaceLinkDivideAddRam: {
-                    label: sangu_trans.place.noblePlaceLinkDivideAddRam,
-                    propUI: {
-                        getter: function() { return user_data.place.attackLinks.noblePlaceLinkDivideAddRam; },
-                        setter: function(value) { user_data.place.attackLinks.noblePlaceLinkDivideAddRam = value; },
-                        editor: "bool"
-                    }
-                },
-                noblePlaceLinkFirstTitle: {
-                    type: "subtitle",
-                    label: sangu_trans.place.noblePlaceLinkFirstTitle
-                },
-                noblePlaceLinkFirstName: {
-                    label: sangu_trans.place.linkText,
-                    tooltip: sangu_trans.place.noblePlaceLinkFirstNameTooltip,
-                    propUI: {
-                        getter: function() { return user_data.place.attackLinks.noblePlaceLinkFirstName; },
-                        setter: function(value) { user_data.place.attackLinks.noblePlaceLinkFirstName = value; },
-                        editor: "text|width=23"
-                    }
-                },
-                noblePlaceLinkSupportTitle: {
-                    type: "subtitle",
-                    label: sangu_trans.place.noblePlaceLinkSupportTitle
-                },
-                noblePlaceLinkSupportName: {
-                    label: sangu_trans.place.linkText,
-                    propUI: {
-                        getter: function() { return user_data.place.attackLinks.noblePlaceLinkSupportName; },
-                        setter: function(value) { user_data.place.attackLinks.noblePlaceLinkSupportName = value; },
-                        editor: "text|width=23"
-                    }
-                },
-                noblePlaceLinksForceShow: {
-                    label: sangu_trans.place.noblePlaceLinksForceShow,
-                    propUI: {
-                        getter: function() { return user_data.place.attackLinks.noblePlaceLinksForceShow; },
-                        setter: function(value) { user_data.place.attackLinks.noblePlaceLinksForceShow = value; },
-                        editor: "bool"
-                    }
-                },
-                nobleSupportOffTitle: {
-                    type: "subtitle",
-                    label: sangu_trans.place.nobleSupportOffTitle
-                },
-                nobleSupportOffUnit: {
-                    label: sangu_trans.place.nobleSupportUnit,
-                    propUI: {
-                        getter: function() { return user_data.place.attackLinks.nobleSupport[0].unit; },
-                        setter: function(value) { user_data.place.attackLinks.nobleSupport[0].unit = value; },
-                        editor: "unit"
-                    }
-                },
-                nobleSupportOffAmount: {
-                    label: sangu_trans.place.nobleSupportAmount,
-                    propUI: {
-                        getter: function() { return user_data.place.attackLinks.nobleSupport[0].amount; },
-                        setter: function(value) { user_data.place.attackLinks.nobleSupport[0].amount = value; },
-                        editor: "number|step=50"
-                    }
-                },
-                nobleSupportDefTitle: {
-                    type: "subtitle",
-                    label: sangu_trans.place.nobleSupportDefTitle
-                },
-                nobleSupportDefUnit: {
-                    label: sangu_trans.place.nobleSupportUnit,
-                    propUI: {
-                        getter: function() { return user_data.place.attackLinks.nobleSupport[1].unit; },
-                        setter: function(value) { user_data.place.attackLinks.nobleSupport[1].unit = value; },
-                        editor: "unit"
-                    }
-                },
-                nobleSupportDefAmount: {
-                    label: sangu_trans.place.nobleSupportAmount,
-                    propUI: {
-                        getter: function() { return user_data.place.attackLinks.nobleSupport[1].amount; },
-                        setter: function(value) { user_data.place.attackLinks.nobleSupport[1].amount = value; },
-                        editor: "number|step=50"
-                    }
-                }
+      user_data_configs.push({
+        id: "placeLinks",
+        title: sangu_trans.place.title,
+        save: sangu_saver,
+        properties: {
+          scoutTitle: {
+            type: "subtitle",
+            label: sangu_trans.place.scoutTitle
+          },
+          scoutPlaceLinksName: {
+            label: sangu_trans.place.linkText,
+            propUI: {
+              getter: function() { return user_data.place.attackLinks.scoutPlaceLinksName; },
+              setter: function(value) { user_data.place.attackLinks.scoutPlaceLinksName = value; },
+              editor: "text|width=23"
             }
-        });
+          },
+          scoutVillage: {
+            label: sangu_trans.place.scoutVillage,
+            propUI: {
+              getter: function() { return user_data.place.attackLinks.scoutVillage; },
+              setter: function(value) { user_data.place.attackLinks.scoutVillage = value; },
+              editor: "number|step=10"
+            }
+          },
+          scoutPlaceLinks: {
+            label: sangu_trans.place.scoutPlaceLinks,
+            propUI: {
+              getter: function() { return user_data.place.attackLinks.scoutPlaceLinks; },
+              setter: function(value) { user_data.place.attackLinks.scoutPlaceLinks = value; },
+              editor: "array|addNew:number|step=10|delete"
+            }
+          },
+
+
+
+
+
+          fakePlaceLinkTitle: {
+            type: "subtitle",
+            label: sangu_trans.place.fakePlaceLinkTitle
+          },
+          fakePlaceLinkName: {
+            label: sangu_trans.place.linkText,
+            propUI: {
+              getter: function() { return user_data.place.attackLinks.fakePlaceLinkName; },
+              setter: function(value) { user_data.place.attackLinks.fakePlaceLinkName = value; },
+              editor: "text|width=23"
+            }
+          },
+          fakePlaceLink: {
+            label: sangu_trans.global.resources.activate,
+            propUI: {
+              getter: function() { return user_data.place.attackLinks.fakePlaceLink; },
+              setter: function(value) { user_data.place.attackLinks.fakePlaceLink = value; },
+              editor: "bool"
+            }
+          },
+          fakePlaceExcludeTroops: {
+            label: sangu_trans.place.fakePlaceExcludeTroops,
+            tooltip: sangu_trans.place.fakePlaceExcludeTroopsTooltip,
+            propUI: {
+              getter: function() { return user_data.place.attackLinks.fakePlaceExcludeTroops; },
+              setter: function(value) { user_data.place.attackLinks.fakePlaceExcludeTroops = value; },
+              editor: "array|addNew:text|delete|width=7"
+            }
+          },
+
+
+
+
+          noblePlaceLinkDivideTitle: {
+            type: "subtitle",
+            label: sangu_trans.place.noblePlaceLinkDivideTitle
+          },
+          noblePlaceLinkDivideName: {
+            label: sangu_trans.place.linkText,
+            propUI: {
+              getter: function() { return user_data.place.attackLinks.noblePlaceLinkDivideName; },
+              setter: function(value) { user_data.place.attackLinks.noblePlaceLinkDivideName = value; },
+              editor: "text|width=23"
+            }
+          },
+          noblePlaceLink: {
+            label: sangu_trans.global.resources.activate,
+            propUI: {
+              getter: function() { return user_data.place.attackLinks.noblePlaceLink; },
+              setter: function(value) { user_data.place.attackLinks.noblePlaceLink = value; },
+              editor: "bool"
+            }
+          },
+          noblePlaceLinkDivideAddRam: {
+            label: sangu_trans.place.noblePlaceLinkDivideAddRam,
+            propUI: {
+              getter: function() { return user_data.place.attackLinks.noblePlaceLinkDivideAddRam; },
+              setter: function(value) { user_data.place.attackLinks.noblePlaceLinkDivideAddRam = value; },
+              editor: "bool"
+            }
+          },
+          noblePlaceLinkFirstTitle: {
+            type: "subtitle",
+            label: sangu_trans.place.noblePlaceLinkFirstTitle
+          },
+          noblePlaceLinkFirstName: {
+            label: sangu_trans.place.linkText,
+            tooltip: sangu_trans.place.noblePlaceLinkFirstNameTooltip,
+            propUI: {
+              getter: function() { return user_data.place.attackLinks.noblePlaceLinkFirstName; },
+              setter: function(value) { user_data.place.attackLinks.noblePlaceLinkFirstName = value; },
+              editor: "text|width=23"
+            }
+          },
+          noblePlaceLinkSupportTitle: {
+            type: "subtitle",
+            label: sangu_trans.place.noblePlaceLinkSupportTitle
+          },
+          noblePlaceLinkSupportName: {
+            label: sangu_trans.place.linkText,
+            propUI: {
+              getter: function() { return user_data.place.attackLinks.noblePlaceLinkSupportName; },
+              setter: function(value) { user_data.place.attackLinks.noblePlaceLinkSupportName = value; },
+              editor: "text|width=23"
+            }
+          },
+          noblePlaceLinksForceShow: {
+            label: sangu_trans.place.noblePlaceLinksForceShow,
+            propUI: {
+              getter: function() { return user_data.place.attackLinks.noblePlaceLinksForceShow; },
+              setter: function(value) { user_data.place.attackLinks.noblePlaceLinksForceShow = value; },
+              editor: "bool"
+            }
+          }
+        }
+      });
     }
+
+  if (showConfigs) {
+    (function() {
+      var i,
+        properties = {};
+
+      for (i = 0; i < user_data.place.customPlaceLinks.length; i++) {
+        (function() {
+          var unitTypeIndex,
+            customPlaceLink = user_data.place.customPlaceLinks[i],
+            oneTimeTooltip = i == 0 ? sangu_trans.place.customPlaceOneTimeTooltip : undefined,
+            oneTimeTooltipSendAlong = i == 0 ? sangu_trans.place.customPlaceSendAlongTooltip : undefined;
+
+          properties['customPlaceLink'+i+'Title'] = {
+            type: "subtitle",
+            label: sangu_trans.place.link.replace("{name}", customPlaceLink.name)
+          };
+
+          properties['customPlaceLink'+i+'Name'] = {
+            label: sangu_trans.place.linkText,
+            propUI: {
+              getter: function() { return customPlaceLink.name; },
+              setter: function(value) { customPlaceLink.name = value; },
+              editor: "text|width=23"
+            }
+          };
+
+          properties['customPlaceLink'+i+'Active'] = {
+            label: sangu_trans.global.resources.activate,
+            propUI: {
+              getter: function() { return customPlaceLink.active; },
+              setter: function(value) { customPlaceLink.active = value; },
+              editor: "bool"
+            }
+          };
+
+          for (unitTypeIndex = 0; unitTypeIndex < world_data.units.length; unitTypeIndex++) {
+            (function() {
+              var unit = world_data.units[unitTypeIndex],
+                reallyOneTimeTooltip = unitTypeIndex == 0 && oneTimeTooltip ? oneTimeTooltip : undefined;
+
+              properties['customPlaceLink'+i+unit] = {
+                label: "<img src='graphic/unit/unit_"+unit+".png'/>",
+                tooltip: reallyOneTimeTooltip,
+                propUI: {
+                  getter: function() { return customPlaceLink[unit]; },
+                  setter: function(value) { customPlaceLink[unit] = value; },
+                  editor: "number|step=100"
+                }
+              };
+            })();
+          }
+
+          properties['customPlaceLink'+i+'SendAlong'] = {
+            label: sangu_trans.place.customPlaceSendAlong,
+            tooltip: oneTimeTooltipSendAlong,
+            propUI: {
+              getter: function() { return customPlaceLink.sendAlong; },
+              setter: function(value) { customPlaceLink.sendAlong = value; },
+              editor: "number|step=100"
+            }
+          };
+        })();
+      }
+
+      user_data_configs.push({
+        id: "placeLinksCustom",
+        title: sangu_trans.place.titleCustom,
+        save: sangu_saver,
+        properties: properties
+      });
+    }());
+  }
 
     if (showConfigs) {
         (function() {

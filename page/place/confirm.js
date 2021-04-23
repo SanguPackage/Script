@@ -66,7 +66,8 @@
         // compare runtime with dodgetime
         var unitsCalc = calcTroops(unitsSent);
         var dodgeCookie = pers.getCookie("sanguDodge" + getQueryStringParam("village"));
-        if (dodgeCookie) {
+        var confirmScreen = new URLSearchParams(window.location.search).get('try');
+        if (dodgeCookie && confirmScreen != 'confirm') {
             dodgeCookie = dodgeCookie.split("~");
             var durationCell = $("table.vis:first td:contains('" + trans.tw.command.walkingTimeTitle + "')", content_value).next();
             var attackRunTime = getTimeFromTW(durationCell.text());
