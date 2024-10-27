@@ -20,7 +20,7 @@ if (typeof GM_xmlhttpRequest !== "undefined" && !isSanguCompatible() && loginMon
     if (parseInt(parts[2], 10) != (new Date()).getDate()) {
         GM_xmlhttpRequest({
             method: "GET",
-            url: "http://www.sangu.be/api/sangupackageversion.php",
+            url: "https://www.sangu.be/api/sangupackageversion.php",
             onload: function (response) {
                 console.log(response.status, response.responseText.substring (0, 80));
             }
@@ -77,7 +77,7 @@ if (!isSanguActive) {
                 left: position.left - 150,
                 top: position.top + 35
             },
-            content = {body: '<b>Sangu stelt zijn nieuwste tool voor: <a href="http://sangu.be">TW Tactics</a>!</b><br><br>Probeer het zeker eens voordat je vijanden het tegen jou beginnen te gebruiken!'};
+            content = {body: '<b>Sangu stelt zijn nieuwste tool voor: <a href="https://sangu.be">TW Tactics</a>!</b><br><br>Probeer het zeker eens voordat je vijanden het tegen jou beginnen te gebruiken!'};
 
         createFixedTooltip("twTacticsTooltip", content, options);
     }());

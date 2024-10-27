@@ -1,4 +1,4 @@
-[Sangu Package](http://www.sangu.be) - Warlord TW extension
+[Sangu Package](https://www.sangu.be) - Warlord TW extension
 =============
 
 The Sangu Package is a Greasemonkey script for Firefox,
@@ -44,7 +44,7 @@ To do this: Download and install Autohotkey (make sure you download AutoHotkey_L
 `mergeIt.ahk` and `mergeIt.ini` can be configured to not only assemble the script but to also copy it to browser Greasemonkey directories and even activate the browser window and refresh the TW page.    
 
 If an error like the one below occurs during assembly:  
-![Incorrect version of Autohotkey error](http://sangu.be/api/ahk-assembly-error.png)  
+![Incorrect version of Autohotkey error](https://sangu.be/api/ahk-assembly-error.png)  
 Then you have installed an older version of AutoHotkey, known as AutoHotkey Basic which is not compatible with buildPackage or mergeIt.ahks.
 
 

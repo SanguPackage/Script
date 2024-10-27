@@ -6,8 +6,8 @@
         "js":               [ "sangupackage.user.js" ],
         "matches":          [   "http://*.tribalwars.*/game.php?*",
                                 "https://www.fyletikesmaxes.gr/game.php?*",
-                                "http://sangu.be/*",
-                                "http://www.sangu.be/*"
+                                "https://sangu.be/*",
+                                "https://www.sangu.be/*"
                             ],
         "run_at": "document_end"
     } ],

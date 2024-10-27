@@ -6,7 +6,7 @@ function displayNewVersion() {
     var linkText = document.createTextNode(" - Sangu Package Update!");
     a.appendChild(linkText);
     a.title = "Er is een update voor het Sangu Package beschikbaar!";
-    a.href = "http://sangu.be";
+    a.href = "https://sangu.be";
     a.style.color = "black";
     a.style.fontWeight = "bolder";
     a.style.backgroundColor = "yellow";
@@ -22,7 +22,7 @@ if (typeof GM_xmlhttpRequest !== "undefined") {
             // GM_xmlhttpRequest didn't work when put in sangu_ready
             GM_xmlhttpRequest({
                 method: "GET",
-                url: "http://www.sangu.be/api/sangupackageversion.php",
+                url: "https://www.sangu.be/api/sangupackageversion.php",
                 synchronous: false,
                 onload: function(response) {
                     if (response.responseText !== currentVersion) {

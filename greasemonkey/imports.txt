@@ -3,11 +3,11 @@
 // @author          Laoujin / De Goede Fee
 // @namespace       sangu.be
 // @description     Package for Tribal Wars bullies
-// @icon            http://www.sangu.be/images/favicon.png
+// @icon            https://www.sangu.be/favicon.png
 // @include         https://*.tribalwars.*/game.php?*
 // @include         https://*.fyletikesmaxes.gr/game.php*
-// @include         http://sangu.be/*
-// @include         http://www.sangu.be/*
+// @include         https://sangu.be/*
+// @include         https://www.sangu.be/*
 // @version         //<!--@@INCLUDE "version.txt" INDENT=0 //-->
 // @grant           GM_xmlhttpRequest
 // ==/UserScript==
