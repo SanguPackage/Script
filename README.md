@@ -6,8 +6,13 @@ Opera and Chrome that improves [Tribal Wars](http://www.tribalwars.nl) gameplay 
 and optimizes gameplay flow by
 adding extra features on pretty much every page, most notably the village overview pages.
 
-Available in the [Chrome Web Store](https://chrome.google.com/webstore/detail/sangu-package/fhmbjphafbpdphffjihgekljkcchcdem?hl=en)
-or install with [Tampermonkey](https://tampermonkey.net).
+Note that the rules have changed and it's no longer allowed (at least on the NL server)
+to install a script with Tampermonkey or from the Chrome Web Store.
+
+If you want to install the Sangu Package, [follow instructions on this forum thread](https://forum.tribalwars.nl/index.php?threads/sangu-package.206130/). Also note that there have been updates there that never made it back into this
+repository.
+
+
 
 Support
 -------
@@ -49,22 +54,9 @@ Then you have installed an older version of AutoHotkey, known as AutoHotkey Basi
 
 
 This (Autohotkey) means the script can currently only be assembled on a Windows machine. (This was perhaps not really
-thought through:). If a non Windows person wants to join the project, I'm sure we can come up with a solution that works for both environments :)
+thought through:)
 
 
 ### Chrome Debugging
 
 Run `mergeIt.ahk` and reload "Load Unpacked `sangupackage-release`" in `chrome://extensions`.
-
-
-Contributing
-------------
-
-**The Sangu Package is currently looking for a project maintainer**
-
-Do note that I will make any (legit) pull requests available on sangu.be and on the Google Web Store as soon as possible.
-
-Contact
--------
-
-You can contact me at sangu@pongit.be
